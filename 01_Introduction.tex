@@ -1,0 +1,115 @@
+% Introduction
+% ============
+
+\chapter{Introduction}
+\label{sec:introduction}
+
+\paragraph{}
+La calculabilité c'est l'étude des limites de l'informatique. Il faut bien
+faire attention à faire la différence entre les limites théoriques et les limites
+pratiques. Pour la calculabilité, on s'occupe des limites théoriques.
+Alors que pour la complexité on s'occupe des limites pratiques. La complexité
+détermine la frontière entre ce qui est faisable en pratique et infaisable en pratique.
+La question principale de la calculabilité est: ``quels sont les problèmes qui peuvent
+être résolus par un programme?''. La caractéristique de calculabilité ne donne aucune autre information sur le programme que son existence.
+
+\paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
+non calculables et non calculables en pratique.
+
+\paragraph{}
+Cela nous permet de savoir quand ça ne sert à rien d'essayer de résoudre un problème.
+De plus, on est conscient de sa complexité intrinsèque d'un
+problème.
+% paragraph  (end)
+
+
+\section{Notion de problème}
+\label{subsec:notion_de_probl_me}
+
+\paragraph{}
+Premièrement, on doit parler la notion de problème.
+Attention, il ne faut pas confondre un problème avec un programme.
+Les caractéristiques d'un problème sont:
+
+\begin{itemize}
+	\item un problème est générique : il s'applique à un ensemble de données.
+	\item pour chaque donnée particulière, il existe une réponse.
+\end{itemize}
+On représente un problème dans le cours par une fonction. Donc dans le cours,
+la description d'un problème est équivalente à la description d'une fonction.
+% paragraph  (end)
+% subsection notion_de_probl_me (end)
+
+\section{Notion de programme}
+\label{ssub:notion_de_programme}
+
+Un programme est une ``procédure effective'', c'est-à-dire exécutable par une machine.
+Il existe plein de formalismes permettant la description de ``procédure effective''.
+
+% subsection notion_de_programme (end)
+
+\subsection{Résultats principaux}
+\label{sub:r_sultat_principaux}
+
+\begin{itemize}
+	\item Équivalence des langages de programmation (complets).
+	\item Problème non calculable : il existe des problèmes qui ne peuvent
+		être résolus par un programme. Ex:
+        détection de virus,
+        équivalence de programme,
+        déterminer si un polynôme à coefficients entiers à des racines entières, ...
+	\item Problème intrinsèquement complexe. (Voir complexité) Les problèmes
+		qui ont une complexité supérieure ou égale à l'exponentielle. Dans
+		ce cas, même l'amélioration des ordinateurs n'influence presque pas
+		la taille de l'entrée possible.
+\end{itemize}
+
+% subsection r_sultat_principaux (end)
+
+\section{Détection de virus}
+\label{sub:d_tection_de_virus}
+On veut déterminer si un programme P avec une entrée D est nuisible.
+
+Spécification du programme detecteur(P,D):\\
+\textbf{Préconditions :} un programme P et une donnée D\\
+\textbf{Postconditions :} ``Mauvais'' si P(D) est nuisible,
+		``Bon'' sinon.
+Il faut aussi que detecteur ne soit pas nuisible.
+
+On va créer un programme drole(P) et essayer de détecter s’il est nuisible.
+
+\begin{lstlisting}
+drole(P)
+if detecteur(P,P) = ``Mauvais''
+	then stop
+else infecter un autre programme en y inserant P
+\end{lstlisting}
+
+Testons \lstinline|drole(drole)|.
+\begin{lstlisting}
+drole(drole)
+if detecteur(drole, drole) = ``Mauvais''
+	then stop
+else infecter un autre programme en y inserant drole
+\end{lstlisting}
+
+\begin{itemize}
+	\item Supposons que \lstinline|drole(drole)| soit nuisible.
+      Lorsqu'on exécute, \lstinline|drole(drole)|
+      \lstinline|detecteur(drole,drole)| n'infecte rien car \lstinline|detecteur| n'est pas nuisible.
+      Comme \lstinline|detecteur| retourne ``Mauvais'',
+      le programme s'arrête.
+      Rien a donc été infecté, ce qui est contradictoire avec le fait que \lstinline|drole(drole)| est nuisible.
+	\item Si par contre il n'est pas nuisible alors \lstinline|detecteur(drole,drole)|
+      ne va pas retourner Mauvais et on va arriver dans le \lstinline|else|.
+      On a donc infecter un autre programe que qui contredit le fait que \lstinline|drole(drole)| n'est pas nuisible.
+\end{itemize}
+
+On a donc une contradiction dans tous les cas ce qui implique que le programme \lstinline|drole| ne peut
+exister, ce qui implique que le programme detecteur non plus.
+% paragraph  (end)
+% subsection d_tection_de_virus (end)
+
+% section introduction (end)Introduction
+
+

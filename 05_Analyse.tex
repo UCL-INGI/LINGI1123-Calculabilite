@@ -1,0 +1,178 @@
+% Analyse
+% ========
+
+\chapter{Analyse de la thèse de Church-Turing}
+\label{sec:analyse_de_la_th_se_de_church_turing}
+Dans ce chapitre on va principalement voir ce qu'est un bon formalisme.
+
+\section{Fondement de la thèse}
+\label{sub:fondement_de_la_th_se}
+La forme originale ne contient que 2 parties :
+\begin{enumerate}
+	\item Toute fonction calculable par une MT est effectivement calculable
+	\item Toute fonction effectivement calculable est effectivement
+		calculable par une MT
+\end{enumerate}
+La partie 1 est démontrée et la 2 est supposée vraie.
+On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup
+d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré
+l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute
+machine constructible par la mécanique de Newton ne calcule que des fonctions
+calculables).
+% subsection fondement_de_la_th_se (end)
+
+\section{Formalismes de la calculabilité}
+\label{sub:formalismes_de_la_calculabilit_}
+On va se poser la question de ce qui fait un bon formalisme de la
+calculabilité. Il faut un formalisme qui vérifie les fondements de la
+thèse... Plus précisément, on va étudier des caractéristiques (des propriétés)
+nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
+
+\paragraph{} Dans ce chapitre, on va considérer un formalisme de la
+calculabilité D.
+
+\paragraph{Caractéristiques}
+\begin{description}
+	\item[SD] Soundness\footnote{Cohérence} des descriptions
+	\item[CD] Complétude des descriptions
+	\item[SA] Soundness algorithmique
+	\item[CA] Complétude algorithmique
+	\item[U] Description universelle
+	\item[S] Propriété S-m-n affaiblie
+\end{description}
+
+
+\begin{myrem}
+	\textbf{D} correspond à description, c'est-à-dire une description de fonction.\\
+	\textbf{A} correspond à algorithme, c'est-à-dire à une description
+	exécutable.
+\end{myrem}
+
+\begin{myrem}
+	\textbf{Soundness} signifie que, si on a une description dans notre modèle D alors
+	celle-ci est cohérente, correspond bien à une fonction
+	calculable.\\
+	\textbf{Complétude} signifie que notre modèle est complet, qu'il
+	n'existe pas de fonction calculable qui ne le soit pas dans notre
+	modèle.
+\end{myrem}
+
+\paragraph{Caractérisiques plus en détails}
+\begin{description}
+	\item[SD]  Toute fonction D-calculable est calculable (première partie
+		de la thèse de Turing)
+	\item[CD]  Toute fonction calculable est D-calculable (deuxième partie
+		de la thèse de Turing)
+	\item[SA]  L'interpréteur de D est calculable (on peut exécuter une
+		description de programme de D)
+	\item[CA]  Il existe un
+		compilateur qui étant donné un programme $p$ dans un formalisme
+		respectant SA produit une description de programme $d \in D$ tel que
+		$p$ et $d$ calculent la même fonction.
+	\item[U]  L'interpréteur de D est D-calculable (sinon on sait par
+		Hoare Allison que ce n'est pas un formalisme complet).
+	\item[S] Il existe un transformateur de programme calculable, qui
+		recevant comme entrée un programme $d \in$ D à 2 arguments et une valeur
+		$x$ fournit comme résultat un programme $d'$ tel que $d'(y)$ calcule
+		la même fonction que $d(x,y)$.
+		% checker si d' dans D!!!
+\end{description}
+Un bon formalisme de la calculabilité possède toutes ces propriétés. En pratique, il
+suffit d'en montrer certaines, car certaines propriétés en entraînent d'autres.
+
+\begin{myprop}
+	SA $\Rightarrow$ SD, car si on peut trouver une description exécutable,
+	celle-ci existe.
+\end{myprop}
+
+\begin{myprop}
+	CA $\Rightarrow$ CD, car si on a un compilateur qui compile un programme
+	de P en une description dans D, alors un programme de P est calculable dans D.
+\end{myprop}
+
+\begin{myprop}
+	SD et U $\Rightarrow$ SA car si on sait qu'il existe une description D calculant
+	une fonction et
+qu'on a un interpréteur de D D-calculable, alors la description est exécutable.
+\end{myprop}
+
+\begin{myprop}
+	CD et S $\Rightarrow$ CA, considérons n'importe quel autre formalisme
+Q qui a la propriété SA (ce qui signifie que sont interpréteur, $interp_Q(n,x)$ est calculable).
+Donc par la propriété CD, il existe un programme $p\in P$ tel que
+$\phi_p=\phi_{interp_Q}(n,x)$. Ensuite par la propriété S, il existe T, un
+transformateur de programme tel que : $\phi_{interp_Q}(n,x)=\phi_{T(n)}(x)$.
+On peut donc voir T comme un programme qui compile/transforme une description $q\in Q$ en une
+description $p\in P$. Ce qui implique qu'on a bien la propriété CA.
+
+\end{myprop}
+
+Un bon formalisme doit donc posséder soit SA et CA ou soit SD, CD, U et S ou
+soit SA, CD et S ou encore CA, SD et U, car
+\begin{itemize}
+	\item SA et CA $\iff$ SD, CD, U et S
+	\item SA, CD et S $\iff$ SD, CA et U
+\end{itemize}
+% su section formalismes_de_la_calculabilité_ (end)
+
+\section{Techniques de preuve}
+\label{sub:techniques_de_preuve}
+
+Pour prouver qu'un problème est non calculable, on peut utiliser :
+\begin{itemize}
+	\item Le théorème de Rice
+	\item La démonstration directe de la non-calculabilité par
+		diagonalisation ou par preuve par l'absurde.
+		\textbf{A priori le plus dur!} C'est plus pratique de réutiliser les problèmes pour
+		lesquels on a déjà montré la non-calculabilité.
+	\item La méthode de réduction
+\end{itemize}
+% subsection techniques_de_preuve (end)
+
+\section{Aspects non couverts par la calculabilité\\ (Section pas très
+	importante pour l'examen)}
+\label{sub:aspects_non_couvert_par_la_calculabilit_}
+La calculabilité se limite au calcul de fonctions. Or certains problèmes de la vie
+de tous les jours ne correspondent pas à une fonction.
+
+\begin{myexem}
+	Système d'exploitation
+\end{myexem}
+
+\begin{myexem}
+	Système de réservation aérienne
+\end{myexem}
+
+\begin{myexem}
+	Certains problèmes utilisent des caractéristiques de l'environnement comme
+	des données en provenance de sonde.
+\end{myexem}
+% subsection aspects_non_couvert_par_la_calculabilit_ (end)
+
+\section{Au-delà de la calculabilité}
+\label{sub:au_del_de_la_calculabilit_}
+Est-il possible d'imaginer un modèle plus puissant que les modèles qu'on a
+aujourd'hui? Est-ce que les humains sont ``plus puissants'' que les machines dans
+le sens où ils pourraient calculer des fonctions non calculables?
+
+Ce sont des questions qui font débat. Certain ne veulent même pas
+poser la deuxième question c'est-à-dire est-ce que H-calculable = T-calculable.
+
+\begin{mydef}[H-calculable]
+	Une fonction est H-calculable si un être humain
+	est capable de calculer cette fonction.
+	% tu confonds avec la thèse CT ``procédés publics'' sinon
+\end{mydef}
+
+\paragraph{} À la question ``les machines pensent-elles?'', Turing a proposé un
+raisonnement :
+\begin{itemize}
+	\item \textbf{Hypothèse :} les machines pensent.
+	\item Si on ne peut réfuter l'hypothèse alors celle-ci est vraie
+	\item Envisager toutes les objections (théologique, émotions,
+		mathématiques...) et toutes les réfuter.
+\end{itemize}
+
+% subsection au_del_de_la_calculabilit_ (end)
+% section analyse_de_la_t_se_de_chu ch_Turin (end)
+

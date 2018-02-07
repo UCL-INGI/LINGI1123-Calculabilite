@@ -1,0 +1,214 @@
+
+\usepackage[
+type={CC},
+lang={fr},
+modifier={by-sa},
+version={4.0},
+]{doclicense}
+
+\RequirePackage[utf8x]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+
+\usepackage[francais]{babel}    % Pour la langue française
+%\RequirePackage{babel}
+\RequirePackage{iflang}
+
+\RequirePackage{ifthen}
+\RequirePackage{url}
+\RequirePackage{xparse}
+
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+
+%%% SECTION TITLE APPEARANCE
+\RequirePackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+% Color
+% cfr http://en.wikibooks.org/wiki/LaTeX/Colors
+\RequirePackage{color}
+\RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{dkgreen}{rgb}{0.25,0.7,0.35}
+\definecolor{dkred}{rgb}{0.7,0,0}
+
+\RequirePackage{pdfpages}
+%\usepackage{subfig}
+% subfig is deprecated see
+% http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{enumerate}
+
+\RequirePackage{hyperref}
+
+%-----------------------------
+\usepackage{eplcode}
+
+%-----------------------------
+\usepackage{pdfpages}
+\usepackage{palatino}
+\usepackage{enumitem}
+
+\usepackage[bottom]{footmisc}
+\usepackage{desclist}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+%\usepackage[latin1]{inputenc}    % Pour utiliser les lettres accentuées
+%\usepackage[francais]{babel}    % Pour la langue française
+
+\setlist[itemize]{topsep=3pt,after=\vspace{.5\baselineskip}}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\setlength{\parskip}{2mm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\newcommand{\stcomp}[1]{\overline{#1}}
+\newcommand{\N}{\mathbb{N}}
+
+% Make the style indentedefinition use bold for the name of the theorem
+\makeatletter
+\def\th@indenteddefinition{%
+  \thm@notefont{}% same as heading font
+  \normalfont % body font
+}
+\makeatother
+
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\image}{image}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\interpret}{interpret}
+
+\lstset{language={Java}}
+
+\RequirePackage{listings}
+\lstset{
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  basicstyle=\rm\small\ttfamily,
+  keywordstyle=\bfseries\color{dkred},
+  frame=single,
+  commentstyle=\color{gray}=small,
+  stringstyle=\color{dkgreen},
+  %backgroundcolor=\color{gray!10},
+  %tabsize=2,
+  rulecolor=\color{black!30},
+  %title=\lstname,
+  breaklines=true,
+  framextopmargin=2pt,
+  framexbottommargin=2pt,
+  extendedchars=true,
+  inputencoding=utf8x,
+  literate=
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+
+% Always prettier with Small Capitals
+% But use this command so if the definition of `pretty' changes
+% we will just have to update here.
+\newcommand{\matlab}{\textsc{Matlab}}
+\newcommand{\octave}{\textsc{GNU/Octave}}
+\newcommand{\qtoctave}{\textsc{QtOctave}}
+\newcommand{\oz}{\textsc{Oz}}
+\newcommand{\java}{\textsc{Java}}
+\newcommand{\clang}{\textsc{C}}
+
+% Math symbols
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\newcommand{\Tr}{\top}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\suchthat}{\ |\ }
+
+% Norm & absolute value, because ||x|| is ugly
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\lvert}
+
+% Sets
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\R^n}
+\newcommand{\Rnn}{\R^{n \times n}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Kn}{\K^n}
+\newcommand{\Knn}{\K^{n \times n}}
+
+% Unit vectors
+\RequirePackage{esint}
+\RequirePackage{esvect}
+\newcommand{\kmath}{k}
+\newcommand{\xunit}{\hat{\imath}}
+\newcommand{\yunit}{\hat{\jmath}}
+\newcommand{\zunit}{\hat{\kmath}}
+
+% rot & div & grad & lap
+\DeclareMathOperator{\newdiv}{div}
+\newcommand{\divn}[1]{\nabla \cdot #1}
+\newcommand{\rotn}[1]{\nabla \times #1}
+\newcommand{\grad}[1]{\nabla #1}
+\newcommand{\gradn}[1]{\nabla #1}
+\newcommand{\lap}[1]{\nabla^2 #1}
+
+
+% Complexity
+\newcommand{\bigoh}{\mathcal{O}}
+% Equal by definition
+\newcommand{\eqdef}{\triangleq}
+% Equivalent by definition
+\newcommand{\equivdef}{\stackrel{\Delta}{\Leftrightarrow}}
+% Constant
+\newcommand{\constant}{\ensuremath{\mathrm{cst}}}
+
+% Useful for integrals, don't just use \int x^2 dx
+% the `d' will be italic and won't have the right spacing!
+\DeclareMathOperator{\newdiff}{d} % use \dif instead
+\newcommand{\dif}{\newdiff\!}
+
+% It has never been easier to write derivatives !
+\newcommand{\fpart}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ffpart}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\fdpart}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\fdif}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\ffdif}[2]{\frac{\dif^2 #1}{\dif #2^2}}
+
+\newtheorem{mydef}{Définition}
+\newtheorem{mynota}[mydef]{Notation}
+\newtheorem{myprop}[mydef]{Propriétés}
+\newtheorem{myrem}[mydef]{Remarque}
+\newtheorem{myform}[mydef]{Formules}
+\newtheorem{mycorr}[mydef]{Corrolaire}
+\newtheorem{mytheo}[mydef]{Théorème}
+\newtheorem{mylem}[mydef]{Lemme}
+\newtheorem{myexem}[mydef]{Exemple}
+\newtheorem{myineg}[mydef]{Inégalité}
+\newtheorem{mycipher}[mydef]{Cipher}
+\newtheorem{myatk}[mydef]{Attaque}
+\newtheorem{myprob}{Problème}
+\newtheorem{mylaw}{Loi}
+\newtheorem{myhyp}{Hypothèse}

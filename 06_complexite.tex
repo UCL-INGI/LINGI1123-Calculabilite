@@ -1,0 +1,52 @@
+% Complexité
+% ============
+
+\chapter{Complexité}
+\label{sec:complexit_}
+Lors de l'étude de la complexité, on ne va considérer que la borne supérieure
+(notation big O). De plus, on ne va considérer que les fonctions totales et
+donc la décision d'ensembles récursifs.
+En effet, si la fonction n'est pas totale, l'algorithme peut boucler.
+Donc on ne sait pas étudier l'efficacité.
+
+\begin{mydef}[Complexité d'un problème] Complexité de l'algorithme le
+	\textbf{plus efficace} résolvant ce problème.
+\end{mydef}
+
+\begin{mydef}[Problème pratiquement faisable]
+	S’il existe un algorithme de complexité polynomiale qui résout ce
+	problème, alors, celui-ci est pratiquement faisable.
+\end{mydef}
+
+\begin{mydef}[Problème intrinsèquement complexe]
+	S’il n'existe pas d'algorithme de complexité polynomiale qui résout ce
+	problème, alors, celui-ci est intrinsèquement complexe.
+\end{mydef}
+
+\begin{myrem}
+	Quelle est la différence entre intrinsèquement complexe et pratiquement
+	infaisable?
+\end{myrem}
+
+\section{Influence du modèle de calcul}
+\label{sub:influence_du_mod_le_de_calcul}
+Si un algorithme est de complexité polynomiale dans un modèle complet alors il sera
+polynomial dans un autre modèle de calcul. Il y aura juste un facteur
+polynomial entre les deux, car il existe un compilateur du premier modèle vers
+le second qui a une complexité polynomiale.
+% subsection influence_du_mod_le_de_calcul (end)
+
+\section{Influence de la représentation des données}
+\label{sub:influence_de_la_repr_sentation_des_donn_es}
+Le choix de représentation de données induit une variation polynomiale du temps
+d'exécution et de l'espace.
+
+\begin{myrem}
+	Certains problèmes sont intrinsèquement complexes juste pour certaines
+	données (simplexe). Celles-ci sont souvent des cas particuliers et peu
+	rencontrées en pratique.
+\end{myrem}
+% subsection influence_de_la_repr_sentation_des_donn_es (end)
+
+% section complexit_ (end)
+
