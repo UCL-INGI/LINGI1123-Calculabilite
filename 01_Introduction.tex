@@ -4,7 +4,9 @@
 \chapter{Introduction}
 \label{sec:introduction}
 
+\section{Qu'est-ce que la calculabilité}
 \paragraph{}
+
 La calculabilité c'est l'étude des limites de l'informatique. Il faut bien
 faire attention à faire la différence entre les limites théoriques et les limites
 pratiques. Pour la calculabilité, on s'occupe des limites théoriques.
@@ -48,11 +50,19 @@ Il existe plein de formalismes permettant la description de ``procédure effecti
 
 % subsection notion_de_programme (end)
 
-\subsection{Résultats principaux}
+\section{Résultats principaux}
 \label{sub:r_sultat_principaux}
 
 \begin{itemize}
 	\item Équivalence des langages de programmation (complets).
+	\newline Il a t-il de langage de programmation qui sont plus puissantes que d'autres ?
+	\newline Il a des langages qui sont équivalents ? 
+	\newline Il y a une équivalence entre langages en termes de calculabilité quand un problème qui peut être résolu par un de ces langages peut être résolu par n'importe lequel autre.   
+S'il existe un programme Java qui résoudre un problème il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème, on peut dire qu'il existe une équivalence théorique.\\
+ D'un point de vue théorique ce langages s'appellent des langages complets, complet ça veut dire qu'il permet tous de résoudre le même problème donc le problème calculable à ces langages sont tous le même.\\
+D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrire plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères) c'est le langage le plus adapté qui aura un avantage. 
+
+
 	\item Problème non calculable : il existe des problèmes qui ne peuvent
 		être résolus par un programme. Ex:
         détection de virus,
@@ -64,7 +74,7 @@ Il existe plein de formalismes permettant la description de ``procédure effecti
 		la taille de l'entrée possible.
 \end{itemize}
 
-% subsection r_sultat_principaux (end)
+% section r_sultat_principaux (end)
 
 \section{Détection de virus}
 \label{sub:d_tection_de_virus}
