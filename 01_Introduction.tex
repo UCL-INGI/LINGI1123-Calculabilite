@@ -66,12 +66,12 @@ Il existe plein de formalismes permettant la description de ``procédure effecti
 Y a t-il de langage de programmation qui sont plus puissants que d'autres ? Tous les langages sont-ils équivalents ? 
 \newline 
 Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème peut être résolu par un de ces langages, il peut alors être résolu par n'importe lequel autre.   
-S'il existe un programme Java qui résoud un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. On parle d'une équivalence théorique.\\
-D'un point de vue théorique ce langages s'appellent des langages complets. Ils permettent tous de résoudre les même problèmes.  Un problème est donc calculable indépendemment du langage utilisé. \\
+S'il existe un programme Java qui résout un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. On parle d'une équivalence théorique.\\
+D'un point de vue théorique ce langages s'appellent des langages complets. Ils permettent tous de résoudre les même problèmes.  Un problème est donc calculable indépendamment du langage utilisé. \\
 D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrire plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères).  Certains langage sont donc mieux adaptés que d'autres pour certains problèmes. 
 
 
-	\subsection{Existence de problèmes non calculables}
+\subsection{Existence de problèmes non calculables}
 	Problème non calculable : il existe des problèmes qui ne peuvent
 		être résolus par un programme. Ex:
         détection de virus,
@@ -82,11 +82,11 @@ D'un point de vue pratique on peut voir des différences (le programme sera plus
 % section r_sultat_principaux (end)
 
 
-\section{Détection de virus}
-\label{sec:d_tection_de_virus}
+\subsubsection{Exemple: Détection de virus}
+\label{subsubsec:d_tection_de_virus}
 On veut déterminer si un programme P avec une entrée D est nuisible.
 
-\textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programme, le programme va se recopier autre part. 
+\textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programmes (par exemple le programme va se recopier autre part). 
 
 Spécification du programme detecteur(P,D):\\
 \textbf{Préconditions :} un programme P et une donnée D\\
