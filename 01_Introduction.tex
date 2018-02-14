@@ -15,15 +15,12 @@ pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que
 la complexité on s'occupe des limites pratiques. La complexité
 détermine la frontière entre ce qui est faisable et infaisable en pratique.
 La question principale de la calculabilité est: ``quels sont les problèmes qui peuvent
-être résolus par un programme?''. La caractéristique de calculabilité ne donne aucune 
-autre information sur le programme que de la preuve de son existence.
+être résolus par un programme?''.  De manière informelle, un problème est dit calculable s'il existe un programme qui résoud ce problème.  La caractéristique d'un problème calculable ne donne donc aucune 
+autre information que de la preuve de l'existence d'un programme pour résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas!
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
 
-\paragraph{}
-Cela nous permet de savoir quand ça ne sert à rien d'essayer de résoudre un problème.
-De plus, on est conscient de la complexité intrinsèque d'un problème.
 % paragraph  (end)
 
 \subsection{Exemples de limites}
@@ -32,11 +29,9 @@ De plus, on est conscient de la complexité intrinsèque d'un problème.
 De nombreuses limites existent en informatique, par exemple il est impossible de déterminer quand un programme se termine. Ou bien on ne peut pas déterminer qu'un programme est écrit sans bugs.
 
 Mais des limites existent dans bien d'autres domaines que l'informatique. 
-Par exemple dans plusieurs champs de la physique, on retrouve les lois de la 
-thermodynamique dans ce rôle. En effet on ne peut créer de l'énergie à partir de rien.
+Par exemple dans plusieurs champs de la physique tel que la 
+thermodynamique où des lois établissent que l'on ne peut créer de l'énergie à partir de rien.
 
-En biologie, les lois de Mendel forment une limite. Un individu ne peut recevoir 
-d'autres gènes que ceux de sa propre famille. %Verifier si c'est bien pertinent
 
 \section{Notion de problème}
 \label{sec:notion_de_probl_me}
@@ -64,15 +59,16 @@ Il existe plein de formalismes permettant la description de ``procédure effecti
 % subsection notion_de_programme (end)
 
 
-\subsection{Résultats principaux}
-\label{subsec:r_sultat_principaux}
+\section{Résultats principaux}
+\label{sec:r_sultat_principaux}
 
-	\subsection{ Équivalence des langages de programmation}
-	 Il a t-il de langage de programmation qui sont plus puissantes que d'autres ?  Il a des langages qui sont équivalents ? 
-	\newline Il y a une équivalence entre langages en termes de calculabilité quand un problème qui peut être résolu par un de ces langages peut être résolu par n'importe lequel autre.   
-S'il existe un programme Java qui résoudre un problème il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème, on peut dire qu'il existe une équivalence théorique.\\
- D'un point de vue théorique ce langages s'appellent des langages complets, complet ça veut dire qu'il permet tous de résoudre le même problème donc le problème calculable à ces langages sont tous le même.\\
-D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrire plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères) c'est le langage le plus adapté qui aura un avantage. 
+\subsection{ Équivalence des langages de programmation}
+Y a t-il de langage de programmation qui sont plus puissants que d'autres ? Tous les langages sont-ils équivalents ? 
+\newline 
+Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème peut être résolu par un de ces langages, il peut alors être résolu par n'importe lequel autre.   
+S'il existe un programme Java qui résoud un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. On parle d'une équivalence théorique.\\
+D'un point de vue théorique ce langages s'appellent des langages complets. Ils permettent tous de résoudre les même problèmes.  Un problème est donc calculable indépendemment du langage utilisé. \\
+D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrire plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères).  Certains langage sont donc mieux adaptés que d'autres pour certains problèmes. 
 
 
 	\subsection{Existence de problèmes non calculables}
@@ -138,7 +134,7 @@ exister, ce qui implique que le programme detecteur non plus.
 		
 \section{Objectifs calculabilité et complexité}
 
-A la Fig(\ref{cal_non_cal}) on voit qu'il a une frontière entre les problème non calculables (il n'existe pas un programme) et calculables (il existe un programme),  dans les calculables il a ceux qui sont calculables en pratiques (pas exponentiel) et puis ce qui ne sont pas calculables en pratique. 
+La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme).  Parmis les problèmes calculables il a ceux qui sont calculables en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
 
 \begin{figure}[h]
   \centering
