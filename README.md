@@ -1,3 +1,3 @@
 # LINGI1123-Calculabilite
-Syllabus couyrs Calculabilité
+Syllabus cours Calculabilité
 Creative Commons CC-BY-SA

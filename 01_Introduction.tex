@@ -2,34 +2,47 @@
 % ============
 
 \chapter{Introduction}
-\label{sec:introduction}
+\label{ch:introduction}
 
 \section{Qu'est-ce que la calculabilité}
+\label{sec:qu_est-ce_la_calculabilite}
+
 \paragraph{}
 
 La calculabilité c'est l'étude des limites de l'informatique. Il faut bien
 faire attention à faire la différence entre les limites théoriques et les limites
-pratiques. Pour la calculabilité, on s'occupe des limites théoriques.
-Alors que pour la complexité on s'occupe des limites pratiques. La complexité
-détermine la frontière entre ce qui est faisable en pratique et infaisable en pratique.
+pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que pour 
+la complexité on s'occupe des limites pratiques. La complexité
+détermine la frontière entre ce qui est faisable et infaisable en pratique.
 La question principale de la calculabilité est: ``quels sont les problèmes qui peuvent
-être résolus par un programme?''. La caractéristique de calculabilité ne donne aucune autre information sur le programme que son existence.
+être résolus par un programme?''. La caractéristique de calculabilité ne donne aucune 
+autre information sur le programme que de la preuve de son existence.
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
 
 \paragraph{}
 Cela nous permet de savoir quand ça ne sert à rien d'essayer de résoudre un problème.
-De plus, on est conscient de sa complexité intrinsèque d'un
-problème.
+De plus, on est conscient de la complexité intrinsèque d'un problème.
 % paragraph  (end)
 
+\subsection{Exemples de limites}
+\label{subsec:exemples_limites}
+
+De nombreuses limites existent en informatique, par exemple il est impossible de déterminer quand un programme se termine. Ou bien on ne peut pas déterminer qu'un programme est écrit sans bugs.
+
+Mais des limites existent dans bien d'autres domaines que l'informatique. 
+Par exemple dans plusieurs champs de la physique, on retrouve les lois de la 
+thermodynamique dans ce rôle. En effet on ne peut créer de l'énergie à partir de rien.
+
+En biologie, les lois de Mendel forment une limite. Un individu ne peut recevoir 
+d'autres gènes que ceux de sa propre famille. %Verifier si c'est bien pertinent
 
 \section{Notion de problème}
-\label{subsec:notion_de_probl_me}
+\label{sec:notion_de_probl_me}
 
 \paragraph{}
-Premièrement, on doit parler la notion de problème.
+Premièrement, on doit parler de la notion de problème.
 Attention, il ne faut pas confondre un problème avec un programme.
 Les caractéristiques d'un problème sont:
 
@@ -43,15 +56,16 @@ la description d'un problème est équivalente à la description d'une fonction.
 % subsection notion_de_probl_me (end)
 
 \section{Notion de programme}
-\label{ssub:notion_de_programme}
+\label{sec:notion_de_programme}
 
 Un programme est une ``procédure effective'', c'est-à-dire exécutable par une machine.
 Il existe plein de formalismes permettant la description de ``procédure effective''.
 
 % subsection notion_de_programme (end)
 
-\section{Résultats principaux}
-\label{sub:r_sultat_principaux}
+
+\subsection{Résultats principaux}
+\label{subsec:r_sultat_principaux}
 
 	\subsection{ Équivalence des langages de programmation}
 	 Il a t-il de langage de programmation qui sont plus puissantes que d'autres ?  Il a des langages qui sont équivalents ? 
@@ -71,8 +85,9 @@ D'un point de vue pratique on peut voir des différences (le programme sera plus
 
 % section r_sultat_principaux (end)
 
-\subsubsection{Détection de virus}
-\label{sub:d_tection_de_virus}
+
+\section{Détection de virus}
+\label{sec:d_tection_de_virus}
 On veut déterminer si un programme P avec une entrée D est nuisible.
 
 \textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programme, le programme va se recopier autre part. 
