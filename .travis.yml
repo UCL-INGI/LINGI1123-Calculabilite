@@ -1,0 +1,24 @@
+notifications:
+  email: false
+install:
+- export PATH="$HOME/miniconda/bin:$PATH"
+- if ! command -v conda > /dev/null; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; bash miniconda.sh -b -p $HOME/miniconda -u; conda config --add
+  channels conda-forge; conda config --set always_yes yes; conda update --all; conda
+  install tectonic; fi
+- conda info -a
+cache:
+  directories:
+  - "$HOME/miniconda"
+script:
+- tectonic ./calculabilite_INGI1123.tex --print
+deploy:
+  provider: releases
+  api_key:
+    secure: a6NBMCpIs0+5ODQtAVhDPCyvmxIIZAAV4d0N0wLAM0pu5kUhBOgU+xgkW3ssZ41C5eHSwioesHdZ4AqobMLqtTkHXf7OgaHg3tweWglvrCAY9NuZxw3sLzzJXVRyH+u571TH7GDlo/oFg04JOXWmXyPnY9Gvs1xs/O1sgLI4tvrx9RN3uQmnoL733lGJfKO97rg04KTr55kVBQpXu0iQrsg3r5d7C/GqROLedMIGGXsmz29sZLLuvr3C2812FQqXqS811hKpDKyx2p/rWZLdqOrlXTS/YBQ06YRzF9beoetActM0AS18RxoNHqhunVpYZj2BzFlJtp3CmHPn4u1Ak6x2OA9Ln67z/AFdKUiIjMXcIOmKz6qFhOEsBXHf0L4wxaXvTYFwiaoFqy0I8s3arJGkUV+UwrXVAX/zFK8PnVeBbb3sDpSCEQ36BUH1wHS7Fa09qPArcFrmqxq9Kpj02zN+6srkMP/Pw2wUUKprgprRgZy4HRQ7Oo7yjjwRoF86rHI80epbPfzrphRKJ2NW/ndRCtnEPkvuQ6G7HLJyr399YcDDev07t8qMI/YPz0Wel1B9ZnCPkf9icFT4rEsDUaliRyv2ialTrIUNAUqisE/MXeaHbaaZ1eK1k9TVQFLCXXAncvHrik5WyKeIqVITpPrXkRagJnjwRkd4Lkc/SkA=
+  file: calculabilite_INGI1123.pdf
+  on:
+    repo: UCL-INGI/LINGI1123-Calculabilite
+    branch: master
+    skip_cleanup: true
+    tags: true
