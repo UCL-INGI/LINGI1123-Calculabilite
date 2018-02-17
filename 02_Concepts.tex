@@ -135,8 +135,89 @@ Par exemple, l'union des singletons $\{x\}$ pour tout réel $x$ forme l'ensemble
   Une bonne intuition à avoir:
   Tout ensemble dont les éléments peuvent être représentés de manière finie est énumérable.
 
-  Par exemple, les rationnels, même s'ils ont une représentation décimale infinie peuvent être représentés de manière finie en fraction d'entiers.
 \end{myrem}
+
+
+Quelques ensembles énumérables:
+\begin{myexem}
+  L'ensemble des entiers $\mathbb{Z}$={0,-1,1,2,-2,...}.
+  \begin{proof}
+     On peut avoir une bijection entre $ \mathbb{Z}$ et $\mathbb{N}$ , ils peuvent être énumérés et on peut donner un numéro pour chaque élément, il existe donc une énumération. 
+  
+  \begin{tabular}{ l c c c c  c c c  r }
+     $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
+     $\mathbb{Z}$ & 0 & -1 & 1 & -2 & 2 & -3 & 3  & ... \\
+    
+    \end{tabular}
+  \end{proof}
+\end{myexem}
+  
+  
+  
+\begin{myexem}
+ L'ensemble des nombres pairs
+  \begin{proof}
+  Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres paires et $\mathbb{N}$.
+ 
+   
+   \begin{tabular}{ l c c c  c  c c c  r }
+    $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
+      Nombres pairs & 0 & 2 & 4 & 6 & 8 & 10 & 12  & ... \\
+    
+    \end{tabular}
+  \end{proof} 
+\end{myexem}
+  
+\begin{myexem}
+  L'ensemble des paires d'entiers, des triplets, ...
+    \begin{proof}
+        Il existe une énumération, il existe une bijection comme celui-ci  
+      
+       \begin{tabular}{ l c c  c  c c c  r }
+ 	  $\mathbb{N}$  & 0 & 1 & 2  & 3 & 4 & 5 & ...  \\
+
+ 	 L’ensemble des paires d’entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & ... \\
+  L’ensemble des pairesdes triplets & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & ... \\
+	\end{tabular}
+    \end{proof}   
+\end{myexem}
+  
+\begin{myexem}
+ Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers, exactement comme il a été fait pour les démonstrations précédentes. 
+ \end{myexem}
+  
+\begin{myexem}  
+  L'ensemble des sous-ensembles finis d'entiers
+  \begin{proof}
+  On peut également trouver une bijection entre $\mathbb{N}$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensemble de taille 3, 4, 5, 6,... On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\mathbb{N}$).
+  
+  
+    \begin{tabular}{ l c c  c  c c c  r }
+ 	 $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6  \\
+ 	 sous-ensembles  taille 0  & {} & {} & {} & {} & {} & {}  & ... \\
+ 	 sous-ensembles  taille 1   & {0} & {1} & {2} & {3} & {4} & {5} & ... \\
+ 	 sous-ensembles  taille 2  & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & ... \\
+ 	 sous-ensembles  taille 3  & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & ... \\
+ 	  ...  & {...} & {...} & {...} & {...} & {...} & {...}  & ... \\
+ 	 
+	\end{tabular}
+  \end{proof}
+\end{myexem}
+
+\begin{myexem}  
+  L'ensemble des chaînes finies de caractères sur un alphabet fini
+\begin{proof}
+ Variante de la démonstration précédente, la technique reste la même. Une chaîne de caractères (le nombre de textes possibles est fini) est énumérable.  
+\end{proof}
+
+\end{myexem}
+ 
+ \begin{myexem}
+  L'ensemble des programmes Java
+  \begin{proof}
+  Combien il-y-a-t il de programmes Java? Potentielement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\mathbb{N}$. 
+  \end{proof}
+\end{myexem}
 
 Quelques ensembles non énumérables :
 \begin{myexem}
