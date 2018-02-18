@@ -137,13 +137,29 @@ cela implique que le programme \lstinline|detecteur| n'existe pas non plus.
 
 Problème intrinsèquement complexe. (Voir complexité) Les problèmes
 qui ont une complexité supérieure ou égale à l'exponentielle. Peu importe les évolutions technologiques, un problème exponentiel ne peut et ne pourra être résolu que pour de petite taille, par exemple le problème du voyageur de commerce. Car quand la rapidité de calcul d'un ordinateur est multipliée, la taille d'un problème résoluble en temps raisonnable est incrémentée d'une petite valeur (voir le tableau ci-dessous).
-	
-%Inserer un tableau de complexite si la puissance d'un ordi augmente de x10 ou x1000
+
+Supposons un ordinateur actuel sachant faire 100 million d'instructions par secondes ($100$ Mips) que le traitement d'un élément équivaut à 100 instructions machines alors $N_i$ est la taille du ``plus grand'' exemple dont la solution peut-être calculée en 1heure de temps calcul.	
+
+\begin{center}
+	$\begin{array}{|c||c|c|c|}
+		\hline
+		\text{Complexité} & \text{Ordinateur actuel} & \text{100x plus rapide} & \text{1000x plus rapide} \\
+		\hline
+		n & N_1 = 3.6\times 10^9 & 100 N_1 & 1000 N_1 \\
+		n^2 & N_2 = 6\times 10^5 & 10 N_2 & 31.6 N_2 \\
+		n^3 & N_3 = 1530 & 4.64 N_3 & 10 N_3 \\
+		n^5 & N_4 = 81 & 2.5 N_4 & 3.98 N_4 \\
+		\hline
+		2^n & N_5 = 31 & N_5 + 6 & N_5 + 10 \\
+		3^n & N_6 = 20 & N_6 + 4 & N_6 + 6 \\
+		\hline
+	\end{array}$
+\end{center}
 		
 \section{Objectifs calculabilité et complexité}
 \label{sec:objectifs_calculabilite_et_complexite}
 
-La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme).  Parmis les problèmes calculables il a ceux qui sont calculables en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
+La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme).  Parmis les problèmes calculables il a ceux qui le sont en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=0.8]
