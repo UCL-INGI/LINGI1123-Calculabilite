@@ -154,7 +154,11 @@ version={4.0},
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Rn}{\R^n}
 \newcommand{\Rnn}{\R^{n \times n}}
+\ifdefined\C
+\renewcommand{\C}{\mathbb{C}}
+\else
 \newcommand{\C}{\mathbb{C}}
+\fi
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Kn}{\K^n}
 \newcommand{\Knn}{\K^{n \times n}}

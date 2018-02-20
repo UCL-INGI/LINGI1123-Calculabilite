@@ -2,32 +2,42 @@
 % ============
 
 \chapter{Introduction}
-\label{sec:introduction}
+\label{ch:introduction}
+
+\section{Qu'est-ce que la calculabilité}
+\label{sec:qu_est-ce_la_calculabilite}
 
 \paragraph{}
+
 La calculabilité c'est l'étude des limites de l'informatique. Il faut bien
 faire attention à faire la différence entre les limites théoriques et les limites
-pratiques. Pour la calculabilité, on s'occupe des limites théoriques.
-Alors que pour la complexité on s'occupe des limites pratiques. La complexité
-détermine la frontière entre ce qui est faisable en pratique et infaisable en pratique.
+pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que pour 
+la complexité on s'occupe des limites pratiques. La complexité
+détermine la frontière entre ce qui est faisable et infaisable en pratique.
 La question principale de la calculabilité est: ``quels sont les problèmes qui peuvent
-être résolus par un programme?''. La caractéristique de calculabilité ne donne aucune autre information sur le programme que son existence.
+être résolus par un programme?''.  De manière informelle, un problème est dit calculable s'il existe un programme qui résoud ce problème.  La caractéristique d'un problème calculable ne donne donc aucune 
+autre information que de la preuve de l'existence d'un programme pour résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas!
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
 
-\paragraph{}
-Cela nous permet de savoir quand ça ne sert à rien d'essayer de résoudre un problème.
-De plus, on est conscient de sa complexité intrinsèque d'un
-problème.
 % paragraph  (end)
+
+\subsection{Exemples de limites}
+\label{subsec:exemples_limites}
+
+De nombreuses limites existent en informatique, par exemple il est impossible de déterminer quand un programme se termine. Ou bien on ne peut pas déterminer qu'un programme est écrit sans bugs.
+
+Mais des limites existent dans bien d'autres domaines que l'informatique. 
+Par exemple dans plusieurs champs de la physique tel que la 
+thermodynamique où des lois établissent que l'on ne peut créer de l'énergie à partir de rien.
 
 
 \section{Notion de problème}
-\label{subsec:notion_de_probl_me}
+\label{sec:notion_de_probl_me}
 
 \paragraph{}
-Premièrement, on doit parler la notion de problème.
+Premièrement, on doit parler de la notion de problème.
 Attention, il ne faut pas confondre un problème avec un programme.
 Les caractéristiques d'un problème sont:
 
@@ -41,34 +51,42 @@ la description d'un problème est équivalente à la description d'une fonction.
 % subsection notion_de_probl_me (end)
 
 \section{Notion de programme}
-\label{ssub:notion_de_programme}
+\label{sec:notion_de_programme}
 
 Un programme est une ``procédure effective'', c'est-à-dire exécutable par une machine.
 Il existe plein de formalismes permettant la description de ``procédure effective''.
 
 % subsection notion_de_programme (end)
 
-\subsection{Résultats principaux}
-\label{sub:r_sultat_principaux}
 
-\begin{itemize}
-	\item Équivalence des langages de programmation (complets).
-	\item Problème non calculable : il existe des problèmes qui ne peuvent
+\section{Résultats principaux}
+\label{sec:r_sultat_principaux}
+
+\subsection{ Équivalence des langages de programmation}
+Y a t-il de langage de programmation qui sont plus puissants que d'autres ? Tous les langages sont-ils équivalents ? 
+\newline 
+Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème peut être résolu par un de ces langages, il peut alors être résolu par n'importe lequel autre.   
+S'il existe un programme Java qui résout un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. On parle d'une équivalence théorique.\\
+D'un point de vue théorique ce langages s'appellent des langages complets. Ils permettent tous de résoudre les même problèmes.  Un problème est donc calculable indépendamment du langage utilisé. \\
+D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrire plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères).  Certains langage sont donc mieux adaptés que d'autres pour certains problèmes. 
+
+
+\subsection{Existence de problèmes non calculables}
+	Problème non calculable : il existe des problèmes qui ne peuvent
 		être résolus par un programme. Ex:
         détection de virus,
         équivalence de programme,
         déterminer si un polynôme à coefficients entiers à des racines entières, ...
-	\item Problème intrinsèquement complexe. (Voir complexité) Les problèmes
-		qui ont une complexité supérieure ou égale à l'exponentielle. Dans
-		ce cas, même l'amélioration des ordinateurs n'influence presque pas
-		la taille de l'entrée possible.
-\end{itemize}
+	
 
-% subsection r_sultat_principaux (end)
+% section r_sultat_principaux (end)
 
-\section{Détection de virus}
-\label{sub:d_tection_de_virus}
+
+\subsubsection{Exemple: Détection de virus}
+\label{subsubsec:d_tection_de_virus}
 On veut déterminer si un programme P avec une entrée D est nuisible.
+
+\textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programmes (par exemple le programme va se recopier autre part). 
 
 Spécification du programme detecteur(P,D):\\
 \textbf{Préconditions :} un programme P et une donnée D\\
@@ -110,6 +128,21 @@ exister, ce qui implique que le programme detecteur non plus.
 % paragraph  (end)
 % subsection d_tection_de_virus (end)
 
+\subsection{ Existence de problèmes intrinsèquement complexes}
+	Problème intrinsèquement complexe. (Voir complexité) Les problèmes
+		qui ont une complexité supérieure ou égale à l'exponentielle. Peu importe les évolutions technologiques, un problème exponentiel ne peut et ne pourra être résolu que pour de petite taille, par exemple le problème du voyageur de commerce. 
+		
+\section{Objectifs calculabilité et complexité}
+
+La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme).  Parmis les problèmes calculables il a ceux qui sont calculables en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.55\textwidth]{Images/Problemes_calculables_et_non_calculables.png}
+  \caption{ Problèmes calculables / non calculables }
+  \label{cal_non_cal}
+\end{figure}
+
+L'intérêt de la calculabilité est de savoir quel problème sont calculables ou pas et donc ne pas essayer de résoudre un problème non calculable. S'il le problème est calculable il faut analyser la complexité pour savoir s'il y a une solution pratique pour la taille de mon problème. 
+
 % section introduction (end)Introduction
-
-
