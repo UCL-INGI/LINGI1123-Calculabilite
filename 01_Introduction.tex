@@ -91,7 +91,7 @@ On veut déterminer si un programme P avec une entrée D est nuisible.
 
 \textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programmes (par exemple: le programme va se recopier autre part). 
 
-Spécification du programme detecteur(P,D):\\
+Spécification du programme \textit{detecteur(P,D)}:\\
 \textbf{Préconditions :} un programme P et une donnée D\\
 \textbf{Postconditions :} ``Mauvais'' si P(D) est nuisible,
 		``Bon'' sinon.
@@ -99,6 +99,7 @@ Il faut aussi que detecteur ne soit pas nuisible.
 
 On va créer un programme drole(P) et essayer de détecter s’il est nuisible. Pour faire ce programme, on fait l'hypothèse que le programme detecteur(P,D) existe et détecte tous les programmes nuisibles.
 
+\label{lst:detecteur_de_virus}
 \begin{lstlisting}
 drole(P)
 if detecteur(P,P) = "Mauvais"
