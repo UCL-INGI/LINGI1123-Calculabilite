@@ -94,10 +94,10 @@ On veut déterminer si un programme P avec une entrée D est nuisible.
 Spécification du programme \textit{detecteur(P,D)}:\\
 \textbf{Préconditions :} un programme P et une donnée D\\
 \textbf{Postconditions :} ``Mauvais'' si P(D) est nuisible,
-		``Bon'' sinon.
+		``Bon'' sinon.\\
 Il faut aussi que detecteur ne soit pas nuisible.
 
-On va créer un programme drole(P) et essayer de détecter s’il est nuisible. Pour faire ce programme, on fait l'hypothèse que le programme detecteur(P,D) existe et détecte tous les programmes nuisibles.
+Faisons l'hypothèse qu'un programme detecteur(P,D) existe et que celui-ci ne soit pas nuisible.  Sous cette hypothèse, on peut construire le programme  drole(P) suivant.
 
 \label{lst:detecteur_de_virus}
 \begin{lstlisting}
@@ -107,7 +107,7 @@ if detecteur(P,P) = "Mauvais"
 else infecter un autre programme en y inserant P
 \end{lstlisting}
 
-Testons \lstinline|drole(drole)|.
+Regardons si l'exécution de \lstinline|drole(drole)| est nuisible ou non.  
 \begin{lstlisting}
 drole(drole)
 if detecteur(drole, drole) = "Mauvais"
@@ -128,18 +128,17 @@ else infecter un autre programme en y inserant drole
 \end{itemize}
 
 On a donc une contradiction dans tous les cas, ce qui implique que le programme \lstinline|drole| ne peut pas
-exister. Vu que la seule hypothèse que nous avons formulé pour écrire le programme \lstinline|drole| est que \lstinline|detecteur| existe, 
-cela implique que le programme \lstinline|detecteur| n'existe pas non plus.
+exister. Vu que la seule hypothèse que nous avons formulé pour écrire le programme \lstinline|drole| est que \lstinline|detecteur| (non nuisible) existe, 
+cela implique que le programme \lstinline|detecteur| (non nuisible) n'existe pas non plus.
 % paragraph  (end)
 % subsubsection d_tection_de_virus (end)
 
 \subsection{ Existence de problèmes intrinsèquement complexes}
 \label{subsec:existence_de_problemes_intrinsequement_complexes}
 
-Problème intrinsèquement complexe. (Voir complexité) Les problèmes
-qui ont une complexité supérieure ou égale à l'exponentielle. Peu importe les évolutions technologiques, un problème exponentiel ne peut et ne pourra être résolu que pour de petite taille, par exemple le problème du voyageur de commerce. Car quand la rapidité de calcul d'un ordinateur est multipliée, la taille d'un problème résoluble en temps raisonnable est incrémentée d'une petite valeur (voir le tableau ci-dessous).
+Un problème intrinsèquement complexe et un problème dont le meilleur algorithme n'a pas de complexité polynomiale, mais une complexité exponentielle ou pire.  Peu importe les évolutions technologiques, un problème exponentiel ne peut et ne pourra être résolu que pour des données petite taille.  Un exemple est le problème du voyageur de commerce qui doit rechercher le trajet le plus court pour relier n villes..  Pour un problème intrinsèquement complexe, lorsqu'un ordinateur est $n$ fois plus rapide,  la taille des problèmes pouvant être résolus en temps raisonnable est incrémentée d'une petite valeur (voir le tableau ci-dessous).
 
-Supposons un ordinateur actuel sachant faire 100 million d'instructions par secondes ($100$ Mips) que le traitement d'un élément équivaut à 100 instructions machines alors $N_i$ est la taille du ``plus grand'' exemple dont la solution peut-être calculée en 1heure de temps calcul.	
+Supposons un ordinateur actuel sachant faire 100 millions d'instructions par secondes ($100$ Mips) et que le traitement d'un élément nécessite 100 instructions machines.  Dénotons $N_i$  la taille du ``plus grand'' exemple dont la solution peut-être calculée en 1 heure de temps calcul.	
 
 \begin{center}
 	$\begin{array}{|c||c|c|c|}
@@ -177,5 +176,6 @@ La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non
 	\label{cal_non_cal}
 \end{figure}
 
-L'intérêt de la calculabilité est de savoir quels problèmes sont calculables ou pas et donc de ne pas perdre du temps à essayer de résoudre un problème non calculable. Si le problème est calculable il faut analyser sa complexité pour savoir s'il y a une solution pratique pour la taille de mon problème. 
+L'intérêt de la calculabilité est de savoir quels problèmes sont calculables ou lesquels ne le sont pas.  Si un problème est non calculable. il est alors inutile  d'essayer de résoudre ce problème.  Si le problème est calculable mais intrinsèquement complexe, il est inutile d'envisager un algorithme permettant de résoudre des problème de grande taille.  
+Face à un problème non calculable ou intrinsèquement complexe,  on peut essayer de relâcher le problème pour le rendre calculable ou de complexité polynomiale..  Une solution à ce problème relâché peut par exemple être une approximation du problème initial.  
 % section introduction (end)Introduction
