@@ -17,8 +17,8 @@ Notations :
 	\item [Ensemble fini :] $\{ 0, 1, 2\}$
 	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4, \ldots\}$, $\{a, aa, aaa, aaaa, \ldots\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \ldots\}$
 	\item [Produit cartésien :] $A \times B$
-    \item [Le nombre d'éléments :] $|A|$
-    \item [Ensemble des sous-ensembles :] $2^A$ ou $\mathcal{P}(A)$, e.g. $2^{\{2,4\}} = \{\{\}, \{2\}, \{4\}, \{2,4\}\}$.
+    \item [Le nombre d'éléments :] $\abs{A}$
+    \item [Ensemble des sous-ensembles :] $2^A$ ou $\mathcal{P}(A)$, e.g. $2^{\{2,4\}} = \{\{\}, \{2\}, \{4\}, \{2,4\}\}$. \\
       On peut remarquer que $|2^A| = 2^{|A|}$
 	\item [Complément :] $\stcomp{\mathrm{A}}$
 \end{description}
@@ -49,9 +49,9 @@ Notations :
 Soient $A$, $B$ des ensembles.
 \begin{itemize}
 	\item Une \emph{relation} $R$ sur $A$, $B$ est un sous-ensemble de $A \times B$. C'est-à-dire
-		un ensemble de paires $\langle a,b \rangle$ avec $a\in A$, $b\in B$.
+		un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$.
 	\item Une relation est définie par sa table
-	\item Elle peut s'écrire $\langle a,b \rangle \in R$ ou $aRb$ ou $R(a,b)$.
+	\item Elle peut s'écrire $\la a,b \ra \in \R$ ou $a\R b$ ou $\R(a,b)$.
 \end{itemize}
 
 % subsubsection relations (end)
@@ -100,7 +100,7 @@ On peut définir la table de plusieurs façons :
 		\subitem Ex: $f(x) = 2x^3+5$
 	\item Écrire toutes les paires de la relation.
 \end{itemize}
-Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
+Il n'est toutefois pas nécessaire de décrire ou de connaitre un moyen de la calculer
 pour pouvoir la définir sans ambigüité ni contradiction. 
 
 Ex : $f(x) = 1$ s'il y a de la vie autre part que sur terre, $0$ sinon.
@@ -130,8 +130,8 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
      On peut avoir une bijection entre $ \mathbb{Z}$ et $\mathbb{N}$ , ils peuvent être énumérés et on peut donner un numéro pour chaque élément, il existe donc une énumération. 
   
   \begin{tabular}{ l c c c c  c c c  r }
-     $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
-     $\mathbb{Z}$ & 0 & -1 & 1 & -2 & 2 & -3 & 3  & ... \\
+     $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
+     $\Z$ & 0 & -1 & 1 & -2 & 2 & -3 & 3  & ... \\
     
     \end{tabular}
   \end{proof}
@@ -146,7 +146,7 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
  
    
    \begin{tabular}{ l c c c  c  c c c  r }
-    $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
+    $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
       Nombres pairs & 0 & 2 & 4 & 6 & 8 & 10 & 12  & ... \\
     
     \end{tabular}
@@ -159,7 +159,7 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
         Il existe une énumération, il existe une bijection comme celui-ci  
       
        \begin{tabular}{ l c c  c  c c c  r }
- 	  $\mathbb{N}$  & 0 & 1 & 2  & 3 & 4 & 5 & ...  \\
+ 	  $\N$  & 0 & 1 & 2  & 3 & 4 & 5 & ...  \\
 
  	 Ensemble des paires d entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & ... \\
      Ensemble des paires des triplets & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & ... \\
@@ -170,19 +170,19 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
 \end{myexem}
   
 \begin{myexem}
- Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers, exactement comme il a été fait pour les démonstrations précédentes. 
+ Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers, exactement comme il a été fait pour les démonstrations précédentes.
  \end{myexem}
   
 \begin{myexem}  
   L'ensemble des sous-ensembles finis d'entiers
   \begin{proof}
-  On peut également trouver une bijection entre $\mathbb{N}$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,... On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\mathbb{N}$).
+  On peut également trouver une bijection entre $\N$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,... On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\mathbb{N}$).
   
   
-    \begin{tabular}{ l c c  c  c c c  r }
+    \begin{tabular}{ l c c  c  c c c  c }
  	 $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6  \\
  	 sous-ensembles  taille 0  & {} & {} & {} & {} & {} & {}  & ... \\
- 	 sous-ensembles  taille 1   & {0} & {1} & {2} & {3} & {4} & {5} & ... \\
+ 	 sous-ensembles  taille 1  & {0} & {1} & {2} & {3} & {4} & {5} & ... \\
  	 sous-ensembles  taille 2  & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & ... \\
  	 sous-ensembles  taille 3  & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & ... \\
  	  ...  & {...} & {...} & {...} & {...} & {...} & {...}  & ... \\
@@ -208,7 +208,7 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
  \begin{myexem}
   L'ensemble des programmes Java
   \begin{proof}
-  Combien il-y-a-t il de programmes Java? Potentielement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\mathbb{N}$. 
+  Combien il-y-a-t il de programmes Java? Potentiellement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\N$. 
   \end{proof}
 \end{myexem}
 
@@ -218,10 +218,24 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
 
 \begin{myprop}
 	Tout sous-ensemble d'un ensemble énumérable est énumérable.
+	\begin{proof}
+		Soit $A$ un ensemble énumérable et $f$ une bijection dans $A\rightarrow N$. Soit $B$ un sous-ensemble de $A$ et $f|_B$ la restriction de $f$ à $B$. On regarde l'image de $f|_B$. C'est un sous-ensemble de $C$ de $\N$. 
+		
+		Si cet ensemble est borné alors il existe $n$ tel que $\forall x \in B, f(b) < n$ et donc $f|_B$ est une injection de $B$ dans $[0,n[$ et par conséquent $B$ est fini. 
+		
+		Dans le cas contraire, on sait que pour tout $n\in\N$, il existe $x\in B$ tel que $n\leq f(x)$. A chaque $n$ on peut donc associer $h(n)$ le plus petit $k\in\N$ tel que $f^{-1}(k)\in B$.
+	\end{proof}
 \end{myprop}
 
 \begin{myprop}
 	L'union et l'intersection de deux ensembles énumérables sont énumérables.
+	\begin{proof}
+		On se donne un ensemble d'ensembles $X$. On suppose que cet ensemble est dénombrable, c'est-à-dire que l'on peut énumérer les éléments de $X:X_0,X_1,\ldots$ De plus chaque ensemble $X_i$ est énumérable, soit $f_i$ la bijection associée. 
+		
+		A chaque élément $x\in\cup X$ on associe le couple $(i,f_i(x))$ avec $i$ le plus petit entier tel que $x\in X_i$. On vérifie que cette application est injective de $\cup X$ dans $\N\times\N$. C'est donc une bijection de $\cup X$ dans un sous-ensemble de $\N\times\N$. L'ensemble $\cup X$ est donc fini ou énumérable. 
+		
+		Comme cet ensemble contient $X_0$ qui est infini énumérable, on en déduit que $\cup X$ est dénombrable.
+	\end{proof}
 \end{myprop}
 
 \begin{myprop}
@@ -249,9 +263,9 @@ A écirre
 
 
 \begin{myprop}
- Tout language (avec un alphabet fini) est énumerable. 
+ Tout langage (avec un alphabet fini) est énumérable. 
  \begin{proof}
- Un language est un ensemble de chaines finies de caractères.  Il est donc  énumerable.
+ Un langage est un ensemble de chaines finies de caractères.  Il est donc  énumérable.
  \end{proof}
 \end{myprop}
 
@@ -277,21 +291,21 @@ les techniques suivantes pourront être utilisées:
 
 \section{Cantor}
 \label{sec:cantor}
-On va montrer qu'il existe des ensembles non énumérables par diagonalisation. Ex $\R$.
+On va montrer qu'il existe des ensembles non énumérables par diagonalisation. Par exemple $\R$.
 \begin{myexem}
 	Exemple de démonstration par diagonalisation:
 	\begin{enumerate}
 		\item Construire une table : Liste de tous les grands
 			mathématiciens \\
-			\begin{tabular}{l}
-				\textit{\textbf{D}}E MORGAN \\
-				A\textit{\textbf{B}}EL\\
-				BO\textit{\textbf{O}}LE\\
-				BRO\textit{\textbf{U}}WER\\
-				SIER\textit{\textbf{P}}INSKI\\
-				WEIER\textit{\textbf{S}}TRASS\\
+			\begin{tabular}{lllllllllll}
+				\emph{\textbf{D}}&E& M&O&R&G&A&N&&& \\
+				A&\emph{\textbf{B}}&E&L&&&&&&&\\
+				B&O&\emph{\textbf{O}}&L&E&&&&&&\\
+				B&R&O&\emph{\textbf{U}}&W&E&R&&&&\\
+				S&I&E&R&\emph{\textbf{P}}&I&N&S&K&I&\\
+				W&E&I&E&R&\emph{\textbf{S}}&T&R&A&S&S\\
 			\end{tabular}
-		\item Sélectionner la diagonale : $diag = $DBOUPS
+		\item Sélectionner la diagonale : $diag = $ DBOUPS
 		\item Modifier l'élément égal à la diagonale : $diag' =$ CANTOR
 		\item Montrer que l'élément n'est pas dans la liste $\Rightarrow$ Contradiction
 		\item Conclusion :
@@ -369,22 +383,22 @@ Quelques ensembles non énumérables :
  \begin{proof}
    Rappelons nous tout d'abord que comme $\N$ est infini, ses sous-ensembles peuvent l'être aussi.
    Il est adéquat de visualiser un ensemble à l'aide d'un mot binaire
-   où le bit $i$ vaut 1 si le $i$ième élément est pris dans le sous-ensemble.
+   où le bit $i$ vaut 1 si le $i^{\mathrm{ième}}$ élément est pris dans le sous-ensemble.
    Par exemple, le sous-ensemble $\{1,4\}$ de $\{1,3,4\}$ peut être représenté par $101$.
    Seulement, comme il y a un nombre infini de nombre entiers, on a mot binaire infini.
    Par exemple, les nombres pairs, c'est le mot $10101010101\ldots$:
    \begin{verbatim}
-0123456789...
-1010101010... nombres pairs
-
-0123456789...
-0011010100... nombres premiers
-
-0123456789...
-0001001001... multiples de 3 non-nuls
+		0123456789...
+		1010101010... nombres pairs
+		
+		0123456789...
+		0011010100... nombres premiers
+		
+		0123456789...
+		0001001001... multiples de 3 non-nuls
     \end{verbatim}
    On voit maintenant la bijection entre les sous-ensembles de $\N$ et $[0,1]$.
-   En effet, on peut associer par exemple l'ensembe des nombres pairs au réel $0.101010101\ldots$.
+   En effet, on peut associer par exemple l'ensemble des nombres pairs au réel $0.101010101\ldots$.
    Plus précisément on associe le sous-ensemble de $\N$ représenté par le mot $m$, le réel entre $0$ et $1$ dont l'écriture binaire est $0.m$.
  \end{proof}
 \end{myexem}
@@ -444,6 +458,7 @@ est plus grand que chacun de ces ensembles.
 
 
 \section{Conclusion}
+\label{sec:concept_conclusion}
 
 Les ensembles énumérables sont importants pour la suite du cours et aussi, car en
 informatique on ne considère que les ensembles énumérables.
