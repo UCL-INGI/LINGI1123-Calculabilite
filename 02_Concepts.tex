@@ -100,7 +100,7 @@ On peut définir la table de plusieurs façons :
 		\subitem Ex: $f(x) = 2x^3+5$
 	\item Écrire toutes les paires de la relation.
 \end{itemize}
-Il n'est toutefois pas nécessaire de décrire ou de connaitre un moyen de la calculer
+Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
 pour pouvoir la définir sans ambigüité ni contradiction. 
 
 Ex : $f(x) = 1$ s'il y a de la vie autre part que sur terre, $0$ sinon.
@@ -137,14 +137,11 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
   \end{proof}
 \end{myexem}
   
-  
-  
 \begin{myexem}
  L'ensemble des nombres pairs
   \begin{proof}
   Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres paires et $\mathbb{N}$.
  
-   
    \begin{tabular}{ l c c c  c  c c c  r }
     $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
       Nombres pairs & 0 & 2 & 4 & 6 & 8 & 10 & 12  & ... \\
@@ -178,14 +175,13 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
   \begin{proof}
   On peut également trouver une bijection entre $\N$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,... On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\mathbb{N}$).
   
-  
     \begin{tabular}{ l c c  c  c c c  c }
  	 $\mathbb{N}$ & 0 & 1 & 2  & 3 & 4 & 5 & 6  \\
- 	 sous-ensembles  taille 0  & {} & {} & {} & {} & {} & {}  & ... \\
- 	 sous-ensembles  taille 1  & {0} & {1} & {2} & {3} & {4} & {5} & ... \\
- 	 sous-ensembles  taille 2  & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & ... \\
- 	 sous-ensembles  taille 3  & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & ... \\
- 	  ...  & {...} & {...} & {...} & {...} & {...} & {...}  & ... \\
+ 	 sous-ensembles  taille 0  & {} & {} & {} & {} & {} & {}  & $\cdots$ \\
+ 	 sous-ensembles  taille 1  & {0} & {1} & {2} & {3} & {4} & {5} & $\cdots$ \\
+ 	 sous-ensembles  taille 2  & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & $\cdots$ \\
+ 	 sous-ensembles  taille 3  & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & $\cdots$ \\
+ 	 \vdots  & {\vdots} & {\vdots} & {\vdots} & {\vdots} & {\vdots} & {\vdots}  & $\ddots$ \\
  	 
 	\end{tabular}
   \end{proof}
@@ -212,7 +208,6 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
   \end{proof}
 \end{myexem}
 
-
 \subsection{Propriétés}
 \label{subsec:proprietes}
 
@@ -230,11 +225,11 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
 \begin{myprop}
 	L'union et l'intersection de deux ensembles énumérables sont énumérables.
 	\begin{proof}
-		On se donne un ensemble d'ensembles $X$. On suppose que cet ensemble est dénombrable, c'est-à-dire que l'on peut énumérer les éléments de $X:X_0,X_1,\ldots$ De plus chaque ensemble $X_i$ est énumérable, soit $f_i$ la bijection associée. 
+		On se donne un ensemble d'ensembles $X$. On suppose que cet ensemble est énumérable, c'est-à-dire que l'on peut énumérer les éléments de $X:X_0,X_1,\ldots$ De plus chaque ensemble $X_i$ est énumérable, soit $f_i$ la bijection associée. 
 		
 		A chaque élément $x\in\cup X$ on associe le couple $(i,f_i(x))$ avec $i$ le plus petit entier tel que $x\in X_i$. On vérifie que cette application est injective de $\cup X$ dans $\N\times\N$. C'est donc une bijection de $\cup X$ dans un sous-ensemble de $\N\times\N$. L'ensemble $\cup X$ est donc fini ou énumérable. 
 		
-		Comme cet ensemble contient $X_0$ qui est infini énumérable, on en déduit que $\cup X$ est dénombrable.
+		Comme cet ensemble contient $X_0$ qui est infini énumérable, on en déduit que $\cup X$ est énumérable.
 	\end{proof}
 \end{myprop}
 
@@ -250,7 +245,7 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
 \begin{myprop}
  Tout ensemble  de chaines finies de caractères est énumérable.
  \begin{proof}
-A écirre
+	A écrire
  \end{proof}
 \end{myprop}
 
@@ -463,8 +458,5 @@ est plus grand que chacun de ces ensembles.
 Les ensembles énumérables sont importants pour la suite du cours et aussi, car en
 informatique on ne considère que les ensembles énumérables.
 
-
-
 % subsection conclusion (end)
 % section concepts (end)
-
