@@ -10,9 +10,9 @@
 \subsection{Ensembles}
 \label{subsec:ensembles}
 Un ensemble est une collection d'objets, sans répétition, appelés les éléments
-de l'ensemble.\\
+de l'ensemble.
+\paragraph{Notations}
 
-Notations :
 \begin{description}
 	\item [Ensemble fini :] $\{ 0, 1, 2\}$
 	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4, \ldots\}$, $\{a, aa, aaa, aaaa, \ldots\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \ldots\}$
@@ -30,16 +30,20 @@ Notations :
 Notations :
 \begin{itemize}
     \item Une \emph{chaîne de caractères} ou un \emph{mot} : séquence \textbf{\underline{finie}} de symboles. Ex:
-		\subitem -- $abceced$, 
-		\subitem -- $010101101$
+    	\begin{itemize}
+    		\item $abceced$,
+    		\item $010101101$
+    	\end{itemize}
 	\item Chaîne de caractères vide : $\epsilon$
     \item Un \emph{alphabet} $\Sigma$ est un ensemble de symboles. $\Sigma = \{1, 2\}$ $\Sigma = \{a, b, c\}$
     \item Un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet donné.
     	\subitem Palindromes sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
 	\item Ensemble de tous les mots possibles sur l'alphabet $\Sigma$ : $\Sigma ^*$
-		\subitem -- $\Sigma = {}, \Sigma^* = \{\epsilon\}$
-		\subitem -- $\Sigma = {a}, \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
-		\subitem -- $\Sigma = {0,1}, \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
+		\begin{itemize}
+			\item $\Sigma = {}, \Sigma^* = \{\epsilon\}$
+			\item $\Sigma = {a}, \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
+			\item $\Sigma = {0,1}, \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
+		\end{itemize}
 \end{itemize}
 
 % subsubsection Langages (end)
@@ -51,7 +55,7 @@ Soient $A$, $B$ des ensembles.
 	\item Une \emph{relation} $R$ sur $A$, $B$ est un sous-ensemble de $A \times B$. C'est-à-dire
 		un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$.
 	\item Une relation est définie par sa table
-	\item Elle peut s'écrire $\la a,b \ra \in \R$ ou $a\R b$ ou $\R(a,b)$.
+	\item Elle peut s'écrire $\la a,b \ra \in R$ ou $aR b$ ou $R(a,b)$.
 \end{itemize}
 
 % subsubsection relations (end)
@@ -116,7 +120,7 @@ Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensemb
 ont le même cardinal s'il existe une bijection entre eux.
 
 \begin{mydef}[Ensemble énumérable]
-	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\mathbb{\N}$. \\
+	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\N$. \\
 \end{mydef}
 
 De manière intuitive, un ensemble est énumérable s'il existe une liste de ses éléments.  Cette liste doit contenir tous les éléments.
@@ -125,13 +129,13 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
 \label{subsec:exemples}
 
 \begin{myexem}
-  L'ensemble des entiers $\mathbb{Z}$={0,-1,1,2,-2,...}.
+  L'ensemble des entiers $\mathit{\Z=\{0,-1,1,2,-2,\ldots\}}$.
   \begin{proof}
-     On peut avoir une bijection entre $ \mathbb{Z}$ et $\mathbb{N}$ , ils peuvent être énumérés et on peut donner un numéro pour chaque élément, il existe donc une énumération. 
+     On peut avoir une bijection entre $\Z$ et $\N$ , ils peuvent être énumérés et on peut donner un numéro pour chaque élément, il existe donc une énumération. 
   
-  \begin{tabular}{ l c c c c  c c c  r }
-     $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
-     $\Z$ & 0 & -1 & 1 & -2 & 2 & -3 & 3  & ... \\
+  \begin{tabular}{ l | c c c c c c c r }
+     $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & \ldots \\
+     $\Z$ & 0 & -1 & 1 & -2 & 2 & -3 & 3  & \ldots \\
     
     \end{tabular}
   \end{proof}
@@ -140,29 +144,29 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
 \begin{myexem}
  L'ensemble des nombres pairs
   \begin{proof}
-  Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres paires et $\mathbb{N}$.
+  Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres paires et $\N$.
  
-   \begin{tabular}{ l c c c  c  c c c  r }
-    $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & ... \\
-      Nombres pairs & 0 & 2 & 4 & 6 & 8 & 10 & 12  & ... \\
-    
+   \begin{tabular}{ l c c c c c c c r }
+    $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & \ldots \\
+      Nombres pairs & 0 & 2 & 4 & 6 & 8 & 10 & 12  & \ldots \\
     \end{tabular}
   \end{proof} 
 \end{myexem}
   
 \begin{myexem}
-  L'ensemble des paires d'entiers, des triplets, ...
+  L'ensemble des paires d'entiers, des triplets, \ldots
     \begin{proof}
         Il existe une énumération, il existe une bijection comme celui-ci  
       
-       \begin{tabular}{ l c c  c  c c c  r }
- 	  $\N$  & 0 & 1 & 2  & 3 & 4 & 5 & ...  \\
-
- 	 Ensemble des paires d entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & ... \\
-     Ensemble des paires des triplets & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & ... \\
-	\end{tabular}
-	Pour énumérer les paires d'entiers, on énumère les paires de somme 0, les paires de sommes 1, ...  \\
-	Si on construit un tableau à deux dimensions de toutes les paires, cette énumération revient à parcourir ce tableau en suyivant les différentes diagonales montantes.  
+		\begin{tabular}{ l c c  c  c c c  r }
+			$\N$  & 0 & 1 & 2  & 3 & 4 & 5 & \ldots  \\
+			Ensemble des paires d entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & \ldots \\
+			Ensemble des paires des triplets & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & \ldots \\
+			
+		\end{tabular}
+	
+	Pour énumérer les paires d'entiers, on énumère les paires de somme 0, les paires de sommes $1, \ldots$ \\
+	Si on construit un tableau à deux dimensions de toutes les paires, cette énumération revient à parcourir ce tableau en suivant les différentes diagonales montantes.  
     \end{proof}   
 \end{myexem}
   
@@ -182,7 +186,6 @@ De manière intuitive, un ensemble est énumérable s'il existe une liste de ses
  	 sous-ensembles  taille 2  & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & $\cdots$ \\
  	 sous-ensembles  taille 3  & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & $\cdots$ \\
  	 \vdots  & {\vdots} & {\vdots} & {\vdots} & {\vdots} & {\vdots} & {\vdots}  & $\ddots$ \\
- 	 
 	\end{tabular}
   \end{proof}
 \end{myexem}
@@ -300,8 +303,8 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 				S&I&E&R&\emph{\textbf{P}}&I&N&S&K&I&\\
 				W&E&I&E&R&\emph{\textbf{S}}&T&R&A&S&S\\
 			\end{tabular}
-		\item Sélectionner la diagonale : $diag = $ DBOUPS
-		\item Modifier l'élément égal à la diagonale : $diag' =$ CANTOR
+		\item Sélectionner la diagonale : $\diag = $ DBOUPS
+		\item Modifier l'élément égal à la diagonale : $\diag' =$ CANTOR
 		\item Montrer que l'élément n'est pas dans la liste $\Rightarrow$ Contradiction
 		\item Conclusion :
 			\begin{itemize}
