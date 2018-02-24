@@ -1,5 +1,16 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{ingi1123}[2018/02/23 INGI1123 style code package]
+%Ici les éventuelles options pour le document
 
-\usepackage[
+\DeclareOption*
+{\PackageWarning{ingi1123}{Unknown '\CurrentOption'}}
+
+\ProcessOptions\relax
+
+%-----------------------------
+%Les imports de packages
+
+\RequirePackage[
 type={CC},
 lang={fr},
 modifier={by-sa},
@@ -9,18 +20,22 @@ version={4.0},
 \RequirePackage[utf8x]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
+\RequirePackage{palatino}
 
-\usepackage[francais]{babel}    % Pour la langue française
-%\RequirePackage{babel}
-\RequirePackage{iflang}
+\RequirePackage[francais]{babel}    % Pour la langue française
+%\RequirePackage{iflang}
 
 \RequirePackage{ifthen}
 \RequirePackage{url}
-\RequirePackage{xparse}
+\RequirePackage{hyperref}
+\RequirePackage[bottom]{footmisc}
+%\RequirePackage{xparse}
 
-\usepackage{amsmath}
-
-\usepackage{graphicx}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{esint}
+\RequirePackage{esvect}
 
 %%% SECTION TITLE APPEARANCE
 \RequirePackage{sectsty}
@@ -31,50 +46,77 @@ version={4.0},
 % cfr http://en.wikibooks.org/wiki/LaTeX/Colors
 \RequirePackage{color}
 \RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
-\definecolor{dkgreen}{rgb}{0.25,0.7,0.35}
-\definecolor{dkred}{rgb}{0.7,0,0}
 
 \RequirePackage{pdfpages}
-%\usepackage{subfig}
-% subfig is deprecated see
 % http://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Subfloats
-\usepackage{caption}
-\usepackage{subcaption}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
 
-\usepackage{enumerate}
+%Toujours mettre enumerate AVANT enumitem
+\RequirePackage{enumerate}
+\RequirePackage{enumitem}
+\RequirePackage{desclist}
 
-\RequirePackage{hyperref}
+\RequirePackage{algorithm}
+\RequirePackage{algorithmic}
+\RequirePackage{listings}
 
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
 %-----------------------------
-\usepackage{eplcode}
+%Configuration des packages
 
-%-----------------------------
-\usepackage{pdfpages}
-\usepackage{palatino}
-\usepackage{enumitem}
-
-\usepackage[bottom]{footmisc}
-\usepackage{desclist}
-
-\usepackage{algorithm}
-\usepackage{algorithmic}
-
-\usepackage{tikz}
 \usetikzlibrary{shapes}
 
-%\usepackage[latin1]{inputenc}    % Pour utiliser les lettres accentuées
-%\usepackage[francais]{babel}    % Pour la langue française
+%Configuration de listings
+\lstset{
+	language=Java,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	basicstyle=\rm\small\ttfamily,
+	keywordstyle=\bfseries\color{dkred},
+	frame=single,
+	commentstyle=\color{gray}=small,
+	stringstyle=\color{dkred},
+	%backgroundcolor=\color{gray!10},
+	%tabsize=2,
+	rulecolor=\color{black!30},
+	%title=\lstname,
+	breaklines=true,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	extendedchars=true,
+	inputencoding=utf8x,
+	literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+	{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+	{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+	{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+	{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+	{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+	{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+	{ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+	{€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+%-----------------------------
+%Nouvelles commandes
 
 \setlist[itemize]{topsep=3pt,after=\vspace{.5\baselineskip}}
-\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
 \setlength{\parskip}{2mm}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{dkgreen}{rgb}{0.25,0.7,0.35}
+\definecolor{dkred}{rgb}{0.7,0,0}
 
 \newcommand{\stcomp}[1]{\overline{#1}}
-\newcommand{\N}{\mathbb{N}}
 
 % Make the style indentedefinition use bold for the name of the theorem
 \makeatletter
@@ -89,42 +131,6 @@ version={4.0},
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\interpret}{interpret}
 
-\lstset{language={Java}}
-
-\RequirePackage{listings}
-\lstset{
-  numbers=left,
-  numberstyle=\tiny\color{gray},
-  basicstyle=\rm\small\ttfamily,
-  keywordstyle=\bfseries\color{dkred},
-  frame=single,
-  commentstyle=\color{gray}=small,
-  stringstyle=\color{dkred},
-  %backgroundcolor=\color{gray!10},
-  %tabsize=2,
-  rulecolor=\color{black!30},
-  %title=\lstname,
-  breaklines=true,
-  framextopmargin=2pt,
-  framexbottommargin=2pt,
-  extendedchars=true,
-  inputencoding=utf8x,
-  literate=
-  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
-  {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
-  {À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
-  {ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
-  {Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
-  {â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
-  {Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
-  {œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
-  {ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
-  {ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
-  {€}{{\EUR}}1 {£}{{\pounds}}1
-}
-
-
 % Always prettier with Small Capitals
 % But use this command so if the definition of `pretty' changes
 % we will just have to update here.
@@ -136,9 +142,6 @@ version={4.0},
 \newcommand{\clang}{\textsc{C}}
 
 % Math symbols
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{amsthm}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator{\arcsinh}{arcsinh}
@@ -165,10 +168,9 @@ version={4.0},
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Kn}{\K^n}
 \newcommand{\Knn}{\K^{n \times n}}
+\newcommand{\N}{\mathbb{N}}
 
 % Unit vectors
-\RequirePackage{esint}
-\RequirePackage{esvect}
 \newcommand{\kmath}{k}
 \newcommand{\xunit}{\hat{\imath}}
 \newcommand{\yunit}{\hat{\jmath}}
@@ -219,3 +221,5 @@ version={4.0},
 \newtheorem{myprob}{Problème}
 \newtheorem{mylaw}{Loi}
 \newtheorem{myhyp}{Hypothèse}
+
+\endinput
