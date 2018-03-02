@@ -453,6 +453,15 @@ des fonctions totales. Mais on va montrer qu'un tel modèle nous restreint beauc
 	 L'interpréteur est une fonction totale.
 \end{myprop}
 
+\begin{myprop}
+	 Si nous définissons un langage de programmation permettant uniquement les programmes qui se terminent (par exemple Q défini plus haut ou minijava vue en cours), nous ne pouvons pas écrire l'interpréteur de ce langage dans ce langage, puisque le problème d'arrêt peut être résolu par un programme qui retourne vrai dans chaque cas.\\
+	 Pour un langage de programmation, nous pouvons soit: écrire l'interpréteur de ce langage dans le même langage où résoudre le problème d'arrêt de ce langage (halte) en utilisant ce même langage, mais nous ne pouvons pas faire les deux.
+\end{myprop}
+
+\begin{myexem}
+	Par exemple, si l'on considère java, l'existence d'un compilateur java signifie que le problème d'arrêt (halte) de java ne peut pas être résolu en utilisant java. 
+\end{myexem}
+
 \begin{mytheo}[Hoare-Allison]
 	\label{Hoare_Allison}
 	interpret(n,x) n'est pas calculable dans Q.\\
