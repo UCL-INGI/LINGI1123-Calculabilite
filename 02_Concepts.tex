@@ -2,70 +2,78 @@
 % =========
 
 \chapter{Concepts}
-\label{sec:concepts}
-
-% Dans cette partie il y a pas moyen de synthétiser beaucoup.
+\label{ch:concepts}
 
 \section{Ensembles, langages, relations et fonctions}
-\label{sub:ensembles_langages_relations_et_fonctions}
+\label{sec:ensembles_langages_relations_et_fonctions}
 
 \subsection{Ensembles}
-\label{ssub:ensembles}
+\label{subsec:ensembles}
 Un ensemble est une collection d'objets, sans répétition, appelés les éléments
-de l'ensemble.\\
+de l'ensemble.
+\paragraph{Notations}
 
-Notation :
-\begin{itemize}
-	\item Ensemble fini : $\{ 0, 1, 2\}$
-	\item Ensemble infini : $\{ 0, 1, 2, \ldots\}$
-	\item Produit cartésien : $A \times B$
-    \item Le nombre d'éléments : $|A|$
-    \item Ensemble des sous-ensembles : $2^A$ ou $\mathcal{P}(A)$, e.g. $2^{\{2,4\}} = \{\{\}, \{2\}, \{4\}, \{2,4\}\}$.
+\begin{description}
+	\item [Ensemble fini :] $\{ 0, 1, 2\}$
+	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4, \ldots\}$, $\{a, aa, aaa, aaaa, \ldots\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \ldots\}$
+	\item [Produit cartésien :] $A \times B$
+    \item [Le nombre d'éléments :] $\abs{A}$
+    \item [Ensemble des sous-ensembles :] $2^A$ ou $\mathcal{P}(A)$, e.g. $2^{\{2,4\}} = \{\{\}, \{2\}, \{4\}, \{2,4\}\}$. \\
       On peut remarquer que $|2^A| = 2^{|A|}$
-	\item Complément : $\stcomp{A}$
-\end{itemize}
+	\item [Complément :] $\stcomp{\mathrm{A}}$
+\end{description}
 
 % subsubsection ensembles (end)
 
 \subsection{Langages}
-\label{ssub:Langages}
-Notation :
+\label{subsec:Langages}
+Notations :
 \begin{itemize}
-    \item une \emph{chaîne de caractère} ou un \emph{mot} : séquence FINIE de symboles.
-		abceced, 010101101
-	\item chaîne de caractères vide : $\epsilon$
-    \item un \emph{alphabet} $\Sigma$ est un ensemble de symboles. $\Sigma = \{1, 2\}$
-    \item un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet
-		donné.
-	\item ensemble de tous les mots possibles sur l'alphabet $\Sigma$ : $\Sigma ^*$
+    \item Une \emph{chaîne de caractères} ou un \emph{mot} : séquence \textbf{\underline{finie}} de symboles. Ex:
+    	\begin{itemize}
+    		\item $abceced$,
+    		\item $010101101$
+    	\end{itemize}
+	\item Chaîne de caractères vide : $\epsilon$
+    \item Un \emph{alphabet} $\Sigma$ est un ensemble de symboles. $\Sigma = \{1, 2\}$ $\Sigma = \{a, b, c\}$
+    \item Un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet donné.
+    	\subitem Palindromes sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
+	\item Ensemble de tous les mots possibles sur l'alphabet $\Sigma$ : $\Sigma ^*$
+		\begin{itemize}
+			\item $\Sigma = {}, \Sigma^* = \{\epsilon\}$
+			\item $\Sigma = {a}, \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
+			\item $\Sigma = {0,1}, \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
+		\end{itemize}
 \end{itemize}
 
 % subsubsection Langages (end)
 
 \subsection{Relations}
-\label{ssub:relations}
+\label{subsec:relations}
 Soient $A$, $B$ des ensembles.
 \begin{itemize}
 	\item Une \emph{relation} $R$ sur $A$, $B$ est un sous-ensemble de $A \times B$. C'est-à-dire
-		un ensemble de paires $\langle a,b \rangle$ avec $a\in A$, $b\in B$.
-	\item On peut définir une relation par sa table
-	\item On peut écrire $\langle a,b \rangle \in R$ ou $aRb$ ou $R(a,b)$.
+		un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$.
+	\item Une relation est définie par sa table
+	\item Elle peut s'écrire $\la a,b \ra \in R$ ou $aR b$ ou $R(a,b)$.
 \end{itemize}
 
 % subsubsection relations (end)
 
 \subsection{Fonctions}
-\label{ssub:fonctions}
+\label{subsec:fonctions}
 Soient $A$, $B$ des ensembles.
 \begin{itemize}
   	\item Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in
 	A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$
-	\item écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$
-	\item Si il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
-		$f(a) = \perp$
+	\item Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$
+	\item S'il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
+		$f(a) = \perp$.  Le symbole $\perp$ est appelé \emph{bottom}.
 \end{itemize}
 
-Soit $f\colon A \to B$, on définit le \emph{domain} et l'\emph{image} respectivement comme suit
+\paragraph{Propriétés des fonctions}
+\label{par:proprietes_des_fonctions}
+Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} respectivement comme suit
 \begin{align*}
   \dom(f)   & = \{\, a \in A \mid f(a) \neq \bot \,\},\\
   \image(f) & = \{\, b \in B \mid \exists a \in A : b = f(a) \,\}.
@@ -73,9 +81,9 @@ Soit $f\colon A \to B$, on définit le \emph{domain} et l'\emph{image} respectiv
 
 Si $\dom(f) \subseteq A$, $f$ est appelée \emph{partielle} et si $\dom(f) = A$, $f$ est appelée \emph{totale}.
 Notez qu'avec cette définition, une fonction totale est partielle.
-Pour dire que $\dom(f) \subset A$, c'est plus explicite de dire que $f$ n'est pas totale que dire que $f$ est partielle.
+Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
 
-Une fonction est \emph{surjective} si $\image(f) = B$ et \emph{injective} si $\forall a,a' \in A$, $a \neq a' \Rightarrow f(a) \neq f(a')$.
+Une fonction est \emph{surjective} si $\image(f) = B$ et \emph{injective} si $\forall a,a' \in A : a \neq a' \Rightarrow f(a) \neq f(a')$.
 
 Une fonction est \emph{bijective} si elle est totale, injective et surjective.
 
@@ -83,84 +91,192 @@ On utilise aussi le concept d'\emph{extension} :
 $f: A \rightarrow B$ est une extension de $g: A \rightarrow B$ si $\forall x \in A : g(x)\neq \perp \Rightarrow f(x) = g(x)$.
 Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie.
 
+La fonction $\mathrm{sqrt}(x) = \sqrt{x}$ en mathématique n'est valable que pour $x\geq0$. En revanche un programme implémentant cette fonction, par exemple $\mathrm{mysqrt}(x) = \sqrt{x}$, retourne une valeur si $x\geq0$ ou \textit{Erreur} sinon. \textit{Erreur} est une extension de la fonction $\mathrm{sqrt}(x)$ de base.
+
 \paragraph{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
-On définit une fonction par sa table qui peut-être infinie.\\
+On définit une fonction par sa table qui peut être infinie.\\
 On peut définir la table de plusieurs façons :
 \begin{itemize}
-	\item Par un texte fini déterminant sans contradiction ni ambigüité le contenu
+	\item Par \emph{un texte fini} déterminant sans contradiction ni ambiguïté le contenu 
 		de la table.
-	\item Par un algorithme ex : $f(x) = 2x^3+5$
+	\item Par un algorithme. Dans ce cas elle détermine la fonction \textit{ainsi} qu'un moyen de la calculer.
+		\subitem Ex: $f(x) = 2x^3+5$
 	\item Écrire toutes les paires de la relation.
 \end{itemize}
-Attention, il n'est pas nécessaire de décrire ou de connaître un moyen de la calculer
-pour pouvoir la définir. Ex : $f(x) = 1$ s'il y a de la vie autre part que sur terre,
-$0$ sinon.
+Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
+pour pouvoir la définir sans ambigüité ni contradiction. 
+
+Ex : $f(x) = 1$ s'il y a de la vie autre part que sur terre, $0$ sinon.
 % paragraph d_finition_d_une_fonction (end)
-% subsubsection fonctions (end)
-% subsection ensembles_langages_relations_et_fonctions (end)
+% subsection fonctions (end)
+% section ensembles_langages_relations_et_fonctions (end)
 
 \section{Ensemble énumérable}
-\label{sub:ensemble_num_rables}
+\label{sec:ensemble_num_rables}
+Quel est la taille d'un ensemble ?  Comment comparer la taille d'ensemble infinis ?
 
 Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensembles
-ont le même cardinal s’il existe une bijection entre eux.
+ont le même cardinal s'il existe une bijection entre eux.
 
 \begin{mydef}[Ensemble énumérable]
-	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\mathbb{\N}$. \\
-	Quelques propriétés :
+	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\N$. \\
 \end{mydef}
+
+Une autre manière plus intuitive de voir si un un ensemble infini est  énumérable est de voir s'il existe une énumération de ses éléments.
+
+\begin{myprop} 
+Un ensemble infini $E$ est énumérable s'il existe une liste de ses éléments  
+\[
+e_0, e_1, e_2, \ldots , e_n, \ldots
+\]
+Cette liste doit contenir tous les éléments de cet ensemble, sans répétition.  La bijection est alors la fonction $f(i) = e_i$.  
+\end{myprop}
+
+\subsection{Exemples}
+\label{subsec:exemples}
+
+\begin{myexem}
+  L'ensemble des entiers $\mathit{\Z=\{0,-1,1,2,-2,\ldots\}}$.
+  \begin{proof}
+     On peut avoir une bijection entre $\Z$ et $\N$ , ils peuvent être énumérés et on peut donner un numéro pour chaque élément, il existe donc une énumération. 
+  
+  \begin{tabular}{ l | c c c c c c c r }
+     $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & \ldots \\
+     $\Z$ & 0 & -1 & 1 & -2 & 2 & -3 & 3  & \ldots \\
+    
+    \end{tabular}
+  \end{proof}
+\end{myexem}
+  
+\begin{myexem}
+ L'ensemble des nombres pairs
+  \begin{proof}
+  Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres paires et $\N$.
+ 
+   \begin{tabular}{ l c c c c c c c r }
+    $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & \ldots \\
+      Nombres pairs & 0 & 2 & 4 & 6 & 8 & 10 & 12  & \ldots \\
+    \end{tabular}
+  \end{proof} 
+\end{myexem}
+  
+\begin{myexem}
+  L'ensemble des paires d'entiers, des triplets, \ldots
+    \begin{proof}
+        Il existe une énumération, il existe une bijection comme celui-ci  
+      
+		\begin{tabular}{ l c c  c  c c c  r }
+			$\N$  & 0 & 1 & 2  & 3 & 4 & 5 & \ldots  \\
+			Ensemble des paires d entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & \ldots \\
+			Ensemble des paires des triplets & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & \ldots \\
+			
+		\end{tabular}
+	
+	Pour énumérer les paires d'entiers, on énumère les paires de somme 0, les paires de sommes $1, \ldots$ \\
+	Si on construit un tableau à deux dimensions de toutes les paires, cette énumération revient à parcourir ce tableau en suivant les différentes diagonales montantes.  
+    \end{proof}   
+\end{myexem}
+  
+\begin{myexem}
+ Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers, exactement comme il a été fait pour les démonstrations précédentes.
+ \end{myexem}
+  
+\begin{myexem}  
+  L'ensemble des sous-ensembles finis d'entiers
+  \begin{proof}
+  On peut également trouver une bijection entre $\N$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,... On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\N$).
+  
+    \begin{tabular}{ l c c  c  c c c  c }
+ 	 $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6  \\
+ 	 sous-ensembles  taille 0  & {} & {} & {} & {} & {} & {}  & $\cdots$ \\
+ 	 sous-ensembles  taille 1  & {0} & {1} & {2} & {3} & {4} & {5} & $\cdots$ \\
+ 	 sous-ensembles  taille 2  & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & $\cdots$ \\
+ 	 sous-ensembles  taille 3  & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & $\cdots$ \\
+ 	 \vdots  & {\vdots} & {\vdots} & {\vdots} & {\vdots} & {\vdots} & {\vdots}  & $\ddots$ \\
+	\end{tabular}
+  \end{proof}
+\end{myexem}
+
+\begin{myexem}  
+  L'ensemble des chaînes finies de caractères sur un alphabet fini
+\begin{proof}
+ Variante de la démonstration précédente, la technique reste la même. Une chaîne de caractères (le nombre de textes possibles est fini) est énumérable.  
+\end{proof}
+\end{myexem}
+
+\begin{myexem}
+ L'ensemble des fonctions de  $\{0, 1\}$ vers N est énumérable.
+ \begin{proof}
+  Une fonction de $\{0, 1\}$ vers N peut être représentée par deux couples de quatre entiers, donc est un quadruple. L'ensemble des fonctions de $\{0, 1\}$ vers N est ensemble des quadruples et est donc énumérable.
+ \end{proof}
+\end{myexem}
+ 
+ \begin{myexem}
+  L'ensemble des programmes Java
+  \begin{proof}
+  Combien il-y-a-t il de programmes Java? Potentiellement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\N$. 
+  \end{proof}
+\end{myexem}
+
+\subsection{Propriétés}
+\label{subsec:proprietes}
 
 \begin{myprop}
 	Tout sous-ensemble d'un ensemble énumérable est énumérable.
+	\begin{proof}
+Soit $A$ un sous-ensemble (infini) d'un ensemble $E$ énumérable.  Comme $E$ est énumérable, il existe une énumération de ses éléments
+\[
+e_0, e_1, \ldots , e_n, \ldots
+\]
+Enlevons de cette liste les éléments qui ne sont pas dans $A$.  On obtient une nouvelle liste qui énumère les éléments de $A$.
+	\end{proof}
 \end{myprop}
 
 \begin{myprop}
 	L'union et l'intersection de deux ensembles énumérables sont énumérables.
+	\begin{proof}
+		Soit $A$ et $B$ deux ensembles énumérables.  Leur intersection est énumérable car elle est un sous-ensemble de $A$.   Les éléments des ensembles $A$ et $B$ peuvent être listés
+\[
+A = \{ a_0, a_1, \ldots , a_n, \ldots\}  
+B = \{ b_0, b_1, \ldots , b_n, \ldots\} 
+\]
+Les éléments de $A \cup B$ peuvent être également listés 
+\[
+a_0, b_0, a_1, b_1, \ldots, a_n, b_n, \ldots
+\]
+en y retirant ensuite les doublons.
+	\end{proof}
 \end{myprop}
 
 \begin{myprop}
 	L'union d'une infinité énumérable d'ensembles énumérables est énumérable.
     \begin{proof}
-      La démonstration est similaire à la démonstration de l'énumérabilité de $\mathbb{Q}$.
+      La démonstration est similaire à la démonstration de l'énumérabilité de $\Q$.
       On met chaque ensemble en ligne, il y a un nombre énumérable de lignes qu'on peut numéroter en parcourant le tableau en zigzag
       en partant de $(0,0)$.
     \end{proof}
 \end{myprop}
 
 \begin{myprop}
- Tout ensemble infini de chaines fini de caractères est énumérable.
+ Tout ensemble de chaines finies de caractères est énumérable.
  \begin{proof}
-  Si dans un ensemble infini de caractères ont prend un ensemble fini de chaines de caractères, cet ensemble est énumérable. 
+	A écrire
  \end{proof}
 \end{myprop}
 
 \begin{myprop}
- L'ensemble des programmes java est énumérable.
+ L'ensemble des programmes Java est énumérable.
  \begin{proof}
-  Java est constitué d'un ensemble fini de chaine de caractères et est donc énumérable.
+  Un programme Java est une chaine finie de caractères.  Par la propriété précédente, l'ensemble des programme Java est  donc énumérable.
  \end{proof}
 \end{myprop}
 
-\begin{myprop}
- L'ensemble des fonctions de  $\{0, 1\}$ vers N est énumérable.
- \begin{proof}
-  Une fonction de $\{0, 1\}$ vers N peut être représentée par deux couples de quatre entiers, donc est un quadruple. L'ensemble des fonctions de $\{0, 1\}$ vers N est ensemble des quadruples et est donc énumérable.
- \end{proof}
-\end{myprop}
 
 \begin{myprop}
- L'ensemble des fonctions calculable est énumérable.
+ Tout langage (avec un alphabet fini) est énumérable. 
  \begin{proof}
-  Une fonction calculable est une fonction pour laquelle il existe un programme pour le résoudre et est donc énumérable.
- \end{proof}
-\end{myprop}
-
-\begin{myprop}
- Tout language(avec un alphabet fini) est énumerable. 
- \begin{proof}
- Ont sais que un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\mathbb{\N}$. \\
- Un language est un ensemble de chaine de caractères fini donc est énumerable.
+ Un langage est un ensemble de chaines finies de caractères.  Il est donc  énumérable.
  \end{proof}
 \end{myprop}
 
@@ -171,90 +287,37 @@ Par exemple, l'union des singletons $\{x\}$ pour tout réel $x$ forme l'ensemble
 \begin{myrem}
   Une bonne intuition à avoir:
   Tout ensemble dont les éléments peuvent être représentés de manière finie est énumérable.
-
-  Par exemple, les rationnels, même s'ils ont une représentation décimale infinie peuvent être représentés de manière finie en fraction d'entiers.
 \end{myrem}
 
-Quelques ensembles non énumérables :
-\begin{myexem}
- L'ensemble $\R$
- \begin{proof}
-   Voir ci-dessous.
- \end{proof}
-\end{myexem}
-
-\begin{myexem}
- L'ensemble des sous-ensembles de $\N$, $\mathcal{P}(\N)$
- \begin{proof}
-   Rappelons nous tout d'abord que comme $\N$ est infini, ses sous-ensemble peuvent l'être aussi.
-   Il est adéquat de visualiser un ensemble à l'aide d'un mot binaire
-   où le bit $i$ vaut 1 si le $i$ième élément est pris dans le sous-ensemble.
-   Par exemple, le sous-ensemble $\{1,4\}$ de $\{1,3,4\}$ peut être représenté par $101$.
-   Seulement, comme il y a un nombre infini de nombre entiers, on a mot binaire infini.
-   Par exemple, les nombres pairs, c'est le mot $10101010101\ldots$:
-   \begin{verbatim}
-0123456789...
-1010101010... nombres pairs
-
-0123456789...
-0011010100... nombres premiers
-
-0123456789...
-0001001001... multiples de 3 non-nuls
-    \end{verbatim}
-   On voit maintenant la bijection entre les sous-ensembles de $\N$ et $[0,1]$.
-   En effet, on peut associer par exemple l'ensembe des nombres pairs au réel $0.101010101\ldots$.
-   Plus précisément on associe le sous-ensemble de $\N$ représenté par le mot $m$, le réel entre $0$ et $1$ dont l'écriture binaire est $0.m$.
- \end{proof}
-\end{myexem}
-
-\begin{myexem}
- L'ensemble des chaînes infinies de caractère sur un alphabet fini
- \begin{proof}
-   On utilise le même raisonnement que pour les sous-ensembles de $\N$ sauf que pour un alphabet de $k$ symboles,
-   on utilise la représentation des réels en base $k$.
- \end{proof}
-\end{myexem}
-
-\begin{myexem}
-  \label{exem:fNN}
- L'ensemble des fonctions de $\N$ dans $\N$ (Cas important)
- \begin{proof}
-   Si c'était dénombrable, soit $f_0, f_1, f_2, \ldots$ leur dénombrement.
-   On construit le tableau
-   \[
-     \begin{array}{ccccc}
-       f_0(0) & f_0(1) & f_0(2) & f_0(3) & \cdots\\
-       f_1(0) & f_1(1) & f_1(2) & f_1(3) & \cdots\\
-       f_2(0) & f_2(1) & f_2(2) & f_2(3) & \cdots\\
-       \vdots & \ddots & \ddots & \ddots & \ddots\\
-     \end{array}
-   \]
-   et on conclut par diagonalisation de façon semblable à $\R$
-   en construisant $d\colon \N \to \N$ tel que $d(k) = f_k(k)$.
- \end{proof}
-\end{myexem}
+Dans le cours, lorsqu'on devra montrer qu'un ensemble est énumérable,
+les techniques suivantes pourront être utilisées:
+\begin{itemize}
+	\item montrer qu'il y a une bijection avec $\N$ 
+	\item montrer que l'ensemble est fini
+	\item écrire un programme qui énumère l'ensemble
+	\item utiliser une des propriétés ci-dessus
+\end{itemize}
 
 % subsection ensemble_num_rables (end)
 
 \section{Cantor}
-\label{sub:cantor}
-On va montrer qu'il existe des ensembles non énumérables par diagonalisation. Ex $\R$.
+\label{sec:cantor}
+On va montrer qu'il existe des ensembles non énumérables par diagonalisation. Par exemple $\R$.
 \begin{myexem}
 	Exemple de démonstration par diagonalisation:
 	\begin{enumerate}
 		\item Construire une table : Liste de tous les grands
 			mathématiciens \\
-			\begin{tabular}{l}
-				\textit{\textbf{D}}E MORGAN \\
-				A\textit{\textbf{B}}EL\\
-				BO\textit{\textbf{O}}LE\\
-				BRO\textit{\textbf{U}}WER\\
-				SIER\textit{\textbf{P}}INSKI\\
-				WEIER\textit{\textbf{S}}TRASS\\
+			\begin{tabular}{lllllllllll}
+				\emph{\textbf{D}}&E& M&O&R&G&A&N&&& \\
+				A&\emph{\textbf{B}}&E&L&&&&&&&\\
+				B&O&\emph{\textbf{O}}&L&E&&&&&&\\
+				B&R&O&\emph{\textbf{U}}&W&E&R&&&&\\
+				S&I&E&R&\emph{\textbf{P}}&I&N&S&K&I&\\
+				W&E&I&E&R&\emph{\textbf{S}}&T&R&A&S&S\\
 			\end{tabular}
-		\item Sélectionner la diagonale : $diag = $DBOUPS
-		\item Modifier l'élément égal à la diagonale : $diag' =$ CANTOR
+		\item Sélectionner la diagonale : $\diag = $ DBOUPS
+		\item Modifier l'élément égal à la diagonale : $\diag' =$ CANTOR
 		\item Montrer que l'élément n'est pas dans la liste $\Rightarrow$ Contradiction
 		\item Conclusion :
 			\begin{itemize}
@@ -275,12 +338,12 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 \end{mytheo}
 
 \paragraph{Démonstration :}
-On va montrer qu'un nombre $d'$ n'est pas dans l'énumération alors qu'on sait
+Démonstration par l'absurde.  En supposant que $E$ soit énumérable, on va montrer qu'un nombre $d'$ n'est pas dans l'énumération alors qu'on sait
 que $d'$ est un nombre réel compris entre 0 et 1.
 
-On suppose $E$ énumérable. Donc il existe une énumération des éléments de $E$,
-$x_0, x_1,\dots,X_k,\dots$. On peut représenter un nombre $x_k$ comme étant une
-suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
+On suppose $E$ énumérable. Donc il existe une énumération des éléments de $E$.  Soit 
+$x_0, x_1,\dots,x_k,\dots$ cette énumération. On peut représenter un nombre $x_k$ comme étant une
+suite de chiffres $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
 
 \begin{enumerate}
 	\item On peut donc construire une table infinie : \\
@@ -303,32 +366,113 @@ suite de chiffre $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
 		\[ d'=0.x_{00}'x_{11}'...x_{kk}'... \]
 		Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
 		$x_{ii}'=6$ si $x_{ii}'= 5$ \\
-		On a toujours que cet élément $d'$ est compris entre 0 et 1
-	\item Contradiction, car $d'$ est dans l'énumération, car $E$ est
-		énumérable (par supposition). Il existe donc $x_p=d'$,
+		On a toujours que cet élément $d'$ est un réel compris entre 0 et 1
+	\item Le nombre $d'$ est dans l'énumération, car $E$ est
+		énumérable (par hypothèse). Il existe donc $x_p=d'$,
 		\[ d'=x_p=0.x_{p0}x_{p1}...x_{pp}... \]
 		\[ d'=0.x_{00}'x_{11}'...x_{pp}'... \]
-		La contradiction vient du fait qu'on a choisi $x_{pp}' \neq
+		Il y a une contradiction car $x_{pp}' \neq
 	       	x_{pp}$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
 		dans l'énumération.
 	\item Conclusion : $E$ n'est pas énumérable
 
 \end{enumerate}
+
+\subsection{Exemples}
+\label{subsec:exemples_non_enum}
+
+Quelques ensembles non énumérables :
+\begin{myexem}
+ L'ensemble $\R$
+ \begin{proof}
+   Voir ci-dessus.
+ \end{proof}
+\end{myexem}
+
+\begin{myexem}
+ L'ensemble des sous-ensembles de $\N$, $\mathcal{P}(\N)$
+ \begin{proof}
+   Rappelons nous tout d'abord que comme $\N$ est infini, ses sous-ensembles peuvent l'être aussi.
+   Il est adéquat de visualiser un ensemble à l'aide d'un mot binaire
+   où le bit $i$ vaut 1 si le $i^{\mathrm{ième}}$ élément est pris dans le sous-ensemble.
+   Par exemple, le sous-ensemble $\{1,4\}$ de $\{1,3,4\}$ peut être représenté par $101$.
+   Seulement, comme il y a un nombre infini de nombre entiers, on a mot binaire infini.
+   Par exemple, les nombres pairs, c'est le mot $10101010101\ldots$:
+   \begin{verbatim}
+		0123456789...
+		1010101010... nombres pairs
+		
+		0123456789...
+		0011010100... nombres premiers
+		
+		0123456789...
+		0001001001... multiples de 3 non-nuls
+    \end{verbatim}
+   On voit maintenant la bijection entre les sous-ensembles de $\N$ et $[0,1]$.
+   En effet, on peut associer par exemple l'ensemble des nombres pairs au réel $0.101010101\ldots$.
+   Plus précisément on associe le sous-ensemble de $\N$ représenté par le mot $m$, le réel entre $0$ et $1$ dont l'écriture binaire est $0.m$.
+ \end{proof}
+\end{myexem}
+
+\begin{myexem}
+ L'ensemble des chaînes infinies de caractère sur un alphabet fini
+ \begin{proof}
+   On utilise le même raisonnement que pour les sous-ensembles de $\N$ sauf que pour un alphabet de $k$ symboles,
+   on utilise la représentation en base $k$ des réels.
+ \end{proof}
+\end{myexem}
+
+\begin{myexem}
+  \label{exem:fNN}
+ L'ensemble des fonctions de $\N$ dans $\N$ (Cas important)
+ \begin{proof}
+   Si c'était énumérable, soit $f_0, f_1, f_2, \ldots$ leur dénombrement.
+   On construit le tableau
+   \[
+     \begin{array}{ccccc}
+       f_0(0) & f_0(1) & f_0(2) & f_0(3) & \cdots\\
+       f_1(0) & f_1(1) & f_1(2) & f_1(3) & \cdots\\
+       f_2(0) & f_2(1) & f_2(2) & f_2(3) & \cdots\\
+       \vdots & \ddots & \ddots & \ddots & \ddots\\
+     \end{array}
+   \]
+   et on conclut par diagonalisation de façon semblable à $\R$
+   en construisant $d\colon \N \to \N$ tel que $d(k) = f_k(k)$.
+ \end{proof}
+\end{myexem}
+
+Dans le cours, lorsqu'on devra montrer qu'un ensemble est non énumérable,
+les techniques suivantes pourront être utilisées
+\begin{itemize}
+	\item montrer qu'il y a une bijection avec  $\R$
+	\item utiliser la diagonalisation (cf. Cantor)
+\end{itemize}
+
 % subsection cantor (end)
 
+\subsection{Au delà du non énumérable}
+\label{subsec:au_dela_du_non_enumerable}
+On a d'abord parlé d'ensembles finis, ensuite nous avons introduit le concept d'infini 
+énumérable qui est plus grand que tous les ensembles finis. Mais il existe plus grand 
+que l'infini énumérable.   L'ensemble des réels $\R$, l'ensemble des fonctions de $\N$ dans $\N$, ainsi que 
+l'ensemble des sous-ensemble de $\N$ ($2^{\N}$) sont non énumérables et ont la même taille.  Ils ont la puissance du continu. 
+
+Peut-on encore aller plus loin?  Oui,  il suffit de considérer  l'ensemble des fonctions de $\R$ dans $\R$, ainsi que 
+l'ensemble des sous-ensemble de $\R$ ($2^{\R}$).  Ces ensembles ne peuvent pas être mis en bijection avec $\R$.
+Encore plus loin ?  Oui, en prenant l'ensemble des sous-ensembles de l'ensemble défini juste avant.  On obtient alors $2^{2^{\R}}$.  Et ainsi de suite à l'infini \ldots
+
+On peut ainsi schématiser la taille des ensembles comme ceci:
+$$\Phi < \{1,2,3\} < \N < \R < 2^{\R} < 2^{2^{\R}} < 2^{2^{2^{\R}}} \dots$$
+
+Est-ce qu'il existe encore plus grand? Oui, effectivement, l'union de tous ces ensembles 
+est plus grand que chacun de ces ensembles.
+
+
 \section{Conclusion}
+\label{sec:concept_conclusion}
 
 Les ensembles énumérables sont importants pour la suite du cours et aussi, car en
 informatique on ne considère que les ensembles énumérables.
-Dans le cours, on va souvent devoir montrer qu'un ensemble est énumérable/non énumérable.
-Généralement on va utiliser une des techniques suivantes:
-\begin{itemize}
-	\item montrer qu'il y a une bijection avec $\N$ ou $\R$
-	\item montrer que l'ensemble est fini
-	\item utiliser la diagonalisation (cf. Cantor)
-	\item écrire un programme qui énumère l'ensemble
-\end{itemize}
 
 % subsection conclusion (end)
 % section concepts (end)
-
