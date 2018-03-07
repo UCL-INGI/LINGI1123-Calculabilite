@@ -433,49 +433,25 @@ K.
 
 \section{Insuffisance des fonctions totales}
 \label{sub:insuffisance_des_fonctions_totales}
-Comme on a vu qu'il était possible de calculer halt dans un modèle qui
-ne permet de calculer que des fonctions totales. On se demande
-pourquoi on n'utilise pas un tel modèle pour lequel la fonction halt est
-calculable (pour un tel modèle halt retourne toujours 1.
-De plus les fonctions ``pratiques'' sont
-des fonctions totales. Mais on va montrer qu'un tel modèle nous restreint beaucoup sur ce qu'on peut calculer.
+Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction halt est triviallement calculable (fonction constante 1).  Etant donné que les problèmes pratiques que l'on doit résoudre sone des fonctions totales, on peut se demander.  Mais on va montrer qu'un tel modèle est restrictif; il ne permet pas de calculer toutes les fonctions totales calculables.
 
 \begin{myexem}
-	Un tel modèle est par exemple BLOOP (défini plus loin) ou encore Java, mais sans boucle donc par intuition on se doute qu'il y a beaucoup de choses qu'on ne peut pas calculer.
+Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple BLOOP (défini plus loin) ou encore MiniJava, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
 \end{myexem}
 
-\begin{mydef}
-	Posons Q un langage (\textbf{non trivial}) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour
-    lequel il existe un interpréteur calculable, interpret(n,x)${} =\phi'_n$.
-\end{mydef}
-
-\begin{mydef}
-	$\phi'_k$ est la fonction calculée par le programme $Q_k$.
-\end{mydef}
-
-\begin{myprop}
-	 L'interpréteur est une fonction totale.
-\end{myprop}
-
-\begin{myprop}
-	 Si nous définissons un langage de programmation permettant uniquement les programmes qui se terminent (par exemple Q défini plus haut ou minijava vue en cours), nous ne pouvons pas écrire l'interpréteur de ce langage dans ce langage, puisque le problème d'arrêt peut être résolu par un programme qui retourne vrai dans chaque cas.\\
-	 Pour un langage de programmation, nous pouvons soit: écrire l'interpréteur de ce langage dans le même langage où résoudre le problème d'arrêt de ce langage (halte) en utilisant ce même langage, mais nous ne pouvons pas faire les deux.
-\end{myprop}
-
-\begin{myexem}
-	Par exemple, si l'on considère java, l'existence d'un compilateur java signifie que le problème d'arrêt (halte) de java ne peut pas être résolu en utilisant java. 
-\end{myexem}
+Posons Q un langage (\textbf{non trivial}) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour
+lequel il existe un interpréteur calculable, interpret(n,x)${} =\phi'_n$, où 
+$\phi'_n$ est la fonction calculée par le programme $Q_n$.  L'interpréteur est une fonction totale car il donne toujours une réponse vu que tous les programmes se terminent. Par langage de programmation non trivial, on entend un langage où les opérations de base telles que l'addition peuvent être réalisées.
 
 \begin{mytheo}[Hoare-Allison]
 	\label{Hoare_Allison}
-	interpret(n,x) n'est pas calculable dans Q.\\
+Soit Q un langage de programmation (\textbf{non trivial}) dans lequel tous les programmes se terminent.	Alors l'interpreteur de Q, la fonction interpret(n,x), n'est pas calculable dans Q.
 \end{mytheo}
 
 \paragraph{Démonstration :}
-On suppose interpret calculable.
+On suppose interpret calculable dans Q.
 \begin{enumerate}
-	\item On peut donc construire une table infinie définissant la fonction
-		interpret : \\
+	\item On construit une table infinie, où chaque ligne correspond à un programme Q_k de Q.   : \\
 		\begin{tabular}{|c||c|c|c|c|c|c|}
 			\hline
 			& 0 & 1 & 2 & ... & k & ... \\
@@ -492,21 +468,23 @@ On suppose interpret calculable.
 		\[diag(n) = interpret(n,n)\]
 	\item Modification de cet élément diag pour obtenir
 		$diag'(n) = interpret(n,n)+1$
-		$diag'$ est calculable, car interpret est calculable dans Q (il y a moyen
+		$diag'$ est calculable dans Q, car interpret est calculable dans Q (il y a moyen
 		d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
 	\item Contradiction :\\
-	       	Donc il existe un programme $Q_d$ qui calcule
-		$diag'(d) = interpret(d,d)+1$ (par construction).
-		Mais, par définition $diag'(d) = \phi_d(d) = interpret(d,d)$.
+	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.  
+		Mais quelle est la valeur de $diag'(d)$ ?
+		Par définition de $diag'$, on a $diag'(d) = interpret(d,d)+1$. \\
+		Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = $Q_d(d) = \phi_d(d) = interpret(d,d)$.
 		En effet, calculer $\phi_d(d)$ revient à interpréter le programme
-		d avec la donnée d.
-	\item Conclusion : $diag'$ n'est pas calculable $ \Rightarrow $ $diag$
-	n'est pas calculable $ \Rightarrow $ interpret n'est pas calculable
+		d avec la donnée d. \\
+		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
+	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
+	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
 dans Q.
 \end{enumerate}
 
 \begin{myrem}
-	Si les programmes de Q ne calculaient pas que des fonctions totales, alors ça n'aurait pas posé de problèmes, car $interpret(d,d)$ ne se serait pas terminé or un programme qui ne se termine pas + quelque chose, reste un programme qui ne se termine pas.
+	Si les programmes de Q ne calculaient pas que des fonctions totales, alors ça n'aurait pas posé de problèmes, car si $interpret(d,d)=\bot$, $interpret(d,d)+1=\bot$ et il n'y a plusa de contradiction.  Un programme qui ne se termine pas + quelque chose, reste un programme qui ne se termine pas.
 \end{myrem}
 
 
