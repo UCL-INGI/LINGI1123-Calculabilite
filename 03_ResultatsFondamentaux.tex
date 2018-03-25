@@ -395,6 +395,7 @@ K.
 		\{n| halt(n,n)=1\}\\
 		\{n| $P_n(n)$ se termine\}
 	\end{tabular}
+
 	$K$ est donc l'ensemble des programmes $P_n$ qui se terminent en recevant comme entrée leur numéro de programme.
 \end{mydef}
 
@@ -433,25 +434,25 @@ K.
 
 \section{Insuffisance des fonctions totales}
 \label{sub:insuffisance_des_fonctions_totales}
-Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction halt est triviallement calculable (fonction constante 1).  Etant donné que les problèmes pratiques que l'on doit résoudre sone des fonctions totales, on peut se demander.  Mais on va montrer qu'un tel modèle est restrictif; il ne permet pas de calculer toutes les fonctions totales calculables.
+Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction \emph{halt} est trivialement calculable (fonction constante 1). Étant donné que les problèmes pratiques que l'on doit résoudre sont des fonctions totales, on peut se demander.  Mais on va montrer qu'un tel modèle est restrictif; il ne permet pas de calculer toutes les fonctions totales calculables.
 
 \begin{myexem}
-Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple BLOOP (défini plus loin) ou encore MiniJava, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
+Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} (défini plus loin) ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
 \end{myexem}
 
 Posons Q un langage (\textbf{non trivial}) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour
-lequel il existe un interpréteur calculable, interpret(n,x)${} =\phi'_n$, où 
+lequel il existe un interpréteur calculable, $interpret(n,x){} =\phi'_n$, où 
 $\phi'_n$ est la fonction calculée par le programme $Q_n$.  L'interpréteur est une fonction totale car il donne toujours une réponse vu que tous les programmes se terminent. Par langage de programmation non trivial, on entend un langage où les opérations de base telles que l'addition peuvent être réalisées.
 
 \begin{mytheo}[Hoare-Allison]
 	\label{Hoare_Allison}
-Soit Q un langage de programmation (\textbf{non trivial}) dans lequel tous les programmes se terminent.	Alors l'interpreteur de Q, la fonction interpret(n,x), n'est pas calculable dans Q.
+Soit Q un langage de programmation (\textbf{non trivial}) dans lequel tous les programmes se terminent.	Alors l'interpréteur de Q, la fonction $\interpret(n,x)$, n'est pas calculable dans Q.
 \end{mytheo}
 
 \paragraph{Démonstration :}
 On suppose interpret calculable dans Q.
 \begin{enumerate}
-	\item On construit une table infinie, où chaque ligne correspond à un programme Q_k de Q.   : \\
+	\item On construit une table infinie, où chaque ligne correspond à un programme $Q_k$ de Q.   : \\
 		\begin{tabular}{|c||c|c|c|c|c|c|}
 			\hline
 			& 0 & 1 & 2 & ... & k & ... \\
@@ -465,19 +466,21 @@ On suppose interpret calculable dans Q.
 			\hline
 		\end{tabular}
 	\item Sélection de la diagonale
-		\[diag(n) = interpret(n,n)\]
+		$diag(n) = interpret(n,n)$
 	\item Modification de cet élément diag pour obtenir
 		$diag'(n) = interpret(n,n)+1$
 		$diag'$ est calculable dans Q, car interpret est calculable dans Q (il y a moyen
 		d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
-	\item Contradiction :\\
-	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.  
-		Mais quelle est la valeur de $diag'(d)$ ?
-		Par définition de $diag'$, on a $diag'(d) = interpret(d,d)+1$. \\
-		Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = $Q_d(d) = \phi_d(d) = interpret(d,d)$.
-		En effet, calculer $\phi_d(d)$ revient à interpréter le programme
-		d avec la donnée d. \\
-		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
+	\item \textbf{Contradiction} :
+		\begin{enumerate}
+			\item Comme \textit{diag'} est calculable dans Q, il existe un programme $Q_d$ qui calcule \textit{diag'}.  \\
+			Mais quelle est la valeur de \textit{diag'(d)} ?
+			\item Par définition de \textit{diag'}, on a $diag'(d) = interpret(d,d)+1$.
+			\item Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = Q_d(d) = \phi_d(d) = interpret(d,d)$.
+			En effet, calculer $\phi_d(d)$ revient à interpréter le programme
+			d avec la donnée d.
+			\item On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
+		\end{enumerate}
 	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
 	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
 dans Q.
@@ -486,8 +489,6 @@ dans Q.
 \begin{myrem}
 	Si les programmes de Q ne calculaient pas que des fonctions totales, alors ça n'aurait pas posé de problèmes, car si $interpret(d,d)=\bot$, $interpret(d,d)+1=\bot$ et il n'y a plusa de contradiction.  Un programme qui ne se termine pas + quelque chose, reste un programme qui ne se termine pas.
 \end{myrem}
-
-
 
 \subsection{Implication du théorème \ref{Hoare_Allison}, Hoare Allison }
 
@@ -553,86 +554,98 @@ dans Q.
 % subsection extension_de_fonctions_partielles (end)
 
 \section{Théorème de Rice}
-\label{sub:th_or_me_de_rice}
+\label{sub:theoreme_de_rice}
 
-Soit A $\subseteq$ $\N$
+Il est intéressant de pouvoir analyser un programme afin d'établir ses propriétés, mais est-il possible de déterminer n'importe quelle propriété d'un programme à l'aide d'un algorithme ?
+
+Le théorème de Rice nous répond que \textbf{non}, toute propriété sémantique non triviale d'un programme est non calculable par un algorithme.
+
+\subsection{Énoncé et démonstration}
+
+Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus A$.
 
 \begin{mytheo}[Rice]
-	Si $A$ récursif et $A\neq \emptyset$ et $A \neq \N$ \\
-	Alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tels que $\phi _i = \phi _j$
+	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$. \\
+	Alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\phi _i = \phi _j$
+	
+	Si A est récursif et qu'il n'est ni nul, ni ne contient l'ensemble des programmes existant, alors il existe deux programmes dans A et $\stcomp{A}$ tel qu'ils calculent la même fonction. 
 \end{mytheo}
 
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
 
 \begin{mytheo}[Rice (contraposée)]
-	Si $\forall  i \in A$ et $\forall j \in \stcomp{A}$ on a $\phi_i \neq \phi_j$ \\
-	Alors $A$ non-récursif ou $A = \emptyset$ ou $A = \N$
+	Si $\forall  i \in A$ et $\forall j \in \stcomp{A}$ on a $\phi_i \neq \phi_j$, \\
+	Alors $A$ est non-récursif ou $A = \emptyset$ ou $A = \N$.
 \end{mytheo}
 
 Dans de nombreux cas, on peut garantir $A \neq \emptyset$ et $A \neq \N$, ce qui permet de se servir de la contraposée pour démontrer qu'un ensemble est non-récursif sans utiliser la preuve par diagonalisation ou par réduction.
 
+%TODO ajouter graphique du théorème de Rice
+
 \begin{proof}
-On a $\forall i \in A$ et $\forall j \in \stcomp{A}$ tel que $\phi_i \neq
+Nous avons $\forall i \in A$ et $\forall j \in \stcomp{A}$ tel que $\phi_i \neq
 \phi_j$\\
-Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$\\
-On va montrer que HALT est récursif, car on peut construire un programme qui
-décide HALT, alors qu'on sait que HALT n'est pas récursif.
+Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$
+
+Dans cette démonstration, nous allons utiliser la méthode de réduction.
+Le but est de montrer que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}. Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif. Ce qui implique donc que le programme n'est pas calculable.
 
 \begin{enumerate}
 	\item Construisons le programme $P_k$
-\begin{lstlisting}
+		\begin{lstlisting}
 while true do;
-\end{lstlisting}
-	$\forall x \ \phi_k(x) = \perp$
+		\end{lstlisting}
+			$P_k$ ne s'arrête jamais, il vaut donc en permanence \textit{bottom} : $\forall x \ \phi_k(x) = \perp$
+			
 	\item $\stcomp{A}\neq \emptyset$ car $A \neq \N$,
 	supposons $k\in \stcomp{A}$ (hypothèse sans importance, car montrer que
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
 	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif)
 	\item $A\neq \emptyset$ par hypothèse, supposons $m\in A$
-	\item $\phi_i \neq \phi_j$ et ce $\forall i \in A, \forall j \in \stcomp{A}$ par hypothèse donc
+	\item $\phi_i \neq \phi_j$ et $\forall i \in A, \forall j \in \stcomp{A}$ par hypothèse donc on peut remplacer $i$ et $j$ :
 		$\phi_m \neq \phi_k$
 	\item Construisons un programme $P(z)$ qui calcule la fonction $g(z)$,
 		$P(z) \equiv $
-\begin{lstlisting}
+		\begin{lstlisting}
 P_n(x);
 P_m(z);
-\end{lstlisting}
-	\begin{myrem}
-		On sait que si un programme calcule une fonction $
-		f(x)=\perp \ \forall x$ alors ce programme doit être dans $\stcomp{A}$ car
-		$f(x) =\phi_k(x)$.
-
-		Or
-		\begin{itemize}
-			\item soit notre programme $P(z)$ ne se termine pas $\forall z$, car $P_n(x)$ ne se termine pas et donc $g(z) = 		\phi_k(z)$.
-		\item soit notre programme $P(z)$ calcule $\phi_m(z)$ or on
-			sait que $m\in A$.
-		\end{itemize}
-        Donc en résumé si $P_n(x)$ ne se termine pas $P(z)$ sera dans
-        $\stcomp{A}$ sinon $P(z)$ sera dans $A$.
-	\end{myrem}
-	Un programme qui décide HALT $halt(n,x) \equiv $
-\begin{lstlisting}
+		\end{lstlisting}
+		\begin{myrem}
+			On sait que si un programme calcule une fonction
+			$f(x)=\perp \ \forall x$ alors ce programme doit être dans $\stcomp{A}$ car $f(x) =\phi_k(x)$. Comme ce programme n'est pas récursif et que \textit{A} ne contient par hypothèse que des programmes récursifs, alors il doit forcément être dans $\stcomp{A}$. \\
+	
+			Or
+			\begin{itemize}
+				\item soit notre programme $P(z)$ ne se termine pas pour tout z, car $P_n(x)$ ne se termine pas, alors $g(z) = 		\phi_k(z)$. Donc $g(z)$ doit appartenir à $\stcomp{A}$ car $\phi_k(z)$ appartient à $\stcomp{A}$.
+			\item soit notre programme $P(z)$ calcule $\phi_m(z)$ or on
+				sait que $m\in A$, donc $g(z)$ appartient à \textit{A}.
+			\end{itemize}
+      En résumé : si $P_n(x)$ ne se termine pas, $P(z)$ sera dans
+      $\stcomp{A}$ sinon $P(z)$ sera dans $A$.
+		\end{myrem}
+		
+		On peut ainsi écrire un algorithme utilisant la description de $P(z)$ et dont la sortie (l'output) équivaut à calculer \textbf{HALT}.
+		
+		 $halt(n,x) \equiv $
+		\begin{lstlisting}
 construire P(z);
 d <- numero de P(z);
 if d in A then print(1);
 else print(0);
-\end{lstlisting}
-	\item Contradiction, car HALT n'est pas récursif.
+		\end{lstlisting}
+	\item Contradiction, car \textbf{HALT} n'est pas récursif.
 	\item Conclusion: $A$ n'est pas récursif.
 \end{enumerate}
 \end{proof}
 
-\paragraph{} On est intéressé par l'analyse des propriétés d'un programme. Est-ce que ces propriétés peuvent être déterminées par un
-algorithme? On va utiliser le théorème de Rice pour différencier les propriétés
-qu'il est possible de déterminer par un algorithme de celles pour lesquelles ce
-n'est pas possible.
+\subsection{Analyse}
 
-\paragraph{}Pour ça, considérons $A$ comme étant l'ensemble des programmes qui
-respectent une propriété. Par exemple $A_1 = \{i| \phi_i \text{ est total}\}$ ou
+\paragraph{} En tenant compte du théorème de Rice, il est maintenant possible de différencier quelles propriétés d'un programme sont déterminables par un algorithme et lesquelles ne le sont pas.
+
+\paragraph{}Pour cela, considérons $A$ comme étant l'ensemble des programmes qui
+respectent une propriété. Par exemple $A_1 = \{i| \phi_i \; \text{est totale}\}$ ou
 $A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 
-\paragraph{Analyse}
 \begin{itemize}
 	\item Si la propriété est vérifiée par certains programmes, mais pas tous,
 		et qu'elle est décidable, alors il existe deux programmes calculant la
