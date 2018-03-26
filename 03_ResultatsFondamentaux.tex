@@ -642,21 +642,17 @@ else print(0);
 
 \paragraph{} En tenant compte du théorème de Rice, il est maintenant possible de différencier quelles propriétés d'un programme sont déterminables par un algorithme et lesquelles ne le sont pas.
 
-\paragraph{}Pour cela, considérons $A$ comme étant l'ensemble des programmes qui
-respectent une propriété. Par exemple $A_1 = \{i| \phi_i \; \text{est totale}\}$ ou
-$A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
-
 \begin{itemize}
-	\item Si la propriété est vérifiée par certains programmes, mais pas tous,
-		et qu'elle est décidable, alors il existe deux programmes calculant la
+	\item \textbf{Si} la propriété est vérifiée par certains programmes, mais pas tous,
+		et qu'elle est décidable, \textbf{alors} il existe deux programmes calculant la
 		même fonction, mais l'un vérifie la propriété, et l'autre pas.
 
-	\item Si la propriété est vérifiée par un programme, mais pas tous,
-		alors cette propriété ne peut-être décidée pas un algorithme.
+	\item \textbf{Si} la propriété est vérifiée par un programme, mais pas tous,
+		\textbf{alors} cette propriété ne peut-être décidée pas un algorithme.
 
-	\item S'il existe un algorithme permettant de déterminer si un
+	\item \textbf{S}'il existe un algorithme permettant de déterminer si un
 		programme quelconque calcule une fonction ayant cette propriété,
-		alors toutes les fonctions calculables ont cette propriété ou
+		\textbf{alors} toutes les fonctions calculables ont cette propriété ou
 		aucune fonction calculable n'a cette propriété.
 
 	\item Aucune question relative aux programmes, vu sous l'angle de la
@@ -664,10 +660,34 @@ $A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 		l'application d'un algorithme.
 
 	\item Les propriétés intéressantes d'un programme concernant la
-		fonction qu'il calcule, non pas sa forme,
-		sont non calculables.
+		fonction qu'il calcule, non pas sa forme (syntaxe), sont non calculables.
+		
+	\item La plupart des problèmes intéressants au sujet des programmes sont non calculables
 \end{itemize}
 
+\subsection{Exemples}
+
+\paragraph{}Pour cela, considérons $A$ comme étant l'ensemble des programmes qui
+respectent une propriété. Voici quelques exemples et applications du théorème de Rice.
+
+\begin{description}
+	\item[$A_1 =$] $\{i| \phi_i \; \text{est totale}\}$ \\
+	 				$P_i$ s'arrête toujours.
+	\item[$A_2 =$] $\{i| \phi_i = f\}$ avec f fixée \\
+					$P_i$ calcule la fonction f.
+	\item[$A_3 =$] $\{i| a \in dom(\phi_i)\}$ avec a fixé \\
+					$P_i(a)$ se termine.
+	\item[$A_4 =$] $\{i| \phi_i(X) = \perp \text{pour tout X}\}$ avec f fixée \\
+					$P_i$ calcule la fonction partielle vide.
+	\item[$A_5 =$] $\{i| a \in \text{image}\phi_i\}$ avec a fixé \\
+					$P_i$ donne au moins une fois le résultat a.
+	\item[$A_6 =$] $\{i| \text{image}(\phi_i) = \N\}$ \\
+					$P_i$ donne tous les résultats possibles.
+	\item[$A_7 =$] $\{i| \phi_i \text{est une fonction injective}\}$ \\
+					$P_i$ calcule une fonction injective.
+\end{description}
+
+L'ensemble $A_1, \cdots, A_7$ est non récursif. L'ensemble inverse $\stcomp{A_1}, \cdots, \stcomp{A_7}$ n'est par conséquent par récursif non plus.
 
 % subsection th_or_me_de_rice (end)
 
