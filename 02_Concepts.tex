@@ -14,6 +14,7 @@ de l'ensemble.
 \paragraph{Notations}
 
 \begin{description}
+	\item [Ensemble vide :] $\phi$
 	\item [Ensemble fini :] $\{ 0, 1, 2\}$
 	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4, \ldots\}$, $\{a, aa, aaa, aaaa, \ldots\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \ldots\}$
 	\item [Produit cartésien :] $A \times B$
@@ -40,9 +41,9 @@ Notations :
     	\subitem Palindromes sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
 	\item Ensemble de tous les mots possibles sur l'alphabet $\Sigma$ : $\Sigma ^*$
 		\begin{itemize}
-			\item $\Sigma = {}, \Sigma^* = \{\epsilon\}$
-			\item $\Sigma = {a}, \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
-			\item $\Sigma = {0,1}, \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
+			\item $\Sigma = \phi, \Sigma^* = \{\epsilon\}$
+			\item $\Sigma = \{a\}, \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
+			\item $\Sigma = \{0,1\}, \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
 		\end{itemize}
 \end{itemize}
 
@@ -91,7 +92,7 @@ On utilise aussi le concept d'\emph{extension} :
 $f: A \rightarrow B$ est une extension de $g: A \rightarrow B$ si $\forall x \in A : g(x)\neq \perp \Rightarrow f(x) = g(x)$.
 Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie.
 
-La fonction $\mathrm{sqrt}(x) = \sqrt{x}$ en mathématique n'est valable que pour $x\geq0$. En revanche un programme implémentant cette fonction, par exemple $\mathrm{mysqrt}(x) = \sqrt{x}$, retourne une valeur si $x\geq0$ ou \textit{Erreur} sinon. \textit{Erreur} est une extension de la fonction $\mathrm{sqrt}(x)$ de base.
+La fonction $\mathrm{sqrt}(x) = \sqrt{x}$ en mathématique n'est valable que pour $x\geq0$. En revanche un programme implémentant cette fonction, par exemple $\mathrm{mysqrt}(x) = \sqrt{x}$, retourne une valeur si $x\geq0$ ou \textit{Erreur} sinon. $\mathrm{mysqrt}(x)$ est une extension de la fonction $\mathrm{sqrt}(x)$ de base.
 
 \paragraph{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
@@ -107,7 +108,7 @@ On peut définir la table de plusieurs façons :
 Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
 pour pouvoir la définir sans ambigüité ni contradiction. 
 
-Ex : $f(x) = 1$ s'il y a de la vie autre part que sur terre, $0$ sinon.
+Ex : $f(x) = \begin{array}{ll} 1 & \text{s'il y a de la vie autre part que sur terre,} \\ 0 & \text{sinon.}\end{array}$(en supposant qu'il n'y ai pas d'ambigüité sur le terme ``vie'').\\
 % paragraph d_finition_d_une_fonction (end)
 % subsection fonctions (end)
 % section ensembles_langages_relations_et_fonctions (end)
@@ -120,9 +121,8 @@ Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensemb
 ont le même cardinal s'il existe une bijection entre eux.
 
 \begin{mydef}[Ensemble énumérable]
-	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\N$. \\
+	Un ensemble est énumérable ou dénombrable s'il est fini ou s'il a le même cardinal que $\N$.
 \end{mydef}
-
 Une autre manière plus intuitive de voir si un un ensemble infini est  énumérable est de voir s'il existe une énumération de ses éléments.
 
 \begin{myprop} 
@@ -168,8 +168,8 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
       
 		\begin{tabular}{ l c c  c  c c c  r }
 			$\N$  & 0 & 1 & 2  & 3 & 4 & 5 & \ldots  \\
-			Ensemble des paires d entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & \ldots \\
-			Ensemble des paires des triplets & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & \ldots \\
+			Ensemble des paires d'entiers & {0,0} & {1,0} & {0,1} & {0,2} & {2,0} & {1,2}  & \ldots \\
+			Ensemble des triplets d'entiers & {0,0,0} & {0,0,1} & {0,1,0} & {1,0,0} & {0,1,1} & {1,0,1}  & \ldots \\
 			
 		\end{tabular}
 	
@@ -179,13 +179,16 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \end{myexem}
   
 \begin{myexem}
- Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers, exactement comme il a été fait pour les démonstrations précédentes.
+ Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers. 
+	 \begin{proof} 
+	 	Comme tout rationnel peut s'écrire sous la forme d'un numérateur et d'un dénominateur, un rationnel est équivalent à une paire d'entier. On peut donc faire une démonstration équivalente à la paire d'entier pour prouver que les rationnels sont en bijection avec l'ensemble $\N$. 
+	 \end{proof}
  \end{myexem}
   
 \begin{myexem}  
   L'ensemble des sous-ensembles finis d'entiers
   \begin{proof}
-  On peut également trouver une bijection entre $\N$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,... On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\N$).
+  On peut également trouver une bijection entre $\N$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,\dots On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\N$).
   
     \begin{tabular}{ l c c  c  c c c  c }
  	 $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6  \\
@@ -206,16 +209,16 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \end{myexem}
 
 \begin{myexem}
- L'ensemble des fonctions de  $\{0, 1\}$ vers N est énumérable.
+ L'ensemble des fonctions de  $\{0, 1\}$ vers $\N$ est énumérable.
  \begin{proof}
-  Une fonction de $\{0, 1\}$ vers N peut être représentée par deux couples de quatre entiers, donc est un quadruple. L'ensemble des fonctions de $\{0, 1\}$ vers N est ensemble des quadruples et est donc énumérable.
+  Une fonction de $\{0, 1\}$ vers $\N$ peut être représentée par deux couples de deux entiers, donc est un quadruple. L'ensemble des fonctions de $\{0, 1\}$ vers $\N$ est équivalent à l'ensemble des quadruples et est donc énumérable.
  \end{proof}
 \end{myexem}
  
  \begin{myexem}
   L'ensemble des programmes Java
   \begin{proof}
-  Combien il-y-a-t il de programmes Java? Potentiellement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\N$. 
+   Un programme Java est une séquence finie d'un alphabet fini (ASCII étendu). Donc potentiellement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\N$. 
   \end{proof}
 \end{myexem}
 
@@ -253,13 +256,12 @@ en y retirant ensuite les doublons.
 	L'union d'une infinité énumérable d'ensembles énumérables est énumérable.
     \begin{proof}
       La démonstration est similaire à la démonstration de l'énumérabilité de $\Q$.
-      On met chaque ensemble en ligne, il y a un nombre énumérable de lignes qu'on peut numéroter en parcourant le tableau en zigzag
-      en partant de $(0,0)$.
+      On met chaque ensemble en ligne, il y a un nombre énumérable de lignes qu'on peut numéroter en parcourant le tableau en diagonale montante en partant de $(0,0)$.
     \end{proof}
 \end{myprop}
 
 \begin{myprop}
- Tout ensemble de chaines finies de caractères est énumérable.
+ Tout ensemble de chaînes finies de caractères est énumérable.
  \begin{proof}
 	A écrire
  \end{proof}
@@ -276,11 +278,11 @@ en y retirant ensuite les doublons.
 \begin{myprop}
  Tout langage (avec un alphabet fini) est énumérable. 
  \begin{proof}
- Un langage est un ensemble de chaines finies de caractères.  Il est donc  énumérable.
+ Un langage est un ensemble de chaines finies de caractères limités.  Il est donc  énumérable.
  \end{proof}
 \end{myprop}
 
-L'union d'une infinité non-énumérable d'ensembles énumérable peut ne pas être énumérable.
+L'union d'une infinité non-énumérable d'ensembles énumérables peut ne pas être énumérable.
 Par exemple, l'union des singletons $\{x\}$ pour tout réel $x$ forme l'ensemble des réels $\R$ qui n'est pas énumérable:
 \[ \bigcup_{x \in \R} \{x\} = \R. \]
 
@@ -306,8 +308,7 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 \begin{myexem}
 	Exemple de démonstration par diagonalisation:
 	\begin{enumerate}
-		\item Construire une table : Liste de tous les grands
-			mathématiciens \\
+		\item On construit une table, dans laquelle on fait l'hypothèse qu'on a réussi à lister \textsc{tous} les grands mathématiciens.\\
 			\begin{tabular}{lllllllllll}
 				\emph{\textbf{D}}&E& M&O&R&G&A&N&&& \\
 				A&\emph{\textbf{B}}&E&L&&&&&&&\\
@@ -321,13 +322,13 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 		\item Montrer que l'élément n'est pas dans la liste $\Rightarrow$ Contradiction
 		\item Conclusion :
 			\begin{itemize}
-				\item Soit on sait que la liste est complète\\
-					$ \Rightarrow$ CANTOR n'est pas un grand
+				\item Soit on sait que la liste est complète
+					\subitem $ \Rightarrow$ CANTOR n'est pas un grand
 				mathématicien (cas utilisé pour démontrer
 				halt).
 				\item Soit on sait que CANTOR est un grand
-					mathématicien \\
-					$ \Rightarrow$ la liste est incomplète
+					mathématicien 
+					\subitem $ \Rightarrow$ la liste est incomplète
 				(cas utilisé pour la diagonalisation de CANTOR)
 			\end{itemize}
 	\end{enumerate}
@@ -335,48 +336,50 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 
 \begin{mytheo}[Diagonalisation de Cantor]
 	Soit $E = \{ x \text{ réel }| 0<x\leq1\}$, $E$ est non énumérable.
+
+	\begin{proof}
+		Démonstration par l'absurde.  En supposant que $E$ soit énumérable, on va montrer qu'un nombre $d'$ n'est pas dans l'énumération alors qu'on sait
+		que $d'$ est un nombre réel compris entre 0 et 1.
+		
+		On suppose $E$ énumérable. Donc il existe une énumération des éléments de $E$.  Soit 
+		$x_0, x_1,\dots,x_k,\dots$ cette énumération. On peut représenter un nombre $x_k$ comme étant une
+		suite de chiffres $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
+		
+		\begin{enumerate}
+			\item On peut donc construire une table infinie : \\
+				\begin{tabular}{|c||c|c|c|c|c|c|}
+					\hline
+					& 1 digit & 2 digit & 3 digit & \dots & k+1 digit & \dots \\
+					\hline
+					$x_0$ & $x_{00}$ & $x_{01}$ & $x_{02}$ & \dots & $x_{0k}$ & \dots \\
+					$x_1$ & $x_{10}$ & $x_{11}$ & $x_{12}$ & \dots & $x_{1k}$ & \dots \\
+					$x_2$ & $x_{20}$ & $x_{21}$ & $x_{22}$ & \dots & $x_{2k}$ & \dots \\
+					$\vdots$& $\vdots$& $\vdots$& $\vdots$& $\ddots$& $\vdots$& $\vdots$\\
+					$x_k$ & $x_{k0}$ & $x_{k1}$ & $x_{k2}$ & \dots & $x_{kk}$ & \dots \\
+					$\vdots$& $\vdots$& $\vdots$& $\vdots$& $\vdots$& $\vdots$& $\ddots$\\
+					\hline
+				\end{tabular}
+			\item Sélection de la diagonale (celle-ci est un nombre réel compris
+				entre 0 et 1)
+				\[ d=0.x_{00}x_{11}\dots x_{kk}\dots \]
+			\item Modification de cet élément $d$ pour obtenir
+				\[ d'=0.x_{00}'x_{11}'\dots x_{kk}'\dots \]
+				Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
+				$x_{ii}'=6$ si $x_{ii}'= 5$ \\
+				On a toujours que cet élément $d'$ est un réel compris entre 0 et 1
+			\item Le nombre $d'$ est dans l'énumération, car $E$ est
+				énumérable (par hypothèse). Il existe donc $x_p=d'$,
+				\[ x_p=0.x_{p0}x_{p1}\dots x_{pp}\dots \]
+				\[=\]
+				\[ d'=0.x_{00}'x_{11}'\dots x_{pp}'\dots \]
+				Il y a une contradiction car $x_{pp}' \neq
+			       	x_{pp}$ par la définition de $x_{pp}'$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
+				dans l'énumération.
+			\item Conclusion : $E$ n'est pas énumérable
+		
+		\end{enumerate}
+	\end{proof}
 \end{mytheo}
-
-\paragraph{Démonstration :}
-Démonstration par l'absurde.  En supposant que $E$ soit énumérable, on va montrer qu'un nombre $d'$ n'est pas dans l'énumération alors qu'on sait
-que $d'$ est un nombre réel compris entre 0 et 1.
-
-On suppose $E$ énumérable. Donc il existe une énumération des éléments de $E$.  Soit 
-$x_0, x_1,\dots,x_k,\dots$ cette énumération. On peut représenter un nombre $x_k$ comme étant une
-suite de chiffres $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
-
-\begin{enumerate}
-	\item On peut donc construire une table infinie : \\
-		\begin{tabular}{|c||c|c|c|c|c|c|}
-			\hline
-			& 1 digit & 2 digit & 3 digit & ... & k+1 digit & ... \\
-			\hline
-			$x_0$ & $x_{00}$ & $x_{01}$ & $x_{02}$ & ... & $x_{0k}$ & ... \\
-			$x_1$ & $x_{10}$ & $x_{11}$ & $x_{12}$ & ... & $x_{1k}$ & ... \\
-			$x_2$ & $x_{20}$ & $x_{21}$ & $x_{22}$ & ... & $x_{2k}$ & ... \\
-			: & : &:& : & : & : &:\\
-			$x_k$ & $x_{k0}$ & $x_{k1}$ & $x_{k2}$ & ... & $x_{kk}$ & ... \\
-			: & : &:& : & : & : &:\\
-			\hline
-		\end{tabular}
-	\item Sélection de la diagonale (celle-ci est un nombre réel compris
-		entre 0 et 1)
-		\[ d=0.x_{00}x_{11}...x_{kk}... \]
-	\item Modification de cet élément $d$ pour obtenir
-		\[ d'=0.x_{00}'x_{11}'...x_{kk}'... \]
-		Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
-		$x_{ii}'=6$ si $x_{ii}'= 5$ \\
-		On a toujours que cet élément $d'$ est un réel compris entre 0 et 1
-	\item Le nombre $d'$ est dans l'énumération, car $E$ est
-		énumérable (par hypothèse). Il existe donc $x_p=d'$,
-		\[ d'=x_p=0.x_{p0}x_{p1}...x_{pp}... \]
-		\[ d'=0.x_{00}'x_{11}'...x_{pp}'... \]
-		Il y a une contradiction car $x_{pp}' \neq
-	       	x_{pp}$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
-		dans l'énumération.
-	\item Conclusion : $E$ n'est pas énumérable
-
-\end{enumerate}
 
 \subsection{Exemples}
 \label{subsec:exemples_non_enum}
@@ -433,11 +436,12 @@ Quelques ensembles non énumérables :
        f_0(0) & f_0(1) & f_0(2) & f_0(3) & \cdots\\
        f_1(0) & f_1(1) & f_1(2) & f_1(3) & \cdots\\
        f_2(0) & f_2(1) & f_2(2) & f_2(3) & \cdots\\
-       \vdots & \ddots & \ddots & \ddots & \ddots\\
+       \vdots & \vdots & \vdots & \vdots & \ddots\\
      \end{array}
    \]
    et on conclut par diagonalisation de façon semblable à $\R$
-   en construisant $d\colon \N \to \N$ tel que $d(k) = f_k(k)$.
+   en construisant $d\colon \N \to \N$ tel que $d(k) = f_k(k)+1$.
+   On a ainsi une fonction $d(x)$ qui ne se trouve pas dans le tableau.
  \end{proof}
 \end{myexem}
 
@@ -461,7 +465,7 @@ Peut-on encore aller plus loin?  Oui,  il suffit de considérer  l'ensemble des 
 l'ensemble des sous-ensemble de $\R$ ($2^{\R}$).  Ces ensembles ne peuvent pas être mis en bijection avec $\R$.
 Encore plus loin ?  Oui, en prenant l'ensemble des sous-ensembles de l'ensemble défini juste avant.  On obtient alors $2^{2^{\R}}$.  Et ainsi de suite à l'infini \ldots
 
-On peut ainsi schématiser la taille des ensembles comme ceci:
+On peut ainsi schématiser la taille des ensembles comme ceci:\footnote{Pour exprimer la taille d'un ensemble non-énumérable, on peut il existe les \textbf{alephs}. Ce sont les cardinaux des ensembles infinis. On a donc la taille de $\N$ qui vaut $\aleph_0$ (dit aleph zéro), de $\R$ qui vaut $\aleph_1$, de $2^{\R}$ qui vaut $\aleph_2$,\dots }
 $$\Phi < \{1,2,3\} < \N < \R < 2^{\R} < 2^{2^{\R}} < 2^{2^{2^{\R}}} \dots$$
 
 Est-ce qu'il existe encore plus grand? Oui, effectivement, l'union de tous ces ensembles 

@@ -422,8 +422,32 @@ K.
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=0.57\textwidth]{Images/Structures_de_fonctions_et_ensembles}
-  \caption{ Structures de fonctions et ensembles}
+  \begin{tikzpicture}[scale=0.6]
+	  %Partie de gauche
+	  \draw[red]  (0,5)  node[above] {Fonctions};
+  	  \draw[very thick, red] \ellipse{0,0}{3}{5};
+  	  \draw[blue]  (1,2)  node[above] {Fonctions};
+  	  \draw[blue]  (1,1.8)  node {calculables};
+  	  \draw[very thick,blue] \ellipse{1,-1}{1.5}{2.5};
+  	  \draw (-1.5,0) node {$\bullet$};
+  	  \draw (-1.5,0) node[above] {$halt$};
+  	  
+  	  %Partie de droite
+  	  \draw[red]  (7,5)  node[above] {Ensembles};
+  	  \draw[very thick, red] \ellipse{7,0}{3}{5};
+  	  \draw[blue]  (7.5,3.5)  node[above] {Récursifs};
+  	  \draw[blue]  (7.5,3.3)  node {énumérables};
+  	  \draw[very thick,blue] \ellipse{7.5,-0.5}{2}{3.5};
+  	  \draw[cyan] (8,0.5) node[above] {Récursifs};
+  	  \draw[very thick, cyan] \ellipse{8,-1}{1}{1.5};
+  	  \draw (4.8,0) node {$\bullet$};
+  	  \draw (4.8,0) node[above] {$\overline{K}$};
+  	  \draw (6.5,-1) node {$\bullet$};
+  	  \draw (6.5,-1) node[left] {$K$};
+  	  \draw (7.5,1.5) node {$\bullet$};
+  	  \draw (7.5,1.5) node[above] {$HALT$};
+  \end{tikzpicture}
+  \caption{Structures de fonctions et ensembles}
   \label{rb}
 \end{figure}
 
@@ -471,16 +495,15 @@ On suppose interpret calculable dans Q.
 		$diag'(n) = interpret(n,n)+1$
 		$diag'$ est calculable dans Q, car interpret est calculable dans Q (il y a moyen
 		d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
-	\item \textbf{Contradiction} :
-		\begin{enumerate}
-			\item Comme \textit{diag'} est calculable dans Q, il existe un programme $Q_d$ qui calcule \textit{diag'}.  \\
-			Mais quelle est la valeur de \textit{diag'(d)} ?
-			\item Par définition de \textit{diag'}, on a $diag'(d) = interpret(d,d)+1$.
-			\item Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = Q_d(d) = \phi_d(d) = interpret(d,d)$.
-			En effet, calculer $\phi_d(d)$ revient à interpréter le programme
-			d avec la donnée d.
-			\item On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
-		\end{enumerate}
+
+	\item Contradiction :\\
+	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.  
+		Mais quelle est la valeur de $diag'(d)$ ?
+		Par définition de $diag'$, on a $diag'(d) = interpret(d,d)+1$. \\
+		Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = Q_d(d) = \phi_d(d) = interpret(d,d)$.
+		En effet, calculer $\phi_d(d)$ revient à interpréter le programme
+		d avec la donnée d. \\
+		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
 	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
 	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
 dans Q.
