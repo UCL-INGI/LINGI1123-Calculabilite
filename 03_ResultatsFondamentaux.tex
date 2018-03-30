@@ -451,7 +451,7 @@ Soit Q un langage de programmation (\textbf{non trivial}) dans lequel tous les p
 \paragraph{Démonstration :}
 On suppose interpret calculable dans Q.
 \begin{enumerate}
-	\item On construit une table infinie, où chaque ligne correspond à un programme Q_k de Q.   : \\
+	\item On construit une table infinie, où chaque ligne correspond à un programme $Q_k$ de Q.   : \\
 		\begin{tabular}{|c||c|c|c|c|c|c|}
 			\hline
 			& 0 & 1 & 2 & ... & k & ... \\
@@ -474,7 +474,7 @@ On suppose interpret calculable dans Q.
 	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.  
 		Mais quelle est la valeur de $diag'(d)$ ?
 		Par définition de $diag'$, on a $diag'(d) = interpret(d,d)+1$. \\
-		Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = $Q_d(d) = \phi_d(d) = interpret(d,d)$.
+		Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = Q_d(d) = \phi_d(d) = interpret(d,d)$.
 		En effet, calculer $\phi_d(d)$ revient à interpréter le programme
 		d avec la donnée d. \\
 		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
