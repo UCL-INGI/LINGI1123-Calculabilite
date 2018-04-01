@@ -611,10 +611,10 @@ Nous avons $\forall i \in A$ et $\forall j \in \stcomp{A}$ tel que $\phi_i \neq
 Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$
 
 Dans cette démonstration, nous allons utiliser la méthode de réduction.
-Le but est de montrer que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}. Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif. Ce qui implique donc que le programme n'est pas calculable.
+Sous l'hypothèse que $A$ est récursif, on montrer que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}.  Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif.  Ce qui implique donc que $A$ ne peut pas être récursif.
 
 \begin{enumerate}
-	\item Construisons le programme $P_k$
+	\item Construisons le programme suivant $P_k$
 		\begin{lstlisting}
 while true do;
 		\end{lstlisting}
@@ -624,38 +624,39 @@ while true do;
 	supposons $k\in \stcomp{A}$ (hypothèse sans importance, car montrer que
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
 	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif)
-	\item $A\neq \emptyset$ par hypothèse, supposons $m\in A$
-	\item $\phi_i \neq \phi_j$ et $\forall i \in A, \forall j \in \stcomp{A}$ par hypothèse donc on peut remplacer $i$ et $j$ :
+	\item $A\neq \emptyset$ par hypothèse.  Prenons un élément quelconque $m$ de cet ensemble  ($m\in A$)
+	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\phi_i \neq \phi_j$.  Donc 
 		$\phi_m \neq \phi_k$
-	\item Construisons un programme $P(z)$ qui calcule la fonction $g(z)$,
+	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant. 
 		$P(z) \equiv $
 		\begin{lstlisting}
 P_n(x);
 P_m(z);
 		\end{lstlisting}
-		\begin{myrem}
-			On sait que si un programme calcule une fonction
-			$f(x)=\perp \ \forall x$ alors ce programme doit être dans $\stcomp{A}$ car $f(x) =\phi_k(x)$. Comme ce programme n'est pas récursif et que \textit{A} ne contient par hypothèse que des programmes récursifs, alors il doit forcément être dans $\stcomp{A}$. \\
-	
-			Or
+
+			Ce programme a un numéro $d$.  Quelle est la fonction $\phi_d(z)$ calculée par $P(z)$ ? Il n'y a que deux possibilités.
 			\begin{itemize}
-				\item soit notre programme $P(z)$ ne se termine pas pour tout z, car $P_n(x)$ ne se termine pas, alors $g(z) = 		\phi_k(z)$. Donc $g(z)$ doit appartenir à $\stcomp{A}$ car $\phi_k(z)$ appartient à $\stcomp{A}$.
-			\item soit notre programme $P(z)$ calcule $\phi_m(z)$ or on
-				sait que $m\in A$, donc $g(z)$ appartient à \textit{A}.
+				\item Si $P_n(x)$ ne se termine pas, alors le programme $P(z)$ ne se termine pour aucune valeur de $z$. On a donc $\phi_d =\phi_k$. 
+				\item Si $P_n(x)$ se termine, alors le programme $P(z)$ calcule la même fonction que $P_m(z)$. On a donc $\phi_d =\phi_m$. 
 			\end{itemize}
-      En résumé : si $P_n(x)$ ne se termine pas, $P(z)$ sera dans
-      $\stcomp{A}$ sinon $P(z)$ sera dans $A$.
-		\end{myrem}
+
+Pour déterminer si $\phi_d =\phi_k$ ou  $\phi_d =\phi_m$, il suffit de tester si $d \in A$.   Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\phi_i \neq \phi_j$.  Nous avons aussi $k\in \stcomp{A}$ et $m\in A$.
+			\begin{itemize}
+            \item Si $d \in A$, alors  $\phi_d \neq \phi_k$, donc $\phi_d =\phi_m$.
+            \item Si $d \in \stcomp{A}$, alors  $\phi_d \neq \phi_m$, donc $\phi_d =\phi_k$.
+			\end{itemize}
+En résumé : si $d \in A$ alors l'exécution de $P_n(x)$ se termine, sinon l'exécution de $P_n(x)$ ne se termine pas.
 		
-		On peut ainsi écrire un algorithme utilisant la description de $P(z)$ et dont la sortie (l'output) équivaut à calculer \textbf{HALT}.
-		
+		On peut alors écrire le programme suivant qui décide \textbf{HALT}. 
 		 $halt(n,x) \equiv $
 		\begin{lstlisting}
-construire P(z);
+construire un programme P(z)= P_n(x); P_m(z)        ;
 d <- numero de P(z);
 if d in A then print(1);
 else print(0);
 		\end{lstlisting}
+		
+		
 	\item Contradiction, car \textbf{HALT} n'est pas récursif.
 	\item Conclusion: $A$ n'est pas récursif.
 \end{enumerate}
@@ -842,7 +843,7 @@ Pour commencer, on va poser 3 ``lapins'' :
 		\end{myrem}
 
 	\item $h(u,v)=\phi_{S(u)}(v)$\\
-	 $S$ est totale calculable, on a donc la propriété S (propriété S-m-n affaiblie).
+	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable, 
 
 	\item $g(u)=f(S(u))$\\
 	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
@@ -861,7 +862,7 @@ Si on pose que $S(k')=k$ on a bien
 \[ \phi_{k}(v) = \phi_{f(k)}(v) \]
 Ce qui conclut notre démonstration.
 		\begin{myrem}
-          Le programme créé par $S(k')$ est le suivant
+          [Cette Remarque n'est pas validée]  Le programme suivant calcule  $S(k')$ :
           \begin{algorithmic}
             \STATE Input: $v$
             \STATE $a = P_z(k',k')$
@@ -870,7 +871,7 @@ Ce qui conclut notre démonstration.
           On remarque que comme $S$ et $f$ sont totales,
           $g$ l'est aussi donc $P_z(k',k')$ se terminera toujours.
 
-          Que se passe t'il quand on exécute $S(k')$?
+          Que se passe-t-il quand on exécute ce programme qui calcule $S(k')$?
           Comme on l'a vu, la première ligne se termine et on obtient
           $a = f(S(k'))$,
           ensuite on exécute le programme $P_z(a,v) = P_a(f(S(k')),v)$
