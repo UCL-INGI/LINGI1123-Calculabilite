@@ -54,4 +54,11 @@ fi
 git fetch upstream
 git merge upstream/$branch_default
 
+# Push automatiquement les modifications locales (c'est à dire les commits créés ou reçu depuis le dépôt central)
+# Vers le fork
+rep3=$(echo $remote | grep -o "origin")
+if [ -n "$rep3" ]
+then
+	git push origin/$branch_default
+fi
 exit 0
