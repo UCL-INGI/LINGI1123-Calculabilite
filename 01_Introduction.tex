@@ -35,7 +35,6 @@ En mathématique, il est impossible de trouver deux nombres entiers $m$ et $n$ t
 \section{Notion de problème}
 \label{sec:notion_de_probleme}
 
-\paragraph{}
 Premièrement, on doit parler de la notion de problème.
 Attention, il ne faut pas confondre un problème avec un programme.
 Les caractéristiques d'un problème sont:
@@ -44,8 +43,6 @@ Les caractéristiques d'un problème sont:
 	\item un problème est générique : il s'applique à un ensemble de données.
 	\item pour chaque donnée particulière, il existe une réponse.
 \end{itemize}
-
-Un \emph{problème} est donc différent d'un \emph{programme}.
 
 On représente un problème dans le cours par une fonction (noté $\phi$ ou $\varphi$). 
 Donc la description d'un problème est équivalente à la description d'une fonction.
@@ -122,7 +119,7 @@ if detecteur(drole, drole) = "Mauvais"
 	then stop
 else infecter un autre programme en y inserant drole
 \end{lstlisting}
-
+%TODO Reproduire en tikz (ou importer) l'image issue des slides
 \begin{itemize}
 	\item Supposons que \lstinline|drole(drole)| soit nuisible.
       Lorsqu'on exécute, \lstinline|drole(drole)|, \\
@@ -163,11 +160,13 @@ Supposons un ordinateur actuel sachant faire 100 millions d'instructions par sec
 		\hline
 	\end{array}$
 \end{center}
+
+Ce tableau montre dès lors que peu importe les évolutions technologiques, un problème intrinsèquement complexe \textbf{ne peut} et \textbf{ne pourra} être résolu que pour de petits exemples. Les solutions à ces problèmes peuvent cependant être approximés par des algorithmes (parfois très efficaces).
 		
 \section{Objectifs calculabilité et complexité}
 \label{sec:objectifs_calculabilite_et_complexite}
 
-La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme).  Parmis les problèmes calculables il a ceux qui le sont en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
+La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme) dans l'univers des problèmes. Parmi les problèmes calculables il a ceux qui le sont en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=0.8]

@@ -59,6 +59,6 @@ git merge upstream/$branch_default
 rep3=$(echo $remote | grep -o "origin")
 if [ -n "$rep3" ]
 then
-	git push origin/$branch_default
+	git push origin $branch_default
 fi
 exit 0
