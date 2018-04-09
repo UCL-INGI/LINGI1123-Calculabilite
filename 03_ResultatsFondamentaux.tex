@@ -131,7 +131,8 @@ Soit $A\subseteq \N$
     \end{itemize}
 
     \begin{proof}
-      $f$ est une fonction d'énumération (elle peut répéter plusieurs fois un élément, mais ce n'est pas gênant).
+      Si A est vide, il est possible de créer un programme Q qui va déterminer si x $\in$ A. Etant donné que A est vide, aucun élément n'appartient à cet ensemble. Il suffit simplement de créer un programme renvoyant toujours $\bot$. \\
+      Concernant la deuxième la condition, $f$ est une fonction d'énumération (elle peut répéter plusieurs fois un élément, mais ce n'est pas gênant).
       À l'aide d'un programme $P_f$ qui calcule $f$,
       on appelle $P_f(0), P_f(1), P_f(2), \ldots$
       jusqu'à ce que $P_f(k) = x$ où on retourne $1$.
@@ -458,23 +459,25 @@ K.
 
 \section{Insuffisance des fonctions totales}
 \label{sub:insuffisance_des_fonctions_totales}
-Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction \emph{halt} est trivialement calculable (fonction constante 1). Étant donné que les problèmes pratiques que l'on doit résoudre sont des fonctions totales, on peut se demander.  Mais on va montrer qu'un tel modèle est restrictif; il ne permet pas de calculer toutes les fonctions totales calculables.
+Dès lors pourquoi ne pas uniquement se limiter aux fonctions totales ?\\ 
+Ceci permettrait de résoudre le problème de l'arrêt. \\
+En effet, dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction \emph{halt} deviendrait calculable, dans la mesure où tous les programmes se terminent, la fonction \textit{halt} renverrait toujours une réponse.\\
+La suite de ce chapitre va vous démontrez que se limiter aux fonctions uniquement totales est assez restrictif dans le sens ou cela ne permet pas de calculer toutes les fonctions totales calculables.
 
 \begin{myexem}
-Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} (défini plus loin) ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
+Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
 \end{myexem}
 
-Posons Q un langage (\textbf{non trivial}) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour
-lequel il existe un interpréteur calculable, $interpret(n,x){} =\phi'_n$, où 
-$\phi'_n$ est la fonction calculée par le programme $Q_n$.  L'interpréteur est une fonction totale car il donne toujours une réponse vu que tous les programmes se terminent. Par langage de programmation non trivial, on entend un langage où les opérations de base telles que l'addition peuvent être réalisées.
+Posons Q un langage (\textbf{non trivial}, langage ou les opérations de base tel que l'addition peuvent être effectuées) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour lequel il existe un interpréteur calculable, $interpret(n,x){} =\phi'_n$, où 
+$\phi'_n$ est la fonction calculée par le programme $Q_n$. En partant du fait que tous les programmes se terminent, l'interpréteur est donc une fonction totale puisqu'il donne toujours une réponse.
 
 \begin{mytheo}[Hoare-Allison]
 	\label{Hoare_Allison}
 Soit Q un langage de programmation (\textbf{non trivial}) dans lequel tous les programmes se terminent.	Alors l'interpréteur de Q, la fonction $\interpret(n,x)$, n'est pas calculable dans Q.
 \end{mytheo}
 
-\paragraph{Démonstration :}
-On suppose interpret calculable dans Q.
+\begin{proof} Via la diagonalisation de Cantor : \\
+On suppose \textit{interpret} calculable dans Q.
 \begin{enumerate}
 	\item On construit une table infinie, où chaque ligne correspond à un programme $Q_k$ de Q.   : \\
 		\begin{tabular}{|c||c|c|c|c|c|c|}
@@ -508,6 +511,7 @@ On suppose interpret calculable dans Q.
 	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
 dans Q.
 \end{enumerate}
+\end{proof}
 
 \begin{myrem}
 	Si les programmes de Q ne calculaient pas que des fonctions totales, alors ça n'aurait pas posé de problèmes, car si $interpret(d,d)=\bot$, $interpret(d,d)+1=\bot$ et il n'y a plusa de contradiction.  Un programme qui ne se termine pas + quelque chose, reste un programme qui ne se termine pas.
