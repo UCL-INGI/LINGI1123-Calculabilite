@@ -559,12 +559,11 @@ dans Q.
 \begin{mytheo}
 	Il existe une fonction partielle calculable g telle qu'aucune fonction totale calculable n'est une extension de g.
   \begin{proof}
-    C'est le cas de $\diag'$ avec le tableau $\interpret(i,j)$ (le même que pour la preuve avec $Q$). S'il existe une extension calculable $f = \phi_s$ de $\diag'$,
-    alors si $\interpret(s,s) = \bot$, $\phi_s(s) = \diag'(s) \neq \bot = \interpret(s,s)$, c'est une contradiction
-    et si $\interpret(s,s) \neq \bot$, $\phi_s(s) = \diag'(s) = \diag(s)+1 = \interpret(s,s)+1 \neq \interpret(s,s)$,
-    c'est une contradiction.
-
-    On en conclut que la fonction universelle n'est pas calculable, ce qui contredit le théorème~\ref{theo:fununiv}.
+    Par construction de HALT : \\
+    Soit nbStep(n,x)  = nombre d'instructions exécutées par $\phi_n(x)$.\\
+    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle. Si cette fonction donnait toujours un résultat, cela reviendrait à calculer HALT.\\
+    nbStepPrime(n,x) est l'extension totale de nbStep. Pour satisfaire le théorème précédent, il faudrait qu'elle renvoie toujours un résultat.\\
+    Ce qui est impossible, sinon HALT devient calculable.\\
   \end{proof}
 \end{mytheo}
 
