@@ -559,11 +559,9 @@ dans Q.
 \begin{mytheo}
 	Il existe une fonction partielle calculable g telle qu'aucune fonction totale calculable n'est une extension de g.
   \begin{proof}
-    Par construction de HALT : \\
     Soit nbStep(n,x)  = nombre d'instructions exécutées par $\phi_n(x)$.\\
-    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle. Si cette fonction donnait toujours un résultat, cela reviendrait à calculer HALT.\\
-    nbStepPrime(n,x) est l'extension totale de nbStep. Pour satisfaire le théorème précédent, il faudrait qu'elle renvoie toujours un résultat.\\
-    Ce qui est impossible, sinon HALT devient calculable.\\
+    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle calculable. Si il existe une extention totale calculable decette fonction, alors la fonction halt serait calculable.\\
+    En effet, soit nbStepPrime(n,x) une extension totale calculable de nbStep. Pour calculer halt(nx), il suffit d'exécuter nbStepPrime(n,x) instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que nbStepPrime(n,x)=nbStep(n,x) et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que nbStep(n,x)=$\bot$ et donc que $P_n(x)$ se termine. On a donc un algorithme pour calculer halt, ce qui est impossible.  Donc une telle extension totale de nbStep n'existe pas.
   \end{proof}
 \end{mytheo}
 
