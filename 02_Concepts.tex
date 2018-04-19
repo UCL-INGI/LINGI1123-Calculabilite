@@ -15,8 +15,9 @@ de l'ensemble.
 
 \begin{description}
 	\item [Ensemble vide :] $\phi$
-	\item [Ensemble fini :] $\{ 0, 1, 2\}$
-	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4, \ldots\}$, $\{a, aa, aaa, aaaa, \ldots\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \ldots\}$
+	\item [Ensemble fini :] $\{ 0, 1, 2\}$, $\{00, 01, 10, 11\}$
+	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4,\, \ldots\,\}$, $\{0, 1, -1, 2, -2, 3, -3, \, \ldots\,\}$, 
+	\subitem $\{a, aa, aaa, aaaa,\, \ldots\,\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \, \ldots\,\}$
 	\item [Produit cartésien :] $A \times B$
     \item [Le nombre d'éléments :] $\abs{A}$
     \item [Ensemble des sous-ensembles :] $2^A$ ou $\mathcal{P}(A)$, e.g. $2^{\{2,4\}} = \{\{\}, \{2\}, \{4\}, \{2,4\}\}$. \\
@@ -30,20 +31,27 @@ de l'ensemble.
 \label{subsec:Langages}
 Notations :
 \begin{itemize}
-    \item Une \emph{chaîne de caractères} ou un \emph{mot} : séquence \textbf{\underline{finie}} de symboles. Ex:
+    \item Une \emph{chaîne de caractères} ou un \emph{mot} est séquence \textbf{\underline{finie}} de \emph{symboles} (ou \emph{caractères}).
+    
+    Par exemple :
     	\begin{itemize}
     		\item $abceced$,
     		\item $010101101$
+    		\item \ding{168}\ding{169}\ding{170}\ding{171}\ding{40}\ding{109}\ding{112}
     	\end{itemize}
+    	Les symboles peuvent être représentés par n'importe quel glyphe, cela n'a pas d'importance.
 	\item Chaîne de caractères vide : $\epsilon$
-    \item Un \emph{alphabet} $\Sigma$ est un ensemble de symboles. $\Sigma = \{1, 2\}$ $\Sigma = \{a, b, c\}$
+    \item Un \emph{alphabet} $\Sigma$ est un ensemble fini de symboles. 
+    	\subitem $\Sigma = \{1, 2\}\qquad\Sigma = \{a, b, c\}\qquad\Sigma = \{\ding{189},\ding{129},a,9\}$
+    \item Un mot défini sur un alphabet est une séquence finie d'éléments de cet alphabet.
     \item Un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet donné.
-    	\subitem Palindromes sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
-	\item Ensemble de tous les mots possibles sur l'alphabet $\Sigma$ : $\Sigma ^*$
+     
+    	\subitem Ex : l'ensemble des palindromes définis sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
+	\item L'ensemble de tous les mots possibles sur l'alphabet $\Sigma$ :\; $\Sigma^*$
 		\begin{itemize}
-			\item $\Sigma = \phi, \Sigma^* = \{\epsilon\}$
-			\item $\Sigma = \{a\}, \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
-			\item $\Sigma = \{0,1\}, \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
+			\item $\Sigma = \phi,\quad \Sigma^* = \{\epsilon\}$
+			\item $\Sigma = \{a\},\quad \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
+			\item $\Sigma = \{0,1\},\quad \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
 		\end{itemize}
 \end{itemize}
 
@@ -72,7 +80,7 @@ Soient $A$, $B$ des ensembles.
 		$f(a) = \perp$.  Le symbole $\perp$ est appelé \emph{bottom}.
 \end{itemize}
 
-\paragraph{Propriétés des fonctions}
+\subsubsection{Propriétés des fonctions}
 \label{par:proprietes_des_fonctions}
 Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} respectivement comme suit
 \begin{align*}
@@ -80,7 +88,7 @@ Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} respecti
   \image(f) & = \{\, b \in B \mid \exists a \in A : b = f(a) \,\}.
 \end{align*}
 
-Si $\dom(f) \subseteq A$, $f$ est appelée \emph{partielle} et si $\dom(f) = A$, $f$ est appelée \emph{totale}.
+Si $\dom(f) \subseteq A$, alors $f$ est appelée \emph{partielle} et si $\dom(f) = A$, alors $f$ est appelée \emph{totale}.
 Notez qu'avec cette définition, une fonction totale est partielle.
 Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
 
@@ -94,7 +102,7 @@ Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie.
 
 La fonction $\mathrm{sqrt}(x) = \sqrt{x}$ en mathématique n'est valable que pour $x\geq0$. En revanche un programme implémentant cette fonction, par exemple $\mathrm{mysqrt}(x) = \sqrt{x}$, retourne une valeur si $x\geq0$ ou \textit{Erreur} sinon. $\mathrm{mysqrt}(x)$ est une extension de la fonction $\mathrm{sqrt}(x)$ de base.
 
-\paragraph{Définition d'une fonction}
+\subsubsection{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
 On définit une fonction par sa table qui peut être infinie.\\
 On peut définir la table de plusieurs façons :
@@ -465,7 +473,7 @@ Peut-on encore aller plus loin?  Oui,  il suffit de considérer  l'ensemble des 
 l'ensemble des sous-ensemble de $\R$ ($2^{\R}$).  Ces ensembles ne peuvent pas être mis en bijection avec $\R$.
 Encore plus loin ?  Oui, en prenant l'ensemble des sous-ensembles de l'ensemble défini juste avant.  On obtient alors $2^{2^{\R}}$.  Et ainsi de suite à l'infini \ldots
 
-On peut ainsi schématiser la taille des ensembles comme ceci:\footnote{Pour exprimer la taille d'un ensemble non-énumérable, on peut il existe les \textbf{alephs}. Ce sont les cardinaux des ensembles infinis. On a donc la taille de $\N$ qui vaut $\aleph_0$ (dit aleph zéro), de $\R$ qui vaut $\aleph_1$, de $2^{\R}$ qui vaut $\aleph_2$,\dots }
+On peut ainsi schématiser la taille des ensembles comme ceci:\footnote{Pour exprimer la taille d'un ensemble non-énumérable, il existe les \textbf{alephs}. Ce sont les cardinaux des ensembles infinis. On a donc la taille de $\N$ qui vaut $\aleph_0$ (dit aleph zéro), de $\R$ qui vaut $\aleph_1$, de $2^{\R}$ qui vaut $\aleph_2$, \dots }
 $$\Phi < \{1,2,3\} < \N < \R < 2^{\R} < 2^{2^{\R}} < 2^{2^{2^{\R}}} \dots$$
 
 Est-ce qu'il existe encore plus grand? Oui, effectivement, l'union de tous ces ensembles 
