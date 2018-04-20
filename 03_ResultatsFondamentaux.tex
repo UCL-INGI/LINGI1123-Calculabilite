@@ -885,18 +885,19 @@ Ce qui conclut notre démonstration.
 \end{proof}
 
 \begin{myrem}[Démonstration du théorème de Rice grâce au point fixe]
-  À l'aide du point fixe, on peut démontrer une version plus forte du théorème de Rice:
+  À l'aide du point fixe, on peut démontrer plus simplement le théorème de Rice:
 
   Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors
-  il existe $n \in A$ et $m \in \bar{A}$,
+  il existe $i \in A$ et $j \in \bar{A}$ tel que $\phi_i = \phi_j$.
   \begin{itemize}
     \item soit $\exists k \in      A $ tel que $\phi_m = \phi_k$
     \item soit $\exists k \in \bar{A}$ tel que $\phi_n = \phi_k$.
   \end{itemize}
   \begin{proof}
-    Soit un ensemble $A$ récursif tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.
-    Soit $n \in A$ et $m \in \bar{A}$.
-    Soit la fonction
+    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si 
+    $\forall i \in A, \forall j \in \bar{A} : \phi_i \neq \phi_j$ (1) alors A est non récursif. \\
+    En supposant A récursif, on arrive une contradiction.  En effet, 
+    soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
     \[
       f(x) =
       \begin{cases}
@@ -904,17 +905,15 @@ Ce qui conclut notre démonstration.
         n & \text{si }x \in \bar{A}.
       \end{cases}
     \]
-    On remarque que comme $A$ est récursif,
-    $f$ est total calculable.
+    Comme $A$ est récursif, la fonction $f$ est total calculable.
     Dès lors, par le théorème du point fixe, il existe $k$ tel que
     \[ \phi_{f(k)} = \phi_k \]
+    La valeur $kE est-elle dans $A$ ou dans $\bar{A}$ ?
     \begin{itemize}
-      \item Si $k \in A$, ça donne
-        \[ \phi_m = \phi_k \]
-        or $m \in \bar{A}$.
-      \item Si $k \in \bar{A}$, ça donne
-        \[ \phi_n = \phi_k \]
-        or $n \in A$.
+      \item Si $k \in A$, alors $f(k)=m$.  On a donc $\phi_m = \phi_k$, ce qui est contradictoire avec (1) car 
+       $m \in \bar{A}$.
+      \item Si $k \in \bar{A}$, alors $f(k)=n$.  On a donc $\phi_n = \phi_k$, ce qui est contradictoire avec (1) car 
+        $n \in A$.
     \end{itemize}
   \end{proof}
 \end{myrem}
