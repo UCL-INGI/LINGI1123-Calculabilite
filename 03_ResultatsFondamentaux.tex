@@ -863,24 +863,22 @@ Si on pose que $S(k')=k$ on a bien
 \[ \phi_{k}(v) = \phi_{f(k)}(v) \]
 Ce qui conclut notre démonstration.
 		\begin{myrem}
-          [Cette Remarque n'est pas validée]  Le programme suivant calcule  $S(k')$ :
+          La fonction $S(k')$ pourrait produire le programme suivant :
           \begin{algorithmic}
             \STATE Input: $v$
             \STATE $a = P_z(k',k')$
             \STATE $P_z(a,v)$
           \end{algorithmic}
           On remarque que comme $S$ et $f$ sont totales,
-          $g$ l'est aussi donc $P_z(k',k')$ se terminera toujours.
+          $g$ l'est aussi donc $P_z(k',k')$ se terminera toujours et donne pour résultat $f(S(k'))$ (lapin 3).
 
-          Que se passe-t-il quand on exécute ce programme qui calcule $S(k')$?
-          Comme on l'a vu, la première ligne se termine et on obtient
-          $a = f(S(k'))$,
-          ensuite on exécute le programme $P_z(a,v) = P_a(f(S(k')),v)$
-          et output ce qu'il output.
-          Exécuter $S(k')$ revient donc à exécuter $f(S(k'))$!
-          On a donc forcément
+          Que se passe-t-il quand on exécute le programme généré par $S(k')$ sur une donnée $v$ quelconque ?
+          La seconde instruction se termine et on obtient $a = f(S(k'))$.
+          Ensuite on exécute le programme $P_z(a,v) = P_a(v)$ qui fournit le résultat final. \\
+          Exécuter le programme généré par $S(k')$ sur une donnée $v$ revient donc à exécuter le programme $f(S(k'))$ sur cette donnée $v$.
+          On a donc 
           \[ \phi_{S(k')} = \phi_{f(S(k'))}. \]
-          Le programme $S(k')$ est donc un point fixe de $f$.
+          Le programme $S(k')$ est bien un point fixe de $f$.
 		\end{myrem}
 \end{proof}
 
