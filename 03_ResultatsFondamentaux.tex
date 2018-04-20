@@ -459,10 +459,11 @@ K.
 
 \section{Insuffisance des fonctions totales}
 \label{sub:insuffisance_des_fonctions_totales}
-Dès lors pourquoi ne pas uniquement se limiter aux fonctions totales ?\\ 
-Ceci permettrait de résoudre le problème de l'arrêt. \\
-En effet, dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction \emph{halt} deviendrait calculable, dans la mesure où tous les programmes se terminent, la fonction \textit{halt} renverrait toujours une réponse.\\
-La suite de ce chapitre va vous démontrez que se limiter aux fonctions uniquement totales est assez restrictif dans le sens ou cela ne permet pas de calculer toutes les fonctions totales calculables.
+Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se
+terminent, la fonction halt est trivialement calculable (fonction constante 1). Étant donné que les
+problèmes pratiques que l’on doit résoudre sont des fonctions totales, on peut se demander pourquyoi ne pas se limiter  un langage de programmation dans lesquel tous les programmes se terminent. Mais
+on va montrer qu’un tel modèle est restrictif ; il ne permet pas de calculer toutes les fonctions
+totales calculables.
 
 \begin{myexem}
 Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
