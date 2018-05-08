@@ -74,8 +74,8 @@ Soient $A$, $B$ des ensembles.
 Soient $A$, $B$ des ensembles.
 \begin{itemize}
   	\item Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in
-	A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$
-	\item Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$
+	A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$.
+	\item Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$.
 	\item S'il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
 		$f(a) = \perp$.  Le symbole $\perp$ est appelé \emph{bottom}.
 \end{itemize}
@@ -114,9 +114,9 @@ On peut définir la table de plusieurs façons :
 	\item Écrire toutes les paires de la relation.
 \end{itemize}
 Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
-pour pouvoir la définir sans ambigüité ni contradiction. 
+pour pouvoir la définir sans ambiguïté ni contradiction. 
 
-Ex : $f(x) = \begin{array}{ll} 1 & \text{s'il y a de la vie autre part que sur terre,} \\ 0 & \text{sinon.}\end{array}$(en supposant qu'il n'y ai pas d'ambigüité sur le terme ``vie'').\\
+Ex : $f(x) = \left\{\begin{array}{ll} 1 & \text{s'il y a de la vie autre part que sur terre,} \\ 0 & \text{sinon.}\end{array}\right.$\\(en supposant qu'il n'y ait pas d'ambiguïté sur le terme ``vie'').\\
 % paragraph d_finition_d_une_fonction (end)
 % subsection fonctions (end)
 % section ensembles_langages_relations_et_fonctions (end)
@@ -158,7 +158,7 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \end{myexem}
   
 \begin{myexem}
- L'ensemble des nombres pairs
+ L'ensemble des nombres pairs.
   \begin{proof}
   Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres paires et $\N$.
  
@@ -170,6 +170,7 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \end{myexem}
   
 \begin{myexem}
+\label{exem:paire_entiers}
   L'ensemble des paires d'entiers, des triplets, \ldots
     \begin{proof}
         Il existe une énumération, il existe une bijection comme celui-ci  
@@ -181,22 +182,22 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 			
 		\end{tabular}
 	
-	Pour énumérer les paires d'entiers, on énumère les paires de somme 0, les paires de sommes $1, \ldots$ \\
-	Si on construit un tableau à deux dimensions de toutes les paires, cette énumération revient à parcourir ce tableau en suivant les différentes diagonales montantes.  
+	Pour énumérer les paires d'entiers, on énumère les paires de somme 0, les paires de sommes $1, \ldots$ De même avec les triplets, quadruplets, \dots \\
+	Dans le cas des paires d'entiers, cela revient à construire un tableau à deux dimensions de toutes les paires, et à parcourir ce tableau en suivant les différentes diagonales montantes. 
     \end{proof}   
 \end{myexem}
   
 \begin{myexem}
  Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers. 
 	 \begin{proof} 
-	 	Comme tout rationnel peut s'écrire sous la forme d'un numérateur et d'un dénominateur, un rationnel est équivalent à une paire d'entier. On peut donc faire une démonstration équivalente à la paire d'entier pour prouver que les rationnels sont en bijection avec l'ensemble $\N$. 
+	 	 Comme tout rationnel peut s'écrire sous la forme d'un numérateur et d'un dénominateur, un rationnel est équivalent à une paire d'entier (cette équivalence est univoque en prenant un numérateur et un dénominateur premiers entre eux, un dénominateur toujours positif et la paire $(0,1)$ pour le nombre $0$). On peut donc faire une démonstration similaire à celle des paires d'entiers pour prouver que les rationnels sont en bijection avec l'ensemble $\N$ (quitte à ne pas prendre certaines paires qui ne correspondent pas à un rationnel). 
 	 \end{proof}
  \end{myexem}
   
 \begin{myexem}  
-  L'ensemble des sous-ensembles finis d'entiers
+  L'ensemble des sous-ensembles finis d'entiers.
   \begin{proof}
-  On peut également trouver une bijection entre $\N$ et l'ensemble des sous-ensembles finis d'entiers si l'on prend, par exemple, le sous ensemble de taille 2, qui est énumérable (voir démonstration de l'exemple 8). Le principe reste le même pour des sous-ensembles de taille 3, 4, 5, 6,\dots On peut alors créer un tableau reprenant tous les sous-ensemble finis possibles et dans lequel chaque ligne a un nombre infini de sous-ensemble d'entiers de taille $n$. Ces ensembles sont en bijection avec les naturels ($\N$).
+  Par l'exemple \ref{exem:paire_entiers}, les ensembles de sous-ensembles de taille 2, 3, 4, 5, \dots sont tous énumérables. On peut alors créer un tableau reprenant tous les sous-ensembles finis possibles et dans lequel la ligne $n$ comprend tous les sous-ensembles de taille $n$. Ces ensembles sont en bijection avec les naturels ($\N$).
   
     \begin{tabular}{ l c c  c  c c c  c }
  	 $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6  \\
@@ -209,10 +210,11 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
   \end{proof}
 \end{myexem}
 
-\begin{myexem}  
-  L'ensemble des chaînes finies de caractères sur un alphabet fini
+\begin{myexem}
+\label{exem:chaines_finies}
+  L'ensemble des chaînes finies de caractères sur un alphabet fini.
 \begin{proof}
- Variante de la démonstration précédente, la technique reste la même. Une chaîne de caractères (le nombre de textes possibles est fini) est énumérable.  
+ Variante de la démonstration précédente, la technique reste la même (l'alphabet admet $k$ éléments au lieu de $10$).
 \end{proof}
 \end{myexem}
 
@@ -224,7 +226,8 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \end{myexem}
  
  \begin{myexem}
-  L'ensemble des programmes Java
+ \label{exem:programme_java}
+  L'ensemble des programmes Java.
   \begin{proof}
    Un programme Java est une séquence finie d'un alphabet fini (ASCII étendu). Donc potentiellement autant qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre programmes et $\N$. 
   \end{proof}
@@ -247,16 +250,16 @@ Enlevons de cette liste les éléments qui ne sont pas dans $A$.  On obtient une
 \begin{myprop}
 	L'union et l'intersection de deux ensembles énumérables sont énumérables.
 	\begin{proof}
-		Soit $A$ et $B$ deux ensembles énumérables.  Leur intersection est énumérable car elle est un sous-ensemble de $A$.   Les éléments des ensembles $A$ et $B$ peuvent être listés
+		Soit $A$ et $B$ deux ensembles énumérables infinis (le cas fini étant trivial).  Leur intersection est énumérable car elle est un sous-ensemble de $A$, par la propriété précédente.   Les éléments des ensembles $A$ et $B$ peuvent être listés
 \[
-A = \{ a_0, a_1, \ldots , a_n, \ldots\}  
+A = \{ a_0, a_1, \ldots , a_n, \ldots\}  \quad
 B = \{ b_0, b_1, \ldots , b_n, \ldots\} 
 \]
 Les éléments de $A \cup B$ peuvent être également listés 
 \[
 a_0, b_0, a_1, b_1, \ldots, a_n, b_n, \ldots
 \]
-en y retirant ensuite les doublons.
+en y retirant ensuite les doublons. Donc $A \cup B$ est énumérable.
 	\end{proof}
 \end{myprop}
 
@@ -269,16 +272,16 @@ en y retirant ensuite les doublons.
 \end{myprop}
 
 \begin{myprop}
- Tout ensemble de chaînes finies de caractères est énumérable.
+ Tout ensemble de chaînes finies de caractères sur un alphabet fini est énumérable.
  \begin{proof}
-	A écrire
+C'est un sous-ensemble de l'ensemble de toutes les chaînes finies de caractères, qui est énumérable par l'exemple \ref{exem:chaines_finies}.
  \end{proof}
 \end{myprop}
 
 \begin{myprop}
  L'ensemble des programmes Java est énumérable.
  \begin{proof}
-  Un programme Java est une chaine finie de caractères.  Par la propriété précédente, l'ensemble des programme Java est  donc énumérable.
+  Voir exemple \ref{exem:programme_java}.
  \end{proof}
 \end{myprop}
 
@@ -286,7 +289,7 @@ en y retirant ensuite les doublons.
 \begin{myprop}
  Tout langage (avec un alphabet fini) est énumérable. 
  \begin{proof}
- Un langage est un ensemble de chaines finies de caractères limités.  Il est donc  énumérable.
+ Un langage est un ensemble de chaînes finies de caractères d'un alphabet fini.  Il est donc  énumérable.
  \end{proof}
 \end{myprop}
 
@@ -351,7 +354,7 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 		
 		On suppose $E$ énumérable. Donc il existe une énumération des éléments de $E$.  Soit 
 		$x_0, x_1,\dots,x_k,\dots$ cette énumération. On peut représenter un nombre $x_k$ comme étant une
-		suite de chiffres $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$.
+		suite de chiffres $x_{ki}$ : $x_k = 0.x_{k0}x_{k1}\dots x_{kk}\dots$\footnote{Certains nombres ont deux écritures décimales : par exemple, $0.999\ldots = 1.000\ldots$. Il suffit d'en choisir une des deux pour que l'écriture décimale d'un nombre soit définie de façon univoque.}
 		
 		\begin{enumerate}
 			\item On peut donc construire une table infinie : \\
@@ -372,9 +375,9 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 				\[ d=0.x_{00}x_{11}\dots x_{kk}\dots \]
 			\item Modification de cet élément $d$ pour obtenir
 				\[ d'=0.x_{00}'x_{11}'\dots x_{kk}'\dots \]
-				Où $x_{ii}'=5$ si $x_{ii}'\neq 5$ \\
-				$x_{ii}'=6$ si $x_{ii}'= 5$ \\
-				On a toujours que cet élément $d'$ est un réel compris entre 0 et 1
+				Où
+                $$x_{ii}'=5\text{ si }x_{ii}'\neq 5\quad\text{et}\quad x_{ii}'=6\text{ si }x_{ii}'= 5$$
+				On a toujours que cet élément $d'$ est un réel compris entre 0 et 1\footnote{De plus, puisqu'il ne contient que des $5$ et des $6$ il n'a qu'une écriture décimale, donc notre choix quant à l'écriture décimale n'a pas d'influence est il appartient forcément au tableau.}.
 			\item Le nombre $d'$ est dans l'énumération, car $E$ est
 				énumérable (par hypothèse). Il existe donc $x_p=d'$,
 				\[ x_p=0.x_{p0}x_{p1}\dots x_{pp}\dots \]
@@ -383,8 +386,7 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 				Il y a une contradiction car $x_{pp}' \neq
 			       	x_{pp}$ par la définition de $x_{pp}'$. Donc $d' \neq x_p$ ce qui implique que $d'$ n'est pas
 				dans l'énumération.
-			\item Conclusion : $E$ n'est pas énumérable
-		
+			\item Conclusion : $E$ n'est pas énumérable.		
 		\end{enumerate}
 	\end{proof}
 \end{mytheo}
@@ -407,7 +409,7 @@ Quelques ensembles non énumérables :
    Il est adéquat de visualiser un ensemble à l'aide d'un mot binaire
    où le bit $i$ vaut 1 si le $i^{\mathrm{ième}}$ élément est pris dans le sous-ensemble.
    Par exemple, le sous-ensemble $\{1,4\}$ de $\{1,3,4\}$ peut être représenté par $101$.
-   Seulement, comme il y a un nombre infini de nombre entiers, on a mot binaire infini.
+   Seulement, comme il y a un nombre infini de nombre naturels, on a mot binaire infini.
    Par exemple, les nombres pairs, c'est le mot $10101010101\ldots$:
    \begin{verbatim}
 		0123456789...
@@ -420,13 +422,12 @@ Quelques ensembles non énumérables :
 		0001001001... multiples de 3 non-nuls
     \end{verbatim}
    On voit maintenant la bijection entre les sous-ensembles de $\N$ et $[0,1]$.
-   En effet, on peut associer par exemple l'ensemble des nombres pairs au réel $0.101010101\ldots$.
-   Plus précisément on associe le sous-ensemble de $\N$ représenté par le mot $m$, le réel entre $0$ et $1$ dont l'écriture binaire est $0.m$.
+   En effet, chaque suite $m$ de $0$ et de $1$ peut être associée à l'écriture binaire $0.m$, qui correspond à un réel dans $[0,1]$\footnote{Comme dans la diagonalisation de Cantor, il faut aussi s'occuper des cas où un réel a plusieurs écritures binaires pour avoir une bijection parfaite. Ces détails techniques ne sont pas importants dans ce cours.}. Par exemple, on associe l'ensemble des nombres au réel $0.101010101\ldots = 2^{-1}+2^{-3}+2^{-5}+\ldots = 2/3$.
  \end{proof}
 \end{myexem}
 
 \begin{myexem}
- L'ensemble des chaînes infinies de caractère sur un alphabet fini
+ L'ensemble des chaînes infinies de caractère sur un alphabet fini.
  \begin{proof}
    On utilise le même raisonnement que pour les sous-ensembles de $\N$ sauf que pour un alphabet de $k$ symboles,
    on utilise la représentation en base $k$ des réels.
@@ -435,7 +436,7 @@ Quelques ensembles non énumérables :
 
 \begin{myexem}
   \label{exem:fNN}
- L'ensemble des fonctions de $\N$ dans $\N$ (Cas important)
+ L'ensemble des fonctions de $\N$ dans $\N$ (Cas important).
  \begin{proof}
    Si c'était énumérable, soit $f_0, f_1, f_2, \ldots$ leur dénombrement.
    On construit le tableau
@@ -462,8 +463,8 @@ les techniques suivantes pourront être utilisées
 
 % subsection cantor (end)
 
-\subsection{Au delà du non énumérable}
-\label{subsec:au_dela_du_non_enumerable}
+\subsection{Au delà de l'énumérable}
+\label{subsec:au_dela_de_l_enumerable}
 On a d'abord parlé d'ensembles finis, ensuite nous avons introduit le concept d'infini 
 énumérable qui est plus grand que tous les ensembles finis. Mais il existe plus grand 
 que l'infini énumérable.   L'ensemble des réels $\R$, l'ensemble des fonctions de $\N$ dans $\N$, ainsi que 
@@ -471,20 +472,22 @@ l'ensemble des sous-ensemble de $\N$ ($2^{\N}$) sont non énumérables et ont la
 
 Peut-on encore aller plus loin?  Oui,  il suffit de considérer  l'ensemble des fonctions de $\R$ dans $\R$, ainsi que 
 l'ensemble des sous-ensemble de $\R$ ($2^{\R}$).  Ces ensembles ne peuvent pas être mis en bijection avec $\R$.
-Encore plus loin ?  Oui, en prenant l'ensemble des sous-ensembles de l'ensemble défini juste avant.  On obtient alors $2^{2^{\R}}$.  Et ainsi de suite à l'infini \ldots
+Encore plus loin ?  Oui, en prenant l'ensemble des sous-ensembles de l'ensemble défini juste avant (on peut montrer que pour tout ensemble $E$, $|E|<|\mathcal{P}(E)|=2^{|E|}$) .  On obtient alors $2^{2^{\R}}$.  Et ainsi de suite\ldots
 
-On peut ainsi schématiser la taille des ensembles comme ceci:\footnote{Pour exprimer la taille d'un ensemble non-énumérable, il existe les \textbf{alephs}. Ce sont les cardinaux des ensembles infinis. On a donc la taille de $\N$ qui vaut $\aleph_0$ (dit aleph zéro), de $\R$ qui vaut $\aleph_1$, de $2^{\R}$ qui vaut $\aleph_2$, \dots }
-$$\Phi < \{1,2,3\} < \N < \R < 2^{\R} < 2^{2^{\R}} < 2^{2^{2^{\R}}} \dots$$
-
+On peut ainsi schématiser la taille des ensembles comme ceci:
+$$\emptyset < \{1,2,3\} < \N < 2^\N = \R < 2^{\R} < 2^{2^{\R}} < 2^{2^{2^{\R}}} \dots$$
 Est-ce qu'il existe encore plus grand? Oui, effectivement, l'union de tous ces ensembles 
-est plus grand que chacun de ces ensembles.
+est plus grand que chacun de ces ensembles\footnote{
+Pour aller plus loin : en théorie des ensembles ZFC, cette construction s'écrit avec la lettre $\beth$ (prononcé \textbf{beth}), tel que $\beth_0 = \N, \beth_1 = 2^\N = \R,\dots$. L'union de tous ces ensembles est plus grand que chacun d'eux, et se note $\beth_\N$. On peut continuer la construction à partir de là, et obtenir des ensembles encore plus grand. 
 
+Par ailleurs, l'ensemble de \emph{tous} les cardinaux est noté avec la lettre $\aleph$ (prononcé \textbf{aleph}), avec $\aleph_0 = \N$. On pourrait être tenté de prendre l'ensemble de tous les cardinaux pour avoir un ensemble encore plus grand. Mais ce ne serait plus un ensemble (c'est une classe dans la théorie des ensembles NBG) !
 
+Finalement, l'hypothèse du continu stipule que $\beth_1 = \aleph_1$, c'est-à-dire qu'il n'y a pas de cardinal entre $\N$ et $\R$. Ce n'est qu'en 1963 qu'on s'est rendu compte qu'elle était en fait indépendante de la théorie des ensembles ZFC : on peut supposer qu'elle soit vrai ou qu'elle soit fausse sans obtenir de contradiction.}.
+
+% subsection conclusion (end)
 \section{Conclusion}
 \label{sec:concept_conclusion}
 
-Les ensembles énumérables sont importants pour la suite du cours et aussi, car en
-informatique on ne considère que les ensembles énumérables.
-
-% subsection conclusion (end)
+Les ensembles énumérables sont importants pour la suite du cours. En
+informatique, on ne considère que les ensembles énumérables.
 % section concepts (end)
