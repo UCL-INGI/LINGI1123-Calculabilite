@@ -556,6 +556,47 @@ l'état devient stop, soit il n'y a plus d'instruction applicable.
  Le résultat est le contenu du ruban à l'état stop. Si la machine
 ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
 
+\begin{myexem}
+Étant donné qu'une machine de Turing peut calculer une fonction, il existe un nombre important de machine de Turing. Celles-ci peuvent avoir des fonctions allant du 'très simple' au 'très complexe'. Par exemple une machine de Turing peut déterminer si un nombre est pair ou impair (en regardant si le dernier bit est égal à zéro ou à un), vérifier si le nombre est un multiple de 42, multiplier un chiffre par deux (il suffit de positionner la tête de lecture à droite et d'ajouter un zéro) ou encore calculer la fonction \textit{f(x) = x + 1}. Et c'est cette dernière fonction qui va vous être exposée.\\
+Pour ce faire, il faudra faire deux actions : positionner la tête de lecture à droite et ensuite effectuer l'addition via le report des bits à 1.
+\vspace{4pt} \\
+Positionner la tête de lecture : \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ état & symbole & état & mouvement & symbole \\\hline
+ début & 0 & début & D & 0 \\ \hline
+ début & 1 & début & D & 1 \\ \hline
+ début & B & report & G & B \\ \hline
+\end{tabular}
+\vspace{4pt}
+\\
+Addition (via le report des bits à 1) : \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ état & symbole & état & mouvement & symbole \\\hline
+ report & 0 & stop & G & 1 \\ \hline
+ report & 1 & report & G & 0 \\ \hline
+ report & B & stop & G & 1 \\ \hline
+\end{tabular}
+\vspace{4pt}
+\\
+Exécution : \\
+\begin{tabular}{|c|r|c|l|}
+\hline
+ état & gauche & tête & droite \\\hline
+ début &  & 1 & 1011 \\ \hline
+ début & 1 & 1 & 011 \\ \hline
+ début & 11 & 0 & 11 \\ \hline
+ début & 110 & 1 & 1 \\ \hline
+ début & 1101 & 1 & \\ \hline
+ début & 11011 &  & \\ \hline
+ report & 1101 & 1 & \\ \hline
+ report & 110 & 1 & 0 \\ \hline
+ report & 11 & 0 & 00 \\ \hline
+ stop & 1 & 1 & 100 \\ \hline
+\end{tabular}
+
+\end{myexem}
 \begin{mydef}[T-calculable] Une fonction $f$ est T-calculable s’ il existe une machine
 de Turing qui,
 	recevant comme donnée n'importe quel nombre entier $x$ fourni tôt ou tard
@@ -964,4 +1005,3 @@ forme réduite.
 \end{myrem}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)
-
