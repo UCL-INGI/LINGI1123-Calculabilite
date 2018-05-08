@@ -878,13 +878,81 @@ Ce modèle ne permet d'utiliser que les fonctions de base et les fonctions
 obtenues suite à l'application de composition ou de récursion primitive.
 
 \begin{myprop}
-	Les fonctions primitives récursives ne sont pas un modèle de complet de
-	la calculabilité. En effet, il ne peut pas y avoir de récursion
-	infinie. Donc on ne peut calculer avec ce modèle que des fonctions
-	totales calculables. De plus, on sait par le théorème de Hoare-Allison que, comme ce
-	n'est pas un modèle complet, son interpréteur n'est pas calculable
-	dans le modèle.
+	Les fonctions primitives récursives sont calculables.
 \end{myprop}
+
+\begin{myprop}
+	Les fonctions primitives récursives sont des fonctions totales.
+\end{myprop}
+
+\begin{myprop}
+	Les fonctions primitives récursives sont équivalentes aux fonctions calculées par les programmes du langage BLOOP.
+\end{myprop}
+\paragraph{} Le langage est dépourvu de boucle.
+
+\begin{myprop}
+	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+\end{myprop}
+\paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction. Elle ne peut donc pas être exprimée.
+
+\begin{myprop}
+	L'interpréteur des fonctions primitives récursives n'est pas une fonction primitive récursive
+\end{myprop}
+\paragraph{} Selon le théorème de Hoare-Allison, que son interpréteur n'est pas calculable car ce n'est pas une fonction totale calculable.
+
+\begin{myprop}
+	Le modèle des fonctions primitives récursives n'est un modèle complet ded la calculabilité.
+\end{myprop}
+\paragraph{} Les fonctions primitives récursives ne sont pas un modèle de complet de
+	la calculabilité. En effet, il ne peut pas y avoir de récursion
+	infinie. On ne peut donc calculer avec ce modèle que des fonctions
+	totales calculables.
+
+\begin{myexem}\ \\
+	\textbf{Addition}
+	Addition entre deux paramètre, (m + 0) vaut m,
+	Si c’est (m + (n+1)) On utilise la récursivité, on compose avec le successeur. C’est le successeur de l’appel récursif.
+	La complexité est de n.
+	\begin{align}
+		add (m, 0) &= m \\
+		add (m, n+1) &= s (p^3 3(m, n, add (m, n)))
+	\end{align}
+	ou plus simplement
+	\begin{align}
+		add (m, 0) &= m \\
+		add (m, n+1) &= s (add (m, n))
+	\end{align}
+	\\
+	\textbf{Multiplication}
+	\begin{align}
+	(m*0) &= 0
+	(m * n+1)
+	\end{align}
+	On multiplie n par m et on rajoute n. La complexité sera ici (n*m), cela revient à faire des +1 tout le temps.
+	\begin{align}
+	mult (m, 0) &= m \\
+	mult (m, n+1) &= add (m, mult(m, n))
+	\end{align}
+	\\
+	\textbf{Soustraction} Revient à prendre un prédécesseur.
+	Complexité de n. 
+	\begin{align}
+	pred (0) &= 0 \\
+	pred (n+1) &= n \\
+	moins (m, 0) &= m \\
+	moins (m, n+1) &= pred (moins (m, n))
+	\end{align}
+	
+	\textbf{Comparaison} 0 pour 0 sinon 1 pour le positif.
+	m, n booléen signe de m - n
+	\begin{align}
+	signe (0) &= 0 \\
+	signe (n+1) &= 1 \\
+	pluspetit (m, n) &= signe(moins(m, n)) \\
+	egale (m, n) &= moins (1, add(signe (moins (m, n)), signe (moins (m, n))))
+	\end{align}
+\end{myexem}
+
 
 \begin{myexem}
 	La fonction d'Ackermann est une fonction calculable \textbf{non}
