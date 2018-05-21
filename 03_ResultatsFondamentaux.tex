@@ -2,10 +2,10 @@
 % ======================
 
 \chapter{Résultats fondamentaux}
-\label{sec:r_sultats_fondamentaux}
+\label{ch:r_sultats_fondamentaux}
 
 \section{Algorithmes et effectivité}
-\label{sub:algorithmes_et_effectivit_}
+\label{sec:algorithmes_et_effectivit_}
 Qu'est-ce qu'un algorithme?
 
 \begin{mydef}[Algorithme]
@@ -15,7 +15,7 @@ Qu'est-ce qu'un algorithme?
 \end{mydef}
 
 \begin{myrem}
-	Un algorithme n'est pas une fonction, mais un algorithme calcule une fonction.
+	Un algorithme n'est pas une fonction, mais un algorithme calcule une fonction ou une extension de fonction.
 	De plus dans le cours on se limite aux fonctions de $\N^n$ dans $\N$. Car on peut,
 	montrer que ça revient au même que de considérer de $\N^n$ dans $\N^n$ (
 	$\N^n$ est énumérable et donc au plus de même cardinal que $\N$). On va aussi
@@ -26,10 +26,10 @@ Qu'est-ce qu'un algorithme?
 % subsection algorithmes_et_effectivit_ (end)
 
 \section{Fonctions calculables, ensembles récursifs et récursivement énumérables}
-\label{sub:fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables}
+\label{sec:fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables}
 
 \subsection{Fonction calculable}
-\label{ssub:fonction_calculable}
+\label{sub:fonction_calculable}
 
 \begin{mydef}[Fonction calculable]
 	Une fonction $f$ est calculable s’il existe un algorithme qui, recevant comme donnée
@@ -53,7 +53,7 @@ S'il ne se termine pas c'est que $f(x)=\perp$.
 % subsubsection fonction_calculable (end)
 
 \subsection{Ensemble récursif et récursivement énumérable}
-\label{ssub:ensemble_r_cursif_et_r_cursivement_num_rable}
+\label{sub:ensemble_r_cursif_et_r_cursivement_num_rable}
 Soit $A\subseteq \N$
 
 \begin{mydef}[Ensemble récursif]
@@ -155,7 +155,7 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myprop}
-    Si $A$ est récursivement énumérable et co-récursivement énumérable ($\stcomp{A}$ recursivement énumérable)
+    Si $A$ est récursivement énumérable et co-récursivement énumérable ($\stcomp{A}$ récursivement énumérable)
     alors $A$ est récursif.
     \begin{proof}
       Il suffit de créer un programme $Q$ qui, pour décider récursivement si $x \in A$, appelle le programme qui décide $A$ et le programme qui décide $\stcomp{A}$ dans deux threads et renvoie 1 si $x \in A$ et 0 si $x in \stcomp{A}$. En effet, si $A$ et $\stcomp{A}$ sont récursivement énumérables, un des deux appels finira tôt ou tard par dire si x appartient à $A$ ou non.
@@ -217,12 +217,12 @@ Soit $A\subseteq \N$
 % subsection fonctions_calculables_ensembles_r_crusids_et_r_cursivement_num_rables (end)
 
 \section{Thèse de Church-Turing}
-\label{sub:th_se_de_church_turing}
-Grâce à la définition, on sait montrer qu'une fonction est calculable. Mais comment
+\label{sec:th_se_de_church_turing}
+Grâce à sa définition, on sait montrer qu'une fonction est calculable. Mais comment
 montrer qu'une fonction n'est pas calculable? Pour ça on a besoin d'une définition
 couvrant la totalité des fonctions calculables.
 
-Une autre question est : "Est-ce que prendre un modèle particulier est restrictif?"
+On peut également se demander si prendre un modèle particulier est restrictif? Un modèle peut être la logique mathématique (Gödel), ou la machine de Turing, ou les langages de programmation, etc.
 
 La thèse de Turing répond à ces questions.
 \begin{enumerate}
@@ -238,15 +238,15 @@ La thèse de Turing répond à ces questions.
 % subsection th_se_de_church_turing (end)
 
 \section{Programmes et fonctions}
-\label{sub:programmes_et_fonctions}
+\label{sec:programmes_et_fonctions}
 Dans le cours on utilise un langage de programmation, Java, comme modèle.
 
 \begin{mydef}[P]
-	Soit P l'ensemble des programmes Java qui reçoit un ou plusieurs entiers comme donnée(s) et qui imprime/retourne un résultat.
+	Soit P l'ensemble des programmes Java qui reçoivent un ou plusieurs entiers comme donnée(s) et qui impriment/retournent un résultat.
 \end{mydef}
 
 \begin{myprop}
-	P est un ensemble infini dénombrable, car c'est chaîne de caractère d'un alphabet fini. P est récursif, car il existe un programme, le compilateur, qui détermine si un programme est un programme Java ou non.
+	P est un ensemble infini dénombrable, car c'est chaîne de caractères d'un alphabet fini. P est récursif, car il existe un programme, le compilateur, qui détermine si une chaîne de caractères est un programme Java ou non.
 \end{myprop}
 
 \begin{mydef}[Énumération de P]
@@ -278,7 +278,7 @@ Dans le cours on utilise un langage de programmation, Java, comme modèle.
 % subsection programmes_et_fonctions (end)
 
 \section{Existence de fonctions non calculables}
-\label{sub:existence_de_fonction_non_calculables}
+\label{sec:existence_de_fonction_non_calculables}
 Il existe beaucoup de fonctions non calculables, car le nombre de fonctions de $\N$ dans $\N$ est non dénombrable (Exemple~\ref{exem:fNN}).
 Or le nombre de programmes Java est dénombrable.
 Donc il y a beaucoup de fonctions qui ne sont pas calculables.
@@ -290,10 +290,10 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 % subsection existence_de_fonction_non_calculables (end)
 
 \section{Problème de l'arrêt}
-\label{sub:probl_me_de_l_arr_t}
+\label{sec:probl_me_de_l_arr_t}
 
 \begin{mydef}[halt]
-	halt est la fonction : P x $\N$ $\rightarrow$ $\N$ telle que \\
+	halt est la fonction : $P \times \N$ $\rightarrow$ $\N$ telle que \\
 	\begin{tabular}{rl}
 	  halt(n, x) = 1 & si $P_n(x)$ se termine \\
 	  halt(n, x) = 0 & sinon \\
@@ -313,66 +313,67 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 
 \begin{mytheo}[halt]
 	halt n'est pas calculable
+	\begin{proof}
+	On suppose halt calculable.
+	\begin{enumerate}
+		\item On peut donc construire une table infinie définissant la fonction
+			halt : \\
+			\begin{tabular}{|c||c|c|c|c|c|c|}
+				\hline
+				& 0 & 1 & 2 & $\cdots$ & k & $\cdots$ \\
+				\hline
+				$p_0$ & $halt(0,0)$ & $halt(0,1)$ & $halt(0,2)$ & $\cdots$ & $halt(0,k)$ & $\cdots$ \\
+				$p_1$ & $halt(1,0)$ & $halt(1,1)$ & $halt(1,2)$ & $\cdots$ & $halt(1,k)$ & $\cdots$ \\
+				$p_2$ & $halt(2,0)$ & $halt(2,1)$ & $halt(2,2)$ & $\cdots$ & $halt(2,k)$ & $\cdots$ \\
+				\vdots & {\vdots} &{\vdots}& {\vdots} & $\ddots$ & {\vdots} &{\vdots}\\
+				$p_k$ & $halt(k,0)$ & $halt(k,1)$ & $halt(k,2)$ & $\cdots$ & $halt(k,k)$ & $\cdots$ \\
+				\vdots & {\vdots} &{\vdots}& {\vdots} & {\vdots} & {\vdots} &$\ddots$\\
+				\hline
+			\end{tabular}
+		\item Sélection de la diagonale
+			\[ diag :halt(0,0),halt(1,1),\cdots ,halt(k,k), \cdots \]
+			\[diag(n) = halt(n,n)\]
+		\item Modification de cet élément diag pour obtenir
+			$diag'(n) =$
+			\begin{tabular}{c}
+				1 si halt(n,n) = 0\\
+				$\perp$ si halt(n,n) = 1\\
+			\end{tabular}\\
+			$diag'$ est calculable, car halt est calculable (il y a moyen
+			d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
+		\item Contradiction :\\
+		       	Donc il existe un programme $P_d$ qui calcule
+			$diag'$:
+			$diag'(d) =$
+			\begin{tabular}{c}
+				1 si halt(d,d) = 0\\
+				$\perp$ si halt(d,d) = 1\\
+			\end{tabular}
+			Mais,
+			\begin{itemize}
+				\item Si $diag'(d)= 1$ $\\
+				\Rightarrow \  halt(d,d) = 0 \\
+				\Rightarrow \ P_d(d)$ ne se termine donc pas $ \\
+				\Rightarrow diag'(d)$ ne se termine pas $ \\
+				\Rightarrow diag'(d) = \perp$ or on a supposé que $diag'(d) = 1$ $ \\
+				\Rightarrow $
+				Contradiction.
+	
+				\item Si $diag'(d)= \perp$ $\\
+				\Rightarrow \  halt(d,d) = 1 \\
+				\Rightarrow \ P_d(d)$ se termine $ \\
+				\Rightarrow diag'(d)$ termine $ \\
+				\Rightarrow diag'(d) = 1$ or on a supposé que $diag'(d) = \perp$ $ \\
+				\Rightarrow $
+				Contradiction.
+			\end{itemize}
+		\item Conclusion : $diag'$ n'est pas calculable $ \Rightarrow $ $diag$
+		n'est pas calculable $ \Rightarrow $ halt n'est pas calculable.
+	
+	\end{enumerate}
+	\end{proof}
+
 \end{mytheo}
-
-\paragraph{Démonstration :}
-On suppose halt calculable.
-\begin{enumerate}
-	\item On peut donc construire une table infinie définissant la fonction
-		halt : \\
-		\begin{tabular}{|c||c|c|c|c|c|c|}
-			\hline
-			& 0 & 1 & 2 & ... & k & ... \\
-			\hline
-			$p_0$ & $halt(0,0)$ & $halt(0,1)$ & $halt(0,2)$ & ... & $halt(0,k)$ & ... \\
-			$p_1$ & $halt(1,0)$ & $halt(1,1)$ & $halt(1,2)$ & ... & $halt(1,k)$ & ... \\
-			$p_2$ & $halt(2,0)$ & $halt(2,1)$ & $halt(2,2)$ & ... & $halt(2,k)$ & ... \\
-			: & : &:& : & : & : &:\\
-			$p_k$ & $halt(k,0)$ & $halt(k,1)$ & $halt(k,2)$ & ... & $halt(k,k)$ & ... \\
-			: & : &:& : & : & : &:\\
-			\hline
-		\end{tabular}
-	\item Sélection de la diagonale
-		\[ diag :halt(0,0),halt(1,1),...,halt(k,k),... \]
-		\[diag(n) = halt(n,n)\]
-	\item Modification de cet élément diag pour obtenir
-		$diag'(n) =$
-		\begin{tabular}{c}
-			1 si halt(n,n) = 0\\
-			$\perp$ si halt(n,n) = 1\\
-		\end{tabular}\\
-		$diag'$ est calculable, car halt est calculable (il y a moyen
-		d'écrire un programme qui calcul $diag'$ en utilisant $diag$)
-	\item Contradiction :\\
-	       	Donc il existe un programme $P_d$ qui calcule
-		$diag'$:
-		$diag'(d) =$
-		\begin{tabular}{c}
-			1 si halt(d,d) = 0\\
-			$\perp$ si halt(d,d) = 1\\
-		\end{tabular}
-		Mais,
-		\begin{itemize}
-			\item Si $diag'(d)= 1$ $\\
-			\Rightarrow \  halt(d,d) = 0 \\
-			\Rightarrow \ P_d(d)$ ne se termine donc pas $ \\
-			\Rightarrow diag'(d)$ ne se termine pas $ \\
-			\Rightarrow diag'(d) = \perp$ or on a supposé que $diag'(d) = 1$ $ \\
-			\Rightarrow $
-			Contradiction.
-
-			\item Si $diag'(d)= \perp$ $\\
-			\Rightarrow \  halt(d,d) = 1 \\
-			\Rightarrow \ P_d(d)$ se termine $ \\
-			\Rightarrow diag'(d)$ termine $ \\
-			\Rightarrow diag'(d) = 1$ or on a supposé que $diag'(d) = \perp$ $ \\
-			\Rightarrow $
-			Contradiction.
-		\end{itemize}
-	\item Conclusion : $diag'$ n'est pas calculable $ \Rightarrow $ $diag$
-	n'est pas calculable $ \Rightarrow $ halt n'est pas calculable.
-
-\end{enumerate}
 
 \paragraph{Conclusion} Il n'existe pas d'algorithme qui détermine si n'importe quel programme $P_n$ se termine ou non. Mais dans certains formalismes qui ne sont pas des modèles complets la fonction halt de ce formalisme est calculable.
 Par exemple un langage qui ne permet de calculer
@@ -456,8 +457,12 @@ K.
 % subsection probl_me_de_l_arr_t (end)
 
 \section{Insuffisance des fonctions totales}
-\label{sub:insuffisance_des_fonctions_totales}
-Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction halt est triviallement calculable (fonction constante 1).  Etant donné que les problèmes pratiques que l'on doit résoudre sone des fonctions totales, on peut se demander.  Mais on va montrer qu'un tel modèle est restrictif; il ne permet pas de calculer toutes les fonctions totales calculables.
+\label{sec:insuffisance_des_fonctions_totales}
+Pour l'informaticien, un programme qui ne finit jamais est un vrai problème. Est-ce que le programme va se finir un jour ou est-ce qu'il bouclera à l'infini? Cette question peut trouver une réponse très rapidement pour des programmes triviaux mais dès que la complexité du programme augmente, il devient très difficile d'y répondre.
+
+Pourquoi ne créerions nous pas un langage qui ne peut en aucun cas boucler à l'infini? Après tout, personne n'a envie d'un programme qui ne s'arrête jamais. Dans ce cas, le modèle de calcul que nous aurons créé aura une fonction halt trivialement calculable (c'est le programme qui retourne 1). Et toutes les fonctions calculées seront des fonctions totales. Cette idée parait plutôt bonne de premier abord mais le bon côté d'un tel langage est accompagné d'un gros inconvénient comme nous allons le voir ci-dessous.
+
+%Dans un modèle de calcul (langage de programmation) dans lequel tous les programmes se terminent, la fonction halt est trivialement calculable (fonction constante 1). On se demande si on ne devrait pas créer un langage qui nous permettrait de rendre halt calculable. Etant donné que les problèmes pratiques que l'on doit résoudre sont des fonctions totales, on se demande s'il faut vraiment que le langage puisse boucler à l'infini pour résoudre les problèmes qu'on pourrait rencontrer. Mais on va montrer qu'un tel modèle est restrictif; il ne permet pas de calculer toutes les fonctions totales calculables.
 
 \begin{myexem}
 Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple BLOOP (défini plus loin) ou encore MiniJava, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
@@ -554,7 +559,7 @@ dans Q.
 % subsection insuffisance_des_fonctions_totales (end)
 
 \section{Extension de fonctions partielles}
-\label{sub:extension_de_fonctions_partielles}
+\label{sec:extension_de_fonctions_partielles}
 
 \begin{mytheo}
 	Il existe une fonction partielle calculable g telle qu'aucune fonction totale calculable n'est une extension de g.
@@ -577,7 +582,7 @@ dans Q.
 % subsection extension_de_fonctions_partielles (end)
 
 \section{Théorème de Rice}
-\label{sub:th_or_me_de_rice}
+\label{sec:th_or_me_de_rice}
 
 Soit A $\subseteq$ $\N$
 
@@ -683,10 +688,10 @@ $A_2=\{i|\phi_i = f\}$,... (il y a plein d'exemples dans le cours).
 % subsection th_or_me_de_rice (end)
 
 \section{Théorème de la paramétrisation}
-\label{sub:th_or_me_de_la_param_trisation}
+\label{sec:th_or_me_de_la_param_trisation}
 
 \subsection{Transformation de programmes}
-\label{ssub:transformation_de_programmes}
+\label{sub:transformation_de_programmes}
 \begin{mydef}[Transformateur de programme]
 	On peut voir une fonction f: $\N \rightarrow \N$ comme une fonction qui prend
 	le numéro d'un programme et qui retourne le numéro d'un autre programme f: $P
@@ -763,7 +768,7 @@ print(d);
 \end{myrem}
 
 \section{Théorème du point fixe}
-\label{sub:th_or_me_du_point_fixe}
+\label{sec:th_or_me_du_point_fixe}
 \begin{mytheo}[Point fixe]
 	\label{point-fixe}
     Soient $n \geq 0$ et $f$ : fonction totale
@@ -920,7 +925,7 @@ Ce qui conclut notre démonstration.
 \end{myrem}
 
 \section{Autres problèmes non calculables}
-\label{sub:autres_probl_mes_non_calculable}
+\label{sec:autres_probl_mes_non_calculable}
 
 \begin{mydef}[Problème de correspondance de Post] Soit deux listes U et V
 	de mots non vides sur un alphabet $\Sigma$ :
@@ -951,7 +956,7 @@ d'autres problèmes non calculables. Il y a d'autres exemples sur les grammaires
 % subsection autres_probl_mes_non_calculable (end)
 
 \section{Nombres calculables}
-\label{sub:nombres_calculables}
+\label{sec:nombres_calculables}
 
 \begin{mydef}[Nombre réel]
 	Un nombre réel est défini comme la limite d'une suite (convergente) de
