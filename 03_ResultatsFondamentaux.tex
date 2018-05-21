@@ -882,6 +882,7 @@ Ce qui conclut notre démonstration.
   À l'aide du point fixe, on peut démontrer plus simplement le théorème de Rice:
 
   Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors
+<<<<<<< HEAD
   il existe $i \in A$ et $j \in \bar{A}$ tel que $\varphi_i = \varphi_j$.
   \begin{itemize}
     \item soit $\exists k \in      A $ tel que $\varphi_m = \varphi_k$
@@ -891,6 +892,14 @@ Ce qui conclut notre démonstration.
     Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si 
     $\forall i \in A, \forall j \in \bar{A} : \varphi_i \neq \varphi_j$ (1) alors A est non récursif. \\
     En supposant A récursif, on arrive une contradiction.  En effet, 
+=======
+  il existe $i \in A$ et $j \in \bar{A}$ tel que $\phi_i = \phi_j$.
+ 
+  \begin{proof}
+    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si 
+    $\forall i \in A, \forall j \in \bar{A} : \phi_i \neq \phi_j$  (1) alors A est non récursif. \\
+    En supposant A récursif, on arrive à une contradiction.  En effet, 
+>>>>>>> upstream/master
     soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
     \[
       f(x) =
@@ -901,8 +910,13 @@ Ce qui conclut notre démonstration.
     \]
     Comme $A$ est récursif, la fonction $f$ est total calculable.
     Dès lors, par le théorème du point fixe, il existe $k$ tel que
+<<<<<<< HEAD
     \[ \varphi_{f(k)} = \varphi_k \]
     La valeur $kE$ est-elle dans $A$ ou dans $\bar{A}$ ?
+=======
+    \[ \phi_{f(k)} = \phi_k \]
+    La valeur $k$ est-elle dans $A$ ou dans $\bar{A}$ ?
+>>>>>>> upstream/master
     \begin{itemize}
       \item Si $k \in A$, alors $f(k)=m$.  On a donc $\varphi_m = \varphi_k$, ce qui est contradictoire avec (1) car 
        $m \in \bar{A}$.
@@ -916,8 +930,14 @@ Ce qui conclut notre démonstration.
 	On peut démontrer que $K$ n'est pas récursif.
 
     \begin{proof}
-	Posons 3 fonctions :
+	Soit $n$ un programme qui ne s'arrête jamais, et $m$ un programme qui calcule la fonction identité: 
+		\begin{itemize}
+		\item $\phi_n(x) = \bot \quad \forall \ x$
+		\item $\phi_m(x) = x \quad \forall  \ x$
+	\end{itemize}
+	Posons maintenant la  fonction suivante :
 	\begin{itemize}
+<<<<<<< HEAD
 		\item $\varphi_1(x) = \bot \quad \forall \ x$
 		\item $\varphi_0(x) = x \quad \forall  \ x$
 		%\item $f(x) = $
@@ -925,18 +945,29 @@ Ce qui conclut notre démonstration.
 		%		i si $x\in K$\\
 		%		j si $x\notin K$\\
 		%	\end{tabular}
+=======
+>>>>>>> upstream/master
 		\item $ f(x) = \left\{
 		\begin{array}{l l}
-			1 & \quad \text{si $x\in$ K}\\
-    		0 & \quad \text{si $x\notin$ K}
+			n & \quad \text{si $x\in$ K}\\
+    		m & \quad \text{si $x\notin$ K}
 		\end{array} \right.$
 	\end{itemize}
+<<<<<<< HEAD
     On remarque que par construction pour tout $k$, $\varphi_{f(k)} \neq \varphi_k$.
     \begin{itemize}
       \item Si $k \in K$, $\varphi_k(k) \neq \bot$, $f(k) = 1$ et
         $\varphi_{f(k)}(k) = \varphi_1(k) = \bot \neq \varphi_k(k)$ donc $\varphi_{f(k)} \neq \varphi_k$.
       \item Si $k \notin K$, $\varphi_k(k) = \bot$, $f(k) = 0$ et
         $\varphi_{f(k)}(k) = \varphi_0(k) \neq \bot = \varphi_k(k)$ donc $\varphi_{f(k)} \neq \varphi_k$.
+=======
+    On montre que par construction pour tout $k$, $\phi_{f(k)} \neq \phi_k$.
+    \begin{itemize}
+      \item Si $k \in K$, $\phi_k(k) \neq \bot$, $f(k) = n$ et
+        $\phi_{f(k)}(k) = \phi_n(k) = \bot \neq \phi_k(k)$ donc $\phi_{f(k)} \neq \phi_k$.
+      \item Si $k \notin K$, $\phi_k(k) = \bot$, $f(k) = m$ et
+        $\phi_{f(k)}(k) = \phi_m(k) \neq \bot = \phi_k(k)$ donc $\phi_{f(k)} \neq \phi_k$.
+>>>>>>> upstream/master
     \end{itemize}
     Si $K$ est récursif, alors $f$ est total calculable.
 	Par le théorème du point fixe, il existe $k$ tel que $\varphi_k = \varphi_{f(k)}$.
