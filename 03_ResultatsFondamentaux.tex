@@ -887,14 +887,11 @@ Ce qui conclut notre démonstration.
 
   Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors
   il existe $i \in A$ et $j \in \bar{A}$ tel que $\phi_i = \phi_j$.
-  \begin{itemize}
-    \item soit $\exists k \in      A $ tel que $\phi_m = \phi_k$
-    \item soit $\exists k \in \bar{A}$ tel que $\phi_n = \phi_k$.
-  \end{itemize}
+ 
   \begin{proof}
     Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si 
-    $\forall i \in A, \forall j \in \bar{A} : \phi_i \neq \phi_j$ (1) alors A est non récursif. \\
-    En supposant A récursif, on arrive une contradiction.  En effet, 
+    $\forall i \in A, \forall j \in \bar{A} : \phi_i \neq \phi_j$  (1) alors A est non récursif. \\
+    En supposant A récursif, on arrive à une contradiction.  En effet, 
     soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
     \[
       f(x) =
@@ -906,7 +903,7 @@ Ce qui conclut notre démonstration.
     Comme $A$ est récursif, la fonction $f$ est total calculable.
     Dès lors, par le théorème du point fixe, il existe $k$ tel que
     \[ \phi_{f(k)} = \phi_k \]
-    La valeur $kE$ est-elle dans $A$ ou dans $\bar{A}$ ?
+    La valeur $k$ est-elle dans $A$ ou dans $\bar{A}$ ?
     \begin{itemize}
       \item Si $k \in A$, alors $f(k)=m$.  On a donc $\phi_m = \phi_k$, ce qui est contradictoire avec (1) car 
        $m \in \bar{A}$.
@@ -920,27 +917,25 @@ Ce qui conclut notre démonstration.
 	On peut démontrer que $K$ n'est pas récursif.
 
     \begin{proof}
-	Posons 3 fonctions :
+	Soit $n$ un programme qui ne s'arrête jamais, et $m$ un programme qui calcule la fonction identité: 
+		\begin{itemize}
+		\item $\phi_n(x) = \bot \quad \forall \ x$
+		\item $\phi_m(x) = x \quad \forall  \ x$
+	\end{itemize}
+	Posons maintenant la  fonction suivante :
 	\begin{itemize}
-		\item $\phi_1(x) = \bot \quad \forall \ x$
-		\item $\phi_0(x) = x \quad \forall  \ x$
-		%\item $f(x) = $
-		%	\begin{tabular}{l}
-		%		i si $x\in K$\\
-		%		j si $x\notin K$\\
-		%	\end{tabular}
 		\item $ f(x) = \left\{
 		\begin{array}{l l}
-			1 & \quad \text{si $x\in$ K}\\
-    		0 & \quad \text{si $x\notin$ K}
+			n & \quad \text{si $x\in$ K}\\
+    		m & \quad \text{si $x\notin$ K}
 		\end{array} \right.$
 	\end{itemize}
-    On remarque que par construction pour tout $k$, $\phi_{f(k)} \neq \phi_k$.
+    On montre que par construction pour tout $k$, $\phi_{f(k)} \neq \phi_k$.
     \begin{itemize}
-      \item Si $k \in K$, $\phi_k(k) \neq \bot$, $f(k) = 1$ et
-        $\phi_{f(k)}(k) = \phi_1(k) = \bot \neq \phi_k(k)$ donc $\phi_{f(k)} \neq \phi_k$.
-      \item Si $k \notin K$, $\phi_k(k) = \bot$, $f(k) = 0$ et
-        $\phi_{f(k)}(k) = \phi_0(k) \neq \bot = \phi_k(k)$ donc $\phi_{f(k)} \neq \phi_k$.
+      \item Si $k \in K$, $\phi_k(k) \neq \bot$, $f(k) = n$ et
+        $\phi_{f(k)}(k) = \phi_n(k) = \bot \neq \phi_k(k)$ donc $\phi_{f(k)} \neq \phi_k$.
+      \item Si $k \notin K$, $\phi_k(k) = \bot$, $f(k) = m$ et
+        $\phi_{f(k)}(k) = \phi_m(k) \neq \bot = \phi_k(k)$ donc $\phi_{f(k)} \neq \phi_k$.
     \end{itemize}
     Si $K$ est récursif, alors $f$ est total calculable.
 	Par le théorème du point fixe, il existe $k$ tel que $\phi_k = \phi_{f(k)}$.
