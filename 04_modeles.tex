@@ -222,7 +222,7 @@ Un automate fini est composé de :
 	\end{description}
 \end{mydef}
 \paragraph{Exemple}
-Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inseré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
 \begin{figure}
 	\centering
@@ -255,13 +255,14 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\begin{tabular}{|l|l|l|}
 		\hline
 		& Pousser    & Jeton       \\ \hline
-		Verrouillé   & Verrouillé & Déverouillé \\ \hline
-		Déverrouillé & Verrouillé & Déverouillé \\ \hline
+		Verrouillé   & Verrouillé & Déverrouillé \\ \hline
+		Déverrouillé & Verrouillé & Déverrouillé \\ \hline
 	\end{tabular}
 	\caption{Fonction de transition du portillon}
 	\label{FTPortillon}
 \end{table}  
-Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière,avec un loup, une salade et une chèvre. Dans sa barque il ne peux prendre qu'un objet avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'à été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
+
+Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peux prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
 La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 \begin{figure}
 	\centering
@@ -960,7 +961,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 
 \begin{myexem}\ \\
 	\textbf{Addition}
-	Addition entre deux paramètre, (m + 0) vaut m,
+	Addition entre deux paramètre, (m + 0) vaut m,
 	Si c’est (m + (n+1)) On utilise la récursivité, on compose avec le successeur. C’est le successeur de l’appel récursif.
 	La complexité est de n.
 	\begin{align}
