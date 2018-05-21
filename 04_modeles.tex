@@ -224,10 +224,33 @@ Un automate fini est composé de :
 \paragraph{Exemple}
 Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inseré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{Images/640px-Automate_de_portillon.png}
 	\caption{Diagramme d'état du portillon {\footnotesize
+			Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47664521}}
+	\label{diagrammeetatbis}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
+		\node[draw,minimum height=2cm,circle] (B) at (4,0) {déverouillé};
+		\draw (0,-1.75) node {$\bullet$};
+		
+		\draw[->,>=stealth,thick] (0,-1.75) -- (0,-1);
+		
+		\draw[->,>=latex] (A) to[out=45,in=135] (B);
+		\draw[->,>=latex] (B) to[out=-135,in=-45] (A);
+		\draw[->,>=latex] (-0.7071,0.7071) arc(45:315:1);
+		\draw[->,>=latex] (4.73,-0.7071) arc(-135:135:1);
+		
+		\draw (-1.5,0.9) node[above] {pousser};
+		\draw (2,-1.25) node[below] {pousser};
+		\draw (2,1.25) node[above] {jeton};
+		\draw (5.5,-0.9) node[below] {jeton};
+	\end{tikzpicture}
+	\caption{Diagramme d'état du portillon \\{\footnotesize
 			Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47664521}}
 	\label{diagrammeetat}
 \end{figure}
