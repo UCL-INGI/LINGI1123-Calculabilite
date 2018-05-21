@@ -221,6 +221,39 @@ Un automate fini est composé de :
 		\item[( )] répétition
 	\end{description}
 \end{mydef}
+\paragraph{Exemple}
+Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inseré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{Images/640px-Automate_de_portillon.png}
+	\caption{Diagramme d'état du portillon {\footnotesize
+			Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47664521}}
+	\label{diagrammeetat}
+\end{figure}
+
+
+\begin{table}[]
+	\centering
+	
+	\begin{tabular}{|l|l|l|}
+		\hline
+		& Pousser    & Jeton       \\ \hline
+		Verrouillé   & Verrouillé & Déverouillé \\ \hline
+		Déverrouillé & Verrouillé & Déverouillé \\ \hline
+	\end{tabular}
+	\caption{Fonction de transition du portillon}
+	\label{FTPortillon}
+\end{table}  
+Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière,avec un loup, une salade et une chèvre. Dans sa barque il ne peux prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objects se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'object transporté avec lui lors de la traversée. Au début rien n'à été transporté, à la fin, les trois objects et le passeur se retrouvent sur l'autre rive.
+La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{Images/567px-ChevreLoupSalade.jpg}
+	\caption{Diagramme d'état du passeur {\footnotesize Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47815891}}
+	\label{Salade}
+\end{figure}
+
 % subsubsection mod_les_des_automates_finis (end)
 
 \subsection{Extension des automates finis}
@@ -231,7 +264,7 @@ possibles. On a donc plus une fonction de transition mais on a maintenant une
 relation de transition.
 
 \paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA
-s’il existe au moins une exécution ou l'état final est acceptant. Dans l'autre
+s'il existe au moins une exécution où l'état final est acceptant. Dans l'autre
 sens, un
 mot n'est pas accepté si aucune exécution ne se termine avec l'état final
 acceptant.
@@ -556,6 +589,47 @@ l'état devient stop, soit il n'y a plus d'instruction applicable.
  Le résultat est le contenu du ruban à l'état stop. Si la machine
 ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
 
+\begin{myexem}
+Étant donné qu'une machine de Turing peut calculer une fonction, il existe un nombre important de machine de Turing. Celles-ci peuvent avoir des fonctions allant du 'très simple' au 'très complexe'. Par exemple une machine de Turing peut déterminer si un nombre est pair ou impair (en regardant si le dernier bit est égal à zéro ou à un), vérifier si le nombre est un multiple de 42, multiplier un chiffre par deux (il suffit de positionner la tête de lecture à droite et d'ajouter un zéro) ou encore calculer la fonction \textit{f(x) = x + 1}. Et c'est cette dernière fonction qui va vous être exposée.\\
+Pour ce faire, il faudra faire deux actions : positionner la tête de lecture à droite et ensuite effectuer l'addition via le report des bits à 1.
+\vspace{4pt} \\
+Positionner la tête de lecture : \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ état & symbole & état & mouvement & symbole \\\hline
+ début & 0 & début & D & 0 \\ \hline
+ début & 1 & début & D & 1 \\ \hline
+ début & B & report & G & B \\ \hline
+\end{tabular}
+\vspace{4pt}
+\\
+Addition (via le report des bits à 1) : \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ état & symbole & état & mouvement & symbole \\\hline
+ report & 0 & stop & G & 1 \\ \hline
+ report & 1 & report & G & 0 \\ \hline
+ report & B & stop & G & 1 \\ \hline
+\end{tabular}
+\vspace{4pt}
+\\
+Exécution : \\
+\begin{tabular}{|c|r|c|l|}
+\hline
+ état & gauche & tête & droite \\\hline
+ début &  & 1 & 1011 \\ \hline
+ début & 1 & 1 & 011 \\ \hline
+ début & 11 & 0 & 11 \\ \hline
+ début & 110 & 1 & 1 \\ \hline
+ début & 1101 & 1 & \\ \hline
+ début & 11011 &  & \\ \hline
+ report & 1101 & 1 & \\ \hline
+ report & 110 & 1 & 0 \\ \hline
+ report & 11 & 0 & 00 \\ \hline
+ stop & 1 & 1 & 100 \\ \hline
+\end{tabular}
+
+\end{myexem}
 \begin{mydef}[T-calculable] Une fonction $f$ est T-calculable s’ il existe une machine
 de Turing qui,
 	recevant comme donnée n'importe quel nombre entier $x$ fourni tôt ou tard
@@ -837,13 +911,81 @@ Ce modèle ne permet d'utiliser que les fonctions de base et les fonctions
 obtenues suite à l'application de composition ou de récursion primitive.
 
 \begin{myprop}
-	Les fonctions primitives récursives ne sont pas un modèle de complet de
-	la calculabilité. En effet, il ne peut pas y avoir de récursion
-	infinie. Donc on ne peut calculer avec ce modèle que des fonctions
-	totales calculables. De plus, on sait par le théorème de Hoare-Allison que, comme ce
-	n'est pas un modèle complet, son interpréteur n'est pas calculable
-	dans le modèle.
+	Les fonctions primitives récursives sont calculables.
 \end{myprop}
+
+\begin{myprop}
+	Les fonctions primitives récursives sont des fonctions totales.
+\end{myprop}
+
+\begin{myprop}
+	Les fonctions primitives récursives sont équivalentes aux fonctions calculées par les programmes du langage BLOOP.
+\end{myprop}
+\paragraph{} Le langage est dépourvu de boucle.
+
+\begin{myprop}
+	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+\end{myprop}
+\paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction. Elle ne peut donc pas être exprimée.
+
+\begin{myprop}
+	L'interpréteur des fonctions primitives récursives n'est pas une fonction primitive récursive
+\end{myprop}
+\paragraph{} Selon le théorème de Hoare-Allison, que son interpréteur n'est pas calculable car ce n'est pas une fonction totale calculable.
+
+\begin{myprop}
+	Le modèle des fonctions primitives récursives n'est un modèle complet ded la calculabilité.
+\end{myprop}
+\paragraph{} Les fonctions primitives récursives ne sont pas un modèle de complet de
+	la calculabilité. En effet, il ne peut pas y avoir de récursion
+	infinie. On ne peut donc calculer avec ce modèle que des fonctions
+	totales calculables.
+
+\begin{myexem}\ \\
+	\textbf{Addition}
+	Addition entre deux paramètre, (m + 0) vaut m,
+	Si c’est (m + (n+1)) On utilise la récursivité, on compose avec le successeur. C’est le successeur de l’appel récursif.
+	La complexité est de n.
+	\begin{align}
+		add (m, 0) &= m \\
+		add (m, n+1) &= s (p^3 3(m, n, add (m, n)))
+	\end{align}
+	ou plus simplement
+	\begin{align}
+		add (m, 0) &= m \\
+		add (m, n+1) &= s (add (m, n))
+	\end{align}
+	\\
+	\textbf{Multiplication}
+	\begin{align}
+	(m*0) &= 0
+	(m * n+1)
+	\end{align}
+	On multiplie n par m et on rajoute n. La complexité sera ici (n*m), cela revient à faire des +1 tout le temps.
+	\begin{align}
+	mult (m, 0) &= m \\
+	mult (m, n+1) &= add (m, mult(m, n))
+	\end{align}
+	\\
+	\textbf{Soustraction} Revient à prendre un prédécesseur.
+	Complexité de n. 
+	\begin{align}
+	pred (0) &= 0 \\
+	pred (n+1) &= n \\
+	moins (m, 0) &= m \\
+	moins (m, n+1) &= pred (moins (m, n))
+	\end{align}
+	
+	\textbf{Comparaison} 0 pour 0 sinon 1 pour le positif.
+	m, n booléen signe de m - n
+	\begin{align}
+	signe (0) &= 0 \\
+	signe (n+1) &= 1 \\
+	pluspetit (m, n) &= signe(moins(m, n)) \\
+	egale (m, n) &= moins (1, add(signe (moins (m, n)), signe (moins (m, n))))
+	\end{align}
+\end{myexem}
+
 
 \begin{myexem}
 	La fonction d'Ackermann est une fonction calculable \textbf{non}
@@ -853,7 +995,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 		ack(n+1,0) &= ack(n+1)\\
 		ack(n+1,m+1) &= ack(n, ack(n+1,m))
 	\end{align}
-	Cette fonction à une croissance plus rapide que n'importe quelle fonction
+	Cette fonction a une croissance plus rapide que n'importe quelle fonction
 	primitive récursive.
 \end{myexem}
 
@@ -943,7 +1085,7 @@ forme réduite.
 
 \begin{myprop}
 	Une expression lambda est non définie si, peu importe le choix de
-	réduction, on n’arrive pas à une forme réduite.
+	réduction, on n'arrive pas à une forme réduite.
 \end{myprop}
 
 \begin{mytheo}[Church-Rosser] Si 2 séquences de réductions d'une expression
@@ -964,4 +1106,3 @@ forme réduite.
 \end{myrem}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)
-

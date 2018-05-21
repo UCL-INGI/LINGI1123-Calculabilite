@@ -21,6 +21,7 @@ version={4.0},
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 \RequirePackage{palatino}
+\RequirePackage{pifont}
 
 \RequirePackage[francais]{babel}    % Pour la langue française
 %\RequirePackage{iflang}
@@ -71,11 +72,13 @@ version={4.0},
 
 %Configuration de listings
 \lstset{
-	language=Java,
+	language=Oz,
 	numbers=left,
 	numberstyle=\tiny\color{gray},
 	basicstyle=\rm\small\ttfamily,
-	keywordstyle=\bfseries\color{dkred},
+	morekeywords=[2]{while,do},
+	keywordstyle={\bfseries\color{dkred}},
+	keywordstyle=[2]{\bfseries\color{mymauve}},
 	frame=single,
 	commentstyle=\color{gray}=small,
 	stringstyle=\color{dkred},
