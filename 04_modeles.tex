@@ -226,8 +226,24 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{Images/640px-Automate_de_portillon.png}
-	\caption{Diagramme d'état du portillon {\footnotesize
+	\begin{tikzpicture}
+		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
+		\node[draw,minimum height=2cm,circle] (B) at (4,0) {déverouillé};
+		\draw (0,-1.75) node {$\bullet$};
+		
+		\draw[->,>=stealth,thick] (0,-1.75) -- (0,-1);
+		
+		\draw[->,>=latex] (A) to[out=45,in=135] (B);
+		\draw[->,>=latex] (B) to[out=-135,in=-45] (A);
+		\draw[->,>=latex] (-0.7071,0.7071) arc(45:315:1);
+		\draw[->,>=latex] (4.73,-0.7071) arc(-135:135:1);
+		
+		\draw (-1.5,0.9) node[above] {pousser};
+		\draw (2,-1.25) node[below] {pousser};
+		\draw (2,1.25) node[above] {jeton};
+		\draw (5.5,-0.9) node[below] {jeton};
+	\end{tikzpicture}
+	\caption{Diagramme d'état du portillon \\{\footnotesize
 			Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47664521}}
 	\label{diagrammeetat}
 \end{figure}
@@ -245,12 +261,13 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\caption{Fonction de transition du portillon}
 	\label{FTPortillon}
 \end{table}  
+
 Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peux prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
 La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.4\textwidth]{Images/567px-ChevreLoupSalade.jpg}
-	\caption{Diagramme d'état du passeur {\footnotesize Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47815891}}
+	\caption{Diagramme d'état du passeur \\{\footnotesize Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47815891}}
 	\label{Salade}
 \end{figure}
 
@@ -729,7 +746,7 @@ implique que la taille de l'alphabet augmente ($\Sigma \times \Sigma \times ...$
 \paragraph{Influence :}
 \begin{itemize}
 	\item Même puissance
-	\item Même efficacité
+	\item Même efficacité : prendre un alphabet plus grand et une case est équivalent à un plus petit alphabet avec plusieurs cases.
 \end{itemize}
 
 \paragraph{Plusieurs rubans} Chaque ruban à sa propre tête.
@@ -828,12 +845,13 @@ interpréteur de machines de Turing
 	On définit un encodage de 0, 1 qui permet de représenter une MT
 \end{myrem}
 
-Une telle machine est possible à construire. Il y a plusieurs façons différentes de faire. Une façon de faire est d'utiliser 3 rubans:
+Une telle machine est possible à construire. Il y a plusieurs façons différentes de faire. Une façon intuitive de faire est d'utiliser 3 rubans:
 \begin{itemize}
 	\item codage de la MT à interpréter
 	\item donnée
 	\item résultat intermédiaire de l'interpréteur
 \end{itemize}
+Mais comme nous l'avons vu plus tôt, utiliser plusieurs rubans ou un seul ruban est identique au niveau de la puissance de calcul.
 % subsection machines_de_turing (end)
 
 \section{Fonctions récursives}
@@ -934,7 +952,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 \paragraph{} Selon le théorème de Hoare-Allison, que son interpréteur n'est pas calculable car ce n'est pas une fonction totale calculable.
 
 \begin{myprop}
-	Le modèle des fonctions primitives récursives n'est un modèle complet ded la calculabilité.
+	Le modèle des fonctions primitives récursives n'est un modèle complet de la calculabilité.
 \end{myprop}
 \paragraph{} Les fonctions primitives récursives ne sont pas un modèle de complet de
 	la calculabilité. En effet, il ne peut pas y avoir de récursion
@@ -948,7 +966,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	La complexité est de n.
 	\begin{align}
 		add (m, 0) &= m \\
-		add (m, n+1) &= s (p^3 3(m, n, add (m, n)))
+		add (m, n+1) &= s (p^3_3(m, n, add (m, n)))
 	\end{align}
 	ou plus simplement
 	\begin{align}
@@ -958,12 +976,12 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	\\
 	\textbf{Multiplication}
 	\begin{align}
-	(m*0) &= 0
-	(m * n+1)
+	(m\times 0) &= 0\\
+	(m \times (n+1)) &= m + (m\times n)
 	\end{align}
 	On multiplie n par m et on rajoute n. La complexité sera ici (n*m), cela revient à faire des +1 tout le temps.
 	\begin{align}
-	mult (m, 0) &= m \\
+	mult (m, 0) &= 0 \\
 	mult (m, n+1) &= add (m, mult(m, n))
 	\end{align}
 	\\
@@ -982,7 +1000,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	signe (0) &= 0 \\
 	signe (n+1) &= 1 \\
 	pluspetit (m, n) &= signe(moins(m, n)) \\
-	egale (m, n) &= moins (1, add(signe (moins (m, n)), signe (moins (m, n))))
+	egale (m, n) &= moins (1, add(signe (moins (m, n)), signe (moins (n, m))))
 	\end{align}
 \end{myexem}
 
@@ -992,7 +1010,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	primitive récursive :
 	\begin{align}
 		ack(0,m) &= m+1 \\
-		ack(n+1,0) &= ack(n+1)\\
+		ack(n+1,0) &= ack(n,1)\\
 		ack(n+1,m+1) &= ack(n, ack(n+1,m))
 	\end{align}
 	Cette fonction a une croissance plus rapide que n'importe quelle fonction
@@ -1023,11 +1041,19 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 
 \section{Lambda calcul}
 \label{sub:lambda_calcul}
-\begin{myrem}
+\begin{myrem}% pour le syllabus ?
 	C'est encore un modèle peu intuitif. Je pense que c'est important
 	de refaire l'exercice sur le vrai ou faux en lambda calcul ou encore la
 	représentation des entiers dans le cours. Mais c'est un modèle complet
 	et qui contient la base de la programmation fonctionnelle.
+\end{myrem}
+
+\begin{myrem}[Pourquoi le lambda calcul?]
+	Pour deux raisons:
+	\begin{enumerate}
+		\item parce que c'est le formalisme de calcul le plus abstrait,
+		\item parce que c'est utilisé dans les logiciels de preuves automatiques.
+	\end{enumerate}
 \end{myrem}
 
 \begin{mydef}[Symboles de base] Soit une variable : $a,b,c,...y,z,...$ ou un
@@ -1060,11 +1086,16 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 
 \paragraph{Objectif :} appliquer les fonctions (opérateur) à un opérande,
 jusqu'à ce qu'il n'y ait plus de fonction à appliquer. On obtient alors une
-forme réduite.
+forme réduite au renommage près.
 
 \begin{mydef}[Application de fonction] Si on a une expression lambda $(FA)$ où
 	$F$ est une fonction $\lambda xB$, on remplace toutes les occurrences liées
 	de $x$ dans $B$ par $A$.
+\end{mydef}
+
+\begin{mydef}[Au renommage près]
+	Cela veut dire que les deux expressions suivantes sont équivalentes:
+	$$\lambda a (a c) \equiv \lambda x (x y)$$
 \end{mydef}
 
 \begin{myrem}
@@ -1104,5 +1135,28 @@ forme réduite.
 	(semblable au passage par nom en programmation) et la plus imbriquée
 	(semblable au passage par valeur).
 \end{myrem}
+
+\begin{myexem}
+$$\begin{array}{ll}
+	1 &\lambda a \lambda b ( \textcolor{blue}{(\lambda f \: \textcolor{red}{\lambda c c} \: a)} \: (( \lambda f \lambda c (f c)\: a) b))\\
+	\rightarrow &\lambda a \lambda b ( \textcolor{red}{\lambda c c} (( \lambda f \lambda c (f c)\: a) b))\\
+	\hline
+	2 &\lambda a \lambda b ( \lambda c c (\textcolor{blue}{( \lambda f \textcolor{red}{\lambda c (f c)}\: a)} b))\\
+	\rightarrow &\lambda a \lambda b ( \lambda c c ( \textcolor{red}{\lambda c (a c)}\: b))\\
+	\hline
+	3 &\lambda a \lambda b ( \lambda c c \textcolor{blue}{( \lambda c \textcolor{red}{(a c)}\: b)})\\
+	\rightarrow &\lambda a \lambda b ( \lambda c c  \textcolor{red}{(a b)} )\\
+	\hline
+	4 &\lambda a \lambda b \textcolor{blue}{( \lambda c \textcolor{red}{c}  (a b) )}\\
+	\rightarrow &\lambda a \lambda b  \textcolor{red}{(a b)} \\
+
+\end{array}$$
+\begin{tabular}{lllllllll}
+	1 & Dans l'expression & $\lambda f \lambda c c \:a$,& on remplace toutes les occurrences de & $f$ & dans & $\lambda c c$ & par & $a$.\\
+	2 & Dans l'expression & $\lambda f \lambda c (f c)\: a$,& on remplace toutes les occurrences de & $f$ & dans & $\lambda c (f c)$ & par & $a$.\\
+	3 & Dans l'expression & $\lambda c\: (a c)\: b$,& on remplace toutes les occurrences de & $c$ & dans & $(a c)$ & par & $b$.\\
+	4 & Dans l'expression & $\lambda c \:c \:  (a b)$,& on remplace toutes les occurrences de & $c$ & dans & $c$ & par & $(a b)$.\\
+\end{tabular}
+\end{myexem}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)
