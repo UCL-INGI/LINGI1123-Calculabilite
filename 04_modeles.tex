@@ -99,7 +99,7 @@ BLOOP (Hoare-Allison)\\
 	la plus longue).
 \end{myrem}
 
-On va un introduire un nouveau langage ND-Pascal qui est le langage Java
+On va un introduire un nouveau langage ND-Java qui est le langage Java
 auquel on ajoute le non-déterminisme sous la forme d'une fonction
 prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre $0$ et $n$ et elle
 est non déterministe.
@@ -221,6 +221,56 @@ Un automate fini est composé de :
 		\item[( )] répétition
 	\end{description}
 \end{mydef}
+\paragraph{Exemple}
+Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
+		\node[draw,minimum height=2cm,circle] (B) at (4,0) {déverouillé};
+		\draw (0,-1.75) node {$\bullet$};
+		
+		\draw[->,>=stealth,thick] (0,-1.75) -- (0,-1);
+		
+		\draw[->,>=latex] (A) to[out=45,in=135] (B);
+		\draw[->,>=latex] (B) to[out=-135,in=-45] (A);
+		\draw[->,>=latex] (-0.7071,0.7071) arc(45:315:1);
+		\draw[->,>=latex] (4.73,-0.7071) arc(-135:135:1);
+		
+		\draw (-1.5,0.9) node[above] {pousser};
+		\draw (2,-1.25) node[below] {pousser};
+		\draw (2,1.25) node[above] {jeton};
+		\draw (5.5,-0.9) node[below] {jeton};
+	\end{tikzpicture}
+	\caption{Diagramme d'état du portillon \\{\footnotesize
+			Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47664521}}
+	\label{diagrammeetat}
+\end{figure}
+
+
+\begin{table}[]
+	\centering
+	
+	\begin{tabular}{|l|l|l|}
+		\hline
+		& Pousser    & Jeton       \\ \hline
+		Verrouillé   & Verrouillé & Déverrouillé \\ \hline
+		Déverrouillé & Verrouillé & Déverrouillé \\ \hline
+	\end{tabular}
+	\caption{Fonction de transition du portillon}
+	\label{FTPortillon}
+\end{table}  
+
+Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peux prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
+La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{Images/567px-ChevreLoupSalade.jpg}
+	\caption{Diagramme d'état du passeur \\{\footnotesize Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47815891}}
+	\label{Salade}
+\end{figure}
+
 % subsubsection mod_les_des_automates_finis (end)
 
 \subsection{Extension des automates finis}
@@ -231,7 +281,7 @@ possibles. On a donc plus une fonction de transition mais on a maintenant une
 relation de transition.
 
 \paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA
-s’il existe au moins une exécution ou l'état final est acceptant. Dans l'autre
+s'il existe au moins une exécution où l'état final est acceptant. Dans l'autre
 sens, un
 mot n'est pas accepté si aucune exécution ne se termine avec l'état final
 acceptant.
@@ -556,6 +606,47 @@ l'état devient stop, soit il n'y a plus d'instruction applicable.
  Le résultat est le contenu du ruban à l'état stop. Si la machine
 ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
 
+\begin{myexem}
+Étant donné qu'une machine de Turing peut calculer une fonction, il existe un nombre important de machine de Turing. Celles-ci peuvent avoir des fonctions allant du 'très simple' au 'très complexe'. Par exemple une machine de Turing peut déterminer si un nombre est pair ou impair (en regardant si le dernier bit est égal à zéro ou à un), vérifier si le nombre est un multiple de 42, multiplier un chiffre par deux (il suffit de positionner la tête de lecture à droite et d'ajouter un zéro) ou encore calculer la fonction \textit{f(x) = x + 1}. Et c'est cette dernière fonction qui va vous être exposée.\\
+Pour ce faire, il faudra faire deux actions : positionner la tête de lecture à droite et ensuite effectuer l'addition via le report des bits à 1.
+\vspace{4pt} \\
+Positionner la tête de lecture : \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ état & symbole & état & mouvement & symbole \\\hline
+ début & 0 & début & D & 0 \\ \hline
+ début & 1 & début & D & 1 \\ \hline
+ début & B & report & G & B \\ \hline
+\end{tabular}
+\vspace{4pt}
+\\
+Addition (via le report des bits à 1) : \\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ état & symbole & état & mouvement & symbole \\\hline
+ report & 0 & stop & G & 1 \\ \hline
+ report & 1 & report & G & 0 \\ \hline
+ report & B & stop & G & 1 \\ \hline
+\end{tabular}
+\vspace{4pt}
+\\
+Exécution : \\
+\begin{tabular}{|c|r|c|l|}
+\hline
+ état & gauche & tête & droite \\\hline
+ début &  & 1 & 1011 \\ \hline
+ début & 1 & 1 & 011 \\ \hline
+ début & 11 & 0 & 11 \\ \hline
+ début & 110 & 1 & 1 \\ \hline
+ début & 1101 & 1 & \\ \hline
+ début & 11011 &  & \\ \hline
+ report & 1101 & 1 & \\ \hline
+ report & 110 & 1 & 0 \\ \hline
+ report & 11 & 0 & 00 \\ \hline
+ stop & 1 & 1 & 100 \\ \hline
+\end{tabular}
+
+\end{myexem}
 \begin{mydef}[T-calculable] Une fonction $f$ est T-calculable s’ il existe une machine
 de Turing qui,
 	recevant comme donnée n'importe quel nombre entier $x$ fourni tôt ou tard
@@ -655,7 +746,7 @@ implique que la taille de l'alphabet augmente ($\Sigma \times \Sigma \times ...$
 \paragraph{Influence :}
 \begin{itemize}
 	\item Même puissance
-	\item Même efficacité
+	\item Même efficacité : prendre un alphabet plus grand et une case est équivalent à un plus petit alphabet avec plusieurs cases.
 \end{itemize}
 
 \paragraph{Plusieurs rubans} Chaque ruban à sa propre tête.
@@ -754,12 +845,13 @@ interpréteur de machines de Turing
 	On définit un encodage de 0, 1 qui permet de représenter une MT
 \end{myrem}
 
-Une telle machine est possible à construire. Il y a plusieurs façons différentes de faire. Une façon de faire est d'utiliser 3 rubans:
+Une telle machine est possible à construire. Il y a plusieurs façons différentes de faire. Une façon intuitive de faire est d'utiliser 3 rubans:
 \begin{itemize}
 	\item codage de la MT à interpréter
 	\item donnée
 	\item résultat intermédiaire de l'interpréteur
 \end{itemize}
+Mais comme nous l'avons vu plus tôt, utiliser plusieurs rubans ou un seul ruban est identique au niveau de la puissance de calcul.
 % subsection machines_de_turing (end)
 
 \section{Fonctions récursives}
@@ -837,23 +929,91 @@ Ce modèle ne permet d'utiliser que les fonctions de base et les fonctions
 obtenues suite à l'application de composition ou de récursion primitive.
 
 \begin{myprop}
-	Les fonctions primitives récursives ne sont pas un modèle de complet de
-	la calculabilité. En effet, il ne peut pas y avoir de récursion
-	infinie. Donc on ne peut calculer avec ce modèle que des fonctions
-	totales calculables. De plus, on sait par le théorème de Hoare-Allison que, comme ce
-	n'est pas un modèle complet, son interpréteur n'est pas calculable
-	dans le modèle.
+	Les fonctions primitives récursives sont calculables.
 \end{myprop}
+
+\begin{myprop}
+	Les fonctions primitives récursives sont des fonctions totales.
+\end{myprop}
+
+\begin{myprop}
+	Les fonctions primitives récursives sont équivalentes aux fonctions calculées par les programmes du langage BLOOP.
+\end{myprop}
+\paragraph{} Le langage est dépourvu de boucle.
+
+\begin{myprop}
+	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+\end{myprop}
+\paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction. Elle ne peut donc pas être exprimée.
+
+\begin{myprop}
+	L'interpréteur des fonctions primitives récursives n'est pas une fonction primitive récursive
+\end{myprop}
+\paragraph{} Selon le théorème de Hoare-Allison, que son interpréteur n'est pas calculable car ce n'est pas une fonction totale calculable.
+
+\begin{myprop}
+	Le modèle des fonctions primitives récursives n'est un modèle complet de la calculabilité.
+\end{myprop}
+\paragraph{} Les fonctions primitives récursives ne sont pas un modèle de complet de
+	la calculabilité. En effet, il ne peut pas y avoir de récursion
+	infinie. On ne peut donc calculer avec ce modèle que des fonctions
+	totales calculables.
+
+\begin{myexem}\ \\
+	\textbf{Addition}
+	Addition entre deux paramètre, (m + 0) vaut m,
+	Si c’est (m + (n+1)) On utilise la récursivité, on compose avec le successeur. C’est le successeur de l’appel récursif.
+	La complexité est de n.
+	\begin{align}
+		add (m, 0) &= m \\
+		add (m, n+1) &= s (p^3_3(m, n, add (m, n)))
+	\end{align}
+	ou plus simplement
+	\begin{align}
+		add (m, 0) &= m \\
+		add (m, n+1) &= s (add (m, n))
+	\end{align}
+	\\
+	\textbf{Multiplication}
+	\begin{align}
+	(m\times 0) &= 0\\
+	(m \times (n+1)) &= m + (m\times n)
+	\end{align}
+	On multiplie n par m et on rajoute n. La complexité sera ici (n*m), cela revient à faire des +1 tout le temps.
+	\begin{align}
+	mult (m, 0) &= 0 \\
+	mult (m, n+1) &= add (m, mult(m, n))
+	\end{align}
+	\\
+	\textbf{Soustraction} Revient à prendre un prédécesseur.
+	Complexité de n. 
+	\begin{align}
+	pred (0) &= 0 \\
+	pred (n+1) &= n \\
+	moins (m, 0) &= m \\
+	moins (m, n+1) &= pred (moins (m, n))
+	\end{align}
+	
+	\textbf{Comparaison} 0 pour 0 sinon 1 pour le positif.
+	m, n booléen signe de m - n
+	\begin{align}
+	signe (0) &= 0 \\
+	signe (n+1) &= 1 \\
+	pluspetit (m, n) &= signe(moins(m, n)) \\
+	egale (m, n) &= moins (1, add(signe (moins (m, n)), signe (moins (n, m))))
+	\end{align}
+\end{myexem}
+
 
 \begin{myexem}
 	La fonction d'Ackermann est une fonction calculable \textbf{non}
 	primitive récursive :
 	\begin{align}
 		ack(0,m) &= m+1 \\
-		ack(n+1,0) &= ack(n+1)\\
+		ack(n+1,0) &= ack(n,1)\\
 		ack(n+1,m+1) &= ack(n, ack(n+1,m))
 	\end{align}
-	Cette fonction à une croissance plus rapide que n'importe quelle fonction
+	Cette fonction a une croissance plus rapide que n'importe quelle fonction
 	primitive récursive.
 \end{myexem}
 
@@ -881,11 +1041,19 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 
 \section{Lambda calcul}
 \label{sub:lambda_calcul}
-\begin{myrem}
+\begin{myrem}% pour le syllabus ?
 	C'est encore un modèle peu intuitif. Je pense que c'est important
 	de refaire l'exercice sur le vrai ou faux en lambda calcul ou encore la
 	représentation des entiers dans le cours. Mais c'est un modèle complet
 	et qui contient la base de la programmation fonctionnelle.
+\end{myrem}
+
+\begin{myrem}[Pourquoi le lambda calcul?]
+	Pour deux raisons:
+	\begin{enumerate}
+		\item parce que c'est le formalisme de calcul le plus abstrait,
+		\item parce que c'est utilisé dans les logiciels de preuves automatiques.
+	\end{enumerate}
 \end{myrem}
 
 \begin{mydef}[Symboles de base] Soit une variable : $a,b,c,...y,z,...$ ou un
@@ -918,11 +1086,16 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 
 \paragraph{Objectif :} appliquer les fonctions (opérateur) à un opérande,
 jusqu'à ce qu'il n'y ait plus de fonction à appliquer. On obtient alors une
-forme réduite.
+forme réduite au renommage près.
 
 \begin{mydef}[Application de fonction] Si on a une expression lambda $(FA)$ où
 	$F$ est une fonction $\lambda xB$, on remplace toutes les occurrences liées
 	de $x$ dans $B$ par $A$.
+\end{mydef}
+
+\begin{mydef}[Au renommage près]
+	Cela veut dire que les deux expressions suivantes sont équivalentes:
+	$$\lambda a (a c) \equiv \lambda x (x y)$$
 \end{mydef}
 
 \begin{myrem}
@@ -943,7 +1116,7 @@ forme réduite.
 
 \begin{myprop}
 	Une expression lambda est non définie si, peu importe le choix de
-	réduction, on n’arrive pas à une forme réduite.
+	réduction, on n'arrive pas à une forme réduite.
 \end{myprop}
 
 \begin{mytheo}[Church-Rosser] Si 2 séquences de réductions d'une expression
@@ -962,6 +1135,28 @@ forme réduite.
 	(semblable au passage par nom en programmation) et la plus imbriquée
 	(semblable au passage par valeur).
 \end{myrem}
+
+\begin{myexem}
+$$\begin{array}{ll}
+	1 &\lambda a \lambda b ( \textcolor{blue}{(\lambda f \: \textcolor{red}{\lambda c c} \: a)} \: (( \lambda f \lambda c (f c)\: a) b))\\
+	\rightarrow &\lambda a \lambda b ( \textcolor{red}{\lambda c c} (( \lambda f \lambda c (f c)\: a) b))\\
+	\hline
+	2 &\lambda a \lambda b ( \lambda c c (\textcolor{blue}{( \lambda f \textcolor{red}{\lambda c (f c)}\: a)} b))\\
+	\rightarrow &\lambda a \lambda b ( \lambda c c ( \textcolor{red}{\lambda c (a c)}\: b))\\
+	\hline
+	3 &\lambda a \lambda b ( \lambda c c \textcolor{blue}{( \lambda c \textcolor{red}{(a c)}\: b)})\\
+	\rightarrow &\lambda a \lambda b ( \lambda c c  \textcolor{red}{(a b)} )\\
+	\hline
+	4 &\lambda a \lambda b \textcolor{blue}{( \lambda c \textcolor{red}{c}  (a b) )}\\
+	\rightarrow &\lambda a \lambda b  \textcolor{red}{(a b)} \\
+
+\end{array}$$
+\begin{tabular}{lllllllll}
+	1 & Dans l'expression & $\lambda f \lambda c c \:a$,& on remplace toutes les occurrences de & $f$ & dans & $\lambda c c$ & par & $a$.\\
+	2 & Dans l'expression & $\lambda f \lambda c (f c)\: a$,& on remplace toutes les occurrences de & $f$ & dans & $\lambda c (f c)$ & par & $a$.\\
+	3 & Dans l'expression & $\lambda c\: (a c)\: b$,& on remplace toutes les occurrences de & $c$ & dans & $(a c)$ & par & $b$.\\
+	4 & Dans l'expression & $\lambda c \:c \:  (a b)$,& on remplace toutes les occurrences de & $c$ & dans & $c$ & par & $(a b)$.\\
+\end{tabular}
+\end{myexem}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)
-
