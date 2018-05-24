@@ -112,7 +112,7 @@ On peut voir un programme ND de 2 manières différentes :
 \end{enumerate}
 On considère l'approche 2 en calculabilité.
 
-\begin{mydef}[ND-récursif]
+\begin{mydef}[ND-récursif] \label{def:ND-rec}
 	Un ensemble $A \subseteq \N$ est ND-récursif s’il existe un
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre
 	naturel $x$ \\
@@ -124,7 +124,7 @@ On considère l'approche 2 en calculabilité.
 	\end{tabular}
 \end{mydef}
 
-\begin{mydef}[ND-récursivement énumérable]
+\begin{mydef}[ND-récursivement énumérable] \label{def:ND-recenum}
 	Un ensemble $A \subseteq \N$ est ND-récursivement énumérable s’il existe un
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre
 	naturel $x$ \\
@@ -136,18 +136,110 @@ On considère l'approche 2 en calculabilité.
 	\end{tabular}
 \end{mydef}
 
-\begin{myprop}
+\begin{myprop} \label{prop:ND-eq}
 	On peut simuler les exécutions d'un ND-programme à l'aide d'un programme
-	déterministe. (BFS dans l'arbre d'exécution)
+	déterministe.
+	\begin{proof}
+		Soit un programme non-déterministe quelconque à N branches (N \textit{threads}).
+		Montrons qu'on peut construire un programme déterministe équivalent.
+		Il suffit de créer un programme qui exécute séquentiellement chacune des N branches de l'arbre.
+		Cependant les branches pouvant être infinies, il est nécessaire d'explorer chaque branche avec la même profondeur.
+		On dit qu'on explore l'arbre en largeur (\textit{Breadth First Search}). La complexité du programme ainsi construit devient alors exponentielle.
+	\end{proof}
 \end{myprop}
+\paragraph{Exemple} : \\
+	\begin{minipage}{0.35\textwidth}
+		\centering
+		\begin{tikzpicture}[every node/.style = {shape=circle, draw,
+		                     top color=white, bottom color=blue!20},
+												 level distance = 3em,
+												    level 1/.style = {sibling distance=12mm},
+												    level 2/.style = {sibling distance=12mm},
+												    level 3/.style = {sibling distance=0mm},
+												 ]
+			    \node {1}
+		    child { node {2}
+					child{node{4}
+						child{node{7}}
+						child[missing]{node{}}
+					}
+					child{node{5}
+						child{node{8}}
+						child[missing]{node{}}
+					}
+				}
+				child {node {3}
+					child[missing]{node{}}
+					child{node{6}
+						child[missing]{node{}}
+						child{node{9}}
+					}
+		 			};
+		\end{tikzpicture}
+		\captionof{figure}{ND-programme}
+	\end{minipage}
+\begin{minipage}{0.1\textwidth}	$\quad \Longrightarrow \quad $ \end{minipage}
+\begin{minipage}{0.55\textwidth}
+\begin{tikzpicture}[every node/.style = {shape=circle, draw,
+                     top color=white, bottom color=blue!20},
+										 level distance = 0em,
+									   sibling distance=18mm,
+										 ]
+	    \node {1}
+		child[missing]{node{}}
+		child { node {2}
+			child[missing]{node{}}
+			child { node {3}
+				child[missing]{node{}}
+				child { node {4}
+					child[missing]{node{}}
+					child { node {5}
+						child[missing]{node{}}
+						child { node {6}
+							child[missing]{node{}}
+							child { node {7}
+								child[missing]{node{}}
+								child { node {8}
+									child[missing]{node{}}
+									child { node {9}
+								}
+					}
+					}
+				}
+			 }
+			}
+			}
+ 			};
+\end{tikzpicture}
+\captionof{figure}{D-programme}
+\end{minipage}
 
 \begin{myprop}
 	Un ensemble est ND-récursif ssi il est récursif
+	\begin{proof}
+		Si un ensemble A quelconque est ND-récursif, alors il est récursif.
+		En effet, s'il est ND-récursif, il existe un ND-programme qui permet de décider l'ensemble A (voir définition \ref{def:ND-rec}).
+		Par la propriété \ref{prop:ND-eq}, on sait qu'il existe alors un programme déterministe équivalent qui décide A.À ce programme correspond un algorithme.
+		Selon la définition \ref{def:recursif}, l'ensemble A est récursif.
+
+		Inversement, si un ensemble A quelconque est récursif, alors il est ND-récursif. En effet, par définition, il existe un programme D qui décide A.
+		Ce programme peut être vu comme un programme ND avec seulement une branche. A est donc également ND-récursif.
+	\end{proof}
 \end{myprop}
 
 \begin{myprop}
-	Un ensemble est ND-récursivement énumérable ssi il est récursivement
-	énumérable
+	Un ensemble est ND-récursivement énumérable ssi il est récursivement énumérable
+	\begin{proof}
+		Si un ensemble A quelconque est ND-récursivement énumérable, alors il est récursivement
+		énumérable.
+		En effet, s'il est ND-récursivement
+		énumérable, il existe un ND-programme dont le comportement est décrit à la définition \ref{def:ND-recenum}.
+		Par la propriété \ref{prop:ND-eq}, on sait qu'il existe alors un programme déterministe qui se comporte de manière équivalente.À ce programme correspond un algorithme.
+		Selon la définition \ref{def:recursivement enum}, l'ensemble A est récursivement énumérable.
+
+		Inversement, si un ensemble A quelconque est récursivement énumérable, alors il est ND-récursivement énumérable. En effet, par définition, il existe un programme D se comporte comme décrit dans la définition \ref{def:recursivement enum}.
+		Ce programme peut être vu comme un programme ND avec seulement une branche. A est donc également ND-récursivement énumérable.
+	\end{proof}
 \end{myprop}
 
 \section{Automates finis FA}
@@ -230,14 +322,14 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
 		\node[draw,minimum height=2cm,circle] (B) at (4,0) {déverouillé};
 		\draw (0,-1.75) node {$\bullet$};
-		
+
 		\draw[->,>=stealth,thick] (0,-1.75) -- (0,-1);
-		
+
 		\draw[->,>=latex] (A) to[out=45,in=135] (B);
 		\draw[->,>=latex] (B) to[out=-135,in=-45] (A);
 		\draw[->,>=latex] (-0.7071,0.7071) arc(45:315:1);
 		\draw[->,>=latex] (4.73,-0.7071) arc(-135:135:1);
-		
+
 		\draw (-1.5,0.9) node[above] {pousser};
 		\draw (2,-1.25) node[below] {pousser};
 		\draw (2,1.25) node[above] {jeton};
@@ -251,7 +343,7 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 
 \begin{table}[]
 	\centering
-	
+
 	\begin{tabular}{|l|l|l|}
 		\hline
 		& Pousser    & Jeton       \\ \hline
@@ -260,7 +352,7 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\end{tabular}
 	\caption{Fonction de transition du portillon}
 	\label{FTPortillon}
-\end{table}  
+\end{table}
 
 Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peux prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
 La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
@@ -986,14 +1078,14 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	\end{align}
 	\\
 	\textbf{Soustraction} Revient à prendre un prédécesseur.
-	Complexité de n. 
+	Complexité de n.
 	\begin{align}
 	pred (0) &= 0 \\
 	pred (n+1) &= n \\
 	moins (m, 0) &= m \\
 	moins (m, n+1) &= pred (moins (m, n))
 	\end{align}
-	
+
 	\textbf{Comparaison} 0 pour 0 sinon 1 pour le positif.
 	m, n booléen signe de m - n
 	\begin{align}

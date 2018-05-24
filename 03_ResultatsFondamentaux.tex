@@ -56,7 +56,7 @@ S'il ne se termine pas c'est que $f(x)=\perp$.
 \label{sub:ensemble_r_cursif_et_r_cursivement_num_rable}
 Soit $A\subseteq \N$
 
-\begin{mydef}[Ensemble récursif]
+\begin{mydef}[Ensemble récursif] \label{def:recursif}
 	Un ensemble $A$ est récursif s'il existe un algorithme qui recevant un $x\in \N$,
 	fournit \textbf{tôt ou tard} comme résultat
 	\begin{tabular}{l}
@@ -66,7 +66,7 @@ Soit $A\subseteq \N$
 	. L'algorithme décide si $x$ est dans $A$ ou non.
 \end{mydef}
 
-\begin{mydef}[Ensemble récursivement énumérable]
+\begin{mydef}[Ensemble récursivement énumérable] \label{def:recursivement enum}
 	Un ensemble $A$ est récursivement énumérable ($\in RE$) s’il existe un algorithme qui recevant
 	un $x\in \N$,
     \begin{itemize}
@@ -359,7 +359,7 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 				\Rightarrow diag'(d) = \perp$ or on a supposé que $diag'(d) = 1$ $ \\
 				\Rightarrow $
 				Contradiction.
-	
+
 				\item Si $diag'(d)= \perp$ $\\
 				\Rightarrow \  halt(d,d) = 1 \\
 				\Rightarrow \ P_d(d)$ se termine $ \\
@@ -370,7 +370,7 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 			\end{itemize}
 		\item Conclusion : $diag'$ n'est pas calculable $ \Rightarrow $ $diag$
 		n'est pas calculable $ \Rightarrow $ halt n'est pas calculable.
-	
+
 	\end{enumerate}
 	\end{proof}
 
@@ -433,7 +433,7 @@ K.
   	  \draw[very thick,blue] \ellipse{1,-1}{1.5}{2.5};
   	  \draw (-1.5,0) node {$\bullet$};
   	  \draw (-1.5,0) node[above] {$halt$};
-  	  
+
   	  %Partie de droite
   	  \draw[red]  (7,5)  node[above] {Ensembles};
   	  \draw[very thick, red] \ellipse{7,0}{3}{5};
@@ -465,10 +465,10 @@ Pour l'informaticien, un programme qui ne finit jamais est un vrai problème. Es
 Pourquoi ne créerions nous pas un langage qui ne peut en aucun cas boucler à l'infini? Après tout, personne n'a envie d'un programme qui ne s'arrête jamais. Dans ce cas, le modèle de calcul que nous aurons créé aura une fonction halt trivialement calculable (c'est le programme qui retourne 1). Et toutes les fonctions calculées seront des fonctions totales. Cette idée parait plutôt bonne de premier abord mais le bon côté d'un tel langage est accompagné d'un gros inconvénient comme nous allons le voir ci-dessous, il ne permet pas de calculer toutes les fonctions totales calculables.
 
 \begin{myexem}
-Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle. 
+Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle.
 \end{myexem}
 
-Posons Q un langage (\textbf{non trivial}, langage ou les opérations de base tel que l'addition peuvent être effectuées) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour lequel il existe un interpréteur calculable, $interpret(n,x){} =\varphi'_n$, où 
+Posons Q un langage (\textbf{non trivial}, langage ou les opérations de base tel que l'addition peuvent être effectuées) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour lequel il existe un interpréteur calculable, $interpret(n,x){} =\varphi'_n$, où
 $\varphi'_n$ est la fonction calculée par le programme $Q_n$. En partant du fait que tous les programmes se terminent, l'interpréteur est donc une fonction totale puisqu'il donne toujours une réponse.
 
 \begin{mytheo}[Hoare-Allison]
@@ -500,13 +500,13 @@ On suppose \textit{interpret} calculable dans Q.
 		d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
 
 	\item Contradiction :\\
-	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.  
+	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.
 		Mais quelle est la valeur de $diag'(d)$ ?
 		Par définition de $diag'$, on a $diag'(d) = interpret(d,d)+1$. \\
 		Mais, comme $Q_d$ calcule $diag'$, par définition $diag'(d) = Q_d(d) = \varphi_d(d) = interpret(d,d)$.
 		En effet, calculer $\varphi_d(d)$ revient à interpréter le programme
 		d avec la donnée d. \\
-		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier. 
+		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier.
 	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
 	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
 dans Q.
@@ -590,8 +590,8 @@ Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus 
 \begin{mytheo}[Rice]
 	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$. \\
 	Alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$
-	
-	Si A est récursif et qu'il n'est ni nul, ni ne contient l'ensemble des programmes existant, alors il existe deux programmes dans A et $\stcomp{A}$ tel qu'ils calculent la même fonction. 
+
+	Si A est récursif et qu'il n'est ni nul, ni ne contient l'ensemble des programmes existant, alors il existe deux programmes dans A et $\stcomp{A}$ tel qu'ils calculent la même fonction.
 \end{mytheo}
 
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
@@ -619,15 +619,15 @@ Sous l'hypothèse que $A$ est récursif, on montrer que \textbf{HALT} est récur
 while true do;
 		\end{lstlisting}
 			$P_k$ ne s'arrête jamais, il vaut donc en permanence \textit{bottom} : $\forall x \ \varphi_k(x) = \perp$
-			
+
 	\item $\stcomp{A}\neq \emptyset$ car $A \neq \N$,
 	supposons $k\in \stcomp{A}$ (hypothèse sans importance, car montrer que
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
 	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif)
 	\item $A\neq \emptyset$ par hypothèse.  Prenons un élément quelconque $m$ de cet ensemble  ($m\in A$)
-	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i \neq \varphi_j$.  Donc 
+	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i \neq \varphi_j$.  Donc
 		$\varphi_m \neq \varphi_k$
-	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant. 
+	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant.
 		$P(z) \equiv $
 		\begin{lstlisting}
 P_n(x);
@@ -636,8 +636,8 @@ P_m(z);
 
 			Ce programme a un numéro $d$.  Quelle est la fonction $\varphi_d(z)$ calculée par $P(z)$ ? Il n'y a que deux possibilités.
 			\begin{itemize}
-				\item Si $P_n(x)$ ne se termine pas, alors le programme $P(z)$ ne se termine pour aucune valeur de $z$. On a donc $\varphi_d =\varphi_k$. 
-				\item Si $P_n(x)$ se termine, alors le programme $P(z)$ calcule la même fonction que $P_m(z)$. On a donc $\varphi_d =\varphi_m$. 
+				\item Si $P_n(x)$ ne se termine pas, alors le programme $P(z)$ ne se termine pour aucune valeur de $z$. On a donc $\varphi_d =\varphi_k$.
+				\item Si $P_n(x)$ se termine, alors le programme $P(z)$ calcule la même fonction que $P_m(z)$. On a donc $\varphi_d =\varphi_m$.
 			\end{itemize}
 
 Pour déterminer si $\varphi_d =\varphi_k$ ou  $\varphi_d =\varphi_m$, il suffit de tester si $d \in A$.   Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i \neq \varphi_j$.  Nous avons aussi $k\in \stcomp{A}$ et $m\in A$.
@@ -646,8 +646,8 @@ Pour déterminer si $\varphi_d =\varphi_k$ ou  $\varphi_d =\varphi_m$, il suffit
             \item Si $d \in \stcomp{A}$, alors  $\varphi_d \neq \varphi_m$, donc $\varphi_d =\varphi_k$.
 			\end{itemize}
 En résumé : si $d \in A$ alors l'exécution de $P_n(x)$ se termine, sinon l'exécution de $P_n(x)$ ne se termine pas.
-		
-		On peut alors écrire le programme suivant qui décide \textbf{HALT}. 
+
+		On peut alors écrire le programme suivant qui décide \textbf{HALT}.
 		 $halt(n,x) \equiv $
 		\begin{lstlisting}
 construire un programme P(z)= P_n(x); P_m(z)        ;
@@ -655,8 +655,8 @@ d <- numero de P(z);
 if d in A then print(1);
 else print(0);
 		\end{lstlisting}
-		
-		
+
+
 	\item Contradiction, car \textbf{HALT} n'est pas récursif.
 	\item Conclusion: $A$ n'est pas récursif.
 \end{enumerate}
@@ -685,7 +685,7 @@ else print(0);
 
 	\item Les propriétés intéressantes d'un programme concernant la
 		fonction qu'il calcule, non pas sa forme (syntaxe), sont non calculables.
-		
+
 	\item La plupart des problèmes intéressants au sujet des programmes sont non calculables
 \end{itemize}
 
@@ -840,7 +840,7 @@ Pour commencer la démonstration, on va sortir 3 ``lapins'' d'un chapeau (analog
 		\end{myrem}
 
 	\item[$2^{eme}$ lapin:] $h(u,v)=\varphi_{S(u)}(v)$\\
-	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable, 
+	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable,
 
 	\item[$3^{eme}$ lapin:] Soit $g(u)=f(S(u))$\\
 	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
@@ -872,7 +872,7 @@ Ce qui conclut notre démonstration.
           La seconde instruction se termine et on obtient $a = f(S(k'))$.
           Ensuite on exécute le programme $P_z(a,v) = P_a(v)$ qui fournit le résultat final. \\
           Exécuter le programme généré par $S(k')$ sur une donnée $v$ revient donc à exécuter le programme $f(S(k'))$ sur cette donnée $v$.
-          On a donc 
+          On a donc
           \[ \varphi_{S(k')} = \varphi_{f(S(k'))}. \]
           Le programme $S(k')$ est bien un point fixe de $f$.
 		\end{myrem}
@@ -884,9 +884,9 @@ Ce qui conclut notre démonstration.
   Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors
 
   il existe $i \in A$ et $j \in \bar{A}$ tel que $\varphi_i = \varphi_j$.
- 
+
   \begin{proof}
-    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si 
+    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si
     $\forall i \in A, \forall j \in \bar{A} : \varphi_i \neq \varphi_j$  (1) alors A est non récursif. \\
     En supposant A récursif, on arrive à une contradiction.  En effet,
     soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
@@ -902,9 +902,9 @@ Ce qui conclut notre démonstration.
     \[ \varphi_{f(k)} = \varphi_k \]
     La valeur $k$ est-elle dans $A$ ou dans $\bar{A}$ ?
     \begin{itemize}
-      \item Si $k \in A$, alors $f(k)=m$.  On a donc $\varphi_m = \varphi_k$, ce qui est contradictoire avec (1) car 
+      \item Si $k \in A$, alors $f(k)=m$.  On a donc $\varphi_m = \varphi_k$, ce qui est contradictoire avec (1) car
        $m \in \bar{A}$.
-      \item Si $k \in \bar{A}$, alors $f(k)=n$.  On a donc $\varphi_n = \varphi_k$, ce qui est contradictoire avec (1) car 
+      \item Si $k \in \bar{A}$, alors $f(k)=n$.  On a donc $\varphi_n = \varphi_k$, ce qui est contradictoire avec (1) car
         $n \in A$.
     \end{itemize}
   \end{proof}
@@ -914,7 +914,7 @@ Ce qui conclut notre démonstration.
 	On peut démontrer que $K$ n'est pas récursif.
 
     \begin{proof}
-	Soit $n$ un programme qui ne s'arrête jamais, et $m$ un programme qui calcule la fonction identité: 
+	Soit $n$ un programme qui ne s'arrête jamais, et $m$ un programme qui calcule la fonction identité:
 		\begin{itemize}
 		\item $\phi_n(x) = \bot \quad \forall \ x$
 		\item $\phi_m(x) = x \quad \forall  \ x$
@@ -942,7 +942,7 @@ Ce qui conclut notre démonstration.
 
     $K$ n'est donc pas récursif.
   \end{proof}
-  
+
 \end{myrem}
 
 \section{Autres problèmes non calculables}
@@ -1021,4 +1021,3 @@ de la fonction halt.
 
 % subsection conclusion (end)
 % section r_sultats_fondamentaux (end)
-
