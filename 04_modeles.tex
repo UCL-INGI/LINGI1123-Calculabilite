@@ -144,7 +144,7 @@ On considère l'approche 2 en calculabilité.
 		Montrons qu'on peut construire un programme déterministe équivalent.
 		Il suffit de créer un programme qui exécute séquentiellement chacune des N branches de l'arbre.
 		Cependant les branches pouvant être infinies, il est nécessaire d'explorer chaque branche avec la même profondeur.
-		On dit qu'on explore l'arbre en largeur (\textit{Breadth First Search}). La complexité du programme ainsi construit devient alors exponentielle.
+		On dit qu'on explore l'arbre en largeur (\textit{Breadth First Search}). La complexité temporelle du programme ainsi construit devient alors exponentielle.
 	\end{proof}
 \end{myprop}
 \paragraph{Exemple} : \\
@@ -219,8 +219,8 @@ On considère l'approche 2 en calculabilité.
 	\begin{proof}
 		Si un ensemble A quelconque est ND-récursif, alors il est récursif.
 		En effet, s'il est ND-récursif, il existe un ND-programme qui permet de décider l'ensemble A (voir définition \ref{def:ND-rec}).
-		Par la propriété \ref{prop:ND-eq}, on sait qu'il existe alors un programme déterministe équivalent qui décide A.À ce programme correspond un algorithme.
-		Selon la définition \ref{def:recursif}, l'ensemble A est récursif.
+		Par la propriété \ref{prop:ND-eq}, on sait qu'il existe alors un programme déterministe équivalent qui décide A. À ce programme correspond un algorithme.
+		Selon la définition \ref{def:recursif}, l'ensemble A est alors récursif.
 
 		Inversement, si un ensemble A quelconque est récursif, alors il est ND-récursif. En effet, par définition, il existe un programme D qui décide A.
 		Ce programme peut être vu comme un programme ND avec seulement une branche. A est donc également ND-récursif.
@@ -232,12 +232,11 @@ On considère l'approche 2 en calculabilité.
 	\begin{proof}
 		Si un ensemble A quelconque est ND-récursivement énumérable, alors il est récursivement
 		énumérable.
-		En effet, s'il est ND-récursivement
-		énumérable, il existe un ND-programme dont le comportement est décrit à la définition \ref{def:ND-recenum}.
-		Par la propriété \ref{prop:ND-eq}, on sait qu'il existe alors un programme déterministe qui se comporte de manière équivalente.À ce programme correspond un algorithme.
-		Selon la définition \ref{def:recursivement enum}, l'ensemble A est récursivement énumérable.
+		En effet, s'il est ND-récursivement énumérable, il existe un ND-programme dont le comportement est décrit à la définition \ref{def:ND-recenum}.
+		Par la propriété \ref{prop:ND-eq}, on sait qu'il existe alors un programme déterministe qui se comporte de manière équivalente. À ce programme correspond un algorithme.
+		Selon la définition \ref{def:recursivement enum}, l'ensemble A est alors récursivement énumérable.
 
-		Inversement, si un ensemble A quelconque est récursivement énumérable, alors il est ND-récursivement énumérable. En effet, par définition, il existe un programme D se comporte comme décrit dans la définition \ref{def:recursivement enum}.
+		Inversement, si un ensemble A quelconque est récursivement énumérable, alors il est ND-récursivement énumérable. En effet, par définition, il existe un programme D qui se comporte comme décrit dans la définition \ref{def:recursivement enum}.
 		Ce programme peut être vu comme un programme ND avec seulement une branche. A est donc également ND-récursivement énumérable.
 	\end{proof}
 \end{myprop}
