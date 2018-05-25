@@ -1,0 +1,65 @@
+\begin{minipage}{0.35\textwidth}
+  \centering
+  \begin{tikzpicture}[every node/.style = {shape=circle, draw,
+                       top color=white, bottom color=blue!20},
+                       level distance = 3em,
+                          level 1/.style = {sibling distance=12mm},
+                          level 2/.style = {sibling distance=12mm},
+                          level 3/.style = {sibling distance=0mm},
+                       ]
+        \node {1}
+      child { node {2}
+        child{node{4}
+          child{node{7}}
+          child[missing]{node{}}
+        }
+        child{node{5}
+          child{node{8}}
+          child[missing]{node{}}
+        }
+      }
+      child {node {3}
+        child[missing]{node{}}
+        child{node{6}
+          child[missing]{node{}}
+          child{node{9}}
+        }
+        };
+  \end{tikzpicture}
+  \captionof{figure}{ND-programme}
+\end{minipage}
+\begin{minipage}{0.1\textwidth}	$\quad \Longrightarrow \quad $ \end{minipage}
+\begin{minipage}{0.55\textwidth}
+\begin{tikzpicture}[every node/.style = {shape=circle, draw,
+                   top color=white, bottom color=blue!20},
+                   level distance = 0em,
+                   sibling distance=18mm,
+                   ]
+    \node {1}
+  child[missing]{node{}}
+  child { node {2}
+    child[missing]{node{}}
+    child { node {3}
+      child[missing]{node{}}
+      child { node {4}
+        child[missing]{node{}}
+        child { node {5}
+          child[missing]{node{}}
+          child { node {6}
+            child[missing]{node{}}
+            child { node {7}
+              child[missing]{node{}}
+              child { node {8}
+                child[missing]{node{}}
+                child { node {9}
+              }
+        }
+        }
+      }
+     }
+    }
+    }
+    };
+\end{tikzpicture}
+\captionof{figure}{D-programme}
+\end{minipage}
