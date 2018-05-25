@@ -75,13 +75,14 @@ langage BLOOP (bounded loop).
 BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
 
 \begin{myprop}
-	Tous les programmes BLOOP se terminent\\
-	$ \Leftrightarrow$ BLOOP ne calcule que des fonctions totales\\
-	$ \Leftrightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
-	$ \Leftrightarrow$ il existe un compilateur des programmes BLOOP (Java)\\
-	$ \Leftrightarrow$ l'interpreteur est une fonction totale non calculable en
+Tous les programmes BLOOP se terminent :\\
+	$ \Rightarrow$ BLOOP ne calcule que des fonctions totales\\
+    $ \Rightarrow$ L'interpréteur est une fonction totale non calculable en
 BLOOP (Hoare-Allison)\\
-	$ \Leftrightarrow$ BLOOP n'est pas un modèle complet de la calculabilité\\
+	$ \Rightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
+    $ \Rightarrow$ BLOOP n'est pas un modèle complet de la calculabilité\\
+    
+Cependant il existe un compilateur des programmes BLOOP (Java).\\
 \end{myprop}
 
 % subsection langages_de_programmation (end)
@@ -136,21 +137,26 @@ On considère l'approche 2 en calculabilité.
 	\end{tabular}
 \end{mydef}
 
-\begin{myprop}
+\begin{myrem}
 	On peut simuler les exécutions d'un ND-programme à l'aide d'un programme
-	déterministe. (BFS dans l'arbre d'exécution)
-\end{myprop}
+	déterministe : il suffit d'exécuter chacune des branches successivement (ou à l'aide d'une diagonale montante si certaines branches sont infinies). De même, un programme déterministe peut être vu comme un programme non-déterministe : c'est un long arbre avec une seule branche.
+    
+    Cependant le passage du ND au D a un fort coût de complexité : si un ND-programme a une complexité $O(f(n))$, son interpréteur déterministe aura une complexité $O(2^{f(n)})$ (c'est le nombre de nœuds, en supposant qu'en chaque nœud une branche se divise en deux. C'est encore pire si des branches se divisent en plus de deux branches).
+\end{myrem}
+
+Les propriétés suivantes découlent de la remarque précédente, puisque qu'on peut passer librement entre programme D et ND (la calculabilité ne s'occupe pas de la complexité !).
 
 \begin{myprop}
-	Un ensemble est ND-récursif ssi il est récursif
+\label{prop:simution_ND_programme}
+	Un ensemble est ND-récursif ssi il est récursif.
 \end{myprop}
 
 \begin{myprop}
 	Un ensemble est ND-récursivement énumérable ssi il est récursivement
-	énumérable
+	énumérable.
 \end{myprop}
 
-\section{Automates finis FA}
+\section{Automates finis (FA)}
 \label{sub:automates_finis}
 
 \paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
@@ -170,11 +176,6 @@ Un automate fini est composé de :
 	\item $\delta: S \times \Sigma \rightarrow S$ : fonction de transition
 \end{itemize}
 
-\begin{myrem}
-	On peut aussi représenter un automate fini à l'aide d'un diagramme
-	d'état.
-\end{myrem}
-
 \paragraph{Fonctionnement}
 \begin{itemize}
 	\item départ avec un état initial
@@ -190,6 +191,7 @@ Un automate fini est composé de :
 	Il n'y a donc pas de mémoire. De plus, un automate peut-être simulé
 	par un programme Java.
 \end{myrem}
+
 
 \begin{myprop}
 	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
@@ -212,19 +214,10 @@ Un automate fini est composé de :
 	régulière.
 \end{mydef}
 
-\begin{mydef}[Expression régulière]
-       	Dans le cours, la syntaxe d'une expression régulière est la suivante :
-	\begin{description}
-		\item[+] ou
-		\item[.] concaténation
-		\item[*] fermeture de Kleene\footnote{définit un groupe qui existe zéro, une ou plusieurs fois}
-		\item[( )] répétition
-	\end{description}
-\end{mydef}
 \paragraph{Exemple}
 Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
 		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
@@ -248,8 +241,7 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\label{diagrammeetat}
 \end{figure}
 
-
-\begin{table}[]
+\begin{table}[h]
 	\centering
 	
 	\begin{tabular}{|l|l|l|}
@@ -264,12 +256,50 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 
 Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peut prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
 La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.4\textwidth]{Images/ChevreLoupSalade.jpg}
 	\caption{Diagramme d'état du passeur \\{\footnotesize Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47815891}}
 	\label{Salade}
 \end{figure}
+
+\paragraph{Propriétés}
+\begin{myprop}
+	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
+		accepté par FA$\}$.
+\end{myprop}
+
+\begin{myprop}
+	Certains ensembles récursifs ne peuvent pas être reconnus par un
+	automate fini.
+    
+    \begin{proof}
+    Par exemple $L = \{ a^n b^n \mid n\geq 0\}$ : l'automate doit compter le nombre de $a$ pour vérifier qu'il y a autant de $b$. Mais il n'a pas de mémoire, donc pas de moyen de retenir le nombre $n$.
+    
+    Par contre, un automate fini pourrait reconnaître l'ensemble $L' = \{a^n b^m \mid n,m\geq 0\}$.
+    \end{proof}
+\end{myprop}
+
+\begin{myprop}
+	L'interpréteur des automates finis est calculable, mais ne peut pas être
+	représenté par un automate fini, car ce n'est pas un \textbf{modèle
+	complet} de la calculabilité (Hoare-Allison).
+\end{myprop}
+
+\begin{mydef}[Langage régulier] est un langage défini par une expression
+	régulière.
+\end{mydef}
+
+\begin{mydef}[Expression régulière]
+       	Dans le cours, la syntaxe d'une expression régulière est la suivante :
+	\begin{description}
+		\item[+] ou
+		\item[.] concaténation
+		\item[*] fermeture de Kleene\footnote{définit un groupe qui existe zéro, une ou plusieurs fois}
+		\item[( )] répétition
+	\end{description}
+\end{mydef}
+
 
 % subsubsection mod_les_des_automates_finis (end)
 
@@ -349,8 +379,18 @@ relation de transition.
 
 \begin{myprop}
 	Certains ensembles récursifs ne peuvent pas être reconnus par un automate
-	à pile. Ex: L = $\{a^n b^n a^n | n\geq 1\}$
+	à pile.
 \end{myprop}
+
+\begin{proof}
+Par exemple $\{a^n b^n a^n | n\geq 1\}$ : notre automate doit d'abord retenir le nombre $n$ dans la première série de $a$, puis vérifier qu'il y a bien $n$ occurrences de $b$ puis $n$ occurrences de $a$ dans la deuxième série. Le seul moyen de retenir $n$ est d'empiler un symbole dans la pile chaque fois qu'on lit un $a$, de sorte à avoir $n$ symboles empilés après la première série de $a$.
+
+Ensuite, on enlève un symbole chaque fois qu'on lit un $b$, sachant qu'on doit arriver au bout de la série de $b$ en même temps qu'on arrive au fond de la pile. Mais impossible alors de savoir combien d'occurrence de $a$ il faut compter dans la deuxième série de $a$, on ne connaît plus le nombre $n$ !
+\end{proof}
+
+\begin{myrem}
+Certains ensembles sont reconnues par un NDFA mais pas par un FA. Par exemple : $\{a^n b^n \mid n\geq 0\}$ (il peut être reconnu par un NDFA en suivant l'algorithme de la démonstration précédente).
+\end{myrem}
 
 \begin{myprop}
 	Les automates à pile sont plus puissants que les automates finis (ils
@@ -397,7 +437,63 @@ programmation, pour l'analyse du langage naturel...
 		\item $D \rightarrow 0 | 1 |2 | \epsilon $ ($\epsilon$ signifie rien)
 	\end{itemize}
 \end{myexem}
-TODO Exemple littéraux real en Java
+
+\begin{myexem}[Grammaire des réels dans Java]
+$\Sigma =\{0,1,2,3,4,5,6,7,8,9,.,E\}$ avec les règles de production suivantes :
+\begin{itemize}
+\item $S\ \rightarrow\ <Real>$
+\item $<Real>\ \rightarrow\ <Sig><Dig>.<Dig>$ 
+\item $<Real>\ \rightarrow\ <Sig><Dig>.<Dig>E<Exp>$
+\item $<Real>\ \rightarrow\ <Sig><Dig>E<Exp>$
+\item $<Sig>\ \rightarrow\ \epsilon\mid +\mid -$
+\item $<Dig>\ \rightarrow\ D$
+\item $<Dig>\ \rightarrow\ D<Dig>$
+\item $D\ \rightarrow\ 0\mid 1\mid 2\mid 3\mid 4\mid 5\mid 6\mid 7\mid 8\mid 9\mid$
+\item $<Exp>\ \rightarrow\ <Dig>$
+\end{itemize}
+Par exemple, le réel $+3.14$ est dérivé comme suit (leftmost derivation) :
+\begin{align*}
+S\ &\rightarrow\ <Real>\\
+&\rightarrow\ <Sig><Dig>.<Dig>\\
+&\rightarrow\ +<Dig>.<Dig>\\
+&\rightarrow\ +D.<Dig>\\
+&\rightarrow\ +3.<Dig>\\
+&\rightarrow\ +3.D<Dig>\\
+&\rightarrow\ +3.1<Dig>\\
+&\rightarrow\ +3.1D\\
+&\rightarrow\ +3.14
+\end{align*}
+Ce même exemple peut être représenté par un arbre syntaxique :
+\begin{center}
+\begin{tikzpicture}[level distance=1.2cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node {S}
+    child {node {Real}
+      child {node {Sig}
+      	child {node {+}}
+      }
+      child {node {Dig}
+      	child {node {D}
+          child {node {3}}
+        }
+      }
+      child {node {.}}
+      child {node {Dig}
+      	child {node {D}
+       	  child {node {1}}
+        }
+        child {node {Dig}
+          child {node {D}
+          	child {node {4}}
+          }
+        }
+      }
+    };
+\end{tikzpicture}
+\end{center}
+\end{myexem}
+
 
 \begin{mydef}[Dériver] Appliquer des règles de la grammaire pour vérifier
 	si une chaîne de symbole appartient au langage (on part d'une chaîne de symboles
@@ -469,11 +565,13 @@ grammaire.
 	\item A et B sont des symboles non terminaux.
 \end{itemize}
 
-\begin{myexem}
-	$S \rightarrow abS$ \\
-	$S \rightarrow \epsilon$ \\
-	Cette grammaire définit différents langages, par exemple $L1 =
-	\{(ab)^n \ | \ n \geq 0\}$. Ce langage peut-être aussi défini par une expression
+\begin{myexem} Règles de dérivation :
+\begin{itemize}
+\item $S \rightarrow abS$
+\item $S \rightarrow \epsilon$
+\end{itemize}
+Cette grammaire définit le langage $L1 =
+\{(ab)^n \ | \ n \geq 0\}$. Ce langage peut-être aussi défini par une expression
 	régulière : $L1 = (ab)^*$.
 \end{myexem}
 
@@ -494,11 +592,12 @@ variables pour définir la syntaxe d'un langage de programmation.
 	\item A est un symbole non terminal
 \end{itemize}
 
-\begin{myexem}
-	$S \rightarrow aSb$ \\
-	$S \rightarrow \epsilon$ \\
-	Un langage défini par cette grammaire est par exemple $L1 = \{a^nb^n|n
-		\geq 0\}$
+\begin{myexem} Règle de dérivation :
+\begin{itemize}
+\item $S \rightarrow aSb$
+\item $S \rightarrow \epsilon$
+\end{itemize}
+Le langage défini par cette grammaire est $L1 = \{a^nb^n|n\geq 0\}$.
 \end{myexem}
 
 \subsection{Grammaires sensibles au contexte}
@@ -515,15 +614,17 @@ variables pour définir la syntaxe d'un langage de programmation.
 		autant de symboles que $\alpha$.
 \end{itemize}
 
-\begin{myexem}
-	$S \rightarrow aSBA$ \\
-	$S \rightarrow abA$ \\
-	$AB \rightarrow BA$ \\
-	$bB \rightarrow bb$ \\
-	$bA \rightarrow ba$ \\
-	$aA \rightarrow aa$ \\
-	Un langage défini par cette grammaire est par exemple $L1 =
-	\{a^nb^na^n|n \geq 0\}$
+\begin{myexem} Règles de dérivation :
+\begin{itemize}
+\item $S \rightarrow aSBA$
+\item $S \rightarrow abA$
+\item $AB \rightarrow BA$
+\item $bB \rightarrow bb$
+\item $bA \rightarrow ba$
+\item $aA \rightarrow aa$
+\end{itemize}
+	Le langage défini par cette grammaire est $L1 =
+	\{a^nb^na^n|n \geq 0\}$.
 \end{myexem}
 
 \subsection{Grammaires sans restriction}
@@ -571,9 +672,9 @@ final. Il contient un programme (des instructions).
 	\begin{itemize}
 		\item $q$ : état courant
 		\item $c$ : symbole sous la tête de lecture
-		\item $new_c$ : symbole à écrire sous la tête de lecture
+        \item $new_q$ : le nouvel état
 		\item $Mouv$ : G ou D, mouvement que la tête de lecture doit faire
-		\item $new_q$ : le nouvel état
+        \item $new_c$ : symbole à écrire sous la tête de lecture
 	\end{itemize}
 \end{mydef}
 
@@ -703,9 +804,9 @@ encore de permettre plusieurs états $stop$.
 
 \paragraph{Influence :}
 \begin{itemize}
-	\item Même puissance
+	\item Même puissance (se déplacer de $n$ cases revient à se déplacer $n$ fois d'une case, on peut donc le programmer avec une MT classique).
 	\item Speedup linéaire (pour aller 20 cases à gauche on doit plus
-		exécuter 20 instructions se déplacer à gauche)
+		exécuter 20 instructions se déplacer à gauche).
 \end{itemize}
 
 \paragraph{Réduire les symboles} Par exemple, ne plus avoir que 0 et 1 comme
@@ -713,13 +814,11 @@ symboles dans $\Sigma$.
 
 \paragraph{Influence :}
 \begin{itemize}
-	\item Même puissance
-	\item Même efficacité, car même s’ il y a un facteur logarithmique, en
-		calculabilité on le néglige
+	\item Même puissance : chaque symbole dans $\Sigma$ peut être codé avec des $0$ et des $1$.
+	\item Même efficacité, car même s’ il y a un facteur logarithmique (s'il y a $n$ symboles dans la MT classique, le ruban devra être agrandi de $\log(n)$ pour cette MT modifiée), en calculabilité on le néglige.
 \end{itemize}
 
-\paragraph{Limiter le nombre d'états} Cela implique qu'il y a seulement un nombre fini
-de machines de Turing différentes.
+\paragraph{Limiter le nombre d'états} Cela implique qu'il y a seulement un nombre fini de machines de Turing différentes.
 
 \paragraph{Influence :}
 \begin{itemize}
@@ -728,11 +827,11 @@ de machines de Turing différentes.
 
 \paragraph{Autres rubans}
 
-Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche).
+Ruban unidirectionnel, c'est-à-dire limité d'un côté (à priori à gauche).
 
 \paragraph{Influence :}
 \begin{itemize}
-	\item Même puissance
+	\item Même puissance : on renumérote les cases (voir efficacité) et on ajoute un état de tel sorte que lorsque la tête revient au début, elle repart dans l'autre sens.
 	\item Slowdown linéaire : il faut faire plus de déplacement, en
 		effet, avant les cases étaient numérotés
 		$$-\infty,...,-2,-1,0,1,2,...,+\infty$$
@@ -740,12 +839,12 @@ Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche).
 	    $$0,-1,1,-2,2,...,-\infty,+\infty$$
 \end{itemize}
 
-\paragraph{Ruban multicases} La tête lis plusieurs cases en parallèle, ce qui
+\paragraph{Ruban multicases} La tête lit plusieurs cases en parallèle, ce qui
 implique que la taille de l'alphabet augmente ($\Sigma \times \Sigma \times ...$).
 
 \paragraph{Influence :}
 \begin{itemize}
-	\item Même puissance
+	\item Même puissance : même idée que précédemment. Si on a une MT à $n$ rubans on peut la transformer en une MT à 1 ruban où la $i$-ième suite de $n$ cases est associée à la case $i$ dans la MT modifiée. Les états sont construits de telle sorte que la tête lit d'abord les $n$ case de sorte à arriver à un état à la $n$-ième case où toutes les cases précédentes sont mémorisées. La MT peut alors suivre un état qui prend en compte les $n$ cases précédentes.
 	\item Même efficacité : prendre un alphabet plus grand et une case est équivalent à un plus petit alphabet avec plusieurs cases.
 \end{itemize}
 
@@ -761,7 +860,7 @@ $$ <s_1,...,s_n>, E \ \rightarrow \ E', <s_1',...,s_n'>, <d_1,...,d_n> $$
 % $$ \delta : S \times \Gamma^n \ \rightarrow \ S \times \Gamma^n \times \{G,D\}^n $$
 \paragraph{Influence :}
 \begin{itemize}
-	\item Même puissance
+	\item Même puissance : pareil qu'auparavant, sauf qu'il faut ajouter l'information de la position de chaque tête dans l'état. la tête ne doit plus lire une même suite de $n$ cases, mais aller chercher la case dans la bonne suite (exemple : si la tête 3 doit lire la case 5, la tête de la MT classique doit lire la 3e case de la 5e suite de $n$ cases).
 	\item Speedup quadratique
 \end{itemize}
 
@@ -942,7 +1041,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 \paragraph{} Le langage est dépourvu de boucle.
 
 \begin{myprop}
-	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+	Il existe des fonctions totales calculables qui ne sont pas primitives récursives :
 \end{myprop}
 \paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction. Elle ne peut donc pas être exprimée.
 
@@ -964,57 +1063,61 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	Addition entre deux paramètre, (m + 0) vaut m,
 	Si c’est (m + (n+1)) On utilise la récursivité, on compose avec le successeur. C’est le successeur de l’appel récursif.
 	La complexité est de n.
-	\begin{align}
+	\begin{align*}
 		add (m, 0) &= m \\
 		add (m, n+1) &= s (p^3_3(m, n, add (m, n)))
-	\end{align}
+	\end{align*}
 	ou plus simplement
-	\begin{align}
+	\begin{align*}
 		add (m, 0) &= m \\
 		add (m, n+1) &= s (add (m, n))
-	\end{align}
+	\end{align*}
 	\\
 	\textbf{Multiplication}
-	\begin{align}
+	\begin{align*}
 	(m\times 0) &= 0\\
 	(m \times (n+1)) &= m + (m\times n)
-	\end{align}
-	On multiplie n par m et on rajoute n. La complexité sera ici (n*m), cela revient à faire des +1 tout le temps.
-	\begin{align}
+	\end{align*}
+	On multiplie $n$ par $m$ et on rajoute $m$. La complexité sera ici $(n*m)$, cela revient à faire des $+1$ tout le temps.
+	\begin{align*}
 	mult (m, 0) &= 0 \\
 	mult (m, n+1) &= add (m, mult(m, n))
-	\end{align}
+	\end{align*}
 	\\
 	\textbf{Soustraction} Revient à prendre un prédécesseur.
 	Complexité de n. 
-	\begin{align}
+	\begin{align*}
 	pred (0) &= 0 \\
 	pred (n+1) &= n \\
 	moins (m, 0) &= m \\
 	moins (m, n+1) &= pred (moins (m, n))
-	\end{align}
+	\end{align*}
 	
 	\textbf{Comparaison} 0 pour 0 sinon 1 pour le positif.
 	m, n booléen signe de m - n
-	\begin{align}
+	\begin{align*}
 	signe (0) &= 0 \\
 	signe (n+1) &= 1 \\
 	pluspetit (m, n) &= signe(moins(m, n)) \\
 	egale (m, n) &= moins (1, add(signe (moins (m, n)), signe (moins (n, m))))
-	\end{align}
+	\end{align*}
 \end{myexem}
 
 
 \begin{myexem}
 	La fonction d'Ackermann est une fonction calculable \textbf{non}
 	primitive récursive :
-	\begin{align}
+	\begin{align*}
 		ack(0,m) &= m+1 \\
 		ack(n+1,0) &= ack(n,1)\\
 		ack(n+1,m+1) &= ack(n, ack(n+1,m))
-	\end{align}
+	\end{align*}
 	Cette fonction a une croissance plus rapide que n'importe quelle fonction
-	primitive récursive.
+	primitive récursive :
+    \begin{align*}
+    ack(1,m) = m+2,\qquad ack(2,m) = 2m+3,\qquad ack(3,m)=2^{m+3}-3\\
+	ack(4,1) \cong 64 000,\qquad ack(4,2) \cong 2^{19200},\qquad ack(4,3) \cong \dots
+    \end{align*}
 \end{myexem}
 
 
