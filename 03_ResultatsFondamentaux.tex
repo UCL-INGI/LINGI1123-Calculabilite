@@ -11,14 +11,13 @@ Qu'est-ce qu'un algorithme?
 \begin{mydef}[Algorithme]
 	C'est une procédure qui peut être appliquée à n'importe
 	quelle donnée et qui a pour effet de produire un résultat. C'est un ensemble fini
-	d'instructions qui peuvent être exécutées. Dans cette partie du cours, on ne prend pas la taille des données, des instructions ni de la mémoire disponible en compte, mais on les considère comme finies.
+	d'instructions qui peuvent être exécutées. Dans cette partie du cours, on ne prend pas  en compte la taille des données, des instructions ni de la mémoire disponible, mais on les considère comme finies.
 \end{mydef}
 
 \begin{myrem}
 	Un algorithme n'est pas une fonction, mais un algorithme calcule une fonction ou une extension de fonction.
-	De plus dans le cours on se limite aux fonctions de $\N^n$ dans $\N$. Car on peut,
-	montrer que ça revient au même que de considérer de $\N^n$ dans $\N^n$ (
-	$\N^n$ est énumérable et donc au plus de même cardinal que $\N$). On va aussi
+	De plus dans le cours on se limite aux fonctions de $\N^n$ dans $\N$. En effet cela revient au même de considérer les fonctions de $\N^n$ dans $\N^n$ (
+	$\N^n$ est énumérable, il existe donc une bijection avec $\N$). On va aussi
 	utiliser Java comme modèle étant donné que c'est plus facile et qu'on va montrer
 	que les modèles complets sont équivalents.
 \end{myrem}
@@ -95,7 +94,7 @@ Soit $A\subseteq \N$
 
 \begin{mydef}[Fonction caractéristique]
 	Fonction caractéristique de $A$:
-	$X_A \colon \N \to {0,1}$, \\
+	$X_A \colon \N \to \{0,1\}$, \\
 	tel que
     \[ X_A(x) =
       \begin{cases}
@@ -112,14 +111,16 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myprop}
-	$A$ est un ensemble récursivement énumérable ssi $A = \dom(f)$ et $f$ est une fonction (totale ou partielle) calculable. En effet, tout ensemble récursif est récursivement énumérable (Propriété 25 ci-dessous).
+	$A$ est un ensemble récursivement énumérable ssi $A = \dom(f)$ et $f$ est une fonction (totale ou partielle) calculable.
 
     \begin{proof}
-      Comme $f$ est calculable,
+      Supposons que $f$ est calculable avec $A=\dom(f)$. Alors
       il existe un programme $P_f$ qui calcule $f$.
-      On peut alors construire un programme $Q$ qui avec input $x$,
-      appelle $P_f$.
-      Si $P_f$ ne se termine pas($P_f(x) = \bot$) alors $Q$ non plus ($Q(x)= \bot$) mais si $P_f$ termine, alors $Q$ renvoie 1.
+      On peut construire un programme $Q$ qui avec input $x$
+      appelle $P_f(x)$, puis renvoie $1$.
+      Si $x\in A$, $P_f(x)$ se termine, $Q(x)$ renverra $1$. Sinon, $P_f(x)$ ne se terminera pas ($P_f(x) =\bot$), donc $Q_f(x)$ non plus. On en déduit que $A$ est récursivement énumérable.
+      
+      Réciproquement si $A$ est récursivement énumérable, il existe un programme $Q_A$ qui renvoie $1$ ssi $x\in A$. La restriction à $A$ de la fonction calculée par $Q_A$ est calculable est telle que $\dom(f) = A$.
     \end{proof}
 \end{myprop}
 
@@ -131,13 +132,16 @@ Soit $A\subseteq \N$
     \end{itemize}
 
     \begin{proof}
-      Si A est vide, il est possible de créer un programme Q qui va déterminer si x $\in$ A. Etant donné que A est vide, aucun élément n'appartient à cet ensemble. Il suffit simplement de créer un programme renvoyant toujours $\bot$. \\
-      Concernant la deuxième la condition, $f$ est une fonction d'énumération (elle peut répéter plusieurs fois un élément, mais ce n'est pas gênant).
-      À l'aide d'un programme $P_f$ qui calcule $f$,
-      on appelle $P_f(0), P_f(1), P_f(2), \ldots$
-      jusqu'à ce que $P_f(k) = x$ où on retourne $1$.
-      Si $x \in \image(f)$, on retournera $1$ tôt ou tard.
-      Sinon, on ne terminera jamais, ce qui équivaut à retourner $\bot$.
+      D'une part si A est vide, le programme renvoyant toujours $\bot$ détermine $A$, donc $A$ est récursivement énumérable. 
+      D'autre part si $A=\image(f)$ avec $f$ calculable, on montre que $A$ est récursivement énumérable. À l'aide du programme $P_f$ qui calcule $f$, 
+      on appelle $P_f(0)$, $P_f(1)$, $P_f(2)$, \dots (en les lançant dans des threads, à l'aide d'une diagonale montante par exemple) 
+      jusqu'à ce que $P_f(k) = x$ où on retourne $1$. Si $x \in A=\image(f)$, on retournera $1$ tôt ou tard. Sinon, on ne terminera jamais, 
+      ce qui équivaut à retourner $\bot$.
+      
+      Réciproquement, supposons que $A$ soit récursivement énumérable. Si A est vide, l'implication est vérifiée. Si $f_A$ est la fonction 
+      qui détermine $A$, soit $P$ le programme qui appelle $f_A(0)$, $f_A(1)$, \dots en même temps (en les lançant dans des threads). 
+      $P(n)$ renvoie le numéro du thread étant le $n$-ième à s'être arrêté et à avoir renvoyé $1$. Ainsi, la fonction totale construit 
+      par $P$ énumère $A$, c'est-à-dire $\image(f) =A$.
     \end{proof}
 \end{myprop}
 
@@ -146,6 +150,7 @@ Soit $A\subseteq \N$
 \paragraph{Propriétés importantes}
 \label{par:propri_t_s_importantes}
 \begin{myprop}
+\label{prop:recursif_implique_recursivement_enumerable}
 	$A$ récursif $\Rightarrow$ $A$ récursivement énumérable. (Propriété plus
 		faible)
 \end{myprop}
@@ -159,7 +164,7 @@ Soit $A\subseteq \N$
     Si $A$ est récursivement énumérable et co-récursivement énumérable ($\stcomp{A}$ récursivement énumérable)
     alors $A$ est récursif.
     \begin{proof}
-      Il suffit de créer un programme $Q$ qui, pour décider récursivement si $x \in A$, appelle le programme qui décide $A$ et le programme qui décide $\stcomp{A}$ dans deux threads et renvoie 1 si $x \in A$ et 0 si $x in \stcomp{A}$. En effet, si $A$ et $\stcomp{A}$ sont récursivement énumérables, un des deux appels finira tôt ou tard par dire si x appartient à $A$ ou non.
+      Il suffit de créer un programme $Q$ qui, pour décider récursivement si $x \in A$, appelle le programme qui décide $A$ et le programme qui décide $\stcomp{A}$ dans deux threads et renvoie 1 si $x \in A$ et 0 si $x \in \stcomp{A}$. En effet, si $A$ et $\stcomp{A}$ sont récursivement énumérables, un des deux appels finira tôt ou tard par dire si x appartient à $A$ ou non.
     \end{proof}
 \end{myprop}
 
@@ -184,11 +189,11 @@ Soit $A\subseteq \N$
 % Une fonction dont le domaine est un ensemble récursif en input est-elle calculable: non
 
 \begin{myprop}
-	($\N \setminus A$) fini $\Rightarrow$ $A$ récursif. (Trivial)
+	($\N \setminus A$) fini $\Rightarrow$ $A$ récursif. (Comme propriété précédente)
 \end{myprop}
 
 \begin{myexem}
-  Existe-t-il une fonction $f$ qui renvoie 1 s'il existe au moins $x$ occurrences successives de 5 dans $\pi$.
+  Existe-t-il une fonction $f$ qui renvoie 1 s'il existe au moins $x$ occurrences successives de 5 dans $\pi$ ?
 
   Oui, c'est soit
   \begin{algorithmic}
@@ -203,14 +208,14 @@ Soit $A\subseteq \N$
     \STATE print 0
     \ENDIF
   \end{algorithmic}
-  si il y a exactement $a$ occurrences de $5$ and $\pi$.
+  s'il y a exactement $a$ occurrences de $5$ dans $\pi$.
 
   Si on remplace ``au moins'' par ``exactement'', est-ce toujours calculable ?
   Oui, il suffit de remplacer $\leq$ par $=$.
 \end{myexem}
 
 \begin{myprop}
-  Tout programme qui a un nombre fini d'input différent est calculable (ça ne marche pas s'il est infini car le taille du code du programme doit être fini donc on ne peut pas tout hardcoder).
+  Tout programme qui a un nombre fini d'inputs différents est calculable : on fait comme dans la propriété 40, mais en remplaçant les $1$ par ce que doit renvoyer la fonction pour tel input (ça ne marche pas s'il est infini car le taille du code du programme doit être fini donc on ne peut pas tout hardcoder).
 \end{myprop}
 
 % paragraph propri_t_s_importantes (end)
@@ -230,9 +235,9 @@ La thèse de Turing répond à ces questions.
 	\item Aucun modèle de la notion de fonction calculable n'est plus puissant que les Machines de Turing.
 		Version moderne : Une fonction est calculable s'il existe un programme d'ordinateur qui calcule cette fonction.
 	\item Toute fonction calculable est calculable par une machine de Turing.
-	\item Toutes les définitions formelles de la calculabilité connues à ce jour sont équivalentes (Théorème, ça a été démontré) (justifie l'utilisation de Java comme modèle).
+	\item Toutes les définitions formelles de la calculabilité connues à ce jour sont équivalentes (théorème, ça a été démontré) (justifie l'utilisation de Java comme modèle).
 	\item Toutes les formalisations de la calculabilité établies par la
-		suite seront équivalentes aux définitions connues
+		suite seront équivalentes aux définitions connues.
 \end{enumerate}
 1, 2 et 4 sont des thèses universellement reconnues comme vraies et la 3 est un théorème.
 
@@ -247,19 +252,19 @@ Dans le cours on utilise un langage de programmation, Java, comme modèle.
 \end{mydef}
 
 \begin{myprop}
-	P est un ensemble infini dénombrable, car c'est chaîne de caractères d'un alphabet fini. P est récursif, car il existe un programme, le compilateur, qui détermine si une chaîne de caractères est un programme Java ou non.
+	P est un ensemble infini dénombrable, car c'est la chaîne de caractères d'un alphabet fini. P est récursif, car il existe un programme, le compilateur, qui détermine si une chaîne de caractères est un programme Java ou non.
 \end{myprop}
 
 \begin{mydef}[Énumération de P]
-	P = $P_0$, $P_1$,... ,$P_k$,... est l'énumération des programmes Java sans répétition. Ce qui implique qu'on peut numéroter les programmes Java.\\
+	P = $P_0$, $P_1$,\dots,$P_k$,\dots est l'énumération des programmes Java sans répétition. Ce qui implique qu'on peut numéroter les programmes Java.\\
 \end{mydef}
 
 \begin{mydef}[$P_k$]
-	$P_k$ est le programme numéro $k$ dans $P$
+	$P_k$ est le programme numéro $k$ dans $P$.
 \end{mydef}
 
 \begin{mydef}[$\varphi^{(n)}_k$]
-	$\varphi^{(n)}_k$ : $\N^n \rightarrow \N$ est la fonction calculée par $P_k$
+	$\varphi^{(n)}_k$ : $\N^n \rightarrow \N$ est la fonction calculée par $P_k$.
 \end{mydef}
 
 \begin{myrem}
@@ -269,8 +274,8 @@ Dans le cours on utilise un langage de programmation, Java, comme modèle.
 \begin{myprop}
 	Il existe donc une fonction $f : \N\rightarrow P$ telle que :
 	\begin{itemize}
-		\item $f(k) = P_k$
-		\item $f$ calculable
+		\item $f(k) = P_k$ ;
+		\item $f$ calculable ;
 		\item $k$ (numéro d'un programme) et $P_k$ sont deux représentations
 			distinctes d'un même objet.
 	\end{itemize}
@@ -313,7 +318,7 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 \end{myrem}
 
 \begin{mytheo}[halt]
-	halt n'est pas calculable
+	halt n'est pas calculable.
 	\begin{proof}
 	On suppose halt calculable.
 	\begin{enumerate}
@@ -341,7 +346,7 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 				$\perp$ si halt(n,n) = 1\\
 			\end{tabular}\\
 			$diag'$ est calculable, car halt est calculable (il y a moyen
-			d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
+			d'écrire un programme qui calcule $diag'$ en utilisant $diag$).
 		\item Contradiction :\\
 		       	Donc il existe un programme $P_d$ qui calcule
 			$diag'$:
@@ -403,11 +408,11 @@ K.
 
 \begin{mydef}[HALT]
 	HALT est l'ensemble des programmes k et des valeurs x tel que le programme k se termine avec l'entrée x.
-	\[ HALT = \{(n,x)|P_n(x)\text{se termine}\}\]
+	\[ HALT = \{(n,x)|P_n(x)\text{ se termine}\}\]
 \end{mydef}
 
 \begin{myprop}
-	K et HALT ne sont pas récursifs
+	K et HALT ne sont pas récursifs.
 \end{myprop}
 
 \begin{myprop}
@@ -479,7 +484,7 @@ Soit Q un langage de programmation (\textbf{non trivial}) dans lequel tous les p
 \begin{proof} Via la diagonalisation de Cantor : \\
 On suppose \textit{interpret} calculable dans Q.
 \begin{enumerate}
-	\item On construit une table infinie, où chaque ligne correspond à un programme $Q_k$ de Q.   : \\
+	\item On construit une table infinie, où chaque ligne correspond à un programme $Q_k$ de Q : \\
 		\begin{tabular}{|c||c|c|c|c|c|c|}
 			\hline
 			& 0 & 1 & 2 & ... & k & ... \\
@@ -493,11 +498,11 @@ On suppose \textit{interpret} calculable dans Q.
 			\hline
 		\end{tabular}
 	\item Sélection de la diagonale
-		$diag(n) = interpret(n,n)$
+		$diag(n) = interpret(n,n)$.
 	\item Modification de cet élément diag pour obtenir
-		$diag'(n) = interpret(n,n)+1$
+		$diag'(n) = interpret(n,n)+1$.
 		$diag'$ est calculable dans Q, car interpret est calculable dans Q (il y a moyen
-		d'écrire un programme qui calcule $diag'$ en utilisant $diag$)
+		d'écrire un programme qui calcule $diag'$ en utilisant $diag$).
 
 	\item Contradiction :\\
 	       	Comme $diag'$ est calculable dans Q, il existe un programme $Q_d$ qui calcule $diag'$.
@@ -509,20 +514,20 @@ On suppose \textit{interpret} calculable dans Q.
 		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier.
 	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
 	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
-dans Q.
+
 \end{enumerate}
 \end{proof}
 
 \begin{myrem}
-	Si les programmes de Q ne calculaient pas que des fonctions totales, alors ça n'aurait pas posé de problèmes, car si $interpret(d,d)=\bot$, $interpret(d,d)+1=\bot$ et il n'y a plusa de contradiction.  Un programme qui ne se termine pas + quelque chose, reste un programme qui ne se termine pas.
+	Si les programmes de Q ne calculaient pas que des fonctions totales, alors ça n'aurait pas posé de problèmes, car si $interpret(d,d)=\bot$, $interpret(d,d)+1=\bot$ et il n'y a plus de contradiction.  Un programme qui ne se termine pas + quelque chose, reste un programme qui ne se termine pas.
 \end{myrem}
 
 \subsection[Implication du théorème de Hoare Allison]{Implication du théorème \ref{Hoare_Allison}, Hoare Allison}
 \begin{myprop}
 	Si un langage (\textbf{non trivial}) ne permet que le calcul de fonctions totales, alors :
 	\begin{itemize}
-		\item l'interpréteur de ce langage n'est pas calculable dans ce langage.
-		\item il existe des fonctions totales non programmables dans ce langage.
+		\item l'interpréteur de ce langage n'est pas calculable dans ce langage ;
+		\item il existe des fonctions totales non programmables dans ce langage ;
 		\item ce langage est \bf{restrictif}.
 	\end{itemize}
 \end{myprop}
@@ -542,7 +547,7 @@ dans Q.
 \end{myprop}
 
 \begin{myprop}
-	L'ensemble \{n| $\varphi_n$ est totale\} n'est pas récursif.
+	L'ensemble \{n| $\varphi_n$ est totale\} n'est pas récursif
     (sinon on saurait créer un langage qui calcule toutes les fonctions totales et uniquement les fonctions totales).
 \end{myprop}
 
@@ -563,8 +568,8 @@ dans Q.
 	Il existe une fonction partielle calculable g telle qu'aucune fonction totale calculable n'est une extension de g.
   \begin{proof}
     Soit nbStep(n,x)  = nombre d'instructions exécutées par $\varphi_n(x)$.\\
-    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle calculable. Si il existe une extention totale calculable decette fonction, alors la fonction halt serait calculable.\\
-    En effet, soit nbStepPrime(n,x) une extension totale calculable de nbStep. Pour calculer halt(nx), il suffit d'exécuter nbStepPrime(n,x) instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que nbStepPrime(n,x)=nbStep(n,x) et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que nbStep(n,x)=$\bot$ et donc que $P_n(x)$ se termine. On a donc un algorithme pour calculer halt, ce qui est impossible.  Donc une telle extension totale de nbStep n'existe pas.
+    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle calculable. S'il existe une extension totale calculable de cette fonction, alors la fonction halt serait calculable.\\
+    En effet, soit nbStepPrime(n,x) une extension totale calculable de nbStep. Pour calculer halt(n,x), il suffit d'exécuter nbStepPrime(n,x) instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que nbStepPrime(n,x)=nbStep(n,x) et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que nbStep(n,x)=$\bot$ et donc que $P_n(x)$ ne se termine pas. On a donc un algorithme pour calculer halt, ce qui est impossible.  Donc une telle extension totale de nbStep n'existe pas.
   \end{proof}
 \end{mytheo}
 
@@ -583,22 +588,60 @@ Il est intéressant de pouvoir analyser un programme afin d'établir ses propri�
 
 Le théorème de Rice nous répond que \textbf{non}, toute propriété sémantique non triviale d'un programme est non calculable par un algorithme.
 
+Pour le démontrer, on utilisera la réduction à halt. Voici quelques exemples avant d'attaquer le cas général :
+
+\begin{myexem}
+Soit la fonction :
+\begin{equation*}
+f(n) =\left\{\begin{tabular}{l}
+		$1$ si $\varphi_n(x)=\bot$ pour tout $x$,\\
+        $0$ sinon.
+	\end{tabular}\right.
+\end{equation*}
+En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit $d$ le numéro du programme qui appelle $P_n(x)$ pour tout input. On retrouve halt en appelant $P_f(d)$ et en retournant $1-P_f(d)$.\\
+Conclusion : $f$ n'est pas calculable.
+\end{myexem}
+
+\begin{myexem}
+Soit la fonction :
+\begin{equation*}
+f(n) =\left\{\begin{tabular}{l}
+		$1$ si $\varphi_n(x)=x$ pour tout $x$,\\
+        $0$ sinon.
+	\end{tabular}\right.
+\end{equation*}
+En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit $d$ le numéro du programme $Q$ qui pour un input $y$, appelle $P_n(x)$ puis renvoit $y$. Si $P_n(x)$ s'arrête, $Q$ renverra toujours son input donc $f(d)=1$. Sinon, $Q$ renverra toujours $\bot$ donc $f(d)=0$. Il suffit d'appeler $f(d)$ pour avoir $halt(n,x)$.\\
+Conclusion : $f$ n'est pas calculable.
+\end{myexem}
+
+\begin{myexem}
+Soit la fonction :
+\begin{equation*}
+f(n,m) =\left\{\begin{tabular}{l}
+		$1$ si $\varphi_n=\varphi_m$ pour tout $x$,\\
+        $0$ sinon.
+	\end{tabular}\right.
+\end{equation*}
+En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit $d_1$ le numéro du programme qui appelle $P_n(x)$ pour tout input et $d_2$ le numéro du programme \lstinline{while true}. Si $P_n(x)$ s'arrête, $f(d_1,d_2)=0$. Sinon, $\varphi_{d_1}=\varphi_{d_2}$ et donc $f(d_1,d_2)=1$. Il suffit de renvoyer $1-f(d_1,d_2)$ pour avoir halt.\\
+Conclusion : $f$ n'est pas calculable.
+\end{myexem}
+
 \subsection{Énoncé et démonstration}
 
 Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus A$.
 
 \begin{mytheo}[Rice]
-	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$. \\
-	Alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$
-
-	Si A est récursif et qu'il n'est ni nul, ni ne contient l'ensemble des programmes existant, alors il existe deux programmes dans A et $\stcomp{A}$ tel qu'ils calculent la même fonction.
+	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$,
+  alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$.
+	
+	Si A est récursif et qu'il n'est ni vide, ni ne contient l'ensemble des programmes existant, 
+  alors il existe un programmes dans A et un programme $\stcomp{A}$ tel qu'ils calculent la même fonction. 
 \end{mytheo}
 
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
 
 \begin{mytheo}[Rice (contraposée)]
-	Si $\forall  i \in A$ et $\forall j \in \stcomp{A}$ on a $\varphi_i \neq \varphi_j$, \\
-	Alors $A$ est non-récursif ou $A = \emptyset$ ou $A = \N$.
+	Si $\forall  i \in A$ et $\forall j \in \stcomp{A}$ on a $\varphi_i \neq \varphi_j$, alors $A$ est non-récursif ou $A = \emptyset$ ou $A = \N$.
 \end{mytheo}
 
 Dans de nombreux cas, on peut garantir $A \neq \emptyset$ et $A \neq \N$, ce qui permet de se servir de la contraposée pour démontrer qu'un ensemble est non-récursif sans utiliser la preuve par diagonalisation ou par réduction.
@@ -606,28 +649,28 @@ Dans de nombreux cas, on peut garantir $A \neq \emptyset$ et $A \neq \N$, ce qui
 %TODO ajouter graphique du théorème de Rice
 
 \begin{proof}
-Nous avons $\forall i \in A$ et $\forall j \in \stcomp{A}$ tel que $\varphi_i \neq
-\varphi_j$\\
-Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$
+Nous avons que $\forall i \in A$ et $\forall j \in \stcomp{A}$, $\varphi_i \neq
+\varphi_j$. Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$.
 
 Dans cette démonstration, nous allons utiliser la méthode de réduction.
 Sous l'hypothèse que $A$ est récursif, on montrer que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}.  Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif.  Ce qui implique donc que $A$ ne peut pas être récursif.
 
 \begin{enumerate}
-	\item Construisons le programme suivant $P_k$
+	\item Construisons le programme suivant $P_k$ :
 		\begin{lstlisting}
 while true do;
 		\end{lstlisting}
-			$P_k$ ne s'arrête jamais, il vaut donc en permanence \textit{bottom} : $\forall x \ \varphi_k(x) = \perp$
+
+			$P_k$ ne s'arrête jamais, il vaut donc en permanence \textit{bottom} : $\forall x \ \varphi_k(x) = \bot$.
 
 	\item $\stcomp{A}\neq \emptyset$ car $A \neq \N$,
 	supposons $k\in \stcomp{A}$ (hypothèse sans importance, car montrer que
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
-	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif)
+	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif).
 	\item $A\neq \emptyset$ par hypothèse.  Prenons un élément quelconque $m$ de cet ensemble  ($m\in A$)
-	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i \neq \varphi_j$.  Donc
-		$\varphi_m \neq \varphi_k$
-	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant.
+	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i\neq \varphi_j$.  Donc 
+		$\varphi_m \neq \varphi_k$.
+	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant. 
 		$P(z) \equiv $
 		\begin{lstlisting}
 P_n(x);
@@ -699,19 +742,19 @@ respectent une propriété. Voici quelques exemples et applications du théorèm
 	 				$P_i$ s'arrête toujours.
 	\item[$A_2 =$] $\{i| \varphi_i = f\}$ avec f fixée \\
 					$P_i$ calcule la fonction f.
-	\item[$A_3 =$] $\{i| a \in dom(\varphi_i)\}$ avec a fixé \\
+	\item[$A_3 =$] $\{i| a \in \dom(\varphi_i)\}$ avec a fixé \\
 					$P_i(a)$ se termine.
 	\item[$A_4 =$] $\{i| \varphi_i(X) = \perp \text{pour tout X}\}$ avec f fixée \\
 					$P_i$ calcule la fonction partielle vide.
 	\item[$A_5 =$] $\{i| a \in \text{image}\varphi_i\}$ avec a fixé \\
 					$P_i$ donne au moins une fois le résultat a.
-	\item[$A_6 =$] $\{i| \text{image}(\varphi_i) = \N\}$ \\
+	\item[$A_6 =$] $\{i| \image(\varphi_i) = \N\}$ \\
 					$P_i$ donne tous les résultats possibles.
 	\item[$A_7 =$] $\{i| \varphi_i \text{est une fonction injective}\}$ \\
 					$P_i$ calcule une fonction injective.
 \end{description}
 
-L'ensemble $A_1, \cdots, A_7$ est non récursif. L'ensemble inverse $\stcomp{A_1}, \cdots, \stcomp{A_7}$ n'est par conséquent par récursif non plus.
+L'ensemble $A_1, \cdots, A_7$ est non récursif, par la contraposée du théorème de Rice. L'ensemble inverse $\stcomp{A_1}, \cdots, \stcomp{A_7}$ n'est par conséquent par récursif non plus.
 
 % subsection th_or_me_de_rice (end)
 
@@ -765,28 +808,20 @@ print(d);
 	% P(x,y) \equiv \left[S(y) \right](x) $$
 \end{mytheo}
 
-\paragraph{Démonstration}
-	Par le théorème \ref{S-m-n} (S-m-n),
+\begin{proof}
+Par le théorème \ref{S-m-n} (S-m-n),
 	\[ \exists \ S \text{ (totale calculable) } \forall \ k : \varphi_k(x,y)=\varphi_{S(k,y)}(x)\]
-	\[ \forall \ k \ \exists \ S \ \text{ (totale calculable) } : \varphi_k(x,y)=\varphi_{S(k,y)}(x)\]
-	\[ \Rightarrow \forall \ k \ \exists \ S : \varphi_k(x,y) =\varphi_{S(k,y)}(x) \]
-	\begin{align}
-		\Rightarrow S(k,y) &= \varphi_{S}(k,y) \text{ (S est totale calculable)}\\
-		&= \varphi_{S'(S,k)}(y) \text{ (S-m-n)}\\
-		&= \varphi_{k'}(y) \text{ (renomage de } S'(S,k) \text{ en } k' \text{)}\\
-		&= S''(y)
-	\end{align}
-	\[ \Rightarrow \forall \ k \ \exists \ S'' \ \text{(totale calculable)} :
-       	\varphi_k(x,y)=\varphi_{S''(y)}(x)\]
+	\[\Rightarrow \forall \ k \ \exists \ S \ \text{ (totale calculable) } : \varphi_k(x,y)=\varphi_{S(k,y)}(x)\]
+    Pour un $k$ donné, on note $S_k(y)=S(k,y)$. $S_k$ est calculable puisque $S$ l'est. On a bien $\varphi_k(x,y) = \varphi_{S_k(y)}(x)$.
+\end{proof}
 
 \begin{myrem}
 	On peut voir le théorème \ref{S-m-n}, S-m-n, comme : \\
-	Étant donné $m,n \geq 0$\\
-	il existe un transformateur de programme, $S^m_n$, qui recevant comme
-	données : un programme $P_k$ à $n+m$ arguments et $m$ valeurs $v_1,...,v_m$
-	fournit comme résultat: un programme $P$ à $n$ arguments tel que
+	Étant donné $m,n \geq 0$, il existe un transformateur de programme, $S^m_n$, qui recevant comme
+	données un programme $P_k$ à $n+m$ arguments et $m$ valeurs $v_1,...,v_m$
+	fournit comme résultat un programme $P$ à $n$ arguments tel que
 	$P(x_1,...,x_n)$ calcule la même fonction que
-	$P_k(x_1,...,x_n,,v_1,...,v_m)$ (Ce programme effectue une projection)
+	$P_k(x_1,...,x_n,,v_1,...,v_m)$ (ce programme effectue une projection)
 \end{myrem}
 
 \begin{myrem}
@@ -799,8 +834,8 @@ print(d);
 \label{sec:th_or_me_du_point_fixe}
 \begin{mytheo}[Point fixe]
 	\label{point-fixe}
-    Soient $n \geq 0$ et $f$ : fonction totale
-	calculable, il existe $k$ tel que $\varphi^{(n)}_k = \varphi^{(n)}_{f(k)}$
+    Soient $n \geq 0$ et $f$ fonction totale
+	calculable, il existe $k$ tel que $\varphi^{(n)}_k = \varphi^{(n)}_{f(k)}$.
 \end{mytheo}
 
 \begin{myrem}
@@ -824,13 +859,13 @@ Pour commencer la démonstration, on va sortir 3 ``lapins'' d'un chapeau (analog
 
 	\item[$1^{er}$ lapin:] Soit $ h(u,v) = \left\{
 	\begin{array}{l l}
-		\varphi_{\varphi_{u}(u)}(v) & \quad \text{si }\varphi_u(u)\neq \bot\\
-    	\bot & \quad \text{sinon}
+		\varphi_{\varphi_{u}(u)}(v) & \quad \text{si }\varphi_u(u)\neq \bot,\\
+    	\bot & \quad \text{sinon}.
 	\end{array} \right.$
 
 		$h$ est calculable
 		\begin{myrem}
-			on peut créer un programme qui calcule $h$
+			on peut créer un programme qui calcule $h$ :
             \begin{algorithmic}
               \STATE Input: $u,v$
               \STATE $a = P_z(u,u)$
@@ -840,16 +875,16 @@ Pour commencer la démonstration, on va sortir 3 ``lapins'' d'un chapeau (analog
 		\end{myrem}
 
 	\item[$2^{eme}$ lapin:] $h(u,v)=\varphi_{S(u)}(v)$\\
-	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable,
-
+	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable.
+  
 	\item[$3^{eme}$ lapin:] Soit $g(u)=f(S(u))$\\
 	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
 		est la fonction donnée dans le théorème).
-		\[ \exists k' \cdot \varphi_{k'}(u) =g(u)=f(S(u)) \]
+		\[ \exists k' \text{ tel que } \varphi_{k'}(u) =g(u)=f(S(u)) \]
 \end{description}
 On a que $k'$ est une constante et par le lapin 2 :
 \[h(k',v) = \varphi_{S(k')}(v)\]
-Par le lapin 1 et, car $g=\varphi_{k'}$ est une fonction totale calculable, on a :
+Par le lapin 1 et car $g=\varphi_{k'}$ est une fonction totale calculable, on a :
 \[h(k',v) = \varphi_{\varphi_{k'}(k')}(v)\]
 Par le lapin 3, on a que $\varphi_{k'}(u) = g(u)=f(S(u))$ donc :
 \[h(k',v) = \varphi_{f(S(k'))}(v)\]
@@ -881,12 +916,12 @@ Ce qui conclut notre démonstration.
 \begin{myrem}[Démonstration du théorème de Rice grâce au point fixe]
   À l'aide du point fixe, on peut démontrer plus simplement le théorème de Rice:
 
-  Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors
-
-  il existe $i \in A$ et $j \in \bar{A}$ tel que $\varphi_i = \varphi_j$.
+\begin{center}
+Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in A$ et $j \in \bar{A}$ tel que $\varphi_i = \varphi_j$.
+\end{center}
 
   \begin{proof}
-    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \emptyset$.  Il suffit de montrer que si
+    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \N$.  Il suffit de montrer que si 
     $\forall i \in A, \forall j \in \bar{A} : \varphi_i \neq \varphi_j$  (1) alors A est non récursif. \\
     En supposant A récursif, on arrive à une contradiction.  En effet,
     soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
@@ -916,8 +951,8 @@ Ce qui conclut notre démonstration.
     \begin{proof}
 	Soit $n$ un programme qui ne s'arrête jamais, et $m$ un programme qui calcule la fonction identité:
 		\begin{itemize}
-		\item $\phi_n(x) = \bot \quad \forall \ x$
-		\item $\phi_m(x) = x \quad \forall  \ x$
+		\item $\varphi_n(x) = \bot \quad \forall \ x$
+		\item $\varphi_m(x) = x \quad \forall  \ x$
 	\end{itemize}
 	Posons maintenant la  fonction suivante :
 	\begin{itemize}
@@ -981,19 +1016,19 @@ d'autres problèmes non calculables. Il y a d'autres exemples sur les grammaires
 
 \begin{mydef}[Nombre réel]
 	Un nombre réel est défini comme la limite d'une suite (convergente) de
-	nombres rationnels: $\lim_{n \rightarrow +\infty} |x-s(n)| = 0 $ ou s’est
-	une fonction totale
+	nombres rationnels: $\lim_{n \rightarrow +\infty} |x-s(n)| = 0 $ ou $s$ est
+	une fonction totale.
 \end{mydef}
 
 \begin{mydef}[Nombre réel calculable]
 	Un nombre réel x est calculable s’il existe une fonction totale
-	calculable $s$ tel que $\lim_{n \rightarrow +\infty} |x-s(n)| \leq 2^{-n}$
+	calculable $s$ tel que pour tout $n$  : $|x-s(n)| \leq 2^{-n}$.
 \end{mydef}
 
 \begin{myrem}
 	Donc un nombre est calculable s'il existe un programme qui peut
 	l'approximer aussi près que l'on veut. Par exemple $\pi$ et $e$ sont
-	calculable
+	calculables
 \end{myrem}
 
 \begin{myprop}

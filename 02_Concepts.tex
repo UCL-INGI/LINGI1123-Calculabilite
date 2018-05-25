@@ -376,7 +376,7 @@ On va montrer qu'il existe des ensembles non énumérables par diagonalisation. 
 			\item Modification de cet élément $d$ pour obtenir
 				\[ d'=0.x_{00}'x_{11}'\dots x_{kk}'\dots \]
 				Où
-                $$x_{ii}'=5\text{ si }x_{ii}'\neq 5\quad\text{et}\quad x_{ii}'=6\text{ si }x_{ii}'= 5$$
+                $$x_{ii}'=5\text{ si }x_{ii}\neq 5\quad\text{et}\quad x_{ii}'=6\text{ si }x_{ii}= 5$$
 				On a toujours que cet élément $d'$ est un réel compris entre 0 et 1\footnote{De plus, puisqu'il ne contient que des $5$ et des $6$ il n'a qu'une écriture décimale, donc notre choix quant à l'écriture décimale n'a pas d'influence est il appartient forcément au tableau.}.
 			\item Le nombre $d'$ est dans l'énumération, car $E$ est
 				énumérable (par hypothèse). Il existe donc $x_p=d'$,
@@ -476,7 +476,7 @@ l'ensemble des sous-ensemble de $\R$ ($2^{\R}$).  Ces ensembles ne peuvent pas �
 Encore plus loin ?  Oui, en prenant l'ensemble des sous-ensembles de l'ensemble défini juste avant (on peut montrer que pour tout ensemble $E$, $|E|<|\mathcal{P}(E)|=2^{|E|}$) .  On obtient alors $2^{2^{\R}}$.  Et ainsi de suite\ldots
 
 On peut ainsi schématiser la taille des ensembles comme ceci:
-$$\emptyset < \{1,2,3\} < \N < 2^\N = \R < 2^{\R} < 2^{2^{\R}} < 2^{2^{2^{\R}}} \dots$$
+$$|\emptyset| < |\{1,2,3\}| < |\N| < |2^\N| = |\R| < |2^{\R}| < |2^{2^{\R}}| < |2^{2^{2^{\R}}}| \dots$$
 Est-ce qu'il existe encore plus grand? Oui, effectivement, l'union de tous ces ensembles 
 est plus grand que chacun de ces ensembles\footnote{
 Pour aller plus loin : en théorie des ensembles ZFC, cette construction s'écrit avec la lettre $\beth$ (prononcé \textbf{beth}), tel que $\beth_0 = \N, \beth_1 = 2^\N = \R,\dots$. L'union de tous ces ensembles est plus grand que chacun d'eux, et se note $\beth_\N$. On peut continuer la construction à partir de là, et obtenir des ensembles encore plus grand. 
