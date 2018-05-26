@@ -271,6 +271,43 @@ La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 	\label{Salade}
 \end{figure}
 
+Un autre exemple d'automates finis est un distributeur de boissons qui reçoit une pièce d'argent et un choix de boissons puis sert la boisson choisie. Par exemple, nous pouvons considères que la machine recois une pièce de 2 euros et a uniquement trois choix Fanta, Coca, Eau. Un tel système peut être modélisé comme suit:\\
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+		\node[draw,minimum height=2cm,circle] (A) at (0,0) {Etat 1};
+		\node[draw,minimum height=2cm,circle] (B) at (10,0) {Etat 2};
+		\draw (0,1.75) node {$\bullet$};
+        
+        \draw[->,>=stealth,thick] (0,1.75) -- (0,1);
+		
+		\draw[->,>=latex] (A) to[out=45,  in=135] (B);
+		
+		\draw[->,>=latex] (B) to[out=-140, in=-40] (A);
+		\draw[->,>=latex] (B) to[out=-120, in=-65] (A);
+		\draw[->,>=latex] (B) to[out=-100, in=-85] (A);
+		
+        \draw[->,>=latex] (-0.7071,0.7071) arc(45:315:1);
+        \draw[->,>=latex] (10.73,-0.7071) arc(-135:135:1);
+		
+		\draw (5,-1.50) node[below]  {Fanta choisir / servir fanta};
+		\draw (5,-2.55) node[below]  {Coca choisir / servir coca};
+		\draw (5,-3.70) node[below] {Eau choisir / servir eau};
+		
+		\draw (5,2.40) node[above] {jeton / credit "jeton" euros};
+		
+		\draw (11.8,-0.9) node[below] {jeton / rendre jeton};
+		
+		\draw (-2.8,-0.9) node[below] {choix boisson / credit nul};
+
+
+	\end{tikzpicture}
+	\caption{Diagramme d'état d'un distributeur de boisson simple \\{Inspirer du TD7 : Automates Par Stephane Devismes Université Grenoble Alpes}}
+\end{figure}
+Les transitions avec les mêmes états de départs et d’arrivées et la même sortie ont une seule flèche étiquetée avec l’entrée / la sortie. 
+
+
 % subsubsection mod_les_des_automates_finis (end)
 
 \subsection{Extension des automates finis}
