@@ -123,7 +123,7 @@ Ex : $f(x) = \left\{\begin{array}{ll} 1 & \text{s'il y a de la vie autre part qu
 
 \section{Ensemble énumérable}
 \label{sec:ensemble_num_rables}
-Quel est la taille d'un ensemble ?  Comment comparer la taille d'ensemble infinis ?
+Quel est la taille d'un ensemble ?  Comment comparer la taille d'ensembles infinis ?
 
 Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensembles
 ont le même cardinal s'il existe une bijection entre eux.
@@ -221,7 +221,7 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \begin{myexem}
  L'ensemble des fonctions de  $\{0, 1\}$ vers $\N$ est énumérable.
  \begin{proof}
-  Une fonction de $\{0, 1\}$ vers $\N$ peut être représentée par deux couples de deux entiers, donc est un quadruple. L'ensemble des fonctions de $\{0, 1\}$ vers $\N$ est équivalent à l'ensemble des quadruples et est donc énumérable.
+  Une fonction de $\{0, 1\}$ vers $\N$ peut être représentée par deux couples de deux entiers $(0, f(0))$ et $(1, f(1))$, donc est un quadruple. L'ensemble des fonctions de $\{0, 1\}$ vers $\N$ est équivalent à l'ensemble des quadruples et est donc énumérable.
  \end{proof}
 \end{myexem}
  
@@ -405,7 +405,7 @@ Quelques ensembles non énumérables :
 \begin{myexem}
  L'ensemble des sous-ensembles de $\N$, $\mathcal{P}(\N)$
  \begin{proof}
-   Rappelons nous tout d'abord que comme $\N$ est infini, ses sous-ensembles peuvent l'être aussi.
+   Rappelons-nous tout d'abord que comme $\N$ est infini, ses sous-ensembles peuvent l'être aussi.
    Il est adéquat de visualiser un ensemble à l'aide d'un mot binaire
    où le bit $i$ vaut 1 si le $i^{\mathrm{ième}}$ élément est pris dans le sous-ensemble.
    Par exemple, le sous-ensemble $\{1,4\}$ de $\{1,3,4\}$ peut être représenté par $101$.
@@ -479,9 +479,9 @@ On peut ainsi schématiser la taille des ensembles comme ceci:
 $$|\emptyset| < |\{1,2,3\}| < |\N| < |2^\N| = |\R| < |2^{\R}| < |2^{2^{\R}}| < |2^{2^{2^{\R}}}| \dots$$
 Est-ce qu'il existe encore plus grand? Oui, effectivement, l'union de tous ces ensembles 
 est plus grand que chacun de ces ensembles\footnote{
-Pour aller plus loin : en théorie des ensembles ZFC, cette construction s'écrit avec la lettre $\beth$ (prononcé \textbf{beth}), tel que $\beth_0 = \N, \beth_1 = 2^\N = \R,\dots$. L'union de tous ces ensembles est plus grand que chacun d'eux, et se note $\beth_\N$. On peut continuer la construction à partir de là, et obtenir des ensembles encore plus grand. 
+Pour aller plus loin : en théorie des ensembles ZFC, cette construction s'écrit avec la lettre $\beth$ (prononcé \textbf{beth}), tel que $\beth_0 = \abs{\N}, \beth_1 = \abs{2^\N} = \abs{\R},\dots$. L'union de tous ces ensembles est plus grand que chacun d'eux, et se note $\beth_\N$. On peut continuer la construction à partir de là, et obtenir des ensembles encore plus grand. 
 
-Par ailleurs, l'ensemble de \emph{tous} les cardinaux est noté avec la lettre $\aleph$ (prononcé \textbf{aleph}), avec $\aleph_0 = \N$. On pourrait être tenté de prendre l'ensemble de tous les cardinaux pour avoir un ensemble encore plus grand. Mais ce ne serait plus un ensemble (c'est une classe dans la théorie des ensembles NBG) !
+Par ailleurs, l'ensemble de \emph{tous} les cardinaux est noté avec la lettre $\aleph$ (prononcé \textbf{aleph}), avec $\aleph_0 = \abs{\N}$. On pourrait être tenté de prendre l'ensemble de tous les cardinaux pour avoir un ensemble encore plus grand. Mais ce ne serait plus un ensemble (c'est une classe dans la théorie des ensembles NBG) !
 
 Finalement, l'hypothèse du continu stipule que $\beth_1 = \aleph_1$, c'est-à-dire qu'il n'y a pas de cardinal entre $\N$ et $\R$. Ce n'est qu'en 1963 qu'on s'est rendu compte qu'elle était en fait indépendante de la théorie des ensembles ZFC : on peut supposer qu'elle soit vrai ou qu'elle soit fausse sans obtenir de contradiction.}.
 
