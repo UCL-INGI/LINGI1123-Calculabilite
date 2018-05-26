@@ -81,7 +81,7 @@ Tous les programmes BLOOP se terminent :\\
 BLOOP (Hoare-Allison)\\
 	$ \Rightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
     $ \Rightarrow$ BLOOP n'est pas un modèle complet de la calculabilité\\
-    
+
 Cependant il existe un compilateur des programmes BLOOP (Java).\\
 \end{myprop}
 
@@ -147,7 +147,7 @@ On considère l'approche 2 en calculabilité.
 		Cependant les branches pouvant être infinies, il est nécessaire d'explorer ces branches de l'\ arbre d'exécution en largeur d'abord (\textit{Breadth First Search}). La complexité temporelle du programme ainsi construit devient exponentielle.  En effet, un arbre de profondeur $k$ a un nombre exponentiel de noeuds.
 	\end{proof}
 \end{myprop}
-\paragraph{Exemple} : \\
+\paragraph{Exemple} : Le ND-programme à gauche (figure \ref{fig:ND_tree}) comporte 3 branches et  a une hauteur de 3. Il est tranformé en un programme D, à droite (fiure \ref{fig:D_tree}) qui a une longueur de 9. \\
 	\input{Images/ND_to_D_Exemple.tex}
 
 \begin{myprop}
@@ -294,10 +294,10 @@ La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 \begin{myprop}
 	Certains ensembles récursifs ne peuvent pas être reconnus par un
 	automate fini.
-    
+
     \begin{proof}
     Par exemple $L = \{ a^n b^n \mid n\geq 0\}$ : l'automate doit compter le nombre de $a$ pour vérifier qu'il y a autant de $b$. Mais il n'a pas de mémoire, donc pas de moyen de retenir le nombre $n$.
-    
+
     Par contre, un automate fini pourrait reconnaître l'ensemble $L' = \{a^n b^m \mid n,m\geq 0\}$.
     \end{proof}
 \end{myprop}
@@ -464,7 +464,7 @@ programmation, pour l'analyse du langage naturel...
 $\Sigma =\{0,1,2,3,4,5,6,7,8,9,.,E\}$ avec les règles de production suivantes :
 \begin{itemize}
 \item $S\ \rightarrow\ <Real>$
-\item $<Real>\ \rightarrow\ <Sig><Dig>.<Dig>$ 
+\item $<Real>\ \rightarrow\ <Sig><Dig>.<Dig>$
 \item $<Real>\ \rightarrow\ <Sig><Dig>.<Dig>E<Exp>$
 \item $<Real>\ \rightarrow\ <Sig><Dig>E<Exp>$
 \item $<Sig>\ \rightarrow\ \epsilon\mid +\mid -$
@@ -1108,7 +1108,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	\\
 	\textbf{Soustraction} Revient à prendre un prédécesseur.
 
-	Complexité de n. 
+	Complexité de n.
 	\begin{align}
 	pred (0) &= 0 \\
 	pred (n+1) &= n \\
