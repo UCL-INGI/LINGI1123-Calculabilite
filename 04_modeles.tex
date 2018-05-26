@@ -42,7 +42,7 @@ Mais il en existe beaucoup d'autres.
 
 \subsection{Modèle de langage}
 \label{ssub:mod_le_de_langage}
-Un langage est défini pas une grammaire formelle. L'objectif est de modéliser
+Un langage est défini par une grammaire formelle. L'objectif est de modéliser
 une classe de langage. Le langage est alors soit un ensemble récursif ou un
 ensemble récursivement énumérable.
 
@@ -213,28 +213,6 @@ Un automate fini est composé de :
 	Il n'y a donc pas de mémoire. De plus, un automate peut-être simulé
 	par un programme Java.
 \end{myrem}
-
-
-\begin{myprop}
-	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
-		accepté par FA$\}$
-\end{myprop}
-
-\begin{myprop}
-	Certains ensembles récursifs ne peuvent pas être reconnus par un
-	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (il me semble que
-	c'est parce que ça nécessiterait un nombre infini d'états)
-\end{myprop}
-
-\begin{myprop}
-	L'interpréteur des automates finis est calculable, mais ne peut pas être
-	représenté par un automate fini, car ce n'est pas un \textbf{modèle
-	complet} de la calculabilité (Hoare-Allison)
-\end{myprop}
-
-\begin{mydef}[Langage régulier] est un langage défini par une expression
-	régulière.
-\end{mydef}
 
 \paragraph{Exemple}
 Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
