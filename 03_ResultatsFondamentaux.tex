@@ -119,7 +119,7 @@ Soit $A\subseteq \N$
       On peut construire un programme $Q$ qui avec input $x$
       appelle $P_f(x)$, puis renvoie $1$.
       Si $x\in A$, $P_f(x)$ se termine, $Q(x)$ renverra $1$. Sinon, $P_f(x)$ ne se terminera pas ($P_f(x) =\bot$), donc $Q_f(x)$ non plus. On en déduit que $A$ est récursivement énumérable.
-      
+
       Réciproquement si $A$ est récursivement énumérable, il existe un programme $Q_A$ qui renvoie $1$ ssi $x\in A$. La restriction à $A$ de la fonction calculée par $Q_A$ est calculable est telle que $\dom(f) = A$.
     \end{proof}
 \end{myprop}
@@ -132,15 +132,15 @@ Soit $A\subseteq \N$
     \end{itemize}
 
     \begin{proof}
-      D'une part si A est vide, le programme renvoyant toujours $\bot$ détermine $A$, donc $A$ est récursivement énumérable. 
-      D'autre part si $A=\image(f)$ avec $f$ calculable, on montre que $A$ est récursivement énumérable. À l'aide du programme $P_f$ qui calcule $f$, 
-      on appelle $P_f(0)$, $P_f(1)$, $P_f(2)$, \dots (en les lançant dans des threads, à l'aide d'une diagonale montante par exemple) 
-      jusqu'à ce que $P_f(k) = x$ où on retourne $1$. Si $x \in A=\image(f)$, on retournera $1$ tôt ou tard. Sinon, on ne terminera jamais, 
+      D'une part si A est vide, le programme renvoyant toujours $\bot$ détermine $A$, donc $A$ est récursivement énumérable.
+      D'autre part si $A=\image(f)$ avec $f$ calculable, on montre que $A$ est récursivement énumérable. À l'aide du programme $P_f$ qui calcule $f$,
+      on appelle $P_f(0)$, $P_f(1)$, $P_f(2)$, \dots (en les lançant dans des threads, à l'aide d'une diagonale montante par exemple)
+      jusqu'à ce que $P_f(k) = x$ où on retourne $1$. Si $x \in A=\image(f)$, on retournera $1$ tôt ou tard. Sinon, on ne terminera jamais,
       ce qui équivaut à retourner $\bot$.
-      
-      Réciproquement, supposons que $A$ soit récursivement énumérable. Si A est vide, l'implication est vérifiée. Si $f_A$ est la fonction 
-      qui détermine $A$, soit $P$ le programme qui appelle $f_A(0)$, $f_A(1)$, \dots en même temps (en les lançant dans des threads). 
-      $P(n)$ renvoie le numéro du thread étant le $n$-ième à s'être arrêté et à avoir renvoyé $1$. Ainsi, la fonction totale construit 
+
+      Réciproquement, supposons que $A$ soit récursivement énumérable. Si A est vide, l'implication est vérifiée. Si $f_A$ est la fonction
+      qui détermine $A$, soit $P$ le programme qui appelle $f_A(0)$, $f_A(1)$, \dots en même temps (en les lançant dans des threads).
+      $P(n)$ renvoie le numéro du thread étant le $n$-ième à s'être arrêté et à avoir renvoyé $1$. Ainsi, la fonction totale construit
       par $P$ énumère $A$, c'est-à-dire $\image(f) =A$.
     \end{proof}
 \end{myprop}
@@ -193,25 +193,26 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myexem}
-  Existe-t-il une fonction $f$ qui renvoie 1 s'il existe au moins $x$ occurrences successives de 5 dans $\pi$ ?
+  La fonction $f(x)$ qui renvoie 1 s'il existe au moins $x$ occurrences successives de 5 dans $\pi$ est-elle calculable ?
 
-  Oui, c'est soit
+  Oui. Si $\pi$  est un nombre univers comme certains en font l'hypothèse. Les décimales de $\pi$ contiendrait alors toutes les suites possibles et imaginables de chiffres, par exemple $x$ 5 successifs.
+	On écrit alors simplement l'algorthme suivant.
   \begin{algorithmic}
     \STATE print 1
   \end{algorithmic}
-  s'il y a une infinité de $5$ dans $\pi$,
-  soit
+
+  Si cependant $\pi$ n'est pas un nombre univers, alors il y a maximum $\mathbf{a}$ occurrences successives de $5$ dans $\pi$ et on écrit l'algorithme suivant.
   \begin{algorithmic}
-    \IF{$x \leq a$}
+    \IF{$x \leq \mathbf{a}$}
     \STATE print 1
     \ELSE
     \STATE print 0
     \ENDIF
   \end{algorithmic}
-  s'il y a exactement $a$ occurrences de $5$ dans $\pi$.
 
   Si on remplace ``au moins'' par ``exactement'', est-ce toujours calculable ?
-  Oui, il suffit de remplacer $\leq$ par $=$.
+  Oui, il suffit de remplacer $\leq$ par $=$ dans le second algorithme.
+	Dans tous les cas, un algorithme fournissant $f(x)$ comme résultat existe, bien que nous ne savons exactement pas duquel il s'agit.
 \end{myexem}
 
 \begin{myprop}
@@ -633,9 +634,9 @@ Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus 
 \begin{mytheo}[Rice]
 	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$,
   alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$.
-	
-	Si A est récursif et qu'il n'est ni vide, ni ne contient l'ensemble des programmes existant, 
-  alors il existe un programmes dans A et un programme $\stcomp{A}$ tel qu'ils calculent la même fonction. 
+
+	Si A est récursif et qu'il n'est ni vide, ni ne contient l'ensemble des programmes existant,
+  alors il existe un programmes dans A et un programme $\stcomp{A}$ tel qu'ils calculent la même fonction.
 \end{mytheo}
 
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
@@ -668,9 +669,9 @@ while true do;
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
 	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif).
 	\item $A\neq \emptyset$ par hypothèse.  Prenons un élément quelconque $m$ de cet ensemble  ($m\in A$)
-	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i\neq \varphi_j$.  Donc 
+	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i\neq \varphi_j$.  Donc
 		$\varphi_m \neq \varphi_k$.
-	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant. 
+	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant.
 		$P(z) \equiv $
 		\begin{lstlisting}
 P_n(x);
@@ -876,7 +877,7 @@ Pour commencer la démonstration, on va sortir 3 ``lapins'' d'un chapeau (analog
 
 	\item[$2^{eme}$ lapin:] $h(u,v)=\varphi_{S(u)}(v)$\\
 	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable.
-  
+
 	\item[$3^{eme}$ lapin:] Soit $g(u)=f(S(u))$\\
 	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
 		est la fonction donnée dans le théorème).
@@ -921,7 +922,7 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
 \end{center}
 
   \begin{proof}
-    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \N$.  Il suffit de montrer que si 
+    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \N$.  Il suffit de montrer que si
     $\forall i \in A, \forall j \in \bar{A} : \varphi_i \neq \varphi_j$  (1) alors A est non récursif. \\
     En supposant A récursif, on arrive à une contradiction.  En effet,
     soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
