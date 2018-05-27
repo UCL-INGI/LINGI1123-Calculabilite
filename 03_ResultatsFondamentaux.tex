@@ -80,7 +80,7 @@ Soit $A\subseteq \N$
 \end{mydef}
 
 \begin{myrem}
-	Le souci lorsque c'est récursivement énumérable,
+	Le souci avec les ensembles récursivement énumérables,
 	c'est que même si l'algorithme permet de dire si $x$ est dans $A$, si $x$
 	n'est pas dans $A$ on ne sait rien dire. En effet, on ne peut pas dire à un moment qu'on
 	arrête l'algorithme et que l'élément n'est pas dans $A$.
@@ -396,7 +396,7 @@ Par exemple, si $P_{32}$ se termine pour tout input, alors $halt(32, x)$ est cal
 
 \begin{myrem}
 	Cette partie du cours est très importante, car on a trouvé un ``trou dans le mur des fonctions calculables'' et on va étendre le trou (métaphore
-	de Mr Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer que d'autres fonctions sont calculables/non calculables. Par exemple	par réduction par rapport à halt: si on montre qu'une fonction équivalente à halt est calculable, alors halt est calculable.
+	de M. Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer que d'autres fonctions sont calculables/non calculables. Par exemple	par réduction par rapport à halt: si on montre qu'une fonction équivalente à halt est calculable, alors halt est calculable.
 \end{myrem}
 
 \begin{mydef}[HALT]
@@ -520,7 +520,7 @@ On suppose \textit{interpret} calculable dans Q.
 		d avec la donnée d. \\
 		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier.
 	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
-	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
+	n'est pas calculable dans Q, et donc $interpret$ n'est pas calculable dans $Q$.
 \end{enumerate}
 \end{proof}
 
@@ -545,7 +545,7 @@ On suppose \textit{interpret} calculable dans Q.
 
 \begin{myprop}
 	Dans un langage de programmation, il est donc impossible que
-	l'interpréteur et la fonction halt puissent être programmés dans ce langage.
+	l'interpréteur et la fonction halt puissent tous deux être programmés.
 \end{myprop}
 
 \begin{myprop}
@@ -575,14 +575,14 @@ On suppose \textit{interpret} calculable dans Q.
 \begin{mytheo}
 	Il existe une fonction partielle calculable g telle qu'aucune fonction totale calculable n'est une extension de g.
   \begin{proof}
-    Soit nbStep(n,x)  = nombre d'instructions exécutées par $\varphi_n(x)$.\\
-    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle calculable. S'il existe une extension totale calculable de cette fonction, alors la fonction halt serait calculable.\\
-    En effet, soit nbStepPrime(n,x) une extension totale calculable de nbStep. Pour calculer halt(n, x), il suffit d'exécuter nbStepPrime(n, x) instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que nbStepPrime(n,x)=nbStep(n,x) et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que nbStep(n,x)=$\bot$ et donc que $P_n(x)$ ne se termine pas. On a donc un algorithme pour calculer halt, ce qui est impossible.  Donc une telle extension totale de nbStep n'existe pas.
+    Soit $nbStep(n,x)$  = nombre d'instructions exécutées par $\varphi_n(x)$.\\
+    Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle calculable. S'il existe une extension totale calculable de cette fonction, alors la fonction $halt$ serait calculable.\\
+    En effet, soit $nbStepPrime(n,x)$ une extension totale calculable de $nbStep$. Pour calculer $halt(n,x)$, il suffit d'exécuter $nbStepPrime(n,x)$ instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que $nbStepPrime(n,x)=nbStep(n,x)$ et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que $nbStep(n,x)=\bot$ et donc que $P_n(x)$ ne se termine pas. On a donc un algorithme pour calculer $halt$, ce qui est impossible.  Donc une telle extension totale de $nbStep$ n'existe pas.
   \end{proof}
 \end{mytheo}
 
 \begin{myrem}
-	Ca implique que si on a une fonction partielle g, il n'est pas
+	Ceci implique que si on a une fonction partielle g, il n'est pas
 	toujours possible de créer une fonction totale f qui étend g
 	tel que en dehors du domaine de g, f retourne un code d'erreur.  En effet, si cette fonction f existait, halt serait calculable.
 \end{myrem}
@@ -596,6 +596,7 @@ Il est intéressant de pouvoir analyser un programme afin d'établir ses propri�
 
 Le théorème de Rice nous répond que \textbf{non}, toute propriété sémantique non triviale d'un programme est non calculable par un algorithme.
 
+
 Voici quelques exemples avant d'attaquer le cas général. Pour chaque exemple, nous pouvons démontrer la non-récursivité de l'ensemble par une réduction à HALT.
 
 Technique de réduction : 
@@ -604,7 +605,6 @@ Technique de réduction :
     \item Nous démontrons que si la fonction f est calculable, alors halt l'est aussi.
     \item La fonction f est donc non calculable.
 \end{enumerate}
-
 
 \begin{myexem}
 Soit la fonction :
@@ -667,9 +667,10 @@ Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus 
 \begin{mytheo}[Rice]
 	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$,
   alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$.
+	
+	Si A est récursif, qu'il n'est pas vide et qu'il ne contient pas l'ensemble des programmes existant, 
+  alors il existe un programme dans A et un programme dans $\stcomp{A}$ tel qu'ils calculent la même fonction. 
 
-	Si A est récursif et qu'il n'est ni vide, ni ne contient l'ensemble des programmes existant,
-  alors il existe un programmes dans A et un programme $\stcomp{A}$ tel qu'ils calculent la même fonction.
 \end{mytheo}
 
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
@@ -687,7 +688,7 @@ Nous avons que $\forall i \in A$ et $\forall j \in \stcomp{A}$, $\varphi_i \neq
 \varphi_j$. Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$.
 
 Dans cette démonstration, nous allons utiliser la méthode de réduction.
-Sous l'hypothèse que $A$ est récursif, on montrera que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}.  Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif.  Ce qui implique donc que $A$ ne peut pas être récursif.
+Sous l'hypothèse que $A$ est récursif, on montre que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}.  Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif.  Ce qui implique donc que $A$ ne peut pas être récursif.
 
 \begin{enumerate}
 	\item Construisons le programme suivant $P_k$ :
@@ -727,7 +728,7 @@ En résumé : si $d \in A$ alors l'exécution de $P_n(x)$ se termine, sinon l'ex
 		On peut alors écrire le programme suivant qui décide \textbf{HALT}.
 		 $halt(n,x) \equiv $
 		\begin{lstlisting}
-construire un programme P(z)= P_n(x); P_m(z)        ;
+construire un programme P(z)= P_n(x); P_m(z);
 d <- numero de P(z);
 if d in A then print(1);
 else print(0);
@@ -749,7 +750,7 @@ else print(0);
 		même fonction, mais l'un vérifie la propriété, et l'autre pas.
 
 	\item \textbf{Si} la propriété est vérifiée par un programme, mais pas tous,
-		\textbf{alors} cette propriété ne peut-être décidée pas un algorithme.
+		\textbf{alors} cette propriété ne peut-être décidée par un algorithme.
 
 	\item \textbf{S}'il existe un algorithme permettant de déterminer si un
 		programme quelconque calcule une fonction ayant cette propriété,
@@ -778,9 +779,9 @@ respectent une propriété. Voici quelques exemples et applications du théorèm
 					$P_i$ calcule la fonction f.
 	\item[$A_3 =$] $\{i| a \in \dom(\varphi_i)\}$ avec a fixé \\
 					$P_i(a)$ se termine.
-	\item[$A_4 =$] $\{i| \varphi_i(X) = \perp \text{pour tout X}\}$ avec f fixée \\
+	\item[$A_4 =$] $\{i| \varphi_i(X) = \perp \text{pour tout X}\}$ \\
 					$P_i$ calcule la fonction partielle vide.
-	\item[$A_5 =$] $\{i| a \in \text{image}(\varphi_i\})$ avec a fixé \\
+	\item[$A_5 =$] $\{i| a \in \image(\varphi_i)\}$ avec a fixé \\
 					$P_i$ donne au moins une fois le résultat a.
 	\item[$A_6 =$] $\{i| \image(\varphi_i) = \N\}$ \\
 					$P_i$ donne tous les résultats possibles.
@@ -874,7 +875,7 @@ Par le théorème \ref{S-m-n} (S-m-n),
 
 \begin{myrem}
 	Le théorème \ref{point-fixe} n'est pas très intuitif. Mais on peut le
-	voir comme : quel que soit un transformateur de programme T qui calcule f (n'importe quelle fonction totale calculable peut être vu comme un transformateur	de programme),
+	voir comme : quel que soit un transformateur de programme T qui calcule f (n'importe quelle fonction totale calculable peut être vue comme un transformateur	de programme),
 	il existe deux programmes $P_k$ et $P_j$ tels que
 	\begin{itemize}
 		\item $P_j$ est la transformation de $P_k$ via T,
@@ -1076,7 +1077,7 @@ d'autres problèmes non calculables. Il y a d'autres exemples sur les grammaires
 
 \begin{myprop}
 	Il existe des nombres réels non calculables qui peuvent être définis de
-	manière finie.
+	manière finie.\footnote{Par exemple l'Oméga de Chaitin, qui est défini comme étant la probabilité qu’un programme auto-délimité, généré aléatoirement, finisse par s'arrêter.}
 \end{myprop}
 
 % subsection nombres_calculables (end)

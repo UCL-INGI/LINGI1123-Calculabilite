@@ -13,7 +13,7 @@ Il y a deux grandes familles de modèles :
 	\item Modèle de langages (décide l'appartenance à un ensemble)
 \end{itemize}
 
-\subsection{Modèle de calcul}
+\subsection{Modèles de calcul}
 \label{ssub:mod_le_de_calcul}
 L'objectif est de modéliser le concept de fonctions calculables, processus de
 calcul, algorithme effectif.
@@ -40,10 +40,10 @@ On va voir les modèles de calcul suivant :
 Mais il en existe beaucoup d'autres.
 % subsubsection mod_le_de_calcul (end)
 
-\subsection{Modèle de langage}
+\subsection{Modèles de langage}
 \label{ssub:mod_le_de_langage}
-Un langage est défini par une grammaire formelle. L'objectif est de modéliser
-une classe de langage. Le langage est alors soit un ensemble récursif ou un
+Un langage est défini pas une grammaire formelle. L'objectif est de modéliser
+une classe de langages. Le langage est alors soit un ensemble récursif, soit un
 ensemble récursivement énumérable.
 
 % subsubsection mod_le_de_langage (end)
@@ -76,10 +76,10 @@ BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
 
 \begin{myprop}
 Tous les programmes BLOOP se terminent :\\
-	$ \Rightarrow$ BLOOP ne calcule que des fonctions totales\\
+    $ \Rightarrow$ BLOOP ne calcule que des fonctions totales\\
     $ \Rightarrow$ L'interpréteur est une fonction totale non calculable en
 BLOOP (Hoare-Allison)\\
-	$ \Rightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
+    $ \Rightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
     $ \Rightarrow$ BLOOP n'est pas un modèle complet de la calculabilité\\
 
 Cependant il existe un compilateur des programmes BLOOP (Java).\\
@@ -147,6 +147,7 @@ On considère l'approche 2 en calculabilité.
 		Cependant les branches pouvant être infinies, il est nécessaire d'explorer ces branches de l'\ arbre d'exécution en largeur d'abord (\textit{Breadth First Search}). La complexité temporelle du programme ainsi construit devient exponentielle.  En effet, un arbre de profondeur $k$ a un nombre exponentiel de noeuds.
 	\end{proof}
 \end{myprop}
+
 \paragraph{Exemple} : Le ND-programme à gauche (figure \ref{fig:ND_tree}) comporte 3 branches et  a une hauteur de 3. Il est tranformé en un programme D, à droite (fiure \ref{fig:D_tree}) qui a une longueur de 9. \\
 	\input{Images/ND_to_D_Exemple.tex}
 
@@ -178,7 +179,7 @@ On considère l'approche 2 en calculabilité.
 
 \end{myprop}
 
-\section{Automates finis (FA)}
+\section{Automates finis FA}
 \label{sub:automates_finis}
 
 \paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
@@ -198,13 +199,14 @@ Un automate fini est composé de :
 	\item $\delta: S \times \Sigma \rightarrow S$ : fonction de transition
 \end{itemize}
 
+
 \paragraph{Fonctionnement}
 \begin{itemize}
 	\item départ avec un état initial
 	\item parcours des symboles du mot d'entrée, un à un
 	\item à chaque symbole lu, l'état change (fonction de transition
 		$\delta$) en fonction de l'état courant et du symbole lu
-	\item état final est l'état après avoir parcouru tous les symboles en
+	\item l'état final est l'état après avoir parcouru tous les symboles en
 		entrée
 	\item l'état final peut-être acceptant ou non
 \end{itemize}
@@ -214,8 +216,28 @@ Un automate fini est composé de :
 	par un programme Java.
 \end{myrem}
 
+\begin{myprop}
+	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
+		accepté par FA$\}$
+\end{myprop}
+
+\begin{myprop}
+	Certains ensembles récursifs ne peuvent pas être reconnus par un
+	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (parce qu'il nécessiterait un nombre infini d'états)
+\end{myprop}
+
+\begin{myprop}
+	L'interpréteur des automates finis est calculable, mais ne peut pas être
+	représenté par un automate fini, car ce n'est pas un \textbf{modèle
+	complet} de la calculabilité (Hoare-Allison)
+\end{myprop}
+
+\begin{mydef}[Langage régulier] Un langage régulier est un langage défini par une expression
+	régulière.
+\end{mydef}
+
 \paragraph{Exemple}
-Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié part l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
 \begin{figure}[h]
 	\centering
@@ -223,14 +245,14 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
 		\node[draw,minimum height=2cm,circle] (B) at (4,0) {déverouillé};
 		\draw (0,-1.75) node {$\bullet$};
-
+		
 		\draw[->,>=stealth,thick] (0,-1.75) -- (0,-1);
-
+		
 		\draw[->,>=latex] (A) to[out=45,in=135] (B);
 		\draw[->,>=latex] (B) to[out=-135,in=-45] (A);
 		\draw[->,>=latex] (-0.7071,0.7071) arc(45:315:1);
 		\draw[->,>=latex] (4.73,-0.7071) arc(-135:135:1);
-
+		
 		\draw (-1.5,0.9) node[above] {pousser};
 		\draw (2,-1.25) node[below] {pousser};
 		\draw (2,1.25) node[above] {jeton};
@@ -241,9 +263,10 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\label{diagrammeetat}
 \end{figure}
 
+
 \begin{table}[h]
 	\centering
-
+	
 	\begin{tabular}{|l|l|l|}
 		\hline
 		& Pousser    & Jeton       \\ \hline
@@ -252,13 +275,13 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\end{tabular}
 	\caption{Fonction de transition du portillon}
 	\label{FTPortillon}
-\end{table}
+\end{table}  
 
-Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peut prendre qu'un object avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peux pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive. P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
+Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peut prendre qu'un objet avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peut pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive, P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
 La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.4\textwidth]{Images/ChevreLoupSalade.jpg}
+	\includegraphics[width=0.4\textwidth]{Images/567px-ChevreLoupSalade.jpg}
 	\caption{Diagramme d'état du passeur \\{\footnotesize Par ManiacParisien — Travail personnel, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=47815891}}
 	\label{Salade}
 \end{figure}
@@ -307,13 +330,11 @@ La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 \label{ssub:automate_fini_nd}
 \paragraph{NDFA} On étend le modèle en permettant d'avoir plusieurs transitions possibles pour
 une paire <état,symbole>. Ce qui implique que plusieurs exécutions sont
-possibles. On a donc plus une fonction de transition mais on a maintenant une
-relation de transition.
+possibles. On a donc plus une fonction de transition mais une relation de transition.
 
-\paragraph{} De même que pour un ND programme, un mot est accepté par un NDFA
+\paragraph{} De même, pour un ND programme, un mot est accepté par un NDFA
 s'il existe au moins une exécution où l'état final est acceptant. Dans l'autre
-sens, un
-mot n'est pas accepté si aucune exécution ne se termine avec l'état final
+sens, un mot n'est pas accepté si aucune exécution ne se termine avec l'état final
 acceptant.
 
 \begin{myprop}
@@ -356,7 +377,7 @@ relation de transition.
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
 	\item $A \subseteq S$ : ensemble des états acceptants
-	\item $\Delta \subset S \times \Sigma \times \Gamma \times S \times
+	\item $\Delta \subset S \times \Sigma \times \Gamma \rightarrow S \times
 		\Gamma^*$ : relation de transition (finie)
 \end{itemize}
 
@@ -383,14 +404,10 @@ relation de transition.
 \end{myprop}
 
 \begin{proof}
-Par exemple $\{a^n b^n a^n | n\geq 1\}$ : notre automate doit d'abord retenir le nombre $n$ dans la première série de $a$, puis vérifier qu'il y a bien $n$ occurrences de $b$ puis $n$ occurrences de $a$ dans la deuxième série. Le seul moyen de retenir $n$ est d'empiler un symbole dans la pile chaque fois qu'on lit un $a$, de sorte à avoir $n$ symboles empilés après la première série de $a$.
+	Par exemple $\{a^n b^n a^n | n\geq 1\}$ : notre automate doit d'abord retenir le nombre $n$ dans la première série de $a$, puis vérifier qu'il y a bien $n$ occurrences de $b$ puis $n$ occurrences de $a$ dans la deuxième série. Le seul moyen de retenir $n$ est d'empiler un symbole dans la pile chaque fois qu'on lit un $a$, de sorte à avoir $n$ symboles empilés après la première série de $a$.
 
-Ensuite, on enlève un symbole chaque fois qu'on lit un $b$, sachant qu'on doit arriver au bout de la série de $b$ en même temps qu'on arrive au fond de la pile. Mais impossible alors de savoir combien d'occurrence de $a$ il faut compter dans la deuxième série de $a$, on ne connaît plus le nombre $n$ !
+	Ensuite, on enlève un symbole chaque fois qu'on lit un $b$, sachant qu'on doit arriver au bout de la série de $b$ en même temps qu'on arrive au fond de la pile. Mais impossible alors de savoir combien d'occurrence de $a$ il faut compter dans la deuxième série de $a$, on ne connaît plus le nombre $n$ !
 \end{proof}
-
-\begin{myrem}
-Certains ensembles sont reconnues par un NDFA mais pas par un FA. Par exemple : $\{a^n b^n \mid n\geq 0\}$ (il peut être reconnu par un NDFA en suivant l'algorithme de la démonstration précédente).
-\end{myrem}
 
 \begin{myprop}
 	Les automates à pile sont plus puissants que les automates finis (ils
@@ -494,7 +511,6 @@ Ce même exemple peut être représenté par un arbre syntaxique :
 \end{center}
 \end{myexem}
 
-
 \begin{mydef}[Dériver] Appliquer des règles de la grammaire pour vérifier
 	si une chaîne de symbole appartient au langage (on part d'une chaîne de symboles
 	et on vérifie les règles sur celle-ci).
@@ -525,7 +541,7 @@ Chomsky a défini 4 types de grammaires formelles. On peut les classer selon
 leur ``puissance''.
 
 \begin{mydef}[Puissance d'une grammaire]
-	Une grammaire A est plus puissante qu'une B si on peut définir plus
+	Une grammaire A est plus puissante qu'une grammaire B si on peut définir plus
 	de langages avec A qu'avec B.
 \end{mydef}
 
@@ -566,12 +582,12 @@ grammaire.
 \end{itemize}
 
 \begin{myexem} Règles de dérivation :
-\begin{itemize}
-\item $S \rightarrow abS$
-\item $S \rightarrow \epsilon$
-\end{itemize}
-Cette grammaire définit le langage $L1 =
-\{(ab)^n \ | \ n \geq 0\}$. Ce langage peut-être aussi défini par une expression
+	\begin{itemize}
+		\item $S \rightarrow abS$
+		\item $S \rightarrow \epsilon$
+	\end{itemize}
+	Cette grammaire définit le langage $L1 =
+	\{(ab)^n \ | \ n \geq 0\}$. Ce langage peut-être aussi défini par une expression
 	régulière : $L1 = (ab)^*$.
 \end{myexem}
 
@@ -593,11 +609,11 @@ variables pour définir la syntaxe d'un langage de programmation.
 \end{itemize}
 
 \begin{myexem} Règle de dérivation :
-\begin{itemize}
-\item $S \rightarrow aSb$
-\item $S \rightarrow \epsilon$
-\end{itemize}
-Le langage défini par cette grammaire est $L1 = \{a^nb^n|n\geq 0\}$.
+	\begin{itemize}
+		\item $S \rightarrow aSb$
+		\item $S \rightarrow \epsilon$
+	\end{itemize}
+	Le langage défini par cette grammaire est $L1 = \{a^nb^n|n\geq 0\}$.
 \end{myexem}
 
 \subsection{Grammaires sensibles au contexte}
@@ -615,14 +631,14 @@ Le langage défini par cette grammaire est $L1 = \{a^nb^n|n\geq 0\}$.
 \end{itemize}
 
 \begin{myexem} Règles de dérivation :
-\begin{itemize}
-\item $S \rightarrow aSBA$
-\item $S \rightarrow abA$
-\item $AB \rightarrow BA$
-\item $bB \rightarrow bb$
-\item $bA \rightarrow ba$
-\item $aA \rightarrow aa$
-\end{itemize}
+	\begin{itemize}
+		\item $S \rightarrow aSBA$
+		\item $S \rightarrow abA$
+		\item $AB \rightarrow BA$
+		\item $bB \rightarrow bb$
+		\item $bA \rightarrow ba$
+		\item $aA \rightarrow aa$
+	\end{itemize}
 	Le langage défini par cette grammaire est $L1 =
 	\{a^nb^na^n|n \geq 0\}$.
 \end{myexem}
@@ -667,14 +683,14 @@ d'algorithmes ou encore de calculs.
 Le contrôleur est composé d'un nombre d'états fini dont un état initial et un
 final. Il contient un programme (des instructions).
 
-\begin{mydef}[Une instruction] est sous la forme
+\begin{mydef}[Une instruction] Une instruction a la forme
 	$$<q,c> \quad \rightarrow \quad <new_q, Mouv, new_c>$$
 	\begin{itemize}
 		\item $q$ : état courant
 		\item $c$ : symbole sous la tête de lecture
-        \item $new_q$ : le nouvel état
+		\item $new_c$ : symbole à écrire sous la tête de lecture
 		\item $Mouv$ : G ou D, mouvement que la tête de lecture doit faire
-        \item $new_c$ : symbole à écrire sous la tête de lecture
+		\item $new_q$ : le nouvel état
 	\end{itemize}
 \end{mydef}
 
@@ -709,7 +725,7 @@ ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
 
 \begin{myexem}
 Étant donné qu'une machine de Turing peut calculer une fonction, il existe un nombre important de machine de Turing. Celles-ci peuvent avoir des fonctions allant du 'très simple' au 'très complexe'. Par exemple une machine de Turing peut déterminer si un nombre est pair ou impair (en regardant si le dernier bit est égal à zéro ou à un), vérifier si le nombre est un multiple de 42, multiplier un chiffre par deux (il suffit de positionner la tête de lecture à droite et d'ajouter un zéro) ou encore calculer la fonction \textit{f(x) = x + 1}. Et c'est cette dernière fonction qui va vous être exposée.\\
-Pour ce faire, il faudra faire deux actions : positionner la tête de lecture à droite et ensuite effectuer l'addition via le report des bits à 1.
+Pour cela, il faudra faire deux actions : positionner la tête de lecture à droite et ensuite effectuer l'addition via le report des bits à 1.
 \vspace{4pt} \\
 Positionner la tête de lecture : \\
 \begin{tabular}{|c|c|c|c|c|}
@@ -827,7 +843,7 @@ symboles dans $\Sigma$.
 
 \paragraph{Autres rubans}
 
-Ruban unidirectionnel, c'est-à-dire limité d'un côté (à priori à gauche).
+Ruban unidirectionnel, c'est-à-dire limité d'un coté (à priori à gauche).
 
 \paragraph{Influence :}
 \begin{itemize}
@@ -848,7 +864,7 @@ implique que la taille de l'alphabet augmente ($\Sigma \times \Sigma \times ...$
 	\item Même efficacité : prendre un alphabet plus grand et une case est équivalent à un plus petit alphabet avec plusieurs cases.
 \end{itemize}
 
-\paragraph{Plusieurs rubans} Chaque ruban à sa propre tête.
+\paragraph{Plusieurs rubans} Chaque ruban a sa propre tête.
 On doit changer la relation de transition, car un état est défini par les positions
 de toutes les têtes. Le relation doit maintenant prendre l'état ($E$) et plusieurs
 symboles ($s_1,...,s_n$) et retourner un état ($E'$), plusieurs symboles
@@ -1041,19 +1057,22 @@ obtenues suite à l'application de composition ou de récursion primitive.
 \paragraph{} Le langage est dépourvu de boucle.
 
 \begin{myprop}
-	Il existe des fonctions totales calculables qui ne sont pas primitives récursives :
+	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
 \end{myprop}
-\paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction. Elle ne peut donc pas être exprimée.
+\paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction.\footnote{
+En utilisant la notation des puissances itérées de Knuth, cela est rigoureusement possible.
+}
+Elle ne peut donc pas être exprimée.
 
 \begin{myprop}
 	L'interpréteur des fonctions primitives récursives n'est pas une fonction primitive récursive
 \end{myprop}
-\paragraph{} Selon le théorème de Hoare-Allison, que son interpréteur n'est pas calculable car ce n'est pas une fonction totale calculable.
+\paragraph{} Selon le théorème de Hoare-Allison, son interpréteur n'est pas calculable car ce n'est pas une fonction totale calculable.
 
 \begin{myprop}
 	Le modèle des fonctions primitives récursives n'est pas un modèle complet de la calculabilité.
 \end{myprop}
-\paragraph{} Les fonctions primitives récursives ne sont pas un modèle de complet de
+\paragraph{} Les fonctions primitives récursives ne sont pas un modèle complet de
 	la calculabilité. En effet, il ne peut pas y avoir de récursion
 	infinie. On ne peut donc calculer avec ce modèle que des fonctions
 	totales calculables.
@@ -1085,15 +1104,14 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	\end{align*}
 	\\
 	\textbf{Soustraction} Revient à prendre un prédécesseur.
-
-	Complexité de n.
-	\begin{align}
+	Complexité de n. 
+	\begin{align*}
 	pred (0) &= 0 \\
 	pred (n+1) &= n \\
 	moins (m, 0) &= m \\
 	moins (m, n+1) &= pred (moins (m, n))
-	\end{align}
-
+	\end{align*}
+	
 	\textbf{Comparaison} 0 pour 0 sinon 1 pour le positif.
 	m, n booléen signe de m - n
 	\begin{align*}
@@ -1115,10 +1133,10 @@ obtenues suite à l'application de composition ou de récursion primitive.
 	\end{align*}
 	Cette fonction a une croissance plus rapide que n'importe quelle fonction
 	primitive récursive :
-    \begin{align*}
-    ack(1,m) = m+2,\qquad ack(2,m) = 2m+3,\qquad ack(3,m)=2^{m+3}-3\\
-	ack(4,1) \cong 64 000,\qquad ack(4,2) \cong 2^{19200},\qquad ack(4,3) \cong \dots
-    \end{align*}
+	\begin{align*}
+		ack(1,m) = m+2,\qquad ack(2,m) = 2m+3,\qquad ack(3,m)=2^{m+3}-3\\
+		ack(4,1) \cong 64 000,\qquad ack(4,2) \cong 2^{19200},\qquad ack(4,3) \cong \dots
+	\end{align*}
 \end{myexem}
 
 
@@ -1152,7 +1170,7 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 	et qui contient la base de la programmation fonctionnelle.
 \end{myrem}
 
-\begin{myrem}[Pourquoi le lambda calcul?]
+\begin{myrem}[Pourquoi le lambda calcul ?]
 	Pour deux raisons:
 	\begin{enumerate}
 		\item parce que c'est le formalisme de calcul le plus abstrait,
@@ -1161,10 +1179,10 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 \end{myrem}
 
 \begin{mydef}[Symboles de base] Soit une variable : $a,b,c,...y,z,...$ ou un
-	symbole spécial : $\lambda, (, )$
+	symbole spécial : $\lambda, (, )$.
 \end{mydef}
 
-\begin{mydef}[Expression lambda] est l'une des 3 choses suivantes :
+\begin{mydef}[Expression lambda] Une expression lambda est l'une des 3 choses suivantes :
 	\begin{itemize}
 		\item une variable
 		\item $\lambda xB$ si $B$ est une expression lambda et que $x$ est
@@ -1179,11 +1197,11 @@ On va étendre les fonctions primitives récursives en ajoutant une règle :
 	\end{itemize}
 \end{mydef}
 
-\begin{mydef}[Variable liée] est une variable qui suit un $\lambda$ ou qui
-	apparait dans $M$ et qu'on a $\lambda xM$.
+\begin{mydef}[Variable liée] Une variable liée est une variable qui suit un $\lambda$ ou qui
+	apparait dans $M$ et dans $\lambda xM$.
 \end{mydef}
 
-\begin{mydef}[Variable libre] est une variable qui n'est pas liée.
+\begin{mydef}[Variable libre] Une variable libre est une variable qui n'est pas liée.
 \end{mydef}
 
 \subsection{Réduction}
@@ -1264,3 +1282,4 @@ $$\begin{array}{ll}
 \end{myexem}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)
+
