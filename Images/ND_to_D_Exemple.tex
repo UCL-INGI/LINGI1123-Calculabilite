@@ -1,7 +1,7 @@
 \begin{minipage}{0.35\textwidth}
   \centering
   \begin{tikzpicture}[every node/.style = {shape=circle, draw,
-                       top color=white, bottom color=blue!20},
+                       top color=white, bottom color=blue!20, inner sep=2.5pt},
                        level distance = 3em,
                           level 1/.style = {sibling distance=12mm},
                           level 2/.style = {sibling distance=12mm},
@@ -26,18 +26,18 @@
         }
         };
   \end{tikzpicture}
-  \captionof{figure}{ND-programme}
+  \captionof{figure}{ND-programme    \label{fig:ND_tree}}
 \end{minipage}
 \begin{minipage}{0.1\textwidth}	$\quad \Longrightarrow \quad $ \end{minipage}
 \begin{minipage}{0.55\textwidth}
 \begin{tikzpicture}[every node/.style = {shape=circle, draw,
-                   top color=white, bottom color=blue!20},
-                   level distance = 0em,
-                   sibling distance=18mm,
+                   top color=white, bottom color=blue!20, inner sep=2.5pt},
+                   level distance = 2.5em,
+                   sibling distance=0mm,
                    ]
     \node {1}
   child[missing]{node{}}
-  child { node {2}
+  child[grow=right] { node {2}
     child[missing]{node{}}
     child { node {3}
       child[missing]{node{}}
@@ -61,5 +61,6 @@
     }
     };
 \end{tikzpicture}
-\captionof{figure}{D-programme}
+\captionof{figure}{D-programme  \label{fig:D_tree}
+}
 \end{minipage}
