@@ -36,7 +36,7 @@ que 3 :
 	\item réduction polynomiale
 \end{itemize}
 
-\begin{mydef}[A-complet]
+\begin{mydef}[$A$-complet]
 	Soit $A$ une classe de problème, un problème $E$ est $A$-complet
 	\textbf{par rapport} à une relation de réduction $\leq$ si
 	\begin{enumerate}
@@ -50,7 +50,7 @@ que 3 :
 	est $A$-difficile.
 \end{myrem}
 
-\begin{mydef}[A-difficile]
+\begin{mydef}[$A$-difficile]
 	Soit $A$ une classe de problème, un problème $E$ est $A$-difficile
 	\textbf{par rapport} à une relation de réduction $\leq$ si
 	\begin{enumerate}
@@ -329,12 +329,17 @@ introduit donc une nouvelle réduction, la réduction polynomiale.
 \end{mydef}
 
 \begin{myprop}
-	\[ E \leq_p B \text{ et } B\in NP \Rightarrow \text{$B$ est $NP$-complet} \]
+	Soit $E$ un ensemble $NP$-complet, \[ E \leq_p B \text{ \textbf{et} } B\in NP \Rightarrow \text{$B$ est $NP$-complet} \]
 	Ce qui est logique puisque ça veut dire que $B$ est $NP$-difficile et dans
 	$NP$.
 \end{myprop}
-
-TODO schéma sur les classes de problèmes
+En supposant $P \ne NP$, on peut représenter les différents classes de problèmes comme sur la figure \ref{fig:classe_prob}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Images/classes_prob.png}
+	\caption{Classes de problèmes (en supposant $P \ne NP$)}
+	\label{fig:classe_prob}
+\end{figure}
 
 \paragraph{} On va maintenant essayer de trouver des problèmes $NP$-complets et de
 trouver des propriétés intéressantes sur $P$.
@@ -434,4 +439,3 @@ même chose pour les états, le curseur, l'alphabet,...
 	\item Programmation entière (simplexe)
 	\item ...
 \end{itemize}
-
