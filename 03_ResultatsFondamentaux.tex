@@ -588,7 +588,15 @@ Il est intéressant de pouvoir analyser un programme afin d'établir ses propri�
 
 Le théorème de Rice nous répond que \textbf{non}, toute propriété sémantique non triviale d'un programme est non calculable par un algorithme.
 
-Pour le démontrer, on utilisera la réduction à halt. Voici quelques exemples avant d'attaquer le cas général :
+Voici quelques exemples avant d'attaquer le cas général. Pour chaque exemple, nous pouvons démontrer la non-récursivité de l'ensemble par une réduction à HALT.
+
+Technique de réduction : 
+\begin{enumerate}
+    \item Nous savons que la fonction halt est non calculable.
+    \item Nous démontrons que si la fonction f est calculable, alors halt l'est aussi.
+    \item La fonction f est donc non calculable.
+\end{enumerate}
+
 
 \begin{myexem}
 Soit la fonction :
@@ -598,8 +606,13 @@ f(n) =\left\{\begin{tabular}{l}
         $0$ sinon.
 	\end{tabular}\right.
 \end{equation*}
-En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit $d$ le numéro du programme qui appelle $P_n(x)$ pour tout input. On retrouve halt en appelant $P_f(d)$ et en retournant $1-P_f(d)$.\\
-Conclusion : $f$ n'est pas calculable.
+
+En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
+		\begin{lstlisting}
+		- Construire le programme $P(z) \equiv P_{n}(x)$
+		- Soit d le numéro de $P(z)$
+		- Si F(d) = 1 alors print(0) sinon print(1)
+		\end{lstlisting}
 \end{myexem}
 
 \begin{myexem}
@@ -610,8 +623,14 @@ f(n) =\left\{\begin{tabular}{l}
         $0$ sinon.
 	\end{tabular}\right.
 \end{equation*}
-En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit $d$ le numéro du programme $Q$ qui pour un input $y$, appelle $P_n(x)$ puis renvoit $y$. Si $P_n(x)$ s'arrête, $Q$ renverra toujours son input donc $f(d)=1$. Sinon, $Q$ renverra toujours $\bot$ donc $f(d)=0$. Il suffit d'appeler $f(d)$ pour avoir $halt(n,x)$.\\
-Conclusion : $f$ n'est pas calculable.
+En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
+		\begin{lstlisting}
+		- Construire le programme $P(z) \equiv P_{n}(x); return z;$
+		- Soit d le numéro de $P(z)$
+		- Si F(d) = 1 alors print(1) sinon print(0)
+		\end{lstlisting}
+
+Si $P_n(x)$ s'arrête, $P(z)$ renverra toujours son input donc $F(d)$ renverra 1. Sinon, renverra $F(d)$ renverra 0. 
 \end{myexem}
 
 \begin{myexem}
@@ -622,8 +641,15 @@ f(n,m) =\left\{\begin{tabular}{l}
         $0$ sinon.
 	\end{tabular}\right.
 \end{equation*}
-En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit $d_1$ le numéro du programme qui appelle $P_n(x)$ pour tout input et $d_2$ le numéro du programme \lstinline{while true}. Si $P_n(x)$ s'arrête, $f(d_1,d_2)=0$. Sinon, $\varphi_{d_1}=\varphi_{d_2}$ et donc $f(d_1,d_2)=1$. Il suffit de renvoyer $1-f(d_1,d_2)$ pour avoir halt.\\
-Conclusion : $f$ n'est pas calculable.
+En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
+		\begin{lstlisting}
+		- Construire le programme $P_{d}(z) \equiv P_{n}(x); $
+		- Construire le programme $P_{d'}(z) \equiv \lstinline{while true do;} $
+		- Soit d le numéro de $P_{d}(z)$, et d' le numéro de $P_{d'}(z)$.
+		- Si F(d,d') = 1 alors print(0) sinon print(1)
+		\end{lstlisting}
+
+Si $P_n(x)$ s'arrête, $F(d,d')=0$. Sinon, $\varphi_{d}=\varphi_{d'}$ et donc $F(d,d')=1$. Il suffit de renvoyer $1-f(d,d')$ pour avoir Halt.
 \end{myexem}
 
 \subsection{Énoncé et démonstration}
