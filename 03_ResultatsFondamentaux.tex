@@ -111,7 +111,7 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myprop}
-	$A$ est un ensemble récursivement énumérable ssi $A = \dom(f)$ et $f$ est une fonction (totale ou partielle) calculable.
+	$A$ est un ensemble récursivement énumérable ssi $A = \dom(f)$ où $f$ est une fonction (totale ou partielle) calculable.
 
     \begin{proof}
       Supposons que $f$ est calculable avec $A=\dom(f)$. Alors
@@ -156,7 +156,7 @@ Soit $A\subseteq \N$
 \end{myprop}
 
 \begin{myprop}
-	$A$ récursif $\Rightarrow$ ($\N \setminus A$) récursif.\\ On peut facilement créer
+	$A$ récursif $\Rightarrow$ $\stcomp{A}$ récursif.\\ On peut facilement créer
 		un programme qui retourne 1 - le programme qui décide $A$.
 \end{myprop}
 
@@ -164,14 +164,19 @@ Soit $A\subseteq \N$
     Si $A$ est récursivement énumérable et co-récursivement énumérable ($\stcomp{A}$ récursivement énumérable)
     alors $A$ est récursif.
     \begin{proof}
-      Il suffit de créer un programme $Q$ qui, pour décider récursivement si $x \in A$, appelle le programme qui décide $A$ et le programme qui décide $\stcomp{A}$ dans deux threads et renvoie 1 si $x \in A$ et 0 si $x \in \stcomp{A}$. En effet, si $A$ et $\stcomp{A}$ sont récursivement énumérables, un des deux appels finira tôt ou tard par dire si x appartient à $A$ ou non.
+      Il suffit de créer un programme $Q$ qui, pour décider récursivement si $x \in A$, 
+	  appelle le programme qui décide $A$ et le programme qui décide $\stcomp{A}$ dans deux 
+	  threads et renvoie 1 si $x \in A$ et 0 si $x \in \stcomp{A}$. En effet, on a 
+	  $x \in A$ ou $x \in \stcomp{A}$. Dès lors, si $x \in A$ alors le programme qui décide 
+	  $A$ se finira, et si $x \in \stcomp{A}$ alors c'est l'autre programme qui se terminera. 
+	  $A$ est donc bien un ensemble récursif.
     \end{proof}
 \end{myprop}
 
 \begin{myprop}
 	$A$ fini $\Rightarrow$ $A$ récursif.
     \begin{proof}
-      Si l'ensemble est $a_0, \ldots, a_n$, le programme suivant marche
+      Si $A= {a_0, \ldots, a_n}$, alors le programme suivant énumère tous ces éléments
       \begin{algorithmic}
         \IF{$x = a_0$}
         \STATE print 1
@@ -189,7 +194,7 @@ Soit $A\subseteq \N$
 % Une fonction dont le domaine est un ensemble récursif en input est-elle calculable: non
 
 \begin{myprop}
-	($\N \setminus A$) fini $\Rightarrow$ $A$ récursif. (Comme propriété précédente)
+	$\stcomp{A}$ fini $\Rightarrow$ $A$ récursif. (Comme propriété précédente)
 \end{myprop}
 
 \begin{myexem}
@@ -385,12 +390,18 @@ On va maintenant montrer que ce n'est pas parce que la table d'une fonction est 
 Par exemple un langage qui ne permet de calculer
 que des fonctions totales (exemple java sans aucune boucle), halt est calculable (halt retourne toujours 1). \\
 
-De plus, il faut faire attention, car ce n'est pas parce que halt n'est pas calculable que pour un programme donné k, $halt(k,x)$ est non calculable. Par exemple $halt(32,123)$ est une fonction constante donc calculable (ce n'est pas pour autant qu'on est capable d'écrire l'algorithme), $halt(32,x)$ peut-être calculable, mais ça dépend du programme 32, par exemple si celui-ci est constant.
+De plus, il faut faire attention, car ce n'est pas parce que halt n'est pas calculable que pour un programme donné k, $halt(k,x)$ est non calculable. 
+Par exemple, si $P_{32}$ se termine pour tout input, alors $halt(32, x)$ est calculable (ce n'est pas pour autant qu'on est capable d'écrire l'algorithme).
 
 \begin{myrem}
 	Cette partie du cours est très importante, car on a trouvé un ``trou dans le mur des fonctions calculables'' et on va étendre le trou (métaphore
 	de Mr Deville). C'est-à-dire que maintenant on va utiliser halt pour montrer que d'autres fonctions sont calculables/non calculables. Par exemple	par réduction par rapport à halt: si on montre qu'une fonction équivalente à halt est calculable, alors halt est calculable.
 \end{myrem}
+
+\begin{mydef}[HALT]
+	HALT est l'ensemble des programmes k et des valeurs x tel que le programme k se termine avec l'entrée x.
+	\[ HALT = \{(n,x)|P_n(x)\text{se termine}\}\]
+\end{mydef}
 
 Il existe donc au moins un ensemble non récursif
 K.
@@ -404,11 +415,6 @@ K.
 	\end{tabular}
 
 	$K$ est donc l'ensemble des programmes $P_n$ qui se terminent en recevant comme entrée leur numéro de programme.
-\end{mydef}
-
-\begin{mydef}[HALT]
-	HALT est l'ensemble des programmes k et des valeurs x tel que le programme k se termine avec l'entrée x.
-	\[ HALT = \{(n,x)|P_n(x)\text{ se termine}\}\]
 \end{mydef}
 
 \begin{myprop}
@@ -473,7 +479,7 @@ Pourquoi ne créerions nous pas un langage qui ne peut en aucun cas boucler à l
 Un exemple de modèle de calcul ne permettant que le calcul de fonctions totales est par exemple \textbf{BLOOP} ou encore \textbf{MiniJava}, c'est-à-dire Java sans récursivité ni boucle while et où les boucles for ne peuvent modifier le compteur de boucle.
 \end{myexem}
 
-Posons Q un langage (\textbf{non trivial}, langage ou les opérations de base tel que l'addition peuvent être effectuées) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour lequel il existe un interpréteur calculable, $interpret(n,x){} =\varphi'_n$, où
+Posons Q un langage (\textbf{non trivial}, langage ou les opérations de base tel que l'addition peuvent être effectuées) dont tous les programmes se terminent (ils ne calculent que des fonctions totales) et pour lequel il existe un interpréteur calculable, $interpret(n,x){} =\varphi'_n(x)$, où 
 $\varphi'_n$ est la fonction calculée par le programme $Q_n$. En partant du fait que tous les programmes se terminent, l'interpréteur est donc une fonction totale puisqu'il donne toujours une réponse.
 
 \begin{mytheo}[Hoare-Allison]
@@ -514,7 +520,6 @@ On suppose \textit{interpret} calculable dans Q.
 		On obtient donc $interpret(d,d)+1 = interpret(d,d)$, ce qui est impossible car $interpret(d,d)$ est un entier.
 	\item Conclusion : $diag'$ n'est pas calculable dans $Q$, donc $diag$
 	n'est pas calculable dans Q, et donc interpret n'est pas calculable dans $Q$.
-
 \end{enumerate}
 \end{proof}
 
@@ -557,6 +562,8 @@ On suppose \textit{interpret} calculable dans Q.
 	\[ \theta(n,x) = \varphi_n(x) \]
     est calculable, c'est à dire qu'il existe $z$ tel que $P_z$ calcule l'interpréteur universel,
     c'est à dire $\varphi_z = \theta$.
+	%Je pense qu'il y a un soucis car on a theta(n, x) = phi_n(x), donc phi_z(x) = theta(z, x).
+	% Comment peut on avoir phi_z = theta si on a theta(z+1, x) = phi_{z+1}(x) ? 
 \end{mytheo}
 
 % subsection insuffisance_des_fonctions_totales (end)
@@ -569,7 +576,7 @@ On suppose \textit{interpret} calculable dans Q.
   \begin{proof}
     Soit nbStep(n,x)  = nombre d'instructions exécutées par $\varphi_n(x)$.\\
     Cette fonction vaut $\bot$ si $P_n(x) = \bot$. Il s'agit donc d'une fonction partielle calculable. S'il existe une extension totale calculable de cette fonction, alors la fonction halt serait calculable.\\
-    En effet, soit nbStepPrime(n,x) une extension totale calculable de nbStep. Pour calculer halt(n,x), il suffit d'exécuter nbStepPrime(n,x) instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que nbStepPrime(n,x)=nbStep(n,x) et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que nbStep(n,x)=$\bot$ et donc que $P_n(x)$ ne se termine pas. On a donc un algorithme pour calculer halt, ce qui est impossible.  Donc une telle extension totale de nbStep n'existe pas.
+    En effet, soit nbStepPrime(n,x) une extension totale calculable de nbStep. Pour calculer halt(n, x), il suffit d'exécuter nbStepPrime(n, x) instructions de $P_n(x)$.  Si à cette étape $P_n(x)$ s'arrête, c'est que nbStepPrime(n,x)=nbStep(n,x) et que $P_n(x)$ se termine.  Si $P_n(x)$ ne s'arrête pas à cette étape, c'est que nbStep(n,x)=$\bot$ et donc que $P_n(x)$ ne se termine pas. On a donc un algorithme pour calculer halt, ce qui est impossible.  Donc une telle extension totale de nbStep n'existe pas.
   \end{proof}
 \end{mytheo}
 
@@ -657,8 +664,8 @@ Si $P_n(x)$ s'arrête, $F(d,d')=0$. Sinon, $\varphi_{d}=\varphi_{d'}$ et donc $F
 Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus A$.
 
 \begin{mytheo}[Rice]
-	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$,
-  alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$.
+	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$
+	alors $\exists i \in A$ et $\exists j \in \stcomp{A}$ tel que $\varphi _i = \varphi _j$
 	
 	Si A est récursif et qu'il n'est ni vide, ni ne contient l'ensemble des programmes existant, 
   alors il existe un programmes dans A et un programme $\stcomp{A}$ tel qu'ils calculent la même fonction. 
@@ -679,7 +686,7 @@ Nous avons que $\forall i \in A$ et $\forall j \in \stcomp{A}$, $\varphi_i \neq
 \varphi_j$. Supposons $A$ récursif, $A \neq \emptyset$ et $A\neq \N$.
 
 Dans cette démonstration, nous allons utiliser la méthode de réduction.
-Sous l'hypothèse que $A$ est récursif, on montrer que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}.  Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif.  Ce qui implique donc que $A$ ne peut pas être récursif.
+Sous l'hypothèse que $A$ est récursif, on montrera que \textbf{HALT} est récursif en construisant un programme qui décide \textbf{HALT}.  Cela amène alors à une contradiction, car on sait que \textbf{HALT} n'est pas récursif.  Ce qui implique donc que $A$ ne peut pas être récursif.
 
 \begin{enumerate}
 	\item Construisons le programme suivant $P_k$ :
@@ -694,8 +701,8 @@ while true do;
 	$A$ ou $\stcomp{A}$ est non récursif revient au même, car $A$ non
 	récursif $ \Leftrightarrow $ $\stcomp{A}$ non récursif).
 	\item $A\neq \emptyset$ par hypothèse.  Prenons un élément quelconque $m$ de cet ensemble  ($m\in A$)
-	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i\neq \varphi_j$.  Donc 
-		$\varphi_m \neq \varphi_k$.
+	\item Par hypothèse  $\forall i \in A, \forall j \in \stcomp{A}$ $\varphi_i \neq \varphi_j$.  Donc 
+		$\forall m \in A : \varphi_m \neq \varphi_k$
 	\item Pour $n$ et $x$ fixé, analysons le programme $P(z)$ suivant. 
 		$P(z) \equiv $
 		\begin{lstlisting}
@@ -772,7 +779,7 @@ respectent une propriété. Voici quelques exemples et applications du théorèm
 					$P_i(a)$ se termine.
 	\item[$A_4 =$] $\{i| \varphi_i(X) = \perp \text{pour tout X}\}$ avec f fixée \\
 					$P_i$ calcule la fonction partielle vide.
-	\item[$A_5 =$] $\{i| a \in \text{image}\varphi_i\}$ avec a fixé \\
+	\item[$A_5 =$] $\{i| a \in \text{image}(\varphi_i\})$ avec a fixé \\
 					$P_i$ donne au moins une fois le résultat a.
 	\item[$A_6 =$] $\{i| \image(\varphi_i) = \N\}$ \\
 					$P_i$ donne tous les résultats possibles.
@@ -1016,8 +1023,8 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
 		\item V = ${v_1,v_2,...,v_k}$
 	\end{itemize}
 	Le problème consiste à décider s’il existe une suite d'entiers
-	$i_1,i_2,..,i_n$ telle que les mots $u_{i1},u_{i_2},...,u_{in}$ et
-	$v_{i1},v_{i_2},...,v_{in}$ soient \textbf{identiques}. \\
+	$i_1,i_2,..,i_n$ telle que les mots $u_{i_1},u_{i_2},...,u_{i_n}$ et
+	$v_{i_1},v_{i_2},...,v_{i_n}$ soient \textbf{identiques}. \\
 	Pour démontrer l'indécidabilité de ce problème, Post à introduit un
 	nouveau modèle, la machine de Post qui ressemble à une machine de Turing.
 \end{mydef}
@@ -1028,10 +1035,10 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
   polynomiale de degré supérieur ou égal à 4 possède une solution entière.
 \end{mydef}
 C'est le 10\ieme{} problème de Hilbert, résolu en 1970 par Matiyasevich;
-voir \cite{davis1973hilbert} pour un description de la solution et des remarques historiques.
+voir \cite{davis1973hilbert} pour une description de la solution et des remarques historiques.
 Ce résultat implique, en particulier, qu'il n'existe pas d'algorithme pour résoudre
 la programmation quadratique entière; voir \cite{jeroslow1973there}.
-Un bon aperçu des question de non décidabilité pour les équation polynomiale est \cite{koenigsmann2014undecidability}.
+Un bon aperçu des questions de non décidabilité pour les équation polynomiale est \cite{koenigsmann2014undecidability}.
 
 Il n'existe pas d'algorithme résolvant ces problèmes. Il existe beaucoup
 d'autres problèmes non calculables. Il y a d'autres exemples sur les grammaires dans le cours.
