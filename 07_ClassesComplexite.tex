@@ -397,10 +397,22 @@ un problème $NP$-complet, il faut trouver un premier problème $NP$-complet.
 Le problème $SAT(x)$ est de décider si la formule propositionnelle $x$ est
 satisfaisable ou non. C'est-à-dire: est-ce que $x\in SAT$?
 
+On définit l'ensemble $SAT$ comme l'ensemble des formules propositionnelles satisfaisables.
+
+
+\begin{mydef}[Formule propositionnelle satisfaisable]
+Soit $n$ variables $A_i$ booléennes, et une série de connecteurs logiques $\neg$ (non), $\wedge$ (et), $\lor$ (ou), $\Rightarrow$, $\Leftrightarrow$, (, ).
+Une formule propositionnelle $x(A_1,...,A_n)$ est satisfaisable s'il existe des valeurs logiques (true ou false) pour les variables $A_1,...,A_n$ tel que $x(A_1,...,A_n)$ soit vraie.
+\end{mydef}
 \paragraph{} La longueur d'une formule $x$ est $O(n\log n)$, où $n$ est le nombre
 d'occurrences des variables. Ça se justifie par le fait qu'en utilisant un codage
 d'Huffman, le code pour une variable prendra $\log n$ (c'est important pour
 définir la complexité du problème).
+\begin{myexem} Soit les trois variables $A$, $B$ et $C$
+	\[ x(A,B,C) = (\neg A \lor B) \wedge (B \lor C) \wedge (A \lor \neg C)\]
+	$(\neg A \lor B)$, $(B \lor C)$ et $(A \lor \neg C)$ sont les trois clauses de notre formules. Elles ont chacune deux litéraux.
+	La formule est ici satisfaite si $A=false$, $B=true$ et $C=false$. D'autres solutions sont possibles.
+\end{myexem}
 
 \subsection{$SAT \in NP$}
 Il existe un programme ND polynomiale capable de décider si $x\in SAT$. On pose
