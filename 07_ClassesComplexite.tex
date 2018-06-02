@@ -36,7 +36,7 @@ que 3 :
 	\item réduction polynomiale
 \end{itemize}
 
-\begin{mydef}[A-complet]
+\begin{mydef}[$A$-complet]
 	Soit $A$ une classe de problème, un problème $E$ est $A$-complet
 	\textbf{par rapport} à une relation de réduction $\leq$ si
 	\begin{enumerate}
@@ -50,7 +50,7 @@ que 3 :
 	est $A$-difficile.
 \end{myrem}
 
-\begin{mydef}[A-difficile]
+\begin{mydef}[$A$-difficile]
 	Soit $A$ une classe de problème, un problème $E$ est $A$-difficile
 	\textbf{par rapport} à une relation de réduction $\leq$ si
 	\begin{enumerate}
@@ -329,14 +329,18 @@ introduit donc une nouvelle réduction, la réduction polynomiale.
 \end{mydef}
 
 \begin{myprop}
-	\[ E \leq_p B \text{ et } B\in NP \Rightarrow \text{$B$ est $NP$-complet} \]
+	Soit $E$ un ensemble $NP$-complet, \[ E \leq_p B \text{ \textbf{et} } B\in NP \Rightarrow \text{$B$ est $NP$-complet} \]
 	Ce qui est logique puisque ça veut dire que $B$ est $NP$-difficile et dans
 	$NP$.
 \end{myprop}
 
-\begin{center}
-	\includegraphics[scale=0.6]{Images/classes_problemes.png}
-\end{center}
+En supposant $P \ne NP$, on peut représenter les différents classes de problèmes comme sur la figure \ref{fig:classe_prob}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Images/classes_prob.png}
+	\caption{Classes de problèmes (en supposant $P \ne NP$)}
+	\label{fig:classe_prob}
+\end{figure}
 
 \paragraph{} Nous allons désormais essayer de trouver des problèmes $NP$-complets et de
 trouver des propriétés intéressantes sur $P$.
@@ -394,10 +398,22 @@ un problème $NP$-complet, il faut trouver un premier problème $NP$-complet.
 Le problème $SAT(x)$ est de décider si la formule propositionnelle $x$ est
 satisfaisable ou non. C'est-à-dire: est-ce que $x\in SAT$?
 
+On définit l'ensemble $SAT$ comme l'ensemble des formules propositionnelles satisfaisables.
+
+
+\begin{mydef}[Formule propositionnelle satisfaisable]
+Soit $n$ variables $A_i$ booléennes, et une série de connecteurs logiques $\neg$ (non), $\wedge$ (et), $\lor$ (ou), $\Rightarrow$, $\Leftrightarrow$, (, ).
+Une formule propositionnelle $x(A_1,...,A_n)$ est satisfaisable s'il existe des valeurs logiques (true ou false) pour les variables $A_1,...,A_n$ tel que $x(A_1,...,A_n)$ soit vraie.
+\end{mydef}
 \paragraph{} La longueur d'une formule $x$ est $O(n\log n)$, où $n$ est le nombre
 d'occurrences des variables. Ça se justifie par le fait qu'en utilisant un codage
 d'Huffman, le code pour une variable prendra $\log n$ (c'est important pour
 définir la complexité du problème).
+\begin{myexem} Soit les trois variables $A$, $B$ et $C$
+	\[ x(A,B,C) = (\neg A \lor B) \wedge (B \lor C) \wedge (A \lor \neg C)\]
+	$(\neg A \lor B)$, $(B \lor C)$ et $(A \lor \neg C)$ sont les trois clauses de notre formules. Elles ont chacune deux litéraux.
+	La formule est ici satisfaite si $A=false$, $B=true$ et $C=false$. D'autres solutions sont possibles.
+\end{myexem}
 
 \subsection{$SAT \in NP$}
 Il existe un programme ND polynomiale capable de décider si $x\in SAT$. On pose
@@ -436,5 +452,3 @@ même chose pour les états, le curseur, l'alphabet,...
 	\item Programmation entière (simplexe)
 	\item ...
 \end{itemize}
-
-
