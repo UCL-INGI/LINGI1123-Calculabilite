@@ -67,6 +67,7 @@ version={4.0},
 \RequirePackage{tikz}
 \RequirePackage{tikz-qtree}
 \RequirePackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\RequirePackage{letltxmacro}
 %-----------------------------
 %Configuration des packages
 
@@ -110,6 +111,19 @@ version={4.0},
 
 %-----------------------------
 %Nouvelles commandes
+
+\newcommand*{\SavedLstInline}{}
+\LetLtxMacro\SavedLstInline\lstinline
+\DeclareRobustCommand*{\lstinline}{%
+  \ifmmode
+    \let\SavedBGroup\bgroup
+    \def\bgroup{%
+      \let\bgroup\SavedBGroup
+      \hbox\bgroup
+    }%
+  \fi
+  \SavedLstInline
+}
 
 \newcommand{\ellipse}[3]% center, xdim, ydim
 {(#1) ellipse (#2 and #3)}

@@ -616,11 +616,11 @@ f(n) =\left\{\begin{tabular}{l}
 \end{equation*}
 
 En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
-		\begin{lstlisting}
-		- Construire le programme $P(z) \equiv P_{n}(x)$
-		- Soit d le numéro de $P(z)$
-		- Si F(d) = 1 alors print(0) sinon print(1)
-		\end{lstlisting}
+		\begin{itemize}
+		\item Construire le programme $P(z) \equiv P_{n}(x)$
+		\item Soit d le numéro de $P(z)$
+		\item Si F(d) = 1 alors print(0) sinon print(1)
+		\end{itemize}
 \end{myexem}
 
 \begin{myexem}
@@ -632,11 +632,11 @@ f(n) =\left\{\begin{tabular}{l}
 	\end{tabular}\right.
 \end{equation*}
 En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
-		\begin{lstlisting}
-		- Construire le programme $P(z) \equiv P_{n}(x); return z;$
-		- Soit d le numéro de $P(z)$
-		- Si F(d) = 1 alors print(1) sinon print(0)
-		\end{lstlisting}
+		\begin{itemize}
+		\item Construire le programme $P(z) \equiv P_{n}(x); return z;$
+		\item Soit d le numéro de $P(z)$
+		\item Si F(d) = 1 alors print(1) sinon print(0)
+		\end{itemize}
 
 Si $P_n(x)$ s'arrête, $P(z)$ renverra toujours son input donc $F(d)$ renverra 1. Sinon, renverra $F(d)$ renverra 0. 
 \end{myexem}
@@ -650,12 +650,12 @@ f(n,m) =\left\{\begin{tabular}{l}
 	\end{tabular}\right.
 \end{equation*}
 En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
-		\begin{lstlisting}
-		- Construire le programme $P_{d}(z) \equiv P_{n}(x); $
-		- Construire le programme $P_{d'}(z) \equiv \lstinline{while true do;} $
-		- Soit d le numéro de $P_{d}(z)$, et d' le numéro de $P_{d'}(z)$.
-		- Si F(d,d') = 1 alors print(0) sinon print(1)
-		\end{lstlisting}
+		\begin{itemize}
+		\item Construire le programme $P_{d}(z) \equiv P_{n}(x); $
+		\item Construire le programme $P_{d\prime}(z) \equiv \lstinline{while true do;} $
+		\item Soit d le numéro de $P_{d}(z)$, et d' le numéro de $P_{d\prime}(z)$.
+		\item Si F(d,d') = 1 alors print(0) sinon print(1)
+		\end{itemize}
 
 Si $P_n(x)$ s'arrête, $F(d,d')=0$. Sinon, $\varphi_{d}=\varphi_{d'}$ et donc $F(d,d')=1$. Il suffit de renvoyer $1-f(d,d')$ pour avoir Halt.
 \end{myexem}
@@ -673,6 +673,10 @@ Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus 
 
 \end{mytheo}
 
+\begin{center}
+\includegraphics[scale=0.5]{Images/rice.png}
+\end{center}
+
 On utilise le plus souvent le théorème de Rice en ayant recourt à sa contraposée:
 
 \begin{mytheo}[Rice (contraposée)]
@@ -680,8 +684,6 @@ On utilise le plus souvent le théorème de Rice en ayant recourt à sa contrapo
 \end{mytheo}
 
 Dans de nombreux cas, on peut garantir $A \neq \emptyset$ et $A \neq \N$, ce qui permet de se servir de la contraposée pour démontrer qu'un ensemble est non-récursif sans utiliser la preuve par diagonalisation ou par réduction.
-
-%TODO ajouter graphique du théorème de Rice
 
 \begin{proof}
 Nous avons que $\forall i \in A$ et $\forall j \in \stcomp{A}$, $\varphi_i \neq
@@ -749,7 +751,7 @@ else print(0);
 		et qu'elle est décidable, \textbf{alors} il existe deux programmes calculant la
 		même fonction, mais l'un vérifie la propriété, et l'autre pas.
 
-	\item \textbf{Si} la propriété est vérifiée par un programme, mais pas tous,
+	\item \textbf{Si} une propriété de la fonction calculée par un programme est vérifiée par un programme, mais pas tous,
 		\textbf{alors} cette propriété ne peut-être décidée par un algorithme.
 
 	\item \textbf{S}'il existe un algorithme permettant de déterminer si un
