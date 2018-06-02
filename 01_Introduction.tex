@@ -7,14 +7,13 @@
 \section{Qu'est-ce que la calculabilité}
 \label{sec:qu_est-ce_la_calculabilite}
 
-La calculabilité est l'étude des limites de l'informatique. Il faut bien
-faire attention à différencier les limites théoriques des les limites
+La calculabilité est l'étude des limites de l'informatique. Il faut savoir différencier les limites théoriques des limites
 pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que pour 
 la complexité on s'occupe des limites pratiques. La complexité
 détermine la frontière entre ce qui est faisable et infaisable en pratique.
-La question principale de la calculabilité est: ``quels sont les problèmes qui peuvent
-être résolus par un programme ?''.  De manière informelle, un problème est dit calculable s'il existe un programme qui résout ce problème.  La caractéristique d'un problème calculable ne donne donc aucune 
-autre information que de la preuve de l'existence d'un programme pour résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas !
+La question principale de la calculabilité est: ``quels sont les \textit{problèmes} qui (ne) peuvent (pas)
+être résolus par un \textit{programme} ?''.  De manière informelle, un problème est dit calculable s'il existe un programme qui résout ce problème.  La caractéristique d'un problème calculable ne donne donc aucune 
+autre information que la preuve de l'existence d'un programme capable de résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas !
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
@@ -22,9 +21,9 @@ non calculables et non calculables en pratique.
 \subsection{Exemples de limites}
 \label{subsec:exemples_limites}
 
-De nombreuses limites existent en informatique. Par exemple, il est impossible de déterminer lorsqu'un programme se termine (cfr. Théorème de Rice \ref{sub:theoreme_de_rice}), de déterminer si un programme est écrit sans bugs ou encore d'écrire un programme pouvant déterminer si deux programmes sont équivalents.
+De nombreuses limites existent en informatique. Par exemple, il est impossible de déterminer lorsqu'un programme se termine (cfr. Théorème de Rice \ref{sub:theoreme_de_rice}), de déterminer si un programme est écrit sans bugs ou encore d'écrire un programme sachant déterminer si deux programmes sont équivalents.
 
-Mais des limites existent dans bien d'autres domaines que l'informatique.
+Mais des limites théoriques existent aussi dans bien d'autres domaines scientifiques autre que l'informatique.
  
 En physique par exemple, les lois de la thermodynamique établissent le fait que l'on ne peut créer de l'énergie à partir de rien (principe de Lavoisier notamment). Dans un autre registre, on sait qu'il est impossible d'observer, avec la précision que l'on souhaite, en même temps la \textit{position} et la \textit{vitesse} d'un électron.
 
@@ -69,12 +68,12 @@ Il existe plein de formalismes permettant la description de ``procédure effecti
 \subsection{ Équivalence des langages de programmation}
 \label{subsec:equivalence_des_langages_de_programmation}
 
-Y a t-il des langages de programmation qui sont plus puissants que d'autres ? Tous les langages sont-ils équivalents ? 
+Existe-t-il des langages de programmation plus puissants que d'autres ? Tous les langages sont-ils équivalents ? 
 \newline 
-Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème peut être résolu par un de ces langages, il peut alors être résolu par n'importe quel autre.   
-S'il existe un programme Java qui résout un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. On parle d'une équivalence théorique.\\
+Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème est résolvable par un de ces langages, alors il l'est également par les autres.   
+S'il existe un programme Java qui résout un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. Il s'agit d'une équivalence théorique.\\
 D'un point de vue théorique ces langages s'appellent des langages complets. Ils permettent tous de résoudre les mêmes problèmes.  Un problème est donc calculable indépendamment du langage utilisé. \\
-D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrira plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères).  Certains langages sont donc mieux adaptés que d'autres pour certains problèmes. 
+D'un point de vue pratique on peut voir des différences (le programme est plus court, ou s'écrit plus rapidement, ou s'exécute plus rapidement, ou est plus propre, ou plus fiable, etc).  Certains langages sont donc mieux adaptés que d'autres pour certaines classes problèmes. 
 
 
 \subsection{Existence de problèmes non calculables}
@@ -87,18 +86,22 @@ D'un point de vue pratique on peut voir des différences (le programme sera plus
 	
 % section r_sultat_principaux (end)
 
-\subsubsection{Exemple: Détection de virus}
-\label{subsubsec:detection_de_virus}
+\subsubsection{Exemple: Détection de virus informatique}
+\label{subsubsec:detection_de_virus_informatique}
 On veut déterminer si un programme P avec une entrée D est nuisible.
 
 \textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programmes (par exemple en se recopiant autre part). Dans certains cas, il peut également être considéré comme dangereux lorsqu'il rend la machine partiellement ou totalement inutilisable (par exemple un cheval de Troie contenant une bombe logique ou une fork bomb).
 
 Un bon anti-virus serait alors un programme qui testerait des programmes en regardant s'ils se multiplient, tout en les empêchant de modifier (voir d'endommager) d'autres fichiers. Un tel programme, si il existe, serait du même type que \textit{detecteur(P,D)} avec \textit{P} le programme à détecter et \textit{D} un état du système de données dans lequel le programme s'exécuterait.
 
-Spécification du programme \textit{detecteur(P,D)}:\\
+\noindent Spécification du programme \textit{detecteur(P,D)}:\\
 \textbf{Préconditions :} un programme P et une donnée D\\
 \textbf{Postconditions :} ``Mauvais'' si P(D) est nuisible,
 		``Bon'' sinon.\\
+
+\begin{center}
+\includegraphics[scale=0.45]{Images/effet_detecteur.png}
+\end{center}
 		
 Cependant il faut aussi que le détecteur ne soit pas nuisible pour que cette spécification soit valide. Or comme nous allons le démontrer, le détecteur ne peut être non nuisible.
 
@@ -107,19 +110,23 @@ Pour le prouver nous allons émettre l'hypothèse qu'un programme \textit{detect
 \label{lst:detecteur_de_virus}
 \begin{lstlisting}
 drole(P)
-if detecteur(P,P) = "Mauvais"
-	then stop
-else infecter un autre programme en y inserant P
+    if detecteur(P,P) = "Mauvais"
+        then stop
+    else infecter un autre programme en y inserant P
 \end{lstlisting}
 
 Regardons maintenant si l'exécution de \lstinline|drole(drole)|, c'est à dire si l'on donne le code source de \lstinline|drole| à lui-même, est nuisible ou non.  
 \begin{lstlisting}
 drole(drole)
-if detecteur(drole, drole) = "Mauvais"
-	then stop
-else infecter un autre programme en y inserant drole
+    if detecteur(drole, drole) = "Mauvais"
+	    then stop
+    else infecter un autre programme en y inserant drole
 \end{lstlisting}
-%TODO Reproduire en tikz (ou importer) l'image issue des slides
+
+\begin{center}
+\includegraphics[scale=0.5]{Images/drole_de_drole.png}
+\end{center}
+
 \begin{itemize}
 	\item Supposons que \lstinline|drole(drole)| soit nuisible.
       Lorsqu'on exécute, \lstinline|drole(drole)|, \\
@@ -161,7 +168,9 @@ Supposons un ordinateur actuel sachant faire 100 millions d'instructions par sec
 	\end{array}$
 \end{center}
 
-Ce tableau montre dès lors que peu importe les évolutions technologiques, un problème intrinsèquement complexe \textbf{ne peut} et \textbf{ne pourra} être résolu que pour de petits exemples. Les solutions à ces problèmes peuvent cependant être approximées par des algorithmes (parfois très efficaces).
+Ce tableau montre dès lors que, peu importe les évolutions technologiques, un problème intrinsèquement complexe \textbf{ne peut} et \textbf{ne pourra} être résolu que pour de petits exemples.\\
+
+Cependant, dans la pratique, certains algorithmes résolvent efficacement les problèmes pratiques, et d'autres, également efficaces, permettent d'obtenir des \textbf{approximations} des solutions exactes. 
 		
 \section{Objectifs calculabilité et complexité}
 \label{sec:objectifs_calculabilite_et_complexite}
