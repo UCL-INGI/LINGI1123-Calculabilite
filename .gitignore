@@ -10,6 +10,7 @@
 *.out
 *.synctex*
 *.toc
+*.pdf
 
 # Autre
 *.DS_store
