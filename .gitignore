@@ -1,9 +1,22 @@
-calculabilite_INGI1123.aux
-calculabilite_INGI1123.bbl
-calculabilite_INGI1123.blg
-calculabilite_INGI1123.log
-calculabilite_INGI1123.out
-calculabilite_INGI1123.pdf
-calculabilite_INGI1123.synctex.gz
-calculabilite_INGI1123.toc
 
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex*
+*.toc
+*.pdf
+
+# Autre
+*.DS_store
+*~
+*tex#
+*.temp
+*.tmp
+*.swp
+*.bak

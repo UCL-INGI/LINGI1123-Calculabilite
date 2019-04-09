@@ -7,14 +7,13 @@
 \section{Qu'est-ce que la calculabilité}
 \label{sec:qu_est-ce_la_calculabilite}
 
-La calculabilité c'est l'étude des limites de l'informatique. Il faut bien
-faire attention à faire la différence entre les limites théoriques et les limites
-pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que pour 
+La calculabilité est l'étude des limites de l'informatique. Il faut savoir différencier les limites théoriques des limites
+pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que pour
 la complexité on s'occupe des limites pratiques. La complexité
 détermine la frontière entre ce qui est faisable et infaisable en pratique.
-La question principale de la calculabilité est: ``quels sont les problèmes qui peuvent
-être résolus par un programme?''.  De manière informelle, un problème est dit calculable s'il existe un programme qui résout ce problème.  La caractéristique d'un problème calculable ne donne donc aucune 
-autre information que de la preuve de l'existence d'un programme pour résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas!
+La question principale de la calculabilité est: \og quels sont les \textit{problèmes} qui (ne) peuvent (pas)
+être résolus par un \textit{programme} ?\fg.  De manière informelle, un problème est dit \emph{calculable} s'il existe un programme qui résout ce problème.  La caractéristique d'un problème calculable ne donne donc aucune
+autre information que la preuve de l'existence d'un programme capable de résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas!
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
@@ -22,15 +21,15 @@ non calculables et non calculables en pratique.
 \subsection{Exemples de limites}
 \label{subsec:exemples_limites}
 
-De nombreuses limites existent en informatique. Par exemple, il est impossible de déterminer lorsqu'un programme se termine (cfr. Théorème de Rice \ref{sub:theoreme_de_rice}), de déterminer qu'un programme soit écrit sans bugs ou encore d'écrire un programme pouvant déterminer si deux programmes sont équivalents.
+De nombreuses limites existent en informatique. Par exemple, il est impossible de déterminer lorsqu'un programme se termine (cfr. Théorème de Rice \ref{sub:theoreme_de_rice}), de déterminer si un programme est écrit sans bugs ou encore d'écrire un programme sachant déterminer si deux programmes sont équivalents.
 
-Mais des limites existent dans bien d'autres domaines que l'informatique.
- 
-En physique par exemple, les lois de la thermodynamique établissent le fait que l'on ne peut créer de l'énergie à partir de rien (principe de Lavoisier notamment). Dans un autre registre, on sait qu'il est impossible d'observer en même temps la \textit{position} et la \textit{vitesse} d'un électron.
+Mais des limites théoriques existent aussi dans des domaines scientifiques autres que l'informatique.
+
+En physique par exemple, les lois de la thermodynamique établissent le fait que l'on ne peut créer de l'énergie à partir de rien (principe de Lavoisier notamment). Dans un autre registre, on sait qu'il est impossible d'observer, avec la précision que l'on souhaite, en même temps la \textit{position} et la \textit{vitesse} d'un électron.
 
 En mécanique, on sait qu'il est impossible de construire une machine réalisant un mouvement perpétuel.
 
-En mathématique, il est impossible de trouver deux nombres entiers $m$ et $n$ tel que $m^2 = 2n^2$, ou de trouver une fraction $\frac{m}{n}$ exprimant le rapport entre le rayon d'un cercle et sa circonférence, ou encore de diviser un angle en trois parties égales en utilisant uniquement une règle et un compas.
+En mathématique, il est impossible de trouver deux nombres entiers $m$ et $n$ tels que $m^2 = 2n^2$, ou de trouver une fraction $\frac{m}{n}$ exprimant le rapport entre le rayon d'un cercle et sa circonférence, ou encore de diviser un angle en trois parties égales en utilisant uniquement une règle et un compas.
 
 \section{Notion de problème}
 \label{sec:notion_de_probleme}
@@ -40,110 +39,131 @@ Attention, il ne faut pas confondre un problème avec un programme.
 Les caractéristiques d'un problème sont:
 
 \begin{itemize}
-	\item un problème est générique : il s'applique à un ensemble de données.
+	\item un problème est \emph{générique}: il s'applique à un ensemble de données.
 	\item pour chaque donnée particulière, il existe une réponse.
 \end{itemize}
 
-On représente un problème dans le cours par une fonction (noté $\phi$ ou $\varphi$). 
+On représente un problème dans le cours par une fonction (noté $\phi$ ou $\varphi$).
 Donc la description d'un problème est équivalente à la description d'une fonction.
 
-\paragraph{Exemples de problème}
+\paragraph{Exemples de problèmes}
 \begin{itemize}
 	\item Additionner deux entiers
-	\item Étant donné une liste d'étudiants et de leur points d'examens, trouver les étudiants dont la moyenne des examens est supérieure ou égale à $12/20$.
+	\item Étant donné une liste d'étudiants et de leurs points d'examen, trouver les étudiants dont la moyenne des examens est supérieure ou égale à $12/20$.
 	\item Déterminer si un polynôme à coefficients entiers a des racines entières.
 \end{itemize}
 
 \section{Notion de programme}
 \label{sec:notion_de_programme}
 
-Un programme (ou algorithme) est une ``procédure effective'', c'est-à-dire exécutable par une machine. Par exemple un programme Java.
+Un programme (ou algorithme) est une \og procédure effective\fg, c'est-à-dire exécutable par une machine. Par exemple un programme \java.
 
-La compréhension du concept de programme est basée sur la compréhension du concept de "programme écrit dans un langage de programmation".
+La compréhension du concept de programme est basée sur la compréhension du concept de \og programme écrit dans un langage de programmation\fg.
 
-Il existe plein de formalismes permettant la description de ``procédure effective''.
+Il existe plein de formalismes permettant la description d'une \og procédure effective\fg.
 
 \section{Résultats principaux}
 \label{sec:r_sultat_principaux}
 
-\subsection{ Équivalence des langages de programmation}
+\subsection{Équivalence des langages de programmation}
 \label{subsec:equivalence_des_langages_de_programmation}
 
-Y a t-il de langage de programmation qui sont plus puissants que d'autres ? Tous les langages sont-ils équivalents ? 
-\newline 
-Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème peut être résolu par un de ces langages, il peut alors être résolu par n'importe lequel autre.   
-S'il existe un programme Java qui résout un problème, il existera aussi un programme C/C++, PHP, … qui peut résoudre le même problème. On parle d'une équivalence théorique.\\
-D'un point de vue théorique ces langages s'appellent des langages complets. Ils permettent tous de résoudre les même problèmes.  Un problème est donc calculable indépendamment du langage utilisé. \\
-D'un point de vue pratique on peut voir des différences (le programme sera plus court, s'écrire plus rapidement, le programme sera plus rapide, plus propre, plus fiable et encore d'autres critères).  Certains langages sont donc mieux adaptés que d'autres pour certains problèmes. 
+Existe-t-il des langages de programmation plus puissants que d'autres? Tous les langages sont-ils équivalents?
+
+Il y a une équivalence entre langages en termes de calculabilité.  Lorsqu'un problème est résolvable par un de ces langages, alors il l'est également par les autres.
+S'il existe un programme \java qui résout un problème, il existera aussi un programme C/C++, PHP,\ldots{} qui peut résoudre le même problème. Il s'agit d'une équivalence théorique.
+
+D'un point de vue théorique ces langages s'appellent des \emph{langages complets}. Ils permettent tous de résoudre les mêmes problèmes. Un problème est donc calculable indépendamment du langage utilisé.
+
+D'un point de vue pratique on peut voir des différences (le programme est plus court, ou s'écrit plus rapidement, ou s'exécute plus rapidement, ou est plus propre, ou plus fiable, etc). Certains langages sont donc mieux adaptés que d'autres pour certaines classes de problèmes.
 
 
 \subsection{Existence de problèmes non calculables}
 \label{subsec:existence_de_problemes_non_calculables}
-	Il existe des problèmes qui ne peuvent être résolus par un programme et qui sont alors dit \emph{non calculable}. 
-	Quelques exemples : 
-		détection de virus,
-        équivalence de programme,
-        déterminer si un polynôme à coefficients entiers a des racines entières, \ldots
-	
+	Il existe des problèmes qui ne peuvent être résolus par un programme et qui sont alors dit \emph{non calculables}.
+	Quelques exemples:
+	\begin{itemize}
+		\item détection de virus;
+		\item équivalence de programme;
+		\item déterminer si un polynôme à coefficients entiers a des racines entières, \ldots
+	\end{itemize}
 % section r_sultat_principaux (end)
 
-\subsubsection{Exemple: Détection de virus}
-\label{subsubsec:detection_de_virus}
-On veut déterminer si un programme P avec une entrée D est nuisible.
+\subsubsection{Exemple: Détection de virus informatique}
+\label{subsubsec:detection_de_virus_informatique}
+On veut déterminer si un programme \lstinline|P| avec une entrée \lstinline|D| est nuisible.
 
-\textbf{Être nuisible:} Un programme est dit nuisible si son exécution a pour effet de contaminer d'autres programmes (par exemple en se recopiant autre part). Dans certains cas, il peut également être considéré comme dangereux lorsqu'il rend la machine partiellement ou totalement inutilisable (par exemple un cheval de Troie contenant une bombe logique ou une fork bomb).
+\begin{mydef}
+	Un programme est dit \emph{nuisible} si son exécution a pour effet de contaminer d'autres programmes (par exemple en se recopiant autre part). Dans certains cas, il peut également être considéré comme dangereux lorsqu'il rend la machine partiellement ou totalement inutilisable (par exemple un cheval de Troie contenant une bombe logique ou une fork bomb).
+\end{mydef}
 
-Un bon anti-virus serait alors un programme qui testerait des programmes en regardant s'ils se multiplient, tout en les empêchant de modifier (voir d'endommager) d'autres fichiers. Un tel programme, si il existe, serait du même type que \textit{detecteur(P,D)} avec \textit{P} le programme à détecter et \textit{D} un état du système de données dans lequel le programme s'exécuterait.
+Un bon antivirus serait alors un programme qui testerait des programmes en regardant s'ils se multiplient, tout en les empêchant de modifier (voir d'endommager) d'autres fichiers. Un tel programme, s'il existe, serait du même type que \lstinline|detecteur(P, D)| avec \lstinline|P| le programme à détecter et \lstinline|D| un état du système de données dans lequel le programme s'exécuterait.
 
-Spécification du programme \textit{detecteur(P,D)}:\\
-\textbf{Préconditions :} un programme P et une donnée D\\
-\textbf{Postconditions :} ``Mauvais'' si P(D) est nuisible,
-		``Bon'' sinon.\\
-		
+\noindent Spécification du programme \lstinline|detecteur(P, D)|:\\
+\textbf{Préconditions:} un programme \lstinline|P| et une donnée \lstinline|D|\\
+\textbf{Postconditions:} \lstinline|"Mauvais"| si \lstinline|P(D)| est nuisible, \lstinline|"Bon"| sinon.
+
+\begin{center}
+\includegraphics[scale=0.45]{Images/effet_detecteur}
+\end{center}
+
 Cependant il faut aussi que le détecteur ne soit pas nuisible pour que cette spécification soit valide. Or comme nous allons le démontrer, le détecteur ne peut être non nuisible.
 
-Pour le prouver nous allons émettre l'hypothèse qu'un programme \textit{detecteur(P,D)} existe et qu'il n'est pas nuisible.  Dans ce cas, nous pouvons construire le programme \textit{drole(P)} suivant :
+\begin{mytheo}
+	Il n'est pas possible d'écrire un programme antivirus non nuisible
+	qui puisse déterminer avec sûreté
+	si un programme \lstinline|P| est nuisible avec une entrée \lstinline|D|.
+\end{mytheo}
+\begin{proof}
+Pour le prouver nous allons émettre l'hypothèse qu'un programme \lstinline|detecteur(P, D)| existe et qu'il n'est pas nuisible. Dans ce cas, nous pouvons construire le programme \lstinline|drole(P)| suivant :
 
 \label{lst:detecteur_de_virus}
 \begin{lstlisting}
 drole(P)
-if detecteur(P,P) = "Mauvais"
-	then stop
-else infecter un autre programme en y inserant P
+    if detecteur(P,P) = "Mauvais"
+        then stop
+    else infecter un autre programme en y inserant P
 \end{lstlisting}
 
-Regardons maintenant si l'exécution de \lstinline|drole(drole)|, c'est à dire si l'on donne le code source de \lstinline|drole| à lui-même, est nuisible ou non.  
+Regardons maintenant si l'exécution de \lstinline|drole(drole)|, c'est-à-dire si l'on donne le code source de \lstinline|drole| à lui-même, est nuisible ou non.
 \begin{lstlisting}
 drole(drole)
-if detecteur(drole, drole) = "Mauvais"
-	then stop
-else infecter un autre programme en y inserant drole
+    if detecteur(drole, drole) = "Mauvais"
+	    then stop
+    else infecter un autre programme en y inserant drole
 \end{lstlisting}
-%TODO Reproduire en tikz (ou importer) l'image issue des slides
+
+\begin{center}
+\includegraphics[scale=0.5]{Images/drole_de_drole.png}
+\end{center}
+
 \begin{itemize}
 	\item Supposons que \lstinline|drole(drole)| soit nuisible.
-      Lorsqu'on exécute, \lstinline|drole(drole)|, \\
+      Lorsqu'on exécute, \lstinline|drole(drole)|,
       \lstinline|detecteur(drole,drole)| n'infecte rien car \lstinline|detecteur| n'est pas nuisible.
-      
-      Comme \lstinline|detecteur| retourne ``Mauvais'',
+
+      Comme \lstinline|detecteur| retourne \lstinline|"Mauvais"|,
       le programme s'arrête.
       Rien n'a donc été infecté, ce qui est contradictoire avec le fait que \lstinline|drole(drole)| soit nuisible.
 	\item Si par contre il n'est pas nuisible, alors \lstinline|detecteur(drole,drole)|
-      ne va pas retourner ``Mauvais'' et le code de la clause \lstinline|else| s'exécutera.
+      ne va pas retourner \lstinline|"Mauvais"| et le code de la clause \lstinline|else| s'exécutera.
       Un autre programme est alors infecté ce qui contredit le fait que \lstinline|drole(drole)| ne soit pas nuisible.
 \end{itemize}
 
 On a donc une contradiction dans tous les cas, ce qui implique que le programme \lstinline|drole| ne peut pas
-exister. Vu que la seule hypothèse que nous avons formulé pour écrire le programme \lstinline|drole| soit que le programme \lstinline|detecteur| (non nuisible) existe, 
+exister. Vu que la seule hypothèse que nous avons formulée pour écrire le programme \lstinline|drole| soit que le programme \lstinline|detecteur| (non nuisible) existe,
 le programme \lstinline|detecteur| (non nuisible) ne peut pas exister non plus.
+\end{proof}
 % subsubsection d_tection_de_virus (end)
 
-\subsection{ Existence de problèmes intrinsèquement complexes}
+\subsection{Existence de problèmes intrinsèquement complexes}
 \label{subsec:existence_de_problemes_intrinsequement_complexes}
 
-Un problème intrinsèquement complexe est un problème dont le meilleur algorithme n'a pas de complexité polynomiale, mais une complexité exponentielle ou pire.  Peu importe les évolutions technologiques, un problème exponentiel ne peut et ne pourra être résolu que pour des données petite taille.  Un exemple est le problème du voyageur de commerce qui doit rechercher le trajet le plus court pour relier n villes..  Pour un problème intrinsèquement complexe, lorsqu'un ordinateur est $n$ fois plus rapide,  la taille des problèmes pouvant être résolus en temps raisonnable est incrémentée d'une petite valeur (voir le tableau ci-dessous).
+\begin{mydef}
+	Un problème \emph{intrinsèquement complexe} est un problème dont le meilleur algorithme n'a pas de complexité polynomiale, mais une complexité exponentielle ou pire. Peu importe les évolutions technologiques, un problème exponentiel ne peut et ne pourra être résolu que pour des données de petites tailles.  Un exemple est le problème du voyageur de commerce qui doit rechercher le trajet le plus court pour relier $n$ villes. Pour un problème intrinsèquement complexe, lorsqu'un ordinateur est $n$ fois plus rapide, la taille des problèmes pouvant être résolus en temps raisonnable est incrémentée d'une petite valeur (voir le tableau ci-dessous).
+\end{mydef}
 
-Supposons un ordinateur actuel sachant faire 100 millions d'instructions par secondes ($100$ Mips) et que le traitement d'un élément nécessite 100 instructions machines.  Dénotons $N_i$  la taille du ``plus grand'' exemple dont la solution peut-être calculée en 1 heure de temps calcul.	
+Supposons un ordinateur actuel sachant faire 100 millions d'instructions par secondes ($100$ Mips) et que le traitement d'un élément nécessite 100 instructions machines. Dénotons $N_i$  la taille du \og plus grand\fg{} exemple dont la solution peut-être calculée en 1 heure de temps calcul.
 
 \begin{center}
 	$\begin{array}{|c||c|c|c|}
@@ -161,12 +181,14 @@ Supposons un ordinateur actuel sachant faire 100 millions d'instructions par sec
 	\end{array}$
 \end{center}
 
-Ce tableau montre dès lors que peu importe les évolutions technologiques, un problème intrinsèquement complexe \textbf{ne peut} et \textbf{ne pourra} être résolu que pour de petits exemples. Les solutions à ces problèmes peuvent cependant être approximés par des algorithmes (parfois très efficaces).
-		
+Ce tableau montre dès lors que, peu importe les évolutions technologiques, un problème intrinsèquement complexe \textbf{ne peut} et \textbf{ne pourra} être résolu que pour de petits exemples.
+
+Cependant, dans la pratique, certains algorithmes résolvent efficacement les problèmes pratiques, et d'autres, également efficaces, permettent d'obtenir des \textbf{approximations} des solutions exactes.
+
 \section{Objectifs calculabilité et complexité}
 \label{sec:objectifs_calculabilite_et_complexite}
 
-La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme) dans l'univers des problèmes. Parmi les problèmes calculables il a ceux qui le sont en pratiques (pas exponentiel) et ceux qui ne sont pas calculables en pratique. 
+La Figure~\ref{cal_non_cal} illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme) dans l'univers des problèmes. Parmi les problèmes calculables il a ceux qui le sont en pratique (pas exponentiels) et ceux qui ne sont pas calculables en pratique.
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=0.8]
@@ -179,10 +201,10 @@ La figure Fig(\ref{cal_non_cal}) illustre la frontière entre les problèmes non
 	\draw[cyan] (2,2.5) node[above right] {Non calculables en pratique};
 	\draw[cyan] (2,2.5) node[below right] {Calculables en pratique};
 	\end{tikzpicture}
-	\caption{ Problèmes calculables / non calculables }
+	\caption{Problèmes calculables / non calculables}
 	\label{cal_non_cal}
 \end{figure}
 
-L'intérêt de la calculabilité est de savoir quels problèmes sont calculables ou lesquels ne le sont pas.  Si un problème est non calculable. il est alors inutile  d'essayer de résoudre ce problème.  Si le problème est calculable mais intrinsèquement complexe, il est inutile d'envisager un algorithme permettant de résoudre des problème de grande taille.  
-Face à un problème non calculable ou intrinsèquement complexe,  on peut essayer de relâcher le problème pour le rendre calculable ou de complexité polynomiale..  Une solution à ce problème relâché peut par exemple être une approximation du problème initial.  
+L'intérêt de la calculabilité est de savoir quels problèmes sont calculables ou lesquels ne le sont pas. Si un problème est non calculable, il est alors inutile  d'essayer de résoudre ce problème.  Si le problème est calculable mais intrinsèquement complexe, il est inutile d'envisager un algorithme permettant de résoudre des problème de grande taille.
+Face à un problème non calculable ou intrinsèquement complexe, on peut essayer de relâcher le problème pour le rendre calculable ou de complexité polynomiale. Une solution à ce problème relâché peut par exemple être une approximation du problème initial.
 % section introduction (end)Introduction

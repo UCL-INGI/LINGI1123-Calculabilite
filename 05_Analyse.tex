@@ -18,13 +18,18 @@ La forme originale ne contient que 2 parties :
 
 La partie 1 est démontrée (c'est évident puisqu'on peut simuler les machines de Turing).\\
 
-La partie 2 est supposée vraie : on ne peut pas la démontrer formellement car ``effectivement calculable'' n'est pas bien défini. On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute machine constructible par la mécanique de Newton ne calcule que des fonctions calculables).
+La partie 2 est supposée vraie : on ne peut pas la démontrer formellement car ``effectivement calculable'' n'est pas bien défini. 
+On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute machine constructible par la mécanique de Newton ne calcule que des fonctions calculables).
 % section fondement de la thèse (end)
 
 % section formalisme de la calculabilité (start)
 \section{Formalismes de la calculabilité}
 \label{sub:formalismes_de_la_calculabilit_}
-On va se poser la question de ce qui fait un bon formalisme de la calculabilité. Il faut un formalisme qui vérifie les fondements de la thèse... Plus précisément, on va étudier des caractéristiques (des propriétés) nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
+
+On va se poser la question de ce qui fait un bon formalisme de la
+calculabilité. Il faut un formalisme qui vérifie les fondements de la
+thèse. Plus précisément, on va étudier des caractéristiques (des propriétés)
+nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
 
 \paragraph{} Dans ce chapitre, on va considérer un formalisme de la calculabilité D.
 
@@ -57,8 +62,12 @@ On va se poser la question de ce qui fait un bon formalisme de la calculabilité
 	\item[SA]  L'interpréteur de D est calculable (on peut exécuter une description de programme de D).
 	\item[CA]  Il existe un compilateur qui étant donné un programme $p$ dans un formalisme respectant SA produit une description de programme $d \in D$ tel que $p$ et $d$ calculent la même fonction (cette propriété permet d'assurer l'équivalence entre les formalismes).
 	\item[U]  L'interpréteur de D est D-calculable (sinon on sait par Hoare Allison que ce n'est pas un formalisme complet).
-	\item[S] Il existe un transformateur de programme calculable, qui recevant comme entrée un programme $d \in$ D à 2 arguments et une valeur $x$ fournit comme résultat un programme $d'$ tel que $d'(x)$ calcule la même fonction que $d(x,y)$ :
-$$\forall d\in D\ \exists d'\colon \varphi_d(x,y)=\varphi_{d'(x)}(y).$$
+	\item[S] Pour tout programme $d \in$ D à deux arguments, il existe un transformateur de 
+  programme $S$ calculable, qui 
+  recevant comme entrée le programme $d$ et une valeur 
+  $x$ fournit comme résultat un programme $d'=S(d,x)$ tel que $d'(y)$ calcule 
+  la même fonction que $d(x,y)$ pour cette valeur de $x$ :
+$$\forall d\in D\ \exists S\in D \colon \varphi_d(x,y)=\varphi_{S(d,x)}(y).$$
 \end{description}
 Un bon formalisme de la calculabilité possède toutes ces propriétés. En pratique, il suffit d'en montrer certaines, car certaines propriétés en entraînent d'autres.
 
@@ -115,13 +124,15 @@ BLOOP et les fonctions primitives récursives sont des ``mauvais'' formalismes c
 Pour prouver qu'un problème est non calculable, on peut utiliser :
 \begin{itemize}
 	\item Le théorème de Rice.
-	\item La démonstration directe de la non-calculabilité par diagonalisation ou par preuve par l'absurde. \textbf{A priori le plus dur!} C'est plus pratique de réutiliser les problèmes pour lesquels on a déjà montré la non-calculabilité.
+	\item La démonstration directe de la non-calculabilité par 
+  diagonalisation ou par preuve par l'absurde. 
+  \textbf{A priori le plus dur!} C'est plus pratique de réutiliser les problèmes pour lesquels on a déjà montré la non-calculabilité.
 	\item La méthode de réduction.
 \end{itemize}
 % section Techniques de preuve (end)
 
 % section Aspect non couverts par la calculabilité (start)
-\section{Aspects non couverts par la calculabilité\protect\footnote{section pas très importante pour l'examen}}
+\section{Aspects non couverts par la calculabilité}
 \label{sub:aspects_non_couvert_par_la_calculabilit_}
 La calculabilité se limite au calcul de fonctions. Or certains problèmes de la vie de tous les jours ne correspondent pas à une fonction.
 
@@ -199,6 +210,7 @@ Deux approches possibles pour l'intelligence artificielle :
 \end{enumerate}
 La première approche (IA forte) s'apparente à la version ``réductionniste'' de la thèse de Church-Turing.
 
+
 \paragraph{Approche par la puissance de calcul}
 On peut tenter de déterminer ``l'intelligence'' en observant simplement la puissance de calcul :
 \begin{itemize}
@@ -211,6 +223,7 @@ On peut tenter de déterminer ``l'intelligence'' en observant simplement la puis
 Puisque $1$ FLO est environ $2$ à $10$ instructions, cela fait une puissance d'environ $10^{14}$ instructions par seconde.
 \end{itemize}
 Conclusion : les ordinateurs les plus puissants approchent la puissance de calcul du cerveau humain.
+
 \subsection{Les ordinateurs peuvent-ils penser ?}
 \paragraph{Le test de Turing (1950)}
 On compare deux tests similaires.\\
