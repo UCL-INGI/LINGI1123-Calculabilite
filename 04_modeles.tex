@@ -1317,6 +1317,35 @@ $$\begin{array}{ll}
 	4 & Dans l'expression & $\lambda c \:c \:  (a b)$,& on remplace toutes les occurrences de & $c$ & dans & $c$ & par & $(a b)$.\\
 \end{tabular}
 \end{myexem}
+
+\begin{mydef}[Représentation des entiers]
+	Un entier N est défini comme N applications du premier paramètre au second.
+\end{mydef}
+$$\begin{array}{lll}
+	0 & \Leftrightarrow & \lambda f \lambda cc \\
+	1 & \Leftrightarrow & \lambda f \lambda c (fc)\\
+	2 & \Leftrightarrow & \lambda f \lambda c (f(fc))\\
+	... & &
+\end{array}$$
+Ainsi, en utilistant la règle de réduction, si N est la représentation d'un entier.\\
+\begin{center}
+	\begin{tabular}{ll}
+		(Na) & fonction à un paramètre de la forme\\
+		& $\lambda c (a (a (... (ac) ...)))$\\
+		((Na)b) & expression de la forme \\
+		& $(a(a(...(ab)...)))$\\
+	\end{tabular}
+\end{center}
+\begin{myprop}[Addition de deux entiers]\label{prop:additionlambda}
+	Si M et N sont les représentations de deux nombres entiers
+\end{myprop}
+$$\begin{array}{ll}
+	[M + N] &\Leftrightarrow \lambda a \lambda b ((Ma) ((Na) b)) \\
+	+ & \Leftrightarrow \lambda M \lambda N \lambda a \lambda b ((Ma) ((Na) n))
+\end{array}$$
+\begin{myexercice}\label{exerc:reduire12}
+	Réduire 1 + 2.
+\end{myexercice}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)
 
