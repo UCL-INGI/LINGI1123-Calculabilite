@@ -1319,32 +1319,32 @@ $$\begin{array}{ll}
 \end{myexem}
 
 \begin{mydef}[Représentation des entiers]
-	Un entier N est défini comme N applications du premier paramètre au second.
+	Un entier \(N\) est défini comme \(N\) applications du premier paramètre au second.
 \end{mydef}
-$$\begin{array}{lll}
-	0 & \Leftrightarrow & \lambda f \lambda cc \\
-	1 & \Leftrightarrow & \lambda f \lambda c (fc)\\
-	2 & \Leftrightarrow & \lambda f \lambda c (f(fc))\\
-	... & &
-\end{array}$$
+\[\begin{array}{lll}
+	0 & \iff & \lambda f \lambda cc \\
+	1 & \iff & \lambda f \lambda c (fc)\\
+	2 & \iff & \lambda f \lambda c (f(fc))\\
+	\ldots & &
+\end{array}\]
 Ainsi, en utilisant la règle de réduction, si \(N\) est la représentation d'un entier.\\
 \begin{center}
 	\begin{tabular}{ll}
 		(Na) & fonction à un paramètre de la forme\\
-		& $\lambda c (a (a (... (ac) ...)))$\\
+		& $\lambda c (a (a (\ldots (ac) \ldots)))$\\
 		((Na)b) & expression de la forme \\
-		& $(a(a(...(ab)...)))$\\
+		& $(a(a(\ldots(ab)\ldots)))$\\
 	\end{tabular}
 \end{center}
 \begin{myprop}[Addition de deux entiers]\label{prop:additionlambda}
-	Si M et N sont les représentations de deux nombres entiers
+	Si \(M\) et \(N\) sont les représentations de deux nombres entiers
 \end{myprop}
-$$\begin{array}{ll}
+\[\begin{array}{ll}
 	[M + N] &\Leftrightarrow \lambda a \lambda b ((Ma) ((Na) b)) \\
-	+ & \Leftrightarrow \lambda M \lambda N \lambda a \lambda b ((Ma) ((Na) n))
-\end{array}$$
+	+ & \iff \lambda M \lambda N \lambda a \lambda b ((Ma) ((Na) n))
+\end{array}\]
 \begin{myexercice}\label{exerc:reduire12}
-	Réduire 1 + 2.
+	Réduire \(1 + 2\).
 \end{myexercice}
 % subsection lambda_calcul (end)
 % section mod_le_de_la_calculabilit_ (end)

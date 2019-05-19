@@ -39,19 +39,19 @@
 
 % Solution exercice: réduire 1 + 2 (4.81)
 \solexercice{exerc:reduire12}
-Représentons d'abord A et 2 en expressions lambda.
+Représentons d'abord \(1\) et \(2\) en expressions lambda.
 $$\begin{array}{ll}
-	1 \Leftrightarrow \lambda f \lambda c (fc)\\
-	2 \Leftrightarrow \lambda f \lambda c (f(fc))\\
+	1 \iff \lambda f \lambda c (fc)\\
+	2 \iff \lambda f \lambda c (f(fc))\\
 \end{array}$$
-Par la règle de l'addition(\ref{prop:additionlambda}), nous trouvons
+Par la règle de l'addition (\ref{prop:additionlambda}), nous trouvons
 $$\begin{array}{ll}
-	[\textcolor{red}{1}+\textcolor{blue}{2}] & \Leftrightarrow \lambda a \lambda b ( ( ( \textcolor{red}{\lambda f \lambda c (fc)} )a ) ( ( ( \textcolor{blue}{\lambda f \lambda c (f(fc))})a)b) ) \\
-	& \Leftrightarrow \lambda a \lambda b ((\textcolor{red}{\lambda c (a c)}) ((\textcolor{blue}{\lambda c (a(a(c)))})b)) \\
-	& \Leftrightarrow \lambda a \lambda b ((\textcolor{red}{\lambda c (a c)}) (\textcolor{blue}{(a(a(b)))}))\\
-	& \Leftrightarrow \lambda a \lambda b (a(a(a(c))))
+	[\textcolor{red}{1}+\textcolor{blue}{2}] & \iff \lambda a \lambda b ( ( ( \textcolor{red}{\lambda f \lambda c (fc)} )a ) ( ( ( \textcolor{blue}{\lambda f \lambda c (f(fc))})a)b) ) \\
+	& \iff \lambda a \lambda b ((\textcolor{red}{\lambda c (a c)}) ((\textcolor{blue}{\lambda c (a(a(c)))})b)) \\
+	& \iff \lambda a \lambda b ((\textcolor{red}{\lambda c (a c)}) (\textcolor{blue}{(a(a(b)))}))\\
+	& \iff \lambda a \lambda b (a(a(a(c))))
 \end{array}$$
-Ce qui est bien la représentation lambda de 3.
+Ce qui est bien la représentation lambda de \(3\).
 %------------------------------------------------------
 \section{Analyse de la thèse de Church-Turing}
 
