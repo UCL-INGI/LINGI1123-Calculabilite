@@ -237,7 +237,7 @@ Un automate fini est composé de :
 \end{mydef}
 
 \paragraph{Exemple}
-Un exemple simple de mécanisme qui peux être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+Un exemple simple de mécanisme qui peut être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui-ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié soit par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
 \begin{figure}[h]
 	\centering
@@ -277,7 +277,7 @@ Un exemple simple de mécanisme qui peux être modélisé par un automate fini e
 	\label{FTPortillon}
 \end{table}  
 
-Un exemple plus complexe est le célèbre problème du passeur. Celui ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peut prendre qu'un objet avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peut pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive, P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
+Un exemple plus complexe est le célèbre problème du passeur. Celui-ci doit traverser une rivière, avec un loup, une salade et une chèvre. Dans sa barque il ne peut prendre qu'un objet avec lui. La difficulté supplémentaire est que la chèvre et le loup ne peuvent pas rester ensemble et la chèvre ne peut pas rester seule avec la salade. Chaque état représente les objets se trouvant sur l'autre rive, P étant le passeur, C la chèvre, L le loup et S la salade. Sur les flèches, la lettre correspond à l'objet transporté avec lui lors de la traversée. Au début rien n'a été transporté, à la fin, les trois objets et le passeur se retrouvent sur l'autre rive.
 La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 \begin{figure}[h]
 	\centering
