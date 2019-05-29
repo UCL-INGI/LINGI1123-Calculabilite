@@ -256,8 +256,12 @@ différence de complexité entre différents modèles est un facteur polynomial
 \begin{myprop}
 	$A \in DSPACE(f) \Rightarrow A \in DTIME(c^f)$
     \begin{proof}
-      On sait que le programme se termine pour tout car l'ensemble est récursif.
-Si la mémoire utilisée est en $O(f)$,  le nombre de configurations possibles de cette mémoire (stack, heap, program counter, ...) est exponentiel $O(c^f)$.  Si la complexité temporelle dépasse cette complexité exponentielle, alors l'exécution du programme va repasser sur un état de mémoire déjà rencontré, et va y repasser une infinité de fois.  Le programme va alors ne pas se terminer, ce qui est contraire à l'hypothèse que l’ensemble est récursif. 
+      On sait que le programme se termine pour tout input car l'ensemble est récursif.
+Si la mémoire utilisée est en $O(f)$,  le nombre de configurations possibles de cette mémoire 
+(stack, heap, program counter, ...) est exponentiel $O(c^f)$.  Si la complexité temporelle dépasse 
+cette complexité exponentielle, alors l'exécution du programme va repasser sur un état de mémoire 
+déjà rencontré, et va donc y repasser une infinité de fois.  Le programme va alors ne pas se terminer, 
+ce qui est contraire à l'hypothèse que l'ensemble est récursif. 
     \end{proof}
 \end{myprop}
 
