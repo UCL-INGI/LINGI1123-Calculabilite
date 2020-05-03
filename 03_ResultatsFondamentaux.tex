@@ -618,6 +618,8 @@ Il est intéressant de pouvoir analyser un programme afin d'établir ses propri�
 
 Le théorème de Rice nous répond que \textbf{non}, toute propriété sémantique non triviale d'un programme est non calculable par un algorithme.
 
+Ce résultat est donc très négatif d'une part mais également positif d'autre part pour l'informaticien. Celui-ci devra essayer de trouver une fonction approchée ressemblant à la fonction non calculable.
+
 
 Voici quelques exemples avant d'attaquer le cas général. Pour chaque exemple, nous pouvons démontrer la non-récursivité de l'ensemble par une réduction à HALT.
 
@@ -690,7 +692,7 @@ Soit un ensemble de programmes A $\subseteq$ $\N$ et $\stcomp{A} = \N \setminus 
 	Si $A$ est récursif et $A\neq \emptyset, A \neq \N$,
   alors $\exists i \in A$ et $\exists j \in \N \setminus A$ tel que $\varphi _i = \varphi _j$.
 	
-	Si A est récursif, qu'il n'est pas vide et qu'il ne contient pas l'ensemble des programmes existant, 
+	Si A est récursif, qu'il n'est pas vide et qu'il ne contient pas l'ensemble des programmes existants, 
   alors il existe un programme dans A et un programme dans $\stcomp{A}$ tel qu'ils calculent la même fonction. 
 
 \end{mytheo}
@@ -762,8 +764,9 @@ else print(0);
 	\item Contradiction, car \textbf{HALT} n'est pas récursif.
 	\item Conclusion: $A$ n'est pas récursif.
 \end{enumerate}
-\end{proof}
 
+\end{proof}
+Cette démonstration est générique et applicable pour n'importe quel problème.
 \subsection{Analyse}
 
 \paragraph{} En tenant compte du théorème de Rice, il est maintenant possible de différencier quelles propriétés d'un programme sont déterminables par un algorithme et lesquelles ne le sont pas.
@@ -788,7 +791,7 @@ else print(0);
 	\item Les propriétés intéressantes d'un programme concernant la
 		fonction qu'il calcule, non pas sa forme (syntaxe), sont non calculables.
 
-	\item La plupart des problèmes intéressants au sujet des programmes sont non calculables
+	\item La plupart des problèmes intéressants au sujet des programmes sont non calculables.
 \end{itemize}
 
 \subsection{Exemples}
@@ -819,7 +822,7 @@ L'ensemble $A_1, \cdots, A_7$ est non récursif, par la contraposée du théorè
 
 \section{Théorème de la paramétrisation}
 \label{sec:th_or_me_de_la_param_trisation}
-
+Nous avons vu le problème de l'arrêt, le théorème de Hoare-Allison ou encore le théorème de Rice qui sont tous les trois des résultats négatifs pour la calculabilité. Nous voyons maintenant le théorème de la paramétrisation qui est un résultat positif pour la calculabilité.
 \subsection{Transformation de programmes}
 \label{sub:transformation_de_programmes}
 \begin{mydef}[Transformateur de programme]
@@ -885,8 +888,12 @@ Par le théorème \ref{S-m-n} (S-m-n),
 
 \begin{myrem}
 	On peut donc voir la transformation de programmes $S^m_n$ comme un
-	programme qui particularise un autre programme à $m+n$ argument en rendant
+	programme qui particularise un autre programme à $n+m$ argument en rendant
 	constant les m derniers paramètres.
+\end{myrem}
+
+\begin{myrem}
+	Ce théorème de la paramétrisation est utile car la propriété S est un résultat fondamental pour les languages de programmation.
 \end{myrem}
 
 \section{Théorème du point fixe}
@@ -903,12 +910,12 @@ Par le théorème \ref{S-m-n} (S-m-n),
 	il existe deux programmes $P_k$ et $P_j$ tels que
 	\begin{itemize}
 		\item $P_j$ est la transformation de $P_k$ via T,
-		\item $P_k$ et $P_j$ calcule la \textbf{même} fonction.
+		\item $P_k$ et $P_j$, deux programmes synthaxiquement différents, calcule la \textbf{même} fonction.
 	\end{itemize}
 \end{myrem}
 
 \begin{proof}
-Pour commencer la démonstration, on va sortir 3 ``lapins'' d'un chapeau (analogie aux tours de magie) :
+Démonstration non intuitive : pour commencer celle-ci, on va sortir 3 ``lapins'' d'un chapeau (analogie aux tours de magie) :
 \begin{description}
 	%\item $h(u,v) =$
 	%	\begin{tabular}{c}
@@ -933,13 +940,13 @@ Pour commencer la démonstration, on va sortir 3 ``lapins'' d'un chapeau (analog
             où $\varphi_z = \theta$ est la fonction universelle.
 		\end{myrem}
 
-	\item[$2^{eme}$ lapin:] $h(u,v)=\varphi_{S(u)}(v)$\\
-	Ceci est une application de la propriété S (propriété S-m-n affaiblie), avec $S$ totale calculable.
+	\item[$2^{ème}$ lapin:] $h(u,v)=\varphi_{S(u)}(v)$\\
+	Ceci est une application de la propriété S (propriété S-m-n affaiblie) sur $h(u,v)$, avec $S$ totale calculable.
 
-	\item[$3^{eme}$ lapin:] Soit $g(u)=f(S(u))$\\
+	\item[$3^{ème}$ lapin:] Soit $g(u)=f(S(u))$\\
 	 $g$ est totale calculable car $S$ et $f$ le sont ($f$
 		est la fonction donnée dans le théorème).
-		\[ \exists k' \text{ tel que } \varphi_{k'}(u) =g(u)=f(S(u)) \]
+		\[ \exists k' \text{ tel que } \varphi_{k'}(u) =g(u)=f(S(u)) \neq \bot \]
 \end{description}
 On a que $k'$ est une constante et par le lapin 2 :
 \[h(k',v) = \varphi_{S(k')}(v)\]
@@ -980,7 +987,7 @@ Grâce à ce théorème qui se base sur l'unique propriété de S, nous pouvons 
    \item Le théorème de Rice
    \item Le théorème de Hoare-Allison via la démonstration de HALT non-calculable
 \end{itemize}
-Le théorème du point fixe c'est la base de la calculabilité. Il fixe toutes les limites de la calculabilité.
+Le théorème du point fixe c'est la base de la calculabilité. Il fixe toutes les limites de la calculabilité. Résultat fondamental de la calculabilité ! Il n'est pas appliqué dans la vie de tous les jours mais permet de justifier des théorèmes tels que celui de Rice, qui est central dans la vie de l'informaticien.
  
 \end{myrem}
 
@@ -992,7 +999,7 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
 \end{center}
 
   \begin{proof}
-    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $\bar{A} \neq \N$.  Il suffit de montrer que si
+    Soit un ensemble $A$ tel que $A \neq \emptyset$ et $A \neq \N$.  Il suffit de montrer que si
     $\forall i \in A, \forall j \in \bar{A} : \varphi_i \neq \varphi_j$  (1) alors A est non récursif. \\
     En supposant A récursif, on arrive à une contradiction.  En effet,
     soit $n \in A$ et $m \in \bar{A}$, définissons la fonction
@@ -1003,9 +1010,9 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
         n & \text{si }x \in \bar{A}.
       \end{cases}
     \]
-    Comme $A$ est récursif, la fonction $f$ est total calculable.
+    Comme $A$ est, par hypothèse, récursif, la fonction $f$ est totale calculable.
     Dès lors, par le théorème du point fixe, il existe $k$ tel que
-    \[ \varphi_{f(k)} = \varphi_k \]
+    \[ \varphi_k = \varphi_{f(k)} \]
     La valeur $k$ est-elle dans $A$ ou dans $\bar{A}$ ?
     \begin{itemize}
       \item Si $k \in A$, alors $f(k)=m$.  On a donc $\varphi_m = \varphi_k$, ce qui est contradictoire avec (1) car
@@ -1013,10 +1020,11 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
       \item Si $k \in \bar{A}$, alors $f(k)=n$.  On a donc $\varphi_n = \varphi_k$, ce qui est contradictoire avec (1) car
         $n \in A$.
     \end{itemize}
+La seule hypothèse faites dans cette démonstration est : A est récursif. Vu qu'il y a un problème, on peut affirmer que A n'est pas récursif ! 
   \end{proof}
 \end{myrem}
 
-\begin{myrem}[Démonstration de $K$ grâce au point fixe]
+\begin{myrem}[Démonstration de $K = \{n | \phi_n(n) \neq \bot \}$ grâce au point fixe]
 	On peut démontrer que $K$ n'est pas récursif.
 
     \begin{proof}
@@ -1042,7 +1050,7 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
       \item Si $k \notin K$, $\varphi_k(k) = \bot$, $f(k) = m$ et
         $\varphi_{f(k)}(k) = \varphi_m(k) \neq \bot = \varphi_k(k)$ donc $\varphi_{f(k)} \neq \varphi_k$.
     \end{itemize}
-    Si $K$ est récursif, alors $f$ est total calculable.
+    Si $K$ est récursif, alors $f$ est totale calculable.
 	Par le théorème du point fixe, il existe $k$ tel que $\varphi_k = \varphi_{f(k)}$.
     Ce qui est contradictoire.
 
