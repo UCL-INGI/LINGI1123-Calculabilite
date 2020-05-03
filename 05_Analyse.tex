@@ -3,7 +3,7 @@
 
 \chapter{Analyse de la thèse de Church-Turing}
 \label{sec:analyse_de_la_th_se_de_church_turing}
-Dans ce chapitre on va principalement voir ce qu'est un bon formalisme.
+Dans ce chapitre, on va principalement voir ce qu'est un bon formalisme de calculabilité.
 
 % section fondement de la thèse (start)
 \section{Fondement de la thèse}
@@ -12,26 +12,47 @@ Dans ce chapitre on va principalement voir ce qu'est un bon formalisme.
 La forme originale ne contient que 2 parties :
 \begin{enumerate}
 	\item Toute fonction calculable par une MT est effectivement calculable ;
-	\item Toute fonction effectivement calculable est effectivement calculable par une MT.
+	\item Toute fonction effectivement calculable est calculable par une MT.
 \end{enumerate}
 \end{mythese}
 
 La partie 1 est démontrée (c'est évident puisqu'on peut simuler les machines de Turing).\\
 
 La partie 2 est supposée vraie : on ne peut pas la démontrer formellement car ``effectivement calculable'' n'est pas bien défini. 
-On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute machine constructible par la mécanique de Newton ne calcule que des fonctions calculables).
+On la suppose vraie, car on a des évidences qui supportent la deuxième partie. Ces évidences sont de deux types :
+\begin{itemize}
+\item Evidences heuristiques ;
+\item Equivalence des divers formalismes.
+\end{itemize}
+\subsection{Evidences heuristiques}
+Quelques évidences de cette première gamme de preuves sont montrées :
+\begin{itemize}
+\item Beaucoup de tentatives de trouver une fonction effectivement calculable qui ne soit pas calculable par une machine de Turing. Aucune de ces tentatives ne fut un succès. Echec sur toute la ligne.
+\item Toutes fonctions particulières s'avérant effectivement calculables, peu importe le formalisme utilisé, ont été montrées être calculables par une machine de Turing. Notons que beaucoup d'essais ont été réalisés couvrant une très large classe de problèmes.
+\item Des méthodes ont été développées pour montrer qu'une fonction effectivement calculable peut être calculée par une machine de Turing.
+\end{itemize}
+
+\subsection{Equivalence des divers formalismes}
+\begin{itemize}
+\item Différents formalismes, très différents, basés sur des principes distincts, ont été proposés pour définir la calculabilité. Ceux-ci possèdent les mêmes évidences heuristiques que pour les machines de Turing. 
+\item On a montré l'équivalence  entre tous les formalismes de calculabilité crées à ce jour. On a montré que toute machine constructible par la mécanique newtonienne ne calcule que des fonctions calculables.
+
+\end{itemize}
+
+
+%On la suppose vraie, car on a des évidences heuristiques (il y a eu beaucoup d'essais pour trouver une fonction qui ne respectait pas la thèse) et qu'on a montré l'équivalence entre tous les formalismes créés à ce jour (on a montré que toute machine constructible par la mécanique de Newton ne calcule que des fonctions calculables).
 % section fondement de la thèse (end)
 
 % section formalisme de la calculabilité (start)
-\section{Formalismes de la calculabilité}
+\section{Formalismes de calculabilité}
 \label{sub:formalismes_de_la_calculabilit_}
 
-On va se poser la question de ce qui fait un bon formalisme de la
+On se pose la question de ce qui fait un bon formalisme pour la
 calculabilité. Il faut un formalisme qui vérifie les fondements de la
-thèse. Plus précisément, on va étudier des caractéristiques (des propriétés)
-nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
+thèse énoncée précédemment. Plus précisément, on va étudier les caractéristiques (les propriétés)
+nécessaires et suffisantes pour avoir un bon modèle de calculabilité.
 
-\paragraph{} Dans ce chapitre, on va considérer un formalisme de la calculabilité D.
+\paragraph{} Dans ce chapitre, on considére un nouveau formalisme de calculabilité D.
 
 \begin{samepage}
 \paragraph{Caractéristiques}
@@ -51,17 +72,17 @@ nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
 \end{myrem}
 
 \begin{myrem}
-	\textbf{Soundness} signifie que, si on a une description dans notre modèle D alors celle-ci est cohérente, correspond bien à une fonction calculable.\\
+	\textbf{Soundness} signifie que, si on a une description dans notre modèle D alors celle-ci est cohérente, et correspond bien à une fonction calculable.\\
 	\textbf{Complétude} signifie que notre modèle est complet, qu'il n'existe pas de fonction calculable qui ne le soit pas dans notre modèle.
 \end{myrem}
 
-\paragraph{Caractéristiques plus en détails}
+\paragraph{Caractéristiques détaillées}
 \begin{description}
-	\item[SD]  Toute fonction D-calculable est calculable (première partie de la thèse de Turing).
-	\item[CD]  Toute fonction calculable est D-calculable (deuxième partie de la thèse de Turing).
-	\item[SA]  L'interpréteur de D est calculable (on peut exécuter une description de programme de D).
-	\item[CA]  Il existe un compilateur qui étant donné un programme $p$ dans un formalisme respectant SA produit une description de programme $d \in D$ tel que $p$ et $d$ calculent la même fonction (cette propriété permet d'assurer l'équivalence entre les formalismes).
-	\item[U]  L'interpréteur de D est D-calculable (sinon on sait par Hoare Allison que ce n'est pas un formalisme complet).
+	\item[SD]  Toute fonction D-calculable est calculable (première partie de la thèse de Church-Turing). Si il existe une description D $\in \textit{D}$ calculant une fonction f, alors cette fonction est calculable.
+	\item[CD]  Toute fonction calculable est D-calculable (deuxième partie de la thèse de Church-Turing). Si une fonction f est calculable, alors il existe une description D $\in \textit{D}$ calculant cette fonction f.
+	\item[SA]  L'interpréteur de D est calculable. Toute description D $\in \textit{D}$ peut être effectivement exécutée sur des données. Le formalisme D est algorithmique. Cette caractéristique assure que D décrit bien des procédés effectifs.
+	\item[CA]  Il existe un compilateur qui étant donné un programme $p$ dans un formalisme respectant SA produit une description de programme $d \in D$ tel que $p$ et $d$ calculent la même fonction (cette propriété permet d'assurer l'équivalence des formalismes).
+	\item[U]  L'interpréteur de D est D-calculable. Le formalisme doit permettre de décrire son propre interpréteur sinon on sait par Hoare Allison que ce n'est pas un formalisme complet.
 	\item[S] Pour tout programme $d \in$ D à deux arguments, il existe un transformateur de 
   programme $S$ calculable, qui 
   recevant comme entrée le programme $d$ et une valeur 
@@ -69,7 +90,7 @@ nécessaires et suffisantes pour avoir un bon modèle de la calculabilité.
   la même fonction que $d(x,y)$ pour cette valeur de $x$ :
 $$\forall d\in D\ \exists S\in D \colon \varphi_d(x,y)=\varphi_{S(d,x)}(y).$$
 \end{description}
-Un bon formalisme de la calculabilité possède toutes ces propriétés. En pratique, il suffit d'en montrer certaines, car certaines propriétés en entraînent d'autres.
+Un bon formalisme de calculabilité possède toutes ces propriétés. En pratique, il suffit d'en montrer certaines, car certaines propriétés en entraînent d'autres.
 
 \begin{myprop}
 S et U $\Rightarrow$ S-m-n.
@@ -118,10 +139,10 @@ BLOOP et les fonctions primitives récursives sont des ``mauvais'' formalismes c
 % section formalismes de la calculabilité (end)
 
 % section Techniques de preuve (start)
-\section{Techniques de preuve}
+\section{Techniques de preuves}
 \label{sub:techniques_de_preuve}
 
-Pour prouver qu'un problème est non calculable, on peut utiliser :
+Pour prouver qu'un problème, une fonction est non calculable, on peut utiliser :
 \begin{itemize}
 	\item Le théorème de Rice.
 	\item La démonstration directe de la non-calculabilité par 
@@ -145,14 +166,14 @@ Système de réservation aérienne.
 \end{myexem}
 
 \begin{myexem}
-Certains problèmes utilisent des caractéristiques de l'environnement comme des données en provenance de sonde.
+Certains problèmes utilisent des caractéristiques de l'environnement comme des données en provenance de sondes extérieures.
 \end{myexem}
 % section aspects non couverts par la calculabilité (end)
 
 % section Au-delà de la calculabilité (start)
 \section{Au-delà de la calculabilité}
 \label{sub:au_del_de_la_calculabilit_}
-En définissant la calculabilité, on met en évidence des questions qui vont au-delà de son champs d'application :
+En définissant la calculabilité, on met en évidence des questions qui vont au-delà de son champ d'application :
 \begin{itemize}
 	\item Est-il possible d'imaginer un modèle plus puissant que les modèles qu'on a aujourd'hui ?
 	\item Voir même, est-ce que nos modèles de calculabilité sont limités par l'intelligence humaine ?
@@ -161,7 +182,7 @@ En définissant la calculabilité, on met en évidence des questions qui vont au
 \end{itemize}
  
 
-\subsection{Thèses CT}
+\subsection{Calculabilité et intelligence humaine : les thèses CT}
 Les thèses CT sont des approches à la question de l'équivalence entre les fonctions calculables par une machine et les fonctions calculables par un être humain.
 
 \begin{mydef}[H-calculable]
@@ -172,14 +193,14 @@ Les deux thèses suivantes sont deux extrêmes :
 \begin{mythese}[version ``réductionniste'']
 Si une fonction est H-calculable, alors elle est T-calculable car :
 \begin{enumerate}
-	\item le comportement des élément constitutifs d'un être vivant peut être simulé par une machine de Turing;
+	\item le comportement des éléments constitutifs d'un être vivant peut être simulé par une machine de Turing;
 	\item tous les processus cérébraux dérivent d'un substrat calculable.
 \end{enumerate}
 \end{mythese}
 
 \begin{mythese}[version ``anti-réductionniste'']
-Certains types d'opérations effectuées par le cerveau, mais pas la majorité d'entre elles (et certainement pas les plus intéressantes !), peuvent être exécutées de façon approximative par les ordinateurs.\\
-Autrement dit, certains aspects seront toujours hors de protée des ordinateur :
+Certains types d'opérations effectuées par le cerveau, mais pas la majorité d'entre elles (et certainement pas les plus intéressantes), peuvent être exécutées de façon approximative par les ordinateurs.\\
+Autrement dit, certains aspects seront toujours hors de portée des ordinateurs :
 \begin{center}
 H-calculable $\neq$ T-calculable
 \end{center}
@@ -206,7 +227,7 @@ Aucune réponse scientifique à cette question ne peut être donnée, seules dif
 Deux approches possibles pour l'intelligence artificielle :
 \begin{enumerate}
 	\item \textbf{IA forte} : simulation du cerveau humain à l'aide d'un ordinateur. En copiant le fonctionnement, on espère ainsi obtenir des résultats similaires.
-	\item \textbf{IA faible} : programmation de méthodes et techniques de raisonnement exploitant les caractéristiques propres des ordinateurs.
+	\item \textbf{IA faible} : programmation de méthodes et techniques de raisonnement en exploitant les caractéristiques propres des ordinateurs.
 \end{enumerate}
 La première approche (IA forte) s'apparente à la version ``réductionniste'' de la thèse de Church-Turing.
 
@@ -235,7 +256,7 @@ On compare deux tests similaires.\\
 Si l'interrogateur se trompe autant de fois dans le premier test que dans le second, on en conclut que les machines peuvent penser.
 
 \paragraph{Raisonnement de Turing}
-Turing propose le raisonnement suivant pour penser la question ``les machines pensent-elles ?'' :
+Turing propose le raisonnement suivant pour répondre à la question ``les machines pensent-elles ?'' :
 \begin{itemize}
 	\item \textbf{Hypothèse :} les machines pensent ;
 	\item si on ne peut réfuter l'hypothèse alors celle-ci est vraie ;
