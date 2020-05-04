@@ -167,10 +167,10 @@ On est donc limité à utiliser qu'une fois le test $f(a) \in B$ \textbf{en
 	dernier lieu}.
 
 \section{Modèles de calcul}
-D'habitude, on utilise les machines de Turing pour avoir une définition précise
-de la complexité. Mais c'est peu intuitif et on s'intéresse aux frontières. Or la
-différence de complexité entre différents modèles est un facteur polynomial
-(c'est une thèse) ce qui n'a pas d'influence sur les frontières.
+Il y a deux manières de travailler en théorie de la complexité. Premièrement, la théorie classique qui utilise les machines de Turing pour calculer la complexité car la notion de transitions est extrêmement claire.
+On peut vraiment calculer facilement le nombre de transitions. Ensuite Java, pour lequel cela dépend du compilateur et d'autres éléments, ce qui implique que ce n'est pas toujours très précis. Les théoriciens préfèrent donc les machines de Turing car la définition de nombre d'instructions est très précise. Mais cette manière est peu intuitive et on va donc se permettre d'utiliser le concept standard de notation grand O en Java pour calculer la complexité. Chaque modèle a ses inconvénients et ses avantages et nous utiliserons le plus facile en fonction du problème.\\
+
+Il est important de se rappeler une thèse vu dans le chapitre précédant qui dit que tous les modèles de complexité ont entre eux des complexités spatiales et temporelles reliées de façon polynomiale. Ceci implique que tout problème pratiquement faisable dans un modèle (non déterministe) le sera également dans tous les autres modèles (non déterministe) !
 
 \section{Classes de complexité}
 
@@ -185,9 +185,12 @@ différence de complexité entre différents modèles est un facteur polynomial
 	Java de complexité spatiale $\mathcal{O}(f)$
 \end{mydef}
 
+\begin{myrem}
+La complexité n'a pas de sens pour les ensembles récursivement énumérables, car ceux-ci ne se terminent pas toujours. Or, la complexité n'a de sens que pour les programmes qui se terminent !
+\end{myrem}
 \paragraph{Classes basées sur le modèle non déterministe}
 \begin{mydef}[NTIME(f)]
-	Famille des ensembles récursifs pouvant être décidés par un programme
+	Famille des ensembles ND-récursifs pouvant être décidés par un programme
 	non déterministe Java de complexité temporelle $\mathcal{O}(f)$
 \end{mydef}
 
@@ -197,7 +200,7 @@ différence de complexité entre différents modèles est un facteur polynomial
 \end{myrem}
 
 \begin{mydef}[NSPACE(f)]
-	Famille des ensembles récursifs pouvant être décidés par un programme
+	Famille des ensembles ND-récursifs pouvant être décidés par un programme
 	non déterministe Java de complexité spatiale $\mathcal{O}(f)$
 \end{mydef}
 
@@ -208,7 +211,7 @@ différence de complexité entre différents modèles est un facteur polynomial
 \end{mydef}
 
 \begin{myrem}
-	Les classes ne dépendent pas du modèle de calcul
+	La classe P ne dépend pas du modèle de calcul car on sait que entre deux modèles de calcul, les différences sont uniquement polynomiales. Résultat très positif car classe de problèmes qui est la même peu importe le modèle utilisé !
 \end{myrem}
 
 \begin{mydef}[Classe NP]
@@ -221,6 +224,10 @@ différence de complexité entre différents modèles est un facteur polynomial
 	Si on savait faire du non-déterminisme, on aurait une complexité polynomiale,
 	mais pour le moment on ne peut que le simuler donc on a une complexité
 	exponentielle.
+\end{myrem}
+
+\begin{myrem}
+	La classe NP ne dépend pas du modèle de calcul (même raison que pour la classe P).
 \end{myrem}
 
 \section{Relations entre les classes de complexité}
