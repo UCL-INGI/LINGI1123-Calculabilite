@@ -633,12 +633,12 @@ f(n) =\left\{\begin{tabular}{l}
 \end{equation*}
 En supposant que $f$ est calculable, on montre que $halt$ est calculable. Soit le programme F qui calcule la fonction f. Nous construisons $ HALT(n,x) \equiv $
 		\begin{itemize}
-		\item Construire le programme $P(z) \equiv P_{n}(x); return z;$
+		\item Construire le programme $P(z) \equiv P_{n}(x); return\ z;$
 		\item Soit d le numéro de $P(z)$
 		\item Si F(d) = 1 alors print(1) sinon print(0)
 		\end{itemize}
 
-Si $P_n(x)$ s'arrête, $P(z)$ renverra toujours son input donc $F(d)$ renverra 1. Sinon, renverra $F(d)$ renverra 0. 
+Si $P_n(x)$ s'arrête, $P(z)$ renverra toujours son input donc $F(d)$ renverra 1. Sinon, $F(d)$ renverra 0. 
 \end{myexem}
 
 \begin{myexem}
@@ -981,7 +981,7 @@ Si $A$ est récursif et $A \neq \emptyset \neq \bar{A}$, alors il existe $i \in 
         n & \text{si }x \in \bar{A}.
       \end{cases}
     \]
-    Comme $A$ est récursif, la fonction $f$ est total calculable.
+    Comme $A$ est récursif, la fonction $f$ est totale calculable.
     Dès lors, par le théorème du point fixe, il existe $k$ tel que
     \[ \varphi_{f(k)} = \varphi_k \]
     La valeur $k$ est-elle dans $A$ ou dans $\bar{A}$ ?
