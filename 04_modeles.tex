@@ -218,12 +218,7 @@ Un automate fini est composé de :
 
 \begin{myprop}
 	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
-		accepté par FA$\}$
-\end{myprop}
-
-\begin{myprop}
-	Certains ensembles récursifs ne peuvent pas être reconnus par un
-	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (parce qu'il nécessiterait un nombre infini d'états)
+		accepté par FA$\}$. En effet, un automate fini va toujours s'arrêter.
 \end{myprop}
 
 \begin{myprop}
@@ -287,11 +282,12 @@ La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 	\label{Salade}
 \end{figure}
 
-Un autre exemple d'automate fini est un distributeur de boissons qui reçoit une pièce d'argent et un choix de boisson puis sert la boisson choisie. Par exemple, nous pouvons considérer que la machine reçoit une pièce de 2 euros et a uniquement trois choix Fanta, Coca, Eau. Un tel système peut être modélisé comme suit:\\
+Un autre exemple d'automate fini est un distributeur de boissons qui reçoit une pièce d'argent et un choix de boisson puis sert la boisson choisie. Par exemple, nous pouvons considérer que la machine reçoit une pièce de 2 euros et a uniquement trois choix Fanta, Coca, Eau. Un tel système peut être modélisé par la figure \ref{distribfig}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
-	\begin{tikzpicture}
+	\resizebox{\textwidth}{!}{
+	\begin{tikzpicture}%[thick,scale=0.8, every node/.style={transform shape}]
 		\node[draw,minimum height=2cm,circle] (A) at (0,0) {Etat 1};
 		\node[draw,minimum height=2cm,circle] (B) at (10,0) {Etat 2};
 		\draw (0,1.75) node {$\bullet$};
@@ -319,7 +315,9 @@ Un autre exemple d'automate fini est un distributeur de boissons qui reçoit une
 
 
 	\end{tikzpicture}
+	}
 	\caption{Diagramme d'état d'un distributeur de boisson simple \\{Inspirer du TD7 : Automates Par Stephane Devismes Université Grenoble Alpes}}
+	\label{distribfig}
 \end{figure}
 Les transitions avec les mêmes états de départs et d’arrivées et la même sortie ont une seule flèche étiquetée avec l’entrée / la sortie. 
 
