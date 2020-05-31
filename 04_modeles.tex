@@ -38,6 +38,9 @@ On va voir les modèles de calcul suivant :
 	\item Fonction récursive
 \end{itemize}
 Mais il en existe beaucoup d'autres.
+
+Ajout d'un schéma trouvé sur wikipédia expliquant plus graphiquement la théorie des automates :
+https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Automata_theory.svg/600px-Automata_theory.svg.png
 % subsubsection mod_le_de_calcul (end)
 
 \subsection{Modèles de langage}
@@ -100,7 +103,7 @@ Cependant il existe un compilateur des programmes BLOOP (Java).\\
 	la plus longue).
 \end{myrem}
 
-On va un introduire un nouveau langage ND-Java qui est le langage Java
+On va introduire un nouveau langage ND-Java qui est le langage Java
 auquel on ajoute le non-déterminisme sous la forme d'une fonction
 prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre $0$ et $n$ et elle
 est non déterministe.
@@ -216,6 +219,10 @@ Un automate fini est composé de :
 	par un programme Java.
 \end{myrem}
 
+\begin{myrem}
+	Un état acceptant est entouré deux fois sur un diagramme d'état.
+\end{myrem}
+
 \begin{myprop}
 	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
 		accepté par FA$\}$
@@ -237,7 +244,7 @@ Un automate fini est composé de :
 \end{mydef}
 
 \paragraph{Exemple}
-Un exemple simple de mécanisme qui peut être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+Un exemple simple de mécanisme qui peut être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillé et déverrouillé. L'état peut-être modifié par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
 \begin{figure}[h]
 	\centering
@@ -1094,7 +1101,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 \paragraph{} Le langage est dépourvu de boucle.
 
 \begin{myprop}
-	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+	Il existe des fonctions totales calculables qui ne sont pas primitives récursives :
 \end{myprop}
 \paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction.\footnote{
 En utilisant la notation des puissances itérées de Knuth, cela est rigoureusement possible.
