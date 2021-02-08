@@ -71,14 +71,52 @@ Soient $A$, $B$ des ensembles.
 
 \subsection{Fonctions}
 \label{subsec:fonctions}
-Soient $A$, $B$ des ensembles.
-\begin{itemize}
-  	\item Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in
-	A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$.
-	\item Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$.
-	\item S'il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
-		$f(a) = \perp$. Le symbole $\perp$ est appelé \emph{bottom}.
-\end{itemize}
+
+\begin{mydef}
+    Soient $A$, $B$ des ensembles. Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$.
+\end{mydef}
+\begin{myrem}
+    Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$.
+\end{myrem}
+\begin{myrem}
+    S'il n'existe pas de $b \in B$ et de $a \in A$ tel que $f(a)=b$ alors on dit que $f(a)$ est indéfini, et on note : $f(a) = \perp$. Le symbole $\perp$ est appelé \textbf{bottom}. Mathématiquement, cela se traduit par :
+    $$ \text{si } \nexists a \in A, b \in B \text{ tel que } f(a) = b \implies f(a) = \perp $$
+    On pourrait aussi écrire : 
+    $$ \text{si }\forall \la a, b \ra \in A \times B : f(a) \neq b \implies f(a) = \perp $$
+\end{myrem}
+
+\subsubsection{Définition d'une fonction}
+\label{par:d_finition_d_une_fonciton}
+On définit une fonction par sa "table", celle-ci peut aussi bien être finie qu'infinie.\\
+\begin{mydef}
+    La table d'une fonction est une spécification qui permet de déduire le comportement \emph{exact} de la fonction associée. Celle-ci peut être définie de plusieurs manières, par exemple par un texte non ambigu, un algorithme ou encore en définissant toutes les paires possibles de la fonction avec son ensemble de définition.
+\end{mydef}
+
+\begin{myexem}\label{exemple:def_func_texte}
+  Définition de la table d'une fonction par un texte : "Cette fonction prend en argument un nombre entier naturel non-nul et retourne true si le nombre entré est pair, false sinon."
+\end{myexem}
+
+\begin{myexem}\label{exemple:def_func_algo}
+  Définition de la table d'une fonction par un algorithme : 
+  \begin{lstlisting}
+    declare fun {Even N}
+        if N mod 2 == 0 then true else false
+        end
+    end
+  \end{lstlisting}
+  On voit par les exemples \ref{exemple:def_func_texte} et \ref{exemple:def_func_algo} qu'il est possible de définir la même fonction de plusieurs manières différentes.
+\end{myexem}
+\begin{myexem}
+  En écrivant toutes les paires de la fonction, soit en listant $$ \{ \la x, f(x) \ra | x \in dom(f)\}$$
+\end{myexem}
+
+Il est par contre important de noter que l'on ne doit pas forcément avoir une connaissance préalable exacte des phénomènes traités par la fonction.
+\begin{myexem}
+  $$
+  f(x) = \begin{cases} 1 \text{  s'il y a de la vie autre part que sur terre,} \\ 
+  0 \text{  sinon.}\end{cases}.
+  $$
+  (en supposant qu'il n'y ait pas d'ambiguïté sur le terme \og vie\fg).
 
 \subsubsection{Propriétés des fonctions}
 \label{par:proprietes_des_fonctions}
@@ -88,35 +126,56 @@ Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} respecti
   \image(f) & = \{\, b \in B \mid \exists a \in A : b = f(a) \,\}.
 \end{align*}
 
-Si $\dom(f) \subseteq A$, alors $f$ est appelée \emph{partielle} et si $\dom(f) = A$, alors $f$ est appelée \emph{totale}.
-Notez qu'avec cette définition, une fonction totale est partielle.
-Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
+\noindent Une fonction peut être :
+\begin{enumerate}
+    \item \emph{partielle} : si $\dom(f) \subseteq A$, soit que le domaine de définition de la fonction est un sous-ensemble au sens large de $A$.
+    \item \emph{totale} : si $\dom(f) = A$, soit que le domaine de définition de la fonction est exactement le même que l'ensemble $A$.
+    \item \emph{surjective} : si $image(f) = B$.
+    \item \emph{injective} : si $\forall a,a' \in A : a \neq a' \implies f(a) \neq f(a')$.
+    \item \emph{bijective} : si elle est totale, injective et surjective.
+\end{enumerate}
 
-Une fonction est \emph{surjective} si $\image(f) = B$ et \emph{injective} si $\forall a,a' \in A : a \neq a' \implies f(a) \neq f(a')$.
+\begin{myrem}
+    Notez qu'avec les deux premières définitions, une fonction totale est partielle.
+    Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
+\end{myrem}
 
-Une fonction est \emph{bijective} si elle est totale, injective et surjective.
+\textbf{Clarification sur les notions d'inclusions entre ensembles :}
 
-On utilise aussi le concept d'\emph{extension} :
-$f \colon A \rightarrow B$ est une extension de $g \colon A \rightarrow B$ si $\forall x \in A : g(x)\neq \perp \implies f(x) = g(x)$.
-Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie.
+\vspace{0.3cm}
 
-La fonction $\mathrm{sqrt}(x) = \sqrt{x}$ en mathématique n'est valable que pour $x\geq0$. En revanche, un programme implémentant cette fonction, par exemple $\mathrm{mysqrt}(x) = \sqrt{x}$, retourne une valeur si $x\geq0$ ou \textit{Erreur} sinon. $\mathrm{mysqrt}(x)$ est une extension de la fonction $\mathrm{sqrt}(x)$ de base.
+\noindent Soient deux ensembles $A, B$ :
 
-\subsubsection{Définition d'une fonction}
-\label{par:d_finition_d_une_fonciton}
-On définit une fonction par sa table qui peut être infinie.\\
-On peut définir (la table d') une fonction de plusieurs façons :
-\begin{itemize}
-	\item Par \emph{un texte fini} déterminant sans contradiction ni ambiguïté le contenu
-		de la table.
-	\item Par un algorithme. Dans ce cas elle détermine la fonction \textit{ainsi} qu'un moyen de la calculer.
-		\subitem Ex: $f(x) = 2x^3+5$
-	\item En écrivant toutes les paires de la relation.
-\end{itemize}
-Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
-pour pouvoir la définir sans ambiguïté ni contradiction.
+\vspace{0.3cm}
 
-Ex : $f(x) = \left\{\begin{array}{ll} 1 & \text{s'il y a de la vie autre part que sur terre,} \\ 0 & \text{sinon.}\end{array}\right.$\\(en supposant qu'il n'y ait pas d'ambiguïté sur le terme \og vie\fg).\\
+\noindent Si l'on écrit $ A \subset B $ cela signifie que $A$ est un sous-ensemble \textbf{au sens strict} de $B$. C'est à dire que : $$ A \subset B \implies \forall x \in A : x \in B \text{ et } A \subset B \implies A \cap B \ne B$$ soit que tous les éléments se trouvant dans $A$ se trouvent également dans $B$ mais que tous les éléments se trouvant dans $B$ ne se trouvent \emph{pas forcément} dans $A$. Intuitivement, on pourrait dire que "la taille de $B$ est plus grande que la taille de $A$" (ou pourrait parler rigoureusement de cardinal).
+
+\vspace{0.3cm}
+
+\noindent Si l'on écrit $ A \subseteq B $ cela signifie que $A$ est un sous-ensemble \textbf{au sens large} de $B$. C'est à dire que : $$ A \subseteq B \implies \forall x \in A : x \in B \text{ et } A \subset B \nRightarrow  A \cap B \ne B$$ soit que tous les éléments se trouvant dans $A$ se trouvent également dans $B$. Intuitivement on pourrait sire que "la taille de $B$ est plus grande ou égale à la taille de $A$".
+
+\vspace{0.3cm}
+
+\noindent Et finalement, si l'on écrit  $ A = B $ cela signifie que les ensembles $A$ et $B$ sont exactement égaux et peuvent êtres utilisés de manière interchangeable.
+\newpage
+\subsubsection{Extension de fonction}
+\begin{mydef}
+    Soient deux fonctions : $$ f : A \mapsto B \text{ et } g : A \mapsto B$$ On dit que $f$ est \emph{une extension} de $g$ si $f$ retourne la même valeur que $g$ partout où $g$ est définie et que $dom(g) \subset dom(f)$. On peut alors noter rigoureusement $$ \forall x \in dom(g) \implies f(x) = g(x)$$ par contre 
+    $$ \forall x \in dom(f) \nRightarrow f(x) = g(x) $$
+\end{mydef}
+\vspace{0.3cm}
+\begin{myexem}
+    La fonction racine carrée définie comme $f : \mathbb{R} \mapsto \mathbb{R} : x \mapsto \sqrt{x}$ n'est définie que sur $\mathbb{R}^+$ (cette fonction n'est donc pas surjective). Par contre la fonction racine carrée d'une calculatrice comme ma TI-30 est définie comme :
+    $$ \text{sqrt} : \mathbb{R} \mapsto \mathbb{R} : x \mapsto \begin{cases}
+    \sqrt{x} \text{ si } x \geq 0 \\
+    \texttt{DomainError } \text{sinon}
+    \end{cases}
+    $$
+    La fonction racine carrée de ma TI-30 (sqrt) est donc une extension de la fonction racine carrée définie mathématiquement (f).
+\end{myexem}
+
+\end{myexem}
+
 % paragraph d_finition_d_une_fonction (end)
 % subsection fonctions (end)
 % section ensembles_langages_relations_et_fonctions (end)
