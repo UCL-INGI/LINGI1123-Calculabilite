@@ -63,7 +63,7 @@ Soient $A$, $B$ des ensembles.
 \begin{itemize}
 	\item Une \emph{relation} $R$ sur $A$, $B$ est un sous-ensemble de $A \times B$. C'est-à-dire
 		un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$.
-	\item Une relation est définie par sa table
+	\item Une relation est définie par sa table.
 	\item Elle peut s'écrire $\la a,b \ra \in R$ ou $aR b$ ou $R(a,b)$.
 \end{itemize}
 
@@ -129,16 +129,16 @@ Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensemb
 ont le même cardinal s'il existe une bijection entre eux.
 
 \begin{mydef}[Ensemble énumérable]
-	Un ensemble est \emph{énumérable} ou \emph{dénombrable} s'il est fini ou s'il a le même cardinal que $\N$.
+	Un ensemble est \emph{énumérable} ou \emph{dénombrable} s'il est fini ou s'il a le même cardinal que $\N$. On dit que l'ensemble est \emph{équipotent} à $\N$.
 \end{mydef}
-Une autre manière plus intuitive de voir si un ensemble infini est énumérable est de voir s'il existe une énumération de ses éléments.
+Une autre manière plus intuitive de voir si un ensemble infini est énumérable est de voir s'il existe une énumération de ses éléments. Cela veut dire que nous pouvons trouver une numérotation (parmis les entiers $\N$) pour chaque élément de l'ensemble. A chaque élément de l'ensemble sera lié un numéro dans $\N$ et vice-versa, ce qui montre bien l'idée de bijection entre l'ensemble et $\N$.
 
 \begin{myprop}
-Un ensemble infini $E$ est énumérable s'il existe une liste de ses éléments
+Un ensemble infini $E$ est énumérable s'il nous est possible de lister ses éléments.
 \[
 e_0, e_1, e_2, \ldots , e_n, \ldots
 \]
-Cette liste doit contenir tous les éléments de cet ensemble, sans répétition.  La bijection est alors la fonction $f(i) = e_i$.
+Cette liste doit contenir tous les éléments de cet ensemble, sans répétition.  La bijection est alors la fonction $f(i) = e_i$ où $i$, l'indice des éléments de la liste, est l'entier faisant le lien avec l'ensemble $\N$.
 \end{myprop}
 
 \subsection{Exemples}
@@ -158,9 +158,9 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \end{myexem}
 
 \begin{myexem}
- L'ensemble des nombres pairs.
+ L'ensemble des nombres pairs positifs.
   \begin{proof}
-  Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres pairs et $\N$.
+  Le principe reste le même: on peut établir une bijection entre l'ensemble des nombres pairs et $\N$. Nous verrons par la suite que cet exemple est en fait un cas particulier du fait que les sous-ensembles d'un ensemble énumérable (ici $\N$) sont également énumérables. A noter que ce raisonnement fonctionne donc également pour les nombres pairs appartenant à $\Z$ en se basant sur la démonstration précédente.
 
    \begin{tabular}{ l c c c c c c c r }
     $\N$ & 0 & 1 & 2  & 3 & 4 & 5 & 6 & \ldots \\
@@ -190,7 +190,7 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \begin{myexem}
  Les rationnels, même s'ils ont une représentation décimale infinie, peuvent être représentés de manière finie en fraction d'entiers.
 	 \begin{proof}
-	 	 Comme tout rationnel peut s'écrire sous la forme d'un numérateur et d'un dénominateur, un rationnel est équivalent à une paire d'entiers (cette équivalence est univoque en prenant un numérateur et un dénominateur premiers entre eux, un dénominateur toujours positif et la paire $(0,1)$ pour le nombre $0$). On peut donc faire une démonstration similaire à celle des paires d'entiers pour prouver que les rationnels sont en bijection avec l'ensemble $\N$ (quitte à ne pas prendre certaines paires qui ne correspondent pas à un rationnel).
+	 	 Comme tout rationnel peut s'écrire sous la forme d'un numérateur et d'un dénominateur, un rationnel est équivalent à une paire d'entiers (cette équivalence est univoque en prenant un numérateur et un dénominateur premiers entre eux, un dénominateur toujours positif et la paire $(0,1)$ pour le nombre $0$). On peut donc faire une démonstration similaire à celle des paires d'entiers pour prouver que les rationnels sont en bijection avec l'ensemble $\N$ (quitte à ne pas prendre certaines paires qui ne correspondent pas à un rationnel). De plus, il faut sauter les éléments déjà référencés. Par exemple, si (1,1) est déjà référencé, il faut éviter (2,2), (3,3), \ldots car ces derniers pointent vers la même valeur unitaire. Cela poserait problème avec la définition d'une bijection, car surjective et injective.
 	 \end{proof}
  \end{myexem}
 
@@ -214,7 +214,7 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
 \label{exem:chaines_finies}
   L'ensemble des chaînes finies de caractères sur un alphabet fini.
 \begin{proof}
- Variante de la démonstration précédente, la technique reste la même (l'alphabet admet $k$ éléments au lieu de $10$).
+ Variante de la démonstration précédente, la technique reste la même (l'alphabet admet $k$ éléments au lieu de $10$). Chaque élément du sous-ensemble correspond à une lettre de la chaîne finie de caractères qui décrit le sous-ensemble en question.
 \end{proof}
 \end{myexem}
 
@@ -229,7 +229,7 @@ Cette liste doit contenir tous les éléments de cet ensemble, sans répétition
  \label{exem:programme_java}
   L'ensemble des programmes Java.
   \begin{proof}
-   Un programme Java est une séquence finie d'un alphabet fini (ASCII étendu). Donc il y a potentiellement autant de programmes qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre les programmes et $\N$.
+   Un programme Java est une séquence finie d'un alphabet fini (ASCII étendu). De fait, on peut représenter chaque lettre du programme dans l'alphabet ASCII comme un nombre. Bien que chaque nombre mis bout à bout forme un nombre final très grand, cela est suffisant pour trouver un entier dans $\N$ qui correspond au programme étudié. Les programmes Java sont donc bien énumérables. Il y a potentiellement autant de programmes qu'il y a de naturels, ni plus ni moins, ce qui nous donne une bijection entre les programmes et $\N$.
   \end{proof}
 \end{myexem}
 
@@ -409,7 +409,7 @@ Quelques ensembles non énumérables :
 \begin{myexem}
  L'ensemble $\R$
  \begin{proof}
-   Voir ci-dessus.
+   Voir la partie sur la diagonalisation de Cantor.
  \end{proof}
 \end{myexem}
 
