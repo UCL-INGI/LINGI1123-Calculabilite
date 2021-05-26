@@ -65,6 +65,24 @@ Soit $A\subseteq \N$
 	. L'algorithme décide si $x$ est dans $A$ ou non.
 \end{mydef}
 
+\begin{myrem}
+    Les ensembles récursifs ont les propriétés d'une $\sigma$-algèbre (aussi appelé tribu). Soit $\Sigma$ l'ensemble de tous les ensembles récursifs, prouvons que $\Sigma$ est une tribu :
+    \begin{enumerate}
+        \item $\emptyset$, $A$ $\in \Sigma$
+        \item $\forall i \in \mathbb{N}$ tel que $A_i \in \Sigma$ on a $ \cup_{i\in \mathbb{N}} A_i \in \Sigma$
+        \item si $A_i \in \Sigma$ alors $\overline{A_i} = A\setminus A_i \in \Sigma$
+    \end{enumerate}
+    (1) est trivial.\\
+    (2) peut être prouvé de cette manière : On sait que tous les $A_i$ sont récursifs car ils appartiennent à $\Sigma$, il existe donc un programme $P^i(x)$ qui prend $x$ en entrée et renvoie 1 si $x \in A_i$ et 0 sinon. On peut donc définir le programme : $P(x) := $\begin{tabular}{l}
+         res = 0\\
+         for i in range($\mathbb{N}$) do : res = (res and $P^i(x)$)
+    \end{tabular}
+    Ce programme prend en argument $x$ et exécute tous les programmes $P^i(x)$, si au moins un d'eux rend 1, alors le programme rend 1, si ils rendent tous 0 alors le programme rend 0. Par ailleurs on sait que les programmes $P^i$ se termineront toujours cas les ensembles sur lesquels ils travaillent sont récursifs.\\
+    (3) peut être prouvé en définissant le programme $P(x) := P_1(x) - P_2(x)$ où $P_1$ est le programme décidant de $A$ et $P_2$ est le programme décidant de $A_i$.\\
+    
+    Ceci permet de montrer que l'ensemble des ensemble récursif n'est pas vide (ce qui paraît logique), est stable par complémentaire et stable par union dénombrable. Cette propriété mathématique des ensembles récursif peut paraître inutile (et en fait on se porterait tout aussi bien sans la connaître) mais elle permet de comprendre certains phénomènes plus en profondeur. Par exemple : être capable de détecter une expression régulière (regex) dans un mot nous rendra capable de la détecter dans un texte (car c'est une union dénombrable de mots)
+\end{myrem}
+
 \begin{mydef}[Ensemble récursivement énumérable] \label{def:recursivement enum}
 	Un ensemble $A$ est récursivement énumérable ($\in RE$) s’il existe un algorithme qui recevant
 	un $x\in \N$,
@@ -73,6 +91,9 @@ Soit $A\subseteq \N$
       \item ne se termine pas ou retourne un résultat $\neq1$ si $x \notin A$.
 	\end{itemize}
 \end{mydef}
+\begin{myrem}
+    Attention, la propriété de $\sigma$-algèbre ne tient pas pour les ensembles récursivement énumérables car (3) ne tient pas. Par exemple $HALT$ est récursivement énumérable mais son complémentaire est non récursivement énumérable. L'ensemble des ensembles récursivement énumérable n'est donc pas stable par complémentaire.
+\end{myrem}
 
 \begin{mydef}[Ensemble co-récursivement énumérable]
   Un ensemble $A$ est \emph{co-récursivement énumérable}
