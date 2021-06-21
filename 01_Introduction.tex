@@ -33,6 +33,16 @@ En mécanique, on sait qu'il est impossible de construire une machine réalisant
 
 En mathématique, il est impossible de trouver deux nombres entiers $m$ et $n$ tels que $m^2 = 2n^2$, ou de trouver une fraction $\frac{m}{n}$ exprimant le rapport entre le rayon d'un cercle et sa circonférence, ou encore de diviser un angle en trois parties égales en utilisant uniquement une règle et un compas.
 
+\section{Information et informatique}
+\label{sec:information_informatique}
+
+Dans \textbf{le langage courant}, l’information est une affirmation de quelque chose (ayant un sens) qui est vrai ou faux. Tandis que dans le \textbf{jargon informatique}, l’information est un objet formel, un symbole, sans signification propre (243, « Oui »).
+Dans ces deux cas, le traitement de l'information se fait de façon différent:
+\begin{itemize}
+	\item Dans le langage courant, on \textit{traite} l'information en appliquant un raisonnement afin de produire des nouvelles informations à partir de l'information de départ. L'objectif est d'obtenir une affirmation vraie et utile.
+	\item En informatique, on \textit{traite} l’information (objet formel) par des manipulations automatiques afin de produire un nouvel objet. L’objectif est d’obtenir un nouvel objet auquel on peut donner un sens. Le programme représente un raisonnement qui permet de donner du sens aux résultats. Il faut donc \textbf{spécifier un programme}, c'est-à-dire décrire la fonction qu’il calcule, pour donner du sens au résultat qu’il produit.
+\end{itemize}
+
 \section{Notion de problème}
 \label{sec:notion_de_probleme}
 
@@ -90,13 +100,15 @@ D'un point de vue pratique on peut voir des différences (le programme est plus 
 
 \subsection{Existence de problèmes non calculables}
 \label{subsec:existence_de_problemes_non_calculables}
-	Il existe des problèmes qui ne peuvent être résolus par un programme et qui sont alors dit \emph{non calculables}.
-	Quelques exemples:
-	\begin{itemize}
-		\item détection de virus ;
-		\item équivalence de programme ;
-		\item déterminer si un polynôme à coefficients entiers a des racines entières, \ldots
-	\end{itemize}
+
+Il existe des problèmes qui ne peuvent être résolus par un programme et qui sont alors dit \emph{non calculables}.
+Quelques exemples:
+\begin{itemize}
+	\item détection de virus;
+	\item équivalence de programme;
+	\item déterminer si un polynôme à coefficients entiers a des racines entières, \ldots
+\end{itemize}
+
 % section r_sultat_principaux (end)
 
 \subsubsection{Exemple: Détection de virus informatique}
@@ -114,7 +126,7 @@ Un bon antivirus serait alors un programme qui testerait des programmes en regar
 \textbf{Postconditions:} \lstinline|"Mauvais"| si \lstinline|P(D)| est nuisible, \lstinline|"Bon"| sinon.
 
 \begin{center}
-\includegraphics[scale=0.45]{Images/effet_detecteur.png}
+	\includegraphics[scale=0.45]{Images/effet_detecteur.png}
 \end{center}
 
 Cependant il faut aussi que le détecteur ne soit pas nuisible pour que cette spécification soit valide. Or comme nous allons le démontrer, le détecteur ne peut être non nuisible.
@@ -125,27 +137,27 @@ Cependant il faut aussi que le détecteur ne soit pas nuisible pour que cette sp
 	si un programme \lstinline|P| est nuisible avec une entrée \lstinline|D|.
 \end{mytheo}
 \begin{proof}
-Pour le prouver nous allons émettre l'hypothèse qu'un programme \lstinline|détecteur(P, D)| existe et qu'il n'est pas nuisible. Dans ce cas, nous pouvons construire le programme \lstinline|drôle(P)| suivant :
+	Pour le prouver nous allons émettre l'hypothèse qu'un programme \lstinline|detecteur(P, D)| existe et qu'il n'est pas nuisible. Dans ce cas, nous pouvons construire le programme \lstinline|drole(P)| suivant :
 
-\label{lst:detecteur_de_virus}
-\begin{lstlisting}
-drôle(P)
-    if détecteur(P,P) = "Mauvais"
-        then stop
+	\label{lst:detecteur_de_virus}
+	\begin{lstlisting}
+drole(P)
+    if detecteur(P,P) = "Mauvais"
+    then stop
     else infecter un autre programme en y insérant P
 \end{lstlisting}
 
-Regardons maintenant si l'exécution de \lstinline|drôle(drôle)|, c'est-à-dire si l'on donne le code source de \lstinline|drôle| à lui-même, est nuisible ou non.
-\begin{lstlisting}
-drôle(drôle)
-    if détecteur(drôle, drôle) = "Mauvais"
-	    then stop
+	Regardons maintenant si l'exécution de \lstinline|drole(drole)|, c'est-à-dire si l'on donne le code source de \lstinline|drole| à lui-même, est nuisible ou non.
+	\begin{lstlisting}
+drole(drole)
+    if detecteur(drole, drole) = "Mauvais"
+	  then stop
     else infecter un autre programme en y insérant drôle
 \end{lstlisting}
 
-\begin{center}
-\includegraphics[scale=0.5]{Images/drole_de_drole.png}
-\end{center}
+	\begin{center}
+		\includegraphics[scale=0.5]{Images/drole_de_drole.png}
+	\end{center}
 
 \begin{itemize}
 	\item Supposons que \lstinline|drôle(drôle)| soit nuisible.
@@ -163,6 +175,7 @@ drôle(drôle)
 On a donc une contradiction dans tous les cas, ce qui implique que le programme \lstinline|drôle| ne peut pas
 exister. Vu que la seule hypothèse que nous avons formulée pour écrire le programme \lstinline|drôle| soit que le programme \lstinline|détecteur| (non nuisible) existe,
 le programme \lstinline|détecteur| (non nuisible) ne peut pas exister non plus.
+
 \end{proof}
 % subsubsection d_tection_de_virus (end)
 
@@ -177,18 +190,18 @@ Supposons un ordinateur actuel sachant faire 100 millions d'instructions par sec
 
 \begin{center}
 	$\begin{array}{|c||c|c|c|}
-		\hline
-		\text{Complexité} & \text{Ordinateur actuel} & \text{100x plus rapide} & \text{1000x plus rapide} \\
-		\hline
-		n & N_1 = 3.6\times 10^9 & 100 N_1 & 1000 N_1 \\
-		n^2 & N_2 = 6\times 10^5 & 10 N_2 & 31.6 N_2 \\
-		n^3 & N_3 = 1530 & 4.64 N_3 & 10 N_3 \\
-		n^5 & N_4 = 81 & 2.5 N_4 & 3.98 N_4 \\
-		\hline
-		2^n & N_5 = 31 & N_5 + 6 & N_5 + 10 \\
-		3^n & N_6 = 20 & N_6 + 4 & N_6 + 6 \\
-		\hline
-	\end{array}$
+			\hline
+			\text{Complexité} & \text{Ordinateur actuel} & \text{100x plus rapide} & \text{1000x plus rapide} \\
+			\hline
+			n                 & N_1 = 3.6\times 10^9     & 100 N_1                 & 1000 N_1                 \\
+			n^2               & N_2 = 6\times 10^5       & 10 N_2                  & 31.6 N_2                 \\
+			n^3               & N_3 = 1530               & 4.64 N_3                & 10 N_3                   \\
+			n^5               & N_4 = 81                 & 2.5 N_4                 & 3.98 N_4                 \\
+			\hline
+			2^n               & N_5 = 31                 & N_5 + 6                 & N_5 + 10                 \\
+			3^n               & N_6 = 20                 & N_6 + 4                 & N_6 + 6                  \\
+			\hline
+		\end{array}$
 \end{center}
 
 Ce tableau montre dès lors que, peu importe les évolutions technologiques, un problème intrinsèquement complexe \textbf{ne peut} et \textbf{ne pourra} être résolu que pour de petits exemples.
@@ -203,14 +216,14 @@ La Figure~\ref{cal_non_cal} illustre la frontière entre les problèmes non calc
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=0.8]
-	\draw[very thick,blue,rounded corners=10pt]  (0,0) rectangle (10,6);
-	\draw[very thick,red]   (0,4) -- (10,4);
-	\draw[very thick,cyan,rounded corners=5pt] (2,0.5) rectangle (7,2.5);
-	\draw[blue]  (10,6)  node[above left] {Problèmes};
-	\draw[red]   (10,4)  node[above left] {Non calculables};
-	\draw[red]   (10,4)  node[below left] {Calculables};
-	\draw[cyan] (2,2.5) node[above right] {Non calculables en pratique};
-	\draw[cyan] (2,2.5) node[below right] {Calculables en pratique};
+		\draw[very thick,blue,rounded corners=10pt]  (0,0) rectangle (10,6);
+		\draw[very thick,red]   (0,4) -- (10,4);
+		\draw[very thick,cyan,rounded corners=5pt] (2,0.5) rectangle (7,2.5);
+		\draw[blue]  (10,6)  node[above left] {Problèmes};
+		\draw[red]   (10,4)  node[above left] {Non calculables};
+		\draw[red]   (10,4)  node[below left] {Calculables};
+		\draw[cyan] (2,2.5) node[above right] {Non calculables en pratique};
+		\draw[cyan] (2,2.5) node[below right] {Calculables en pratique};
 	\end{tikzpicture}
 	\caption{Problèmes calculables / non calculables}
 	\label{cal_non_cal}
