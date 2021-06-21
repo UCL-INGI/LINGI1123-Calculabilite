@@ -9,77 +9,186 @@
 
 \subsection{Ensembles}
 \label{subsec:ensembles}
-Un \emph{ensemble} est une collection d'objets, sans répétition,
-appelés les éléments de l'ensemble.
-\paragraph{Notations}
+\begin{mydef}
+    Un \emph{ensemble} est une collection d'objets formels, sans répétition,
+    appelés les éléments de l'ensemble.
+\end{mydef}
+\begin{mydef}\label{def:cardinal}
+    On appelle le \textbf{cardinal} d'un ensemble le nombre d'élément contenu dans cet ensemble, et le note $|A|$.
+\end{mydef}
 
-\begin{description}
-	\item [Ensemble vide :] $\emptyset$
-	\item [Ensemble fini :] $\{ 0, 1, 2\}$, $\{00, 01, 10, 11\}$
-	\item [Ensemble infini :] $\{ 0, 1, 2, 3, 4,\, \ldots\,\}$, $\{0, 1, -1, 2, -2, 3, -3, \, \ldots\,\}$,
-	\subitem $\{a, aa, aaa, aaaa,\, \ldots\,\}$, $\{a, b, aa, ab, ba, bb, aaa, aab, \, \ldots\,\}$
-	\item [Produit cartésien :] $A \times B$
-    \item [Le nombre d'éléments :] $\abs{A}$
-    \item [Ensemble des sous-ensembles :] $2^A$ ou $\mathcal{P}(A)$, e.g. $2^{\{2,4\}} = \{\{\}, \{2\}, \{4\}, \{2,4\}\}$. \\
-      On peut remarquer que $|2^A| = 2^{|A|}$
-	\item [Complément :] $\stcomp{\mathrm{A}}$
-\end{description}
+\noindent Un ensemble peut être de plusieurs type, il peut être ...
+\begin{enumerate}
+    \item \textbf{Vide} : par définition, l'ensemble vide est noté $\emptyset$.
+    \item \textbf{Fini} : c'est à dire qu'il contient un nombre fini d'éléments. Par exemple : $\{1,2,3,4,5,6\}$ ou $\{0,1\}$
+    \item \textbf{Infini dénombrable} : c'est à dire qu'il contient un nombre infini d'éléments mais qu'il existe une manière de les compter (voir section \ref{sec:ensemble_num_rables} sur les Ensembles Enumérables). Par exemple : $ \mathbb{N} = \{1,2,3,4,...\}$ ou $ \mathbb{Z} = \{1,-1,2,-2,...\}$
+    \item \textbf{Infini non-dénombrable} : c'est à dire qu'il contient un nombre infini d'élements et qu'il n'existe pas de manière de les compter. Par exemple : $\mathbb{R}$ ou $\mathbb{C}$ (qui n'est en fait qu'un cas particulier de $\mathbb{R}^2$ dans lequel les opérateurs sont un peu différents)
+\end{enumerate}
+\begin{myrem}
+  Les points 3 et 4 seront abordés plus en détails dans les sections suivantes, ils ne sont donc que brièvement illustrés ici.
+\end{myrem}
+
+\subsubsection{Opérations sur les ensembles}
+Maintenant que nous avons définis ce qu'était un ensemble, il est nécéssaire de définir les opérations qui s'appliquent sur ceux-ci. 
+\begin{mydef}
+    \textbf{L'union} de deux ensembles $A$ et $B$, notée $A \cup B$ est une opération entre 2 ensembles initiaux dont le résultat est un nouvel ensemble dans lequel tous les éléments appartiennent soit à $A$ soit à $B$. Formellement, cet opérateur peut être décrit comme ceci :
+    $$ \text{Soient A et B deux ensembles :} A \cup B = C \text{ est tel que } \forall c \in C, c \in A \textbf{ ou } c\in B  $$ ou encore, autrement écris :
+    $$ A \cup B = \{ c | c \in A \textbf{ ou } c \in B \} $$
+\end{mydef}
+\begin{mydef}
+    \textbf{L'intersection} de deux ensembles $A$ et $B$, notée $A \cap B$ est une opération entre 2 ensembles initiaux dont le résultat est un nouvel ensemble dans lequel tous les éléments appartiennent à $A$ et à $B$. Formellement, cet opérateur peut être décrit comme ceci :
+    $$ \text{Soient A et B deux ensembles :} A \cap B = C \text{ est tel que } \forall c \in C, c \in A \textbf{ et } c\in B  $$ ou encore, autrement écris :
+    $$ A \cap B = \{ c | c \in A \textbf{ et } c \in B \} $$ 
+\end{mydef}
+\begin{myrem}
+  Les définitions d'union et d'intersection nous amène également à la définition du \textbf{complémentaire} d'un ensemble. \\
+  Soient $A,B$ deux ensembles tel que $A \subset B$, la complémentaire de $A$, noté $\stcomp{\mathrm{A}}$ est l'ensemble des éléments de $B$ qui ne sont pas compris dans $A$, c'est à dire :
+  $$ A \cup \stcomp{\mathrm{A}} = B$$
+\end{myrem}
+\begin{mydef}\label{def:produit_cartésien}
+    \textbf{Le produit cartésien} entre deux ensembles $A$ et $B$, noté $A \times B$ est une opération dont le résultat est l'ensemble des paires $(a,b)$ tel que $a\in A$ et $b \in B$, soit :
+    $$ \text{Soient A et B deux ensembles :} A \times B = \{(a,b)|a\in A , b\in B\} $$
+\end{mydef}
+\begin{myrem}
+  Le produit cartésien peut par exemple avoir des applications dans le domaine des probabilités, et surtout dans le cas des épreuves répétées. Imaginons un dés à 6 faces, lorsque je lance ce dés, l'univers de possibilités est $\Omega = \{1,2,3,4,5,6\}$, par contre, lorsque je jette 2 dés, l'univers des possibilités devient :
+  \begin{center}
+      \begin{tabular}{lllllll}
+        $\Omega$ &       1 &       2 &       3 &       4 &       5 &       6 \\
+        1 &  (1, 1) &  (1, 2) &  (1, 3) &  (1, 4) &  (1, 5) &  (1, 6) \\
+        2 &  (2, 1) &  (2, 2) &  (2, 3) &  (2, 4) &  (2, 5) &  (2, 6) \\
+        3 &  (3, 1) &  (3, 2) &  (3, 3) &  (3, 4) &  (3, 5) &  (3, 6) \\
+        4 &  (4, 1) &  (4, 2) &  (4, 3) &  (4, 4) &  (4, 5) &  (4, 6) \\
+        5 &  (5, 1) &  (5, 2) &  (5, 3) &  (5, 4) &  (5, 5) &  (5, 6) \\
+        6 &  (6, 1) &  (6, 2) &  (6, 3) &  (6, 4) &  (6, 5) &  (6, 6) \\
+      \end{tabular}
+  \end{center}
+\end{myrem}
+
+Lorsque l'on effectue le produit cartésien d'un ensemble avec lui même, ceci peut être noté $A \times A = A^2$, ce qui paraît logique si l'on en suit la notation multiplicative. Le produit cartésien peut être généralisé à plus de deux ensembles.
+\begin{mydef}\label{def:produit_cartésien_généralisé}
+    On peut généraliser le produit cartésien à plus de deux ensembles, le résultat ne sera alors plus l'ensemble des doublets, mais l'ensemble des triplets si l'on effectue le produit cartésien de 3 ensembles, des quadruplets si l'on effectue le produit cartésien de 4 ensembles, etc.
+    Cela peut être noté assez lourdement comme ceci :
+    $$ \Pi_{i=1}^n A_i = \{(a_1, a_2, ..., a_n)| a_j \in A_j \forall j \in \{1,2,...,n\}\} $$
+    On parle également de puissance nième d'un ensemble lorsque l'on effectue n produits cartésiens de cet ensemble avec lui-même, et on le note $A^n$.
+\end{mydef}
+Cette définition peut sembler lourde voire inutilisable, mais il existe en fait plein de cas où elle devient utile. Elle est extrêmement utile en probabilité et combinatoire, mais elle peut également servir à exprimer des ensembles de manière compacte. Ainsi la notation $ \{0,1\}^n$ peut être utilisée pour désigner \textbf{l'ensemble} de tous les chiffres binaires des longueur $n$.
+\begin{myprop}
+  On peut appliquer la définition \ref{def:cardinal} au produit cartésien, mais également au produit cartésien généralisé. Ce qui donne lieu à cette propriété :
+  $$ \text{Soient deux ensembles A et B :} |A\times B| = |A| \cdot |B| $$
+  Qui peut également être appliquée dans le ce cas-ci : $|A^n| = |A|^n$
+\end{myprop}
+Cette propriété peut être utilisée pour facilement déterminer la taille de l'ensemble des possibilités d'un phénomène.
+\begin{myexem}
+  Par exemple, si l'on souhaite savoir combien de programmes différents de 200 caractères il serait possible d'écrire\footnote{Ce qui est très peu probable j'en conviens.}. Il suffit de déterminer $A$ et $n$, ici on connaît déjà $n$ qui est donné et vaut 200. Et on peut définir $A$ comme l'ensemble des caractères de la table ASCII, soit 256 possibilités. De là on peut déterminer que $|A|^n = 256^{200}$. On aurait également pu déconstruire ce problème jusqu'à sa forme la plus fondamentale. En effet on sait que la table ASCII est basée sur un encodage à 8 bits, soit $A = \{0,1\}^8$ et on aurait alors eu :
+  $$ |A|^{200} = |\{0,1\}^8|^{200} = |\{0,1\}|^{8^{200}} = 2^{1600}$$
+\end{myexem}
+\begin{mydef}
+    L'ensemble des sous-ensembles d'un ensemble $A$ est dénoté par $\mathcal{P}(A)$ ou $2^A$.
+    Par exemple, si $A = \{2,4\} \rightarrow \mathcal{P}(A) = \{ \emptyset, \{2\}, \{4\}, \{2,4\} \} $
+\end{mydef}
 
 % subsubsection ensembles (end)
 
 \subsection{Langages}
 \label{subsec:Langages}
-Notations :
-\begin{itemize}
-    \item Une \emph{chaîne de caractères} ou un \emph{mot} est une séquence \textbf{\underline{finie}} de \emph{symboles} (ou \emph{caractères}).
 
-    Par exemple :
+\begin{mydef}
+    Une \textbf{chaîne de caractères} ou un \textbf{mot} est une séquence \textbf{\underline{finie}} de \emph{symboles} (ou \emph{caractères}). Par exemple :
     	\begin{itemize}
     		\item $abceced$ ;
     		\item $010101101$ ;
      		\item \ding{168}\ding{169}\ding{170}\ding{171}\ding{40}\ding{109}\ding{112}
     	\end{itemize}
-    	Les symboles peuvent être représentés par n'importe quel glyphe, cela n'a pas d'importance.
-	\item Chaîne de caractères vide : $\epsilon$
-    \item Un \emph{alphabet} $\Sigma$ est un ensemble fini de symboles.
-    	\subitem $\Sigma = \{1, 2\}\qquad\Sigma = \{a, b, c\}\qquad\Sigma = \{\ding{189},\ding{129},a,9\}$
-    \item Un mot défini sur un alphabet est une séquence finie d'éléments de cet alphabet.
-    \item Un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet donné. La notion de langage ici n'est pas la même que langage informatique.
 
-    	\subitem Ex : l'ensemble des palindromes définis sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
-	\subitem Ex : l'ensemble des programmes Java
-	\item L'ensemble de tous les mots possibles sur l'alphabet $\Sigma$ :\; $\Sigma^*$
-		\begin{itemize}
-			\item $\Sigma = \phi,\quad \Sigma^* = \{\epsilon\}$
-			\item $\Sigma = \{a\},\quad \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
-			\item $\Sigma = \{0,1\},\quad \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
-		\end{itemize}
-\end{itemize}
+    Les symboles peuvent être représentés par n'importe quel glyphe, cela n'a pas d'importance.\\
+    La chaine de caractère vide est conventionnellement représentée par $\epsilon$
+\end{mydef}
+\begin{mydef}
+    Un \emph{alphabet} $\Sigma$ est un ensemble fini de symboles. Par exemple :
+    \begin{itemize}
+        \item $\Sigma = \{1, 2\}$
+        \item $\Sigma = \{a, b, c\}$
+        \item $\Sigma = \{\ding{189},\ding{129},a,9\}$
+    \end{itemize}
+\end{mydef}
+\begin{myrem}
+    Un mot défini sur un alphabet est une séquence finie d'éléments de cet alphabet.
+\end{myrem}
+\begin{mydef}
+    Un \textbf{langage} est un ensemble de mots constitués de symboles d'un alphabet donné. Par exemple, l'ensemble des palindromes définis sur $\{a, b\}$ est : $\{\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa, ...\}$
+\end{mydef}
+\begin{myrem}
+  Par convention, on note l'ensemble de tous les mots possibles sur l'alphabet $\Sigma$ :\; $\Sigma^*$
+  Par exemple :
+  \begin{itemize}
+		\item $\Sigma = \phi,\quad \Sigma^* = \{\epsilon\}$
+		\item $\Sigma = \{a\},\quad \Sigma^* = \{\epsilon, a,aa,aaa,aaaa, \ldots\}$
+		\item $\Sigma = \{0,1\},\quad \Sigma^* = \{\epsilon, 0,1,00,01,10,11,000,001,010,011, \ldots\}$
+  \end{itemize}
+\end{myrem}
 
 % subsubsection Langages (end)
 
-\subsection{Relations}
-\label{subsec:relations}
-Soient $A$, $B$ des ensembles.
-\begin{itemize}
-	\item Une \emph{relation} $R$ sur ($A$, $B$) est un sous-ensemble de $A \times B$. C'est-à-dire
-		un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$,
-	\item Une relation est définie par sa table,
-	\item Elle peut s'écrire $\la a,b \ra \in R$ ou $aR b$ ou $R(a,b)$.
-\end{itemize}
+\subsection{Relations} \label{subsec:relations}
+\begin{mydef}
+    Soient $A$, $B$ des ensembles, une \textbf{relation} $R$ allant de $A$ vers $B$ est un sous-ensemble de $A \times B$. C'est-à-dire un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$.
+\end{mydef}
+
+\begin{myrem}
+  Une relation, comme une fonction (voir section \ref{subsec:fonctions}) est définie par sa table, c'est à dire quelque chose définissant entièrement son comportement. Si un couple $(a,b)$ est un élément de la relation, on note  $\la a,b \ra \in R$ ou $aR b$ ou encore $R(a,b)$.
+\end{myrem}
+
 
 % subsubsection relations (end)
 
 \subsection{Fonctions}
 \label{subsec:fonctions}
-Soient $A$, $B$ des ensembles.
-\begin{itemize}
-  	\item Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in
-	A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$.
-	\item Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$.
-	\item Si $a \in A$ et s'il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
-		$f(a) = \perp$. Le symbole $\perp$ est appelé \emph{bottom}. Ce symbole bottom signifie que le programme bouclera sans jamais donner une solution.
-\end{itemize}
+
+\begin{mydef}
+    Soient $A$, $B$ des ensembles. Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$.
+\end{mydef}
+\begin{myrem}
+    Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$.
+\end{myrem}
+\begin{myrem}
+    S'il n'existe pas de $b \in B$ et de $a \in A$ tel que $f(a)=b$ alors on dit que $f(a)$ est indéfini, et on note : $f(a) = \perp$. Le symbole $\perp$ est appelé \textbf{bottom}. Mathématiquement, cela se traduit par :
+    $$ \text{si } \nexists a \in A, b \in B \text{ tel que } f(a) = b \implies f(a) = \perp $$
+    On pourrait aussi écrire : 
+    $$ \text{si }\forall \la a, b \ra \in A \times B : f(a) \neq b \implies f(a) = \perp $$
+\end{myrem}
+
+\subsubsection{Définition d'une fonction}
+\label{par:d_finition_d_une_fonciton}
+On définit une fonction par sa "table", celle-ci peut aussi bien être finie qu'infinie.\\
+\begin{mydef}
+    La table d'une fonction est une spécification qui permet de déduire le comportement \emph{exact} de la fonction associée. Celle-ci peut être définie de plusieurs manières, par exemple par un texte non ambigu, un algorithme ou encore en définissant toutes les paires possibles de la fonction avec son ensemble de définition.
+\end{mydef}
+
+\begin{myexem}\label{exemple:def_func_texte}
+  Définition de la table d'une fonction par un texte : "Cette fonction prend en argument un nombre entier naturel et retourne son double."
+\end{myexem}
+
+\begin{myexem}\label{exemple:def_func_algo}
+  Définition de la table d'une fonction par un algorithme : 
+  \begin{lstlisting}
+    declare fun {MultBy2 N}
+        N*2
+    end
+  \end{lstlisting}
+  On voit par les exemples \ref{exemple:def_func_texte} et \ref{exemple:def_func_algo} qu'il est possible de définir la même fonction de plusieurs manières différentes.
+\end{myexem}
+\begin{myexem}
+  En écrivant toutes les paires de la fonction, soit en listant $$ \{ \la x, f(x) \ra | x \in dom(f)\}$$
+\end{myexem}
+
+Il est par contre important de noter que l'on ne doit pas forcément avoir une connaissance préalable exacte des phénomènes traités par la fonction.
+\begin{myexem}
+  $$
+  f(x) = \begin{cases} 1 \text{  s'il y a de la vie autre part que sur terre,} \\ 
+  0 \text{  sinon.}\end{cases}.
+  $$
+  (en supposant qu'il n'y ait pas d'ambiguïté sur le terme \og vie\fg).
+
 
 \subsubsection{Propriétés des fonctions}
 \label{par:proprietes_des_fonctions}
@@ -88,21 +197,58 @@ Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} d'une fo
   \dom(f)   & = \{\, a \in A \mid f(a) \neq \bot \,\},\\
   \image(f) & = \{\, b \in B \mid \exists a \in A : b = f(a) \,\}.
 \end{align*}
+
 On peut dénoter le domaine d'une fonction comme l'ensemble des inputs pour lesquels la fonction donne un résultat qui n'est pas bottom. L'image d'une fonction est quant à elle l'ensemble des résultats possibles.
-Si $\dom(f) \subseteq A$, alors $f$ est appelée \emph{partielle} et si $\dom(f) = A$, alors $f$ est appelée \emph{totale}.
-Notez qu'avec cette définition, une fonction totale est partielle.
-Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
-Une fonction totale est donc une fonction qui donnera toujours un résultat (jamais bottom) alors qu'une fonction partielle peut parfois boucler.
 
-Une fonction est \emph{surjective} si $\image(f) = B$ et \emph{injective} si $\forall a,a' \in A : a \neq a' \implies f(a) \neq f(a')$.
+\noindent Une fonction peut être :
+\begin{enumerate}
+    \item \emph{partielle} : si $\dom(f) \subseteq A$, soit que le domaine de définition de la fonction est un sous-ensemble au sens large de $A$.
+    \item \emph{totale} : si $\dom(f) = A$, soit que le domaine de définition de la fonction est exactement le même que l'ensemble $A$.
+    \item \emph{surjective} : si $image(f) = B$.
+    \item \emph{injective} : si $\forall a,a' \in A : a \neq a' \implies f(a) \neq f(a')$.
+    \item \emph{bijective} : si elle est totale, injective et surjective.
+\end{enumerate}
 
-Une fonction est \emph{bijective} si elle est totale, injective et surjective.
+\begin{myrem}
+    Notez qu'avec les deux premières définitions, une fonction totale est partielle.
+    Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
+\end{myrem}
 
-On utilise aussi le concept d'\emph{extension} :
-$f \colon A \rightarrow B$ est une extension de $g \colon A \rightarrow B$ si $\forall x \in A : g(x)\neq \perp \implies f(x) = g(x)$.
-Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie. Aux endroits ou la fonction g n'est pas définie, la fonction f peut donner un résultat autre que bottom. Le concept d'extension est donc essentiel car on ne veut jamais d'un programme qui boucle.
 
-Prenons comme exemple la fonction $\mathrm{sqrt}(x) = \sqrt{x}$. En mathématique, celle-ci n'est valable que pour $x\geq0$. Ceci signifie que pour par exemple $\mathrm{sqrt}(-2) = \sqrt{-2}$, la fonction n'est pas définie et il est interdit que le programme donne une réponse si l'input n'est pas dans le domaine de la fonction. Pour cette raison, le programme bouclera si l'input n'est pas défini. En revanche, on peut définir une extension de cette fonction notée $\mathrm{mysqrt}(x) = \sqrt{x}$, qui retourne une valeur si $x\geq0$ et \textit{"Erreur"} sinon.
+\textbf{Clarification sur les notions d'inclusions entre ensembles :}
+
+\vspace{0.3cm}
+
+
+\noindent Soient deux ensembles $A, B$ :
+
+\vspace{0.3cm}
+
+\noindent Si l'on écrit $ A \subset B $ cela signifie que $A$ est un sous-ensemble \textbf{au sens strict} de $B$. C'est à dire que : $$ A \subset B \implies \forall x \in A : x \in B \text{ et } A \subset B \implies A \cap B \ne B$$ soit que tous les éléments se trouvant dans $A$ se trouvent également dans $B$ mais que tous les éléments se trouvant dans $B$ ne se trouvent \emph{pas forcément} dans $A$. Intuitivement, on pourrait dire que "la taille de $B$ est plus grande que la taille de $A$" (ou pourrait parler rigoureusement de cardinal).
+
+\vspace{0.3cm}
+
+\noindent Si l'on écrit $ A \subseteq B $ cela signifie que $A$ est un sous-ensemble \textbf{au sens large} de $B$. C'est à dire que : $$ A \subseteq B \implies \forall x \in A : x \in B \text{ et } A \subset B \nRightarrow  A \cap B \ne B$$ soit que tous les éléments se trouvant dans $A$ se trouvent également dans $B$. Intuitivement on pourrait sire que "la taille de $B$ est plus grande ou égale à la taille de $A$".
+
+\vspace{0.3cm}
+
+\noindent Et finalement, si l'on écrit  $ A = B $ cela signifie que les ensembles $A$ et $B$ sont exactement égaux et peuvent êtres utilisés de manière interchangeable.
+\newpage
+\subsubsection{Extension de fonction}
+\begin{mydef}
+    Soient deux fonctions : $$ f : A \mapsto B \text{ et } g : A \mapsto B$$ On dit que $f$ est \emph{une extension} de $g$ si $f$ retourne la même valeur que $g$ partout où $g$ est définie et que $dom(g) \subset dom(f)$. On peut alors noter rigoureusement $$ \forall x \in dom(g) \implies f(x) = g(x)$$ par contre 
+    $$ \forall x \in dom(f) \nRightarrow f(x) = g(x) $$
+\end{mydef}
+\vspace{0.3cm}
+\begin{myexem}
+    La fonction racine carrée définie comme $f : \mathbb{R} \mapsto \mathbb{R} : x \mapsto \sqrt{x}$ n'est définie que sur $\mathbb{R}^+$ (cette fonction n'est donc pas surjective). Par contre la fonction racine carrée d'une calculatrice comme ma TI-30 est définie comme :
+    $$ \text{sqrt} : \mathbb{R} \mapsto \mathbb{R} : x \mapsto \begin{cases}
+    \sqrt{x} \text{ si } x \geq 0 \\
+    \texttt{DomainError } \text{sinon}
+    \end{cases}
+    $$
+    La fonction racine carrée de ma TI-30 (sqrt) est donc une extension de la fonction racine carrée définie mathématiquement (f).
+\end{myexem}
 
 \subsubsection{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
@@ -118,7 +264,6 @@ On peut définir (la table d') une fonction de plusieurs façons :
 Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
 pour pouvoir la définir sans ambiguïté ni contradiction.
 
-Ex : $f(x) = \left\{\begin{array}{ll} 1 & \text{s'il y a de la vie autre part que sur terre,} \\ 0 & \text{sinon.}\end{array}\right.$\\(en supposant qu'il n'y ait pas d'ambiguïté sur le terme \og vie\fg).\\
 % paragraph d_finition_d_une_fonction (end)
 % subsection fonctions (end)
 % section ensembles_langages_relations_et_fonctions (end)
