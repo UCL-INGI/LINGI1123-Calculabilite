@@ -37,7 +37,9 @@ On va voir les modèles de calcul suivant :
 	\item Lambda calcul
 	\item Fonctions récursives
 \end{itemize}
+
 Mais il en existe beaucoup d'autres !
+
 % subsubsection mod_le_de_calcul (end)
 
 \subsection{Modèles de langage}
@@ -101,7 +103,7 @@ Cependant il existe un compilateur des programmes BLOOP (Java).\\
 	la plus longue).
 \end{myrem}
 
-On va un introduire un nouveau langage ND-Java qui est le langage Java
+On va introduire un nouveau langage ND-Java qui est le langage Java
 auquel on ajoute le non-déterminisme sous la forme d'une fonction
 prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre $0$ et $n$ et elle
 est non déterministe.
@@ -237,6 +239,26 @@ Un automate fini est composé de :
 	Il n'y a donc pas de mémoire. De plus, un automate fini peut-être simulé
 	par un programme Java.
 \end{myrem}
+
+\begin{myrem}
+	Un état acceptant est entouré deux fois sur un diagramme d'état.
+\end{myrem}
+
+\begin{myprop}
+	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
+		accepté par FA$\}$
+\end{myprop}
+
+\begin{myprop}
+	Certains ensembles récursifs ne peuvent pas être reconnus par un
+	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (parce qu'il nécessiterait un nombre infini d'états)
+\end{myprop}
+
+\begin{myprop}
+	L'interpréteur des automates finis est calculable, mais ne peut pas être
+	représenté par un automate fini, car ce n'est pas un \textbf{modèle
+	complet} de la calculabilité (Hoare-Allison)
+\end{myprop}
 
 
 =======
@@ -1127,7 +1149,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 \paragraph{} Le langage est dépourvu de boucle.
 
 \begin{myprop}
-	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+	Il existe des fonctions totales calculables qui ne sont pas primitives récursives :
 \end{myprop}
 \paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction.\footnote{
 En utilisant la notation des puissances itérées de Knuth, cela est rigoureusement possible.
