@@ -35,18 +35,19 @@ Notations :
 
     Par exemple :
     	\begin{itemize}
-    		\item $abceced$,
-    		\item $010101101$
-    		\item \ding{168}\ding{169}\ding{170}\ding{171}\ding{40}\ding{109}\ding{112}
+    		\item $abceced$ ;
+    		\item $010101101$ ;
+     		\item \ding{168}\ding{169}\ding{170}\ding{171}\ding{40}\ding{109}\ding{112}
     	\end{itemize}
     	Les symboles peuvent être représentés par n'importe quel glyphe, cela n'a pas d'importance.
 	\item Chaîne de caractères vide : $\epsilon$
     \item Un \emph{alphabet} $\Sigma$ est un ensemble fini de symboles.
     	\subitem $\Sigma = \{1, 2\}\qquad\Sigma = \{a, b, c\}\qquad\Sigma = \{\ding{189},\ding{129},a,9\}$
     \item Un mot défini sur un alphabet est une séquence finie d'éléments de cet alphabet.
-    \item Un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet donné.
+    \item Un \emph{langage} est un ensemble de mots constitués de symboles d'un alphabet donné. La notion de langage ici n'est pas la même que langage informatique.
 
     	\subitem Ex : l'ensemble des palindromes définis sur $\{a, b\}$ : $\epsilon, a, b, aa, aaa, aba, babaabab, aababbbabaa$
+	\subitem Ex : l'ensemble des programmes Java
 	\item L'ensemble de tous les mots possibles sur l'alphabet $\Sigma$ :\; $\Sigma^*$
 		\begin{itemize}
 			\item $\Sigma = \phi,\quad \Sigma^* = \{\epsilon\}$
@@ -61,9 +62,9 @@ Notations :
 \label{subsec:relations}
 Soient $A$, $B$ des ensembles.
 \begin{itemize}
-	\item Une \emph{relation} $R$ sur $A$, $B$ est un sous-ensemble de $A \times B$. C'est-à-dire
+	\item Une \emph{relation} $R$ sur ($A$, $B$) est un sous-ensemble de $A \times B$. C'est-à-dire
 		un ensemble de paires $\la a,b \ra$ avec $a\in A$, $b\in B$.
-	\item Une relation est définie par sa table
+	\item Une relation est définie par sa table,
 	\item Elle peut s'écrire $\la a,b \ra \in R$ ou $aR b$ ou $R(a,b)$.
 \end{itemize}
 
@@ -76,21 +77,22 @@ Soient $A$, $B$ des ensembles.
   	\item Une \emph{fonction} $f \colon A \rightarrow B$ est une relation telle que pour tout $a \in
 	A$, il existe au plus un $b \in B$ tel que $\langle a,b \rangle \in f$.
 	\item Écrire $f(a)=b$ est équivalent à $\langle a,b \rangle \in f$.
-	\item S'il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
-		$f(a) = \perp$. Le symbole $\perp$ est appelé \emph{bottom}.
+	\item Si $a \in A$ et s'il n'existe pas de $b \in B$ tel que $f(a)=b$ alors $f(a)$ est indéfini,
+		$f(a) = \perp$. Le symbole $\perp$ est appelé \emph{bottom}. Ce symbole bottom signifie que le programme bouclera sans jamais donner une solution.
 \end{itemize}
 
 \subsubsection{Propriétés des fonctions}
 \label{par:proprietes_des_fonctions}
-Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} respectivement comme suit
+Soit $f\colon A \to B$, on définit le \emph{domaine} et l'\emph{image} d'une fonction respectivement comme suit
 \begin{align*}
   \dom(f)   & = \{\, a \in A \mid f(a) \neq \bot \,\},\\
   \image(f) & = \{\, b \in B \mid \exists a \in A : b = f(a) \,\}.
 \end{align*}
-
+On peut dénoter le domaine d'une fonction comme l'ensemble des inputs pour lesquels la fonction donne un résultat qui n'est pas bottom. L'image d'une fonction est quant à elle l'ensemble des résultats possibles.
 Si $\dom(f) \subseteq A$, alors $f$ est appelée \emph{partielle} et si $\dom(f) = A$, alors $f$ est appelée \emph{totale}.
 Notez qu'avec cette définition, une fonction totale est partielle.
 Pour dire que $\dom(f) \subset A$, il faut dire que $f$ n'est pas totale.
+Une fonction totale est donc une fonction qui donnera toujours un résultat (jamais bottom) alors qu'une fonction partielle peut parfois boucler.
 
 Une fonction est \emph{surjective} si $\image(f) = B$ et \emph{injective} si $\forall a,a' \in A : a \neq a' \implies f(a) \neq f(a')$.
 
@@ -98,20 +100,20 @@ Une fonction est \emph{bijective} si elle est totale, injective et surjective.
 
 On utilise aussi le concept d'\emph{extension} :
 $f \colon A \rightarrow B$ est une extension de $g \colon A \rightarrow B$ si $\forall x \in A : g(x)\neq \perp \implies f(x) = g(x)$.
-Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie.
+Autrement dit, $f$ a la même valeur que $g$ partout où $g$ est définie. Aux endroits ou la fonction g n'est pas définie, la fonction f peut donner un résultat autre que bottom. Le concept d'extension est donc essentiel car on ne veut jamais d'un programme qui boucle.
 
-La fonction $\mathrm{sqrt}(x) = \sqrt{x}$ en mathématique n'est valable que pour $x\geq0$. En revanche, un programme implémentant cette fonction, par exemple $\mathrm{mysqrt}(x) = \sqrt{x}$, retourne une valeur si $x\geq0$ ou \textit{Erreur} sinon. $\mathrm{mysqrt}(x)$ est une extension de la fonction $\mathrm{sqrt}(x)$ de base.
+Prenons comme exemple la fonction $\mathrm{sqrt}(x) = \sqrt{x}$. En mathématique, celle-ci n'est valable que pour $x\geq0$. Ceci signifie que pour par exemple $\mathrm{sqrt}(-2) = \sqrt{-2}$, la fonction n'est pas définie et il est interdit que le programme donne une réponse si l'input n'est pas dans le domaine de la fonction. Pour cette raison, le programme bouclera si l'input n'est pas défini. En revanche, on peut définir une extension de cette fonction notée $\mathrm{mysqrt}(x) = \sqrt{x}$, qui retourne une valeur si $x\geq0$ et \textit{"Erreur"} sinon.
 
 \subsubsection{Définition d'une fonction}
 \label{par:d_finition_d_une_fonciton}
 On définit une fonction par sa table qui peut être infinie.\\
 On peut définir (la table d') une fonction de plusieurs façons :
 \begin{itemize}
-	\item Par \emph{un texte fini} déterminant sans contradiction ni ambiguïté le contenu
+	\item par \emph{un texte fini} déterminant sans contradiction ni ambiguïté le contenu ;
 		de la table.
-	\item Par un algorithme. Dans ce cas elle détermine la fonction \textit{ainsi} qu'un moyen de la calculer.
+	\item par un algorithme. Dans ce cas elle détermine la fonction \textit{ainsi} qu'un moyen de la calculer ;
 		\subitem Ex: $f(x) = 2x^3+5$
-	\item En écrivant toutes les paires de la relation.
+	\item en écrivant toutes les paires de la relation ;
 \end{itemize}
 Il n'est toutefois pas nécessaire de décrire ou de connaître un moyen de la calculer
 pour pouvoir la définir sans ambiguïté ni contradiction.
@@ -123,7 +125,7 @@ Ex : $f(x) = \left\{\begin{array}{ll} 1 & \text{s'il y a de la vie autre part qu
 
 \section{Ensemble énumérable}
 \label{sec:ensemble_num_rables}
-Quelle est la taille d'un ensemble ?  Comment comparer la taille d'ensembles infinis ?
+Quelle est la taille d'un ensemble ?  Comment comparer la taille d'ensembles infinis ? Ce sont deux questions importantes pour lesquelles le concept d'énumérabilité nous permettra d'y répondre.
 
 Avant de dire ce qu'est un ensemble énumérable, on doit savoir que deux ensembles
 ont le même cardinal s'il existe une bijection entre eux.
@@ -255,7 +257,7 @@ Enlevons de cette liste les éléments qui ne sont pas dans $A$. On obtient une 
 \end{myprop}
 
 \begin{myprop}
-	L'union et l'intersection de deux ensembles énumérables sont énumérables.
+	L'union et l'intersection de deux ensembles énumérables est énumérable.
 	\begin{proof}
 		Soient $A$ et $B$ deux ensembles énumérables infinis (le cas fini étant trivial). Leur intersection est énumérable car elle est un sous-ensemble de $A$, par la propriété précédente. Les éléments des ensembles $A$ et $B$ peuvent être listés
 \[
@@ -326,9 +328,9 @@ les techniques suivantes pourront être utilisées:
 
 % subsection ensemble_num_rables (end)
 
-\section{Cantor}
+\section{Diagonalisation de Cantor}
 \label{sec:cantor}
-On va montrer qu'il existe des ensembles non énumérables par diagonalisation. Par exemple, l'ensemble des réels, $\R$.
+On va montrer qu'il existe des ensembles infinis non énumérables par diagonalisation. Par exemple, l'ensemble des réels, $\R$.
 \begin{myexem}
 	Exemple de démonstration par diagonalisation:
 	\begin{enumerate}
@@ -468,8 +470,8 @@ Quelques ensembles non énumérables :
 Dans le cours, lorsqu'on devra montrer qu'un ensemble est non énumérable,
 les techniques suivantes pourront être utilisées
 \begin{itemize}
-	\item montrer qu'il y a une bijection avec $\R$
-	\item utiliser la diagonalisation (cf. Cantor)
+	\item montrer qu'il y a une bijection avec $\R$ ;
+	\item utiliser la diagonalisation (cf. Cantor) ;
 \end{itemize}
 
 \begin{myexercice}\label{exerc:conceptfct}
@@ -506,12 +508,12 @@ Par ailleurs, l'ensemble de \emph{tous} les cardinaux est noté avec la lettre $
 
 Finalement, l'hypothèse du continu stipule que $\beth_1 = \aleph_1$, c'est-à-dire qu'il n'y a pas de cardinal entre $\N$ et $\R$. Ce n'est qu'en 1963 qu'on s'est rendu compte qu'elle était en fait indépendante de la théorie des ensembles ZFC : on peut supposer qu'elle soit vrai ou qu'elle soit fausse sans obtenir de contradiction.}.
 
-% subsection conclusion (end)
+
 \section{Conclusion}
 \label{sec:concept_conclusion}
 
 Les ensembles énumérables sont importants pour la suite du cours. En
 informatique, on ne considère que les ensembles énumérables. En effet, on constate que l'univers des programmes (Java ou autres) est énumérable (voir propriété \ref{prop:programme_enumerable}), alors que l'univers des problèmes (fonctions de $\N$ dans $\N$) est non énumérable (voir exemple \ref{exem:fNN}).
-On ne peut donc forcément pas faire correspondre un programme à chaque problème et on en conclut donc qu'un grand nombre de problèmes ne sont pas calculables.
+On ne peut donc forcément pas faire correspondre un programme à chaque problème et on en conclut donc que la très grande majorité des problèmes ne sont pas calculables et ne peuvent donc pas être résolus.
+% subsection conclusion (end)
 % section concepts (end)
-
