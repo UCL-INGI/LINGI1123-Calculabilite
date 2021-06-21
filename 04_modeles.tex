@@ -9,8 +9,8 @@
 
 Il y a deux grandes familles de modèles :
 \begin{itemize}
-	\item Modèle de calcul (calcule une réponse)
-	\item Modèle de langages (décide l'appartenance à un ensemble)
+	\item Modèles de calcul (calcule une réponse)
+	\item Modèles de langages (décide l'appartenance à un ensemble)
 \end{itemize}
 
 \subsection{Modèles de calcul}
@@ -35,13 +35,16 @@ On va voir les modèles de calcul suivant :
 	\item Machine de Turing
 	\item Langages de programmation
 	\item Lambda calcul
-	\item Fonction récursive
+	\item Fonctions récursives
 \end{itemize}
-Mais il en existe beaucoup d'autres.
+
+Mais il en existe beaucoup d'autres !
+
 % subsubsection mod_le_de_calcul (end)
 
 \subsection{Modèles de langage}
 \label{ssub:mod_le_de_langage}
+Pour rappel, un langage est un ensemble de mots constitués de symboles d'un alphabet donné.
 Un langage est défini par une grammaire formelle. L'objectif est de modéliser
 une classe de langages. Le langage est alors soit un ensemble récursif, soit un
 ensemble récursivement énumérable.
@@ -52,7 +55,7 @@ ensemble récursivement énumérable.
 \section{Langages de programmation}
 \label{sub:langages_de_programmation}
 C'est un modèle possible de la calculabilité. Pour définir un langage de
-programmation comme modèle de la calculabilité, il faut définir :
+programmation comme modèle de calculabilité, il faut définir une :
 \begin{itemize}
 	\item Syntaxe du langage
 	\item Sémantique du langage
@@ -64,7 +67,7 @@ d'autres. On va montrer que tous les langages complets sont équivalents. (Et la
 plupart des langages sont complets.)
 
 \paragraph{} Mais, il existe aussi des langages qui ne sont pas complets comme le
-langage BLOOP (bounded loop).
+langage BLOOP (Bounded Loop).
 
 \begin{mydef}
 	BLOOP : Sous ensemble de Java qui ne calcule que des fonctions totales.
@@ -77,7 +80,7 @@ BLOOP a donc toutes les propriétés qui découlent du chapitre précédent:
 \begin{myprop}
 Tous les programmes BLOOP se terminent :\\
     $ \Rightarrow$ BLOOP ne calcule que des fonctions totales\\
-    $ \Rightarrow$ L'interpréteur est une fonction totale non calculable en
+    $ \Rightarrow$ L'interpréteur de BLOOP est une fonction totale non calculable en
 BLOOP (Hoare-Allison)\\
     $ \Rightarrow$ BLOOP ne calcule pas toutes les fonctions totales\\
     $ \Rightarrow$ BLOOP n'est pas un modèle complet de la calculabilité\\
@@ -92,15 +95,15 @@ Cependant il existe un compilateur des programmes BLOOP (Java).\\
 
 \begin{myrem}
 	Il est difficile d'avoir de l'intuition sur cette partie. On peut
-	voir un programme ND comme un programme qui produit des résultats
+	voir un programme ND (=non déterministe) comme un programme qui produit des résultats
 	différents d'une exécution à l'autre. On peut représenter toutes
-	les exécutions possibles du programmes sous forme de branches d'un
+	les exécutions possibles du programme sous forme de branches d'un
 	arbre. Pour analyser la complexité, on ne
 	considère que la profondeur de l'arbre (longueur de la branche
 	la plus longue).
 \end{myrem}
 
-On va un introduire un nouveau langage ND-Java qui est le langage Java
+On va introduire un nouveau langage ND-Java qui est le langage Java
 auquel on ajoute le non-déterminisme sous la forme d'une fonction
 prédéfinie $choose(n)$. Celle-ci retourne un entier compris entre $0$ et $n$ et elle
 est non déterministe.
@@ -116,7 +119,7 @@ On considère l'approche 2 en calculabilité.
 \begin{mydef}[ND-récursif] \label{def:ND-rec}
 	Un ensemble $A \subseteq \N$ est ND-récursif s’il existe un
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre
-	naturel $x$ \\
+	naturel $x$, \\
 	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard
 	comme résultat 1 \\
@@ -128,7 +131,7 @@ On considère l'approche 2 en calculabilité.
 \begin{mydef}[ND-récursivement énumérable] \label{def:ND-recenum}
 	Un ensemble $A \subseteq \N$ est ND-récursivement énumérable s’il existe un
 	ND-programme tel que lorsqu'il reçoit comme donnée n'importe quel nombre
-	naturel $x$ \\
+	naturel $x$, \\
 	\begin{tabular}{l}
 	si $x \in A$ alors il existe une exécution fournissant tôt ou tard
 	comme résultat 1 \\
@@ -148,7 +151,7 @@ On considère l'approche 2 en calculabilité.
 	\end{proof}
 \end{myprop}
 
-\paragraph{Exemple} : Le ND-programme à gauche (figure \ref{fig:ND_tree}) comporte 3 branches et  a une hauteur de 3. Il est tranformé en un programme D, à droite (fiure \ref{fig:D_tree}) qui a une longueur de 9. \\
+\paragraph{Exemple} : Le ND-programme à gauche (figure \ref{fig:ND_tree}) comporte 3 branches et  a une hauteur de 3. Il est tranformé en un programme D, à droite (figure \ref{fig:D_tree}) qui a une longueur de 9. \\
 	\input{Images/ND_to_D_Exemple.tex}
 
 \begin{myprop}
@@ -179,14 +182,35 @@ On considère l'approche 2 en calculabilité.
 
 \end{myprop}
 
+\begin{myrem}
+Avec un programme non déterministe, on pourrait résoudre le problème du voyageur de commerce avec une compléxité linéaire. Malheureusement, les modèles ND ne sont pas réalisables en pratique. On ne peut que les simuler. Leur intêret est en réalité double :
+\begin{itemize}
+ \item ils sont à la base de la NP-complétude ;
+\item ils sont utilisés pour modéliser des problèmes difficiles.
+\end{itemize}
+\end{myrem}
 \section{Automates finis FA}
 \label{sub:automates_finis}
 
 \paragraph{Objectif :} Décider si un mot donné appartient ou non à un langage.
 
 \paragraph{Utilisation :} Utilisé dans les interfaces pour les humains (par
-exemple, les distributeurs).
+exemple, les distributeurs).\\
 
+Un automate fini (FA) est une modélisation élémentaire du concept de calcul :
+\begin{itemize}
+\item nombre fini d'états ;
+\item lecture d'une donnée : un mot (chaîne de caractères) ;
+\item chaque symbole de la donnée est lu \texttt{une et une seule} fois ;
+\item transitions entre états en fonction du symbole lu ;
+\item état final = état après avoir lu tous les symboles de la donnée ;
+\item pas de possibilité de mémorisation
+\end{itemize}
+Ce qui se passe à l'instant t ne dépend pas du passé. Les seuls éléments qui comptent sont :
+\begin{itemize}
+\item l'état courant ;
+\item le symbole.
+\end{itemize}
 \subsection{Modèles des automates finis}
 \label{ssub:mod_les_des_automates_finis}
 Un automate fini est composé de :
@@ -212,8 +236,12 @@ Un automate fini est composé de :
 \end{itemize}
 
 \begin{myrem}
-	Il n'y a donc pas de mémoire. De plus, un automate peut-être simulé
+	Il n'y a donc pas de mémoire. De plus, un automate fini peut-être simulé
 	par un programme Java.
+\end{myrem}
+
+\begin{myrem}
+	Un état acceptant est entouré deux fois sur un diagramme d'état.
 \end{myrem}
 
 \begin{myprop}
@@ -232,14 +260,33 @@ Un automate fini est composé de :
 	complet} de la calculabilité (Hoare-Allison)
 \end{myprop}
 
-\begin{mydef}[Langage régulier] Un langage régulier est un langage défini par une expression
-	régulière.
-\end{mydef}
+
+=======
+% Indiqué plus bas dans la synthèse => inutile !
+%\begin{myprop}
+%	Un automate fini définit un ensemble récursif de mots $=\{m \ |\ m$ est
+%		accepté par FA$\}$
+%\end{myprop}
+%
+%\begin{myprop}
+%	Certains ensembles récursifs ne peuvent pas être reconnus par un
+%	automate fini. Par exemple $L = \{ a^n b^n \ | \ n\geq 0\}$ (parce qu'il nécessiterait un nombre infini d'états)
+%\end{myprop}
+%
+%\begin{myprop}
+%	L'interpréteur des automates finis est calculable, mais ne peut pas être
+%	représenté par un automate fini, car ce n'est pas un \textbf{modèle
+%	complet} de la calculabilité (Hoare-Allison)
+%\end{myprop}
+%
+%\begin{mydef}[Langage régulier] Un langage régulier est un langage défini par une expression
+%	régulière.
+%\end{mydef}
 
 \paragraph{Exemple}
-Un exemple simple de mécanisme qui peut être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillés et déverrouillé. L'état peut-être modifié par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
+Un exemple simple de mécanisme qui peut être modélisé par un automate fini est le portillon d'accès. Dans le métro par exemple, lorsqu'un ticket est inséré, le portillon se déverrouille et le passage d'un usagé est autorisé, lorsque celui ci est passé, il se verrouille à nouveau. Le portillon peut être modélisé comme un automate fini comportant deux états: verrouillé et déverrouillé. L'état peut-être modifié par l'ajout d'un ticket/jeton (entrée: jeton). Soit lorsque l'utilisateur pousse les barres du portillon (entrée: pousser). La fonction de transition est représentée par la table \ref{FTPortillon}. La figure \ref{diagrammeetat} illustre le diagramme d'état de cet automate.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
 		\node[draw,minimum height=2cm,circle] (A) at (0,0) {verouillé};
@@ -264,7 +311,7 @@ Un exemple simple de mécanisme qui peut être modélisé par un automate fini e
 \end{figure}
 
 
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	
 	\begin{tabular}{|l|l|l|}
@@ -287,11 +334,13 @@ La figure \ref{Salade} illustre le diagramme d'état de cette énigme.
 	\label{Salade}
 \end{figure}
 
-Un autre exemple d'automate fini est un distributeur de boissons qui reçoit une pièce d'argent et un choix de boisson puis sert la boisson choisie. Par exemple, nous pouvons considérer que la machine reçoit une pièce de 2 euros et a uniquement trois choix Fanta, Coca, Eau. Un tel système peut être modélisé comme suit:\\
+Un autre exemple d'automate fini est un distributeur de boissons qui reçoit une pièce d'argent et un choix de boisson puis sert la boisson choisie. Par exemple, nous pouvons considérer que la machine reçoit une pièce de 2 euros et a uniquement trois choix Fanta, Coca, Eau. Un tel système peut être modélisé par la figure \ref{distribfig}.
 
-\begin{figure}
+
+\begin{figure}[H]
 	\centering
-	\begin{tikzpicture}
+	\resizebox{\textwidth}{!}{
+	\begin{tikzpicture}%[thick,scale=0.8, every node/.style={transform shape}]
 		\node[draw,minimum height=2cm,circle] (A) at (0,0) {Etat 1};
 		\node[draw,minimum height=2cm,circle] (B) at (10,0) {Etat 2};
 		\draw (0,1.75) node {$\bullet$};
@@ -311,15 +360,18 @@ Un autre exemple d'automate fini est un distributeur de boissons qui reçoit une
 		\draw (5,-2.55) node[below]  {Coca choisir / servir coca};
 		\draw (5,-3.70) node[below] {Eau choisir / servir eau};
 		
-		\draw (5,2.40) node[above] {jeton / credit "jeton" euros};
+		\draw (5,2.40) node[above] {jeton / crédit "jeton" euros};
 		
-		\draw (11.8,-0.9) node[below] {jeton / rendre jeton};
+		\draw (11.8,-0.9) node[below] {jeton / le rendre};
 		
-		\draw (-2.8,-0.9) node[below] {choix boisson / credit nul};
+		\draw (-2.8,-0.9) node[below] {choix boisson / crédit nul};
 
 
 	\end{tikzpicture}
+	}
 	\caption{Diagramme d'état d'un distributeur de boisson simple \\{Inspirer du TD7 : Automates Par Stephane Devismes Université Grenoble Alpes}}
+	\label{distribfig}
+
 \end{figure}
 Les transitions avec les mêmes états de départs et d’arrivées et la même sortie ont une seule flèche étiquetée avec l’entrée / la sortie. 
 
@@ -383,7 +435,7 @@ acceptant.
 	Un NDFA définit un ensemble récursif de mots.
 \end{myprop}
 
-\paragraph{Ajout de transitions vides $\epsilon$} On peut encore étendre le modèle NDFA en
+\paragraph{Ajout de transitions vides $\epsilon$ : $\epsilon$-NDFA} On peut encore étendre le modèle NDFA en
 rajoutant une possibilité de transition sans lire de symbole (transition
 spontanée). Ça a la même puissance et les mêmes propriétés qu'un NDFA.
 
@@ -443,7 +495,7 @@ relation de transition.
 \begin{proof}
 	Par exemple $\{a^n b^n a^n | n\geq 1\}$ : notre automate doit d'abord retenir le nombre $n$ dans la première série de $a$, puis vérifier qu'il y a bien $n$ occurrences de $b$ puis $n$ occurrences de $a$ dans la deuxième série. Le seul moyen de retenir $n$ est d'empiler un symbole dans la pile chaque fois qu'on lit un $a$, de sorte à avoir $n$ symboles empilés après la première série de $a$.
 
-	Ensuite, on enlève un symbole chaque fois qu'on lit un $b$, sachant qu'on doit arriver au bout de la série de $b$ en même temps qu'on arrive au fond de la pile. Mais impossible alors de savoir combien d'occurrence de $a$ il faut compter dans la deuxième série de $a$, on ne connaît plus le nombre $n$ !
+	Ensuite, on enlève un symbole chaque fois qu'on lit un $b$, sachant qu'on doit arriver au bout de la série de $b$ en même temps qu'on arrive au fond de la pile. Mais impossible alors de savoir combien d'occurrences de $a$ il faut compter dans la deuxième série de $a$, on ne connaît plus le nombre $n$ !
 \end{proof}
 
 \begin{myprop}
@@ -549,7 +601,7 @@ Ce même exemple peut être représenté par un arbre syntaxique :
 \end{myexem}
 
 \begin{mydef}[Dériver] Appliquer des règles de la grammaire pour vérifier
-	si une chaîne de symbole appartient au langage (on part d'une chaîne de symboles
+	si une chaîne de symboles appartient au langage (on part d'une chaîne de symboles
 	et on vérifie les règles sur celle-ci).
 \end{mydef}
 
@@ -709,7 +761,7 @@ d'algorithmes ou encore de calculs.
 \paragraph{Composition ``abstraite'' :}
 \begin{description}
 	\item[Ruban] Suite de cases potentiellement infinie (des 2 côtés), mais à
-		chaque moment, le ruban nécessaire est fini
+		chaque moment, le ruban nécessaire est fini. Celui-ci correspond à la mémoire de la MT.
 	\item[Tête] Une seule tête, sur une case qui peut écrire et lire la
 		case sur laquelle elle est
 	\item[Contrôle] Dirige les actions/opérations
@@ -718,7 +770,7 @@ d'algorithmes ou encore de calculs.
 \subsection{Contrôle}
 \label{ssub:contr_le}
 Le contrôleur est composé d'un nombre d'états fini dont un état initial et un
-final. Il contient un programme (des instructions).
+d'arrêt. Il contient un programme (des instructions) et un mécanisme capable d'exécuter celles-ci.
 
 \begin{mydef}[Une instruction] Une instruction a la forme
 	$$<q,c> \quad \rightarrow \quad <new_q, Mouv, new_c>$$
@@ -726,8 +778,8 @@ final. Il contient un programme (des instructions).
 		\item $q$ : état courant
 		\item $c$ : symbole sous la tête de lecture
 		\item $new_c$ : symbole à écrire sous la tête de lecture
-		\item $Mouv$ : G ou D, mouvement que la tête de lecture doit faire
-		\item $new_q$ : le nouvel état
+		\item $Mouv$ : gauche ou droite, mouvement que la tête de lecture doit faire
+		\item $new_q$ : le nouvel état après exécution de l'instruction en question
 	\end{itemize}
 \end{mydef}
 
@@ -737,7 +789,7 @@ final. Il contient un programme (des instructions).
 Pour définir une machine de Turing, il faut :
 \begin{itemize}
 	\item $\Sigma$ : ensemble fini de symboles d'entrée
-	\item $\Gamma$ : ensemble fini de symboles de ruban
+	\item $\Gamma$ : ensemble fini de symboles du ruban
 	\item $S$ : ensemble fini d'états
 	\item $s_0 \in S$ : état initial
 	\item $stop \in S$ : état d'arrêt
@@ -748,7 +800,7 @@ Il faut aussi que $\Sigma \subset \Gamma$ et que B $\in \Gamma$ mais que B
 $\notin \Sigma$
 
 \begin{mydef}
-		B correspond au symbole blanc.
+		B correspond au symbole blanc. C'est un caractère pour les cases non utilisées. On empêche bien sur le caractère blanc comme input sinon on ne sait pas savoir si le programme a terminé ou pas.
 \end{mydef}
 
 \subsection{Exécution}
@@ -761,7 +813,7 @@ l'état devient stop, soit il n'y a plus d'instruction applicable.
 ne s'arrête pas sur l'état stop alors il n'y a pas de résultat.
 
 \begin{myexem}
-Étant donné qu'une machine de Turing peut calculer une fonction, il existe un nombre important de machine de Turing. Celles-ci peuvent avoir des fonctions allant du 'très simple' au 'très complexe'. Par exemple une machine de Turing peut déterminer si un nombre est pair ou impair (en regardant si le dernier bit est égal à zéro ou à un), vérifier si le nombre est un multiple de 42, multiplier un chiffre par deux (il suffit de positionner la tête de lecture à droite et d'ajouter un zéro) ou encore calculer la fonction \textit{f(x) = x + 1}. Et c'est cette dernière fonction qui va vous être exposée.\\
+Étant donné qu'une machine de Turing peut calculer une fonction, il existe un nombre important de machines de Turing. Celles-ci peuvent avoir des fonctions allant du 'très simple' au 'très complexe'. Par exemple une machine de Turing peut déterminer si un nombre est pair ou impair (en regardant si le dernier bit est égal à zéro ou à un), vérifier si le nombre est un multiple de 42, multiplier un chiffre par deux (il suffit de positionner la tête de lecture à droite et d'ajouter un zéro) ou encore calculer la fonction \textit{f(x) = x + 1}. Et c'est cette dernière fonction qui va vous être exposée.\\
 Pour cela, il faudra faire deux actions : positionner la tête de lecture à droite et ensuite effectuer l'addition via le report des bits à 1.
 \vspace{4pt} \\
 Positionner la tête de lecture : \\
@@ -803,7 +855,7 @@ Exécution : \\
 \end{myexem}
 \begin{mydef}[T-calculable] Une fonction $f$ est T-calculable s’ il existe une machine
 de Turing qui,
-	recevant comme donnée n'importe quel nombre entier $x$ fourni tôt ou tard
+	recevant comme donnée n'importe quel nombre naturel $x$ fourni tôt ou tard
 	comme résultat $f(x)$ si celui-ci existe.
 \end{mydef}
 
@@ -839,7 +891,7 @@ de Turing qui,
 Les points 1, 3 et 5 sont des théorèmes. Les autres sont des thèses.
 
 \subsection{Extension du modèle}
-On peut modifier le modèle pour changer sa puissance et son efficacité.
+On peut modifier le modèle de base pour changer sa puissance et son efficacité.
 
 \begin{mydef}[Puissance d'une MT] La puissance d'une MT se mesure en
 	fonction du nombre de fonctions qu'elle peut calculer.
@@ -897,7 +949,7 @@ implique que la taille de l'alphabet augmente ($\Sigma \times \Sigma \times ...$
 
 \paragraph{Influence :}
 \begin{itemize}
-	\item Même puissance : même idée que précédemment. Si on a une MT à $n$ rubans on peut la transformer en une MT à 1 ruban où la $i$-ième suite de $n$ cases est associée à la case $i$ dans la MT modifiée. Les états sont construits de telle sorte que la tête lit d'abord les $n$ case de sorte à arriver à un état à la $n$-ième case où toutes les cases précédentes sont mémorisées. La MT peut alors suivre un état qui prend en compte les $n$ cases précédentes.
+	\item Même puissance : même idée que précédemment. Si on a une MT à $n$ rubans on peut la transformer en une MT à 1 ruban où la $i$-ième suite de $n$ cases est associée à la case $i$ dans la MT modifiée. Les états sont construits de telle sorte que la tête lit d'abord les $n$ cases de sorte à arriver à un état à la $n$-ième case où toutes les cases précédentes sont mémorisées. La MT peut alors suivre un état qui prend en compte les $n$ cases précédentes.
 	\item Même efficacité : prendre un alphabet plus grand et une case est équivalent à un plus petit alphabet avec plusieurs cases.
 \end{itemize}
 
@@ -1028,6 +1080,7 @@ pour construire nos fonctions.
 			\hline
 			$a: \N^0 \rightarrow \N$\\
 			$a() = a$\\
+			Ex : $0,8$\\
 			\hline
 		\end{tabular}
 	\item[Fonctions successeur]
@@ -1035,6 +1088,7 @@ pour construire nos fonctions.
 			\hline
 			$s: \N \rightarrow \N$\\
 			$s(n) = n + 1$\\
+			Ex : $s(3) = 4$\\
 			\hline
 		\end{tabular}
 	\item[Fonctions de projection]
@@ -1042,6 +1096,7 @@ pour construire nos fonctions.
 			\hline
 			$p^k_i: \N^k \rightarrow \N$\\
 			$p^k_i(x_1,..,x_i,...x_k) = x_i$\\
+			Ex : $p^3_2(18,5,37) = 5$\\
 			\hline
 		\end{tabular}
 \end{description}
@@ -1094,7 +1149,7 @@ obtenues suite à l'application de composition ou de récursion primitive.
 \paragraph{} Le langage est dépourvu de boucle.
 
 \begin{myprop}
-	Il existe des fonctions totales calculables qui ne sont pas primitives récusrives :
+	Il existe des fonctions totales calculables qui ne sont pas primitives récursives :
 \end{myprop}
 \paragraph{} Par exemple la fonction d’ackermann est calculable, il est possible de coder un programme qui la calcule. Elle est exponentielle. En prenant de grandes valeurs, il est impossible d’expliquer mathématiquement avec des symboles la croissance de cette fonction.\footnote{
 En utilisant la notation des puissances itérées de Knuth, cela est rigoureusement possible.
@@ -1116,7 +1171,7 @@ Elle ne peut donc pas être exprimée.
 
 \begin{myexem}\ \\
 	\textbf{Addition}
-	Addition entre deux paramètre, (m + 0) vaut m,
+	Addition entre deux paramètres, (m + 0) vaut m,
 	Si c’est (m + (n+1)) On utilise la récursivité, on compose avec le successeur. C’est le successeur de l’appel récursif.
 	La complexité est de n.
 	\begin{align*}
