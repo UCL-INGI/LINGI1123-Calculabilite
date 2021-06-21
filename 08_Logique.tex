@@ -1,0 +1,193 @@
+\chapter{Logique}
+Dans ce chapitre, nous allons nous intéresser à la logique. L'objectif primaire de la logique est de représenter des connaissances avec une certaine structure afin de pouvoir raisonner facilement et même automatiquement.
+\smallskip
+
+Il existe beaucoup de formes différentes de logique. En voici quelques exemples:
+\begin{itemize}
+\item Logique des propositions;
+\item Logique des prédicats;
+\item Logique modale;
+\item Logique temporelle;
+\item Logique flou;
+\item \dots
+\end{itemize}
+
+Nous nous intéresserons uniquement à la logique des propositions qui est une des logique les plus élémentaires. 
+\smallskip
+
+Une logique se décompose en trois parties fondamentales et propres à chacune d'entre elles: la syntaxe, la sémantique et le raisonnement.
+\smallskip
+
+La syntaxe détermine la forme des formules acceptées dans la logique. On peut voir une logique comme une langue, et la syntaxe comme la grammaire de cette langue. La syntaxe définit les propositions, les phrases qui font sens. Par exemple, la phrase $\land\implies\neg$ ne fait pas de sens alors que $(p\implies q)$ fait sens (et signifie ``$p$ implique $q$'').
+\smallskip
+
+La sémantique quant-à elle définit le sens des formules logiques, la valeur de vérité. Chaque formule de la logique a un sens, une signification. L'ensemble des règles qui permettent de déterminer la signification d'une formule est la sémantique de la logique.
+\smallskip
+
+Finalement, le raisonnement propose des méthodes permettant de manipuler les formules afin d'obtenir des informations pertinentes. Par exemple, supprimer une double négation pour simplifier la phrase est un raisonnement.
+\smallskip
+\section{Logique des propositions}
+La logique des propositions est ``la plus simple'', mais surtout la plus ancienne. Elle est basée sur le concept de \textit{proposition}. Intuitivement, une proposition est un affirmation qui peut être vraie ou fausse. Voici quelques exemples de propositions:
+\begin{itemize}
+\item Le soleil brille; 
+\item Le cours de calculabilité se donne le jeudi après-midi;
+\item Le sommet $V_2$ du graphe a la couleur rouge;
+\item La tâche $T_3$ doit être effectuée avant la tâche $T_7$;
+\item La glissade est un art qui implique de grandes responsabilisées; 
+\item \dots
+\end{itemize}
+
+Il est très important de noter que la logique des propositions suit le \textit{principe du tiers exclu}, c'est-à-dire qu'une proposition ne peut jamais être vraie et fausse en même temps\footnote{Il peut cependant y avoir des propositions ni vraies ni fausses, cf. le théorème d'incomplétude de Gödel pour les intéressés.}. D'ailleurs, il ne doit pas y avoir d'ambiguïté sur la véracité d'une proposition. Par exemple ``Aller en Casa est chouette'' relève du bon sens de chaque personne: une personne dira que c'est vrai, alors qu'une autre dira que c'est faux. Ce n'est donc pas une proposition valide.
+
+\subsection{Syntaxe}
+Chacune des propositions est représentées par une chaîne de caractères ou des symboles $P,p,Q,q,\varphi,\dotsc$ appelés \textit{variables propositionnelles}. Il est possible de relier plusieurs propositions grâce à des connecteurs logiques comme le ET ou le OU (représentés respectivement par $\land$ et $\lor$). Une proposition qui est correcte selon la syntaxe de la logique s'appelle une \textit{formule} ou \textit{formule propositionnelle}. Par exemple, pour les propositions suivantes,
+\begin{itemize}
+\item $p$ est une variable propositionnelle ainsi qu'une formule;
+\item $q$ est une variable propositionnelle ainsi qu'une formule;
+\item $(p\land q)$ est une formule mais pas une variable propositionnelle;
+\item $pq\implies$ n'est pas une formule.
+\end{itemize}
+
+Plus précisément, en logique propositionnelle, on a 
+\begin{itemize}
+\item Les constantes: 
+\begin{enumerate}[label=(\roman*)]
+\item True (également notée 1);
+\item False (également notée 0);
+\end{enumerate}
+\item Les variables propositionnelles, représentées par des chaines de caractères : $p,q,P,Q,\dots$;
+\item Les connecteurs logiques: 
+\begin{enumerate}[label=(\roman*)]
+\item La négation (NON) : \enskip$\neg$\enskip;
+\item La conjonction (ET) : \enskip$\land$\enskip;
+\item La disjonction (OU) :\enskip$\lor$\enskip;
+\item L'implication :\enskip $\implies$\enskip;
+\item L'équivalence : \enskip $\Leftrightarrow$\enskip;
+\end{enumerate} 
+\item Les parenthèses, afin d'éviter toute ambiguïté.
+\end{itemize}
+
+Les règles syntaxiques de la logique des propositions sont les suivantes : Si $p$ et $q$ sont des formules propositionnelles, alors 
+\begin{enumerate}[label=(\roman*)]
+\item  $\left( \neg p \right)$\
+\item  $\left( p\land q\right)$
+\item  $\left(p \lor q \right)$
+\item  $\left( p \implies q \right)$
+\item  $\left( p \Leftrightarrow q \right)$
+\end{enumerate}
+sont également des formules propositionnelles. 
+\smallskip
+
+Par convention, pour simplifier la lecture des formules, les parenthèses sont supprimées lorsque cela ne porte pas à confusion. Il faut alors respecter l'ordre de précédence, de priorité des opérateurs qui, en ordre décroissant, est 
+\begin{equation*}
+\neg,\ \land, \ \lor, \implies,\ \Leftrightarrow. 
+\end{equation*} 
+Si deux connecteurs identiques se succèdent, les règles d'associativité définissent l'ordre de priorité. Par convention, $\land$ et $\lor$ sont associatifs à gauche tandis que $\implies$ et $\Leftrightarrow$ sont associatifs à droite, c'est-à-dire que 
+\begin{align*}
+p\land q \land r \enskip \text{repré}&\text{sente} \enskip ((p\land q)\land r), \\
+\text{e}&\text{t} \\
+p\implies q\implies r \enskip\text{repré}&\text{sente} \enskip (p\implies(q\implies r)).
+\end{align*} 
+Voici quelques exemples de formules propositionnelles.
+\begin{center}
+\begin{tabular}{|c||c|}
+\hline
+Écriture simplifiée & Écriture avec parenthèses \\
+\hline \hline
+$A\land B$ & $(A\land B)$ \\ \hline
+$\neg A\land B$ & $((\neg A)\land B)$ \\ \hline
+$A \land \neg B$ & $(A\land (\neg B))$ \\ \hline
+$A\land B \lor C$ & $((A\land B)\lor C)$ \\ \hline
+$A \implies B \lor C$ & $(A \implies (B\lor C))$ \\ \hline
+$(A\implies B)\lor C$ & $((A\implies B)\lor C)$ \\ \hline
+$A \lor B \lor C$ & $((A \lor B) \lor C)$ \\ \hline
+$A\implies B \implies C$ & $(A\implies(B\implies C))$ \\ \hline
+\end{tabular}
+\end{center}
+Notons bien l'importance des parenthèses dans l'expression $(A\implies B)\lor C$ qui diffère de $A\implies B \lor C$. Les formules simplifiées étant bien plus agréables à lire et plus faciles à manipuler, nous utiliserons cette écriture.
+
+\subsection{Sémantique}
+Nous allons désormais décrire la sémantique de la logique des propositions. En d'autres mots, nous allons donner un sens, une signification aux formules propositionnelles. 
+\smallskip
+
+Le sens d'une formule dépend d'un contexte, des valeurs données aux variables propositionnelles qui la composent. Par exemple, la valeur de la formule $p\land q$ dépend de la valeur des variables $p$ et $q$ (qui peuvent être Vrai ou Faux). Si l'on attribue une valeur à chaque variable propositionnelle composant la formule considérée, on obtient un contexte fixe. Un tel contexte s'appelle une \textit{interprétation} de la formule.
+\smallskip
+
+Une formule composée de $n$ variables propositionnelles différentes admet $2^n$ interprétations différentes. En effet, pour chaque variable, on peut choisir la valeur $0$ ou $1$ (on peut penser à un arbre binaire avec $n$ étages). 
+\smallskip
+
+Étant donné une interprétation $I$, la valeur de vérité d'une formule est obtenue en suivant les règles suivantes:
+\begin{itemize}
+\item La valeur de  vérité des constantes True et False sont respectivement \textit{true} (1) et \textit{false} (0);
+\item La valeur de vérité d'une variable propositionnelle $P$ est la valeur qui lui est assignée dans de cette interprétation $I$;
+La valeurde vérité d'une formule de la forme $(\neg p),\enskip (p\land q), \enskip (p\lor q),\enskip (p\implies q)$ ou $(p\Leftrightarrow q)$ dépend de la valeur de vérité des variables $p$ et $q$ dans $I$, selon la table suivant.
+\end{itemize}
+\begin{center}
+\begin{tabular}{|c|c||c|c|c|c|c|}
+\hline
+$p$&$q$&$\neg p$&$p\land q$&$p\lor q$&$p\implies q$&$p \Leftrightarrow q$ \\ \hline\hline
+$1$&$1$&$0$&$1$&$1$&$1$&$1$ \\ \hline
+$1$&$0$&$0$&$0$&$1$&$0$&$0$ \\ \hline
+$0$&$1$&$1$&$0$&$1$&$1$&$0$ \\ \hline
+$0$&$0$&$1$&$0$&$0$&$1$&$1$ \\ \hline
+\end{tabular}
+\end{center}
+
+Pour trouver la valeur de vérité d'une formule en pratique, il faut résoudre étape par étape en simplifiant les expressions en suivant les règles du tableau.
+\begin{myexem}
+Soit l'interprétation avec l'assignation $(A=\textit{true},\enskip B=\textit{false}, \enskip C=\textit{false})$. Quelle est la valeur de vérité de 
+\begin{equation*}
+(A\lor B)\land(B \implies \neg C)
+\end{equation*}
+dans cette interprétation? On a, en remplaçant les variables par leur valeur,
+\begin{align*}
+(true \lor false) \land (false \implies \neg false) \qquad &\text{qui se réduit à} \\
+true\land (false \implies true) \qquad &\text{qui se réduit à}\\
+true \land true \qquad &\text{qui se réduit à} \\
+true. \qquad &
+\end{align*}
+La valeur de vérité de la formule dans cette interprétation est donc true.
+\end{myexem}
+\begin{mydef}
+On appelle \textbf{modèle} d'une formule $\varphi$ une interprétation dans laquelle $\varphi$ est vraie.
+\end{mydef}
+La sémantique d'une formule est défini par les modèles de cette formule. En d'autres mots, la signification d'une formule est déterminée par l'ensemble de ses modèles. 
+\smallskip
+
+On dira que deux formules (avec les mêmes variables propositionnelles) sont \textit{équivalentes} si elles ont les mêmes modèles. Intuitivement, deux formules sont équivalentes lorsque peut importe l'interprétation, leur valeur de vérité sont égales. \smallskip
+
+Une (sous-)formule peut toujours être remplacé par une (sous-)formule équivalente sans changer la sémantique de la formule plus large. Voici une liste de formules équivalentes que l'on rencontre fréquemment.
+\begin{center}
+\begin{tabular}{lclr}
+$\neg(\neg p)$&est équivalent à&$p$&(double négation) \\
+$p\land q$&est équivalent à& $q\land p$&(commutativité de $\land$) \\
+$p \lor q$&est équivalent à&$q \lor p$&(commutativité de $\lor$) \\
+$p\Leftrightarrow q$&est équivalent à&$(p \implies q)\land (q \implies p)$&(élimination de l'équivalence) \\
+$p \implies q$&est équivalent à&$\neg p \lor q$&(élimination de l'implication) \\
+$p\implies q$&est équivalent à&$\neg q \implies \neg p$&(contraposition) \\
+$\neg(p\lor q)$&est équivalent à&$\neg\land \neg q$& (formule de Morgan) \\
+$\neg(p\land q)$&est équivalent à&$\neg p \lor \neg q$&(formule de Morgan) \\
+$p\lor(q\land r)$&est équivalent à&$(p\lor q)\land (p\lor r)$& (distributivité de $\land$) \\
+$p\land (q\lor r)$&est équivalent à&$(p\land q) \lor (p\land r)$&(distributivité de $\lor$) \\
+\end{tabular}
+\end{center}
+
+Démontrons par exemple la deuxième formule de Morgan qui dit que
+\begin{center}
+\begin{tabular}{lcl}
+$\neg(p\land q)$&est équivalent à&$\neg p \lor \neg q$. 
+\end{tabular}
+\end{center} 
+Il nous suffit de lister toutes les interprétations possibles et comparer les tables de vérité. 
+
+\begin{center}
+\begin{tabular}{|c|c||c|c||c|c|c|}
+\hline 
+$p$&$q$&$p\land q$&$\neg(p\land q)$&$\neg p$&$\neg q$&$\neg p \lor \neg q$ \\ \hline \hline
+$1$&$1$&$1$&$0$&$0$&$0$&$0$ \\ \hline 
+$1$&$0$&$0$&$1$&$0$&$1$&$1$ \\ \hline 
+$0$&$1$&$0$&$1$&$1$&$0$&$1$ \\ \hline 
+$0$&$0$&$0$&$1$&$1$&$1$&$1$ \\ \hline 
+\end{tabular}
+\end{center}
+Puisque les valeurs de vérité des deux formules (quatrième et dernière colonnes) sont vraies dans les mêmes interprétations, elles ont les mêmes modèles et sont donc équivalentes. 
