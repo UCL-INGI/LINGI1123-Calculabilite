@@ -3,7 +3,7 @@
 
 \chapter{Classes de complexité}
 \label{sec:classes_de_complexit_}
-On va se ``limiter'' au problème de décision.
+On va se ``limiter'' aux problèmes de décision.
 
 \begin{myrem}
 	On ne se limite pas vraiment, car on
@@ -14,7 +14,7 @@ On va se ``limiter'' au problème de décision.
 \label{sub:r_duction}
 
 \paragraph{Objectif :} Déduire un algorithme pour un problème P' à partir d'un
-algorithme P permet:
+algorithme d'un autre problème P. Déduire un algorithme de décision pour un ensemble E à partir d'un algorithme de décision d'un autre ensemble E'. Permet:
 \begin{itemize}
 	\item de prouver la calculabilité/non calculabilité
 	\item d'analyser le degré de non-calculabilité
@@ -43,6 +43,7 @@ que 3 :
 		\item $E \in A$
 		\item $\forall B \in A \ : \ B \leq E$
 	\end{enumerate}
+Autrement dit, un ensemble complet d'une classe d'ensembles est l'ensemble le "plus difficile" à décider parmi tous les ensembles de la classe. Si on trouve un algorithme pour cet ensemble, alors on peut reconnaître tous les autres ensembles de la classe.
 \end{mydef}
 
 \begin{myrem}
@@ -96,7 +97,7 @@ faire un calcul avec une complexité très grande en plus d'utiliser $B$.
 \end{myprop}
 
 \begin{myprop}
-	Si $A$ est récursif alors peu importe le $B$, $A \leq B$
+	Si $A$ est récursif alors pour tout $B$, $A \leq B$
 \end{myprop}
 
 \begin{myprop}
@@ -134,7 +135,7 @@ car tout dépend de la complexité de la fonction $f$.
 \end{myprop}
 
 \begin{myprop}
-	Si $A$ est récursif alors peu importe le $B$, $A \leq B$
+	Si $A$ est récursif alors pour tout $B$, $A \leq B$
 \end{myprop}
 
 \begin{myprop}
@@ -167,10 +168,10 @@ On est donc limité à utiliser qu'une fois le test $f(a) \in B$ \textbf{en
 	dernier lieu}.
 
 \section{Modèles de calcul}
-D'habitude, on utilise les machines de Turing pour avoir une définition précise
-de la complexité. Mais c'est peu intuitif et on s'intéresse aux frontières. Or la
-différence de complexité entre différents modèles est un facteur polynomial
-(c'est une thèse) ce qui n'a pas d'influence sur les frontières.
+Il y a deux manières de travailler en théorie de la complexité. Premièrement, la théorie classique qui utilise les machines de Turing pour calculer la complexité car la notion de transitions est extrêmement claire.
+On peut vraiment calculer facilement le nombre de transitions. Ensuite Java, pour lequel cela dépend du compilateur et d'autres éléments, ce qui implique que ce n'est pas toujours très précis. Les théoriciens préfèrent donc les machines de Turing car la définition de nombre d'instructions est très précise. Mais cette manière est peu intuitive et on va donc se permettre d'utiliser le concept standard de notation grand O en Java pour calculer la complexité. Chaque modèle a ses inconvénients et ses avantages et nous utiliserons le plus facile en fonction du problème.\\
+
+Il est important de se rappeler une thèse vu dans le chapitre précédant qui dit que tous les modèles de complexité ont entre eux des complexités spatiales et temporelles reliées de façon polynomiale. Ceci implique que tout problème pratiquement faisable dans un modèle (non déterministe) le sera également dans tous les autres modèles (non déterministe) !
 
 \section{Classes de complexité}
 
@@ -185,9 +186,12 @@ différence de complexité entre différents modèles est un facteur polynomial
 	Java de complexité spatiale $\mathcal{O}(f)$
 \end{mydef}
 
+\begin{myrem}
+La complexité n'a pas de sens pour les ensembles récursivement énumérables, car ceux-ci ne se terminent pas toujours. Or, la complexité n'a de sens que pour les programmes qui se terminent !
+\end{myrem}
 \paragraph{Classes basées sur le modèle non déterministe}
 \begin{mydef}[NTIME(f)]
-	Famille des ensembles récursifs pouvant être décidés par un programme
+	Famille des ensembles ND-récursifs pouvant être décidés par un programme
 	non déterministe Java de complexité temporelle $\mathcal{O}(f)$
 \end{mydef}
 
@@ -197,7 +201,7 @@ différence de complexité entre différents modèles est un facteur polynomial
 \end{myrem}
 
 \begin{mydef}[NSPACE(f)]
-	Famille des ensembles récursifs pouvant être décidés par un programme
+	Famille des ensembles ND-récursifs pouvant être décidés par un programme
 	non déterministe Java de complexité spatiale $\mathcal{O}(f)$
 \end{mydef}
 
@@ -208,7 +212,7 @@ différence de complexité entre différents modèles est un facteur polynomial
 \end{mydef}
 
 \begin{myrem}
-	Les classes ne dépendent pas du modèle de calcul
+	La classe P ne dépend pas du modèle de calcul car on sait que entre deux modèles de calcul, les différences sont uniquement polynomiales. Résultat très positif car classe de problèmes qui est la même peu importe le modèle utilisé !
 \end{myrem}
 
 \begin{mydef}[Classe NP]
@@ -223,6 +227,10 @@ différence de complexité entre différents modèles est un facteur polynomial
 	exponentielle.
 \end{myrem}
 
+\begin{myrem}
+	La classe NP ne dépend pas du modèle de calcul (même raison que pour la classe P).
+\end{myrem}
+
 \section{Relations entre les classes de complexité}
 \label{sub:relations_entre_les_classes_de_complexit_}
 
@@ -231,7 +239,7 @@ différence de complexité entre différents modèles est un facteur polynomial
 	$A \in NTIME(f) \Rightarrow A \in DTIME(c^f)$ \\
 	$f$ est la profondeur maximale de l'arbre. Si on simule le
 	ND, alors on doit faire un bfs dans un arbre de profondeur $f$.
-	$c$ est le facteur de branchement.
+	Le $c$ est le facteur de branchement.
 \end{myprop}
 
 \begin{myprop}
@@ -270,16 +278,24 @@ ce qui est contraire à l'hypothèse que l'ensemble est récursif.
 	C'est la même chose que pour le cas déterministe (propriété précédente).
 \end{myprop}
 
+\begin{myrem}
+	On a montré, à l'aide de la propriété $7.36$, que la complexité temporelle est plus importante que la complexité spatiale car on réussit à avoir une borne sur la spatiale à l'aide de la temporelle ! Cela justifie en pratique pourquoi on se concentre souvent d'abord sur la complexité temporelle.
+\end{myrem}
+
+\begin{myrem}
+	On a également démontré avec la propriété $7.38$ que la complexité spatiale n'apporte aucune information sur la complexité temporelle car une complexité en $O(c^f)$ est beaucoup beaucoup trop grande.
+\end{myrem}
 \paragraph{Hiérarchie de complexité}
 On peut prouver qu'il existe pire qu'une complexité exponentielle.
 
 \section{$NP$-complétude}
+En pratique, beaucoup de problèmes intéressants s'avèrent être de complexité temporelle non déterministe polynomiale.
 La question fondamentale de la complexité est la suivante :
 \textbf{s'il existe un algorithme
 non déterministe polynomial, existe-t-il un algorithme déterministe polynomial
 résolvant ce même problème?}
  C'est-à-dire, est-ce que \textbf{$P = NP$?} On sait que $P
-\subseteq NP$ mais on n'a pas encore montré si oui ou non $NP\subseteq P$.
+\subseteq NP$ (car un programme déterministe est un cas particulier d'un programme non déterministe)  mais on n'a pas encore montré si oui ou non $NP\subseteq P$. Si c'était le cas, ce serait génial car un tas de problèmes dans plein d'applications de la vie de tous les jours appartiennent à la classe NP. Et cela signifirait qu'on serait capable de les résoudre en temps polynomial !
 
 \paragraph{} Pour démontrer ça, on essaye de montrer qu'un élément de $NP$, le
 plus difficile, est dans $P$. On choisit un élément qui soit $NP$-complet par
@@ -292,8 +308,8 @@ réductions ne permettent pas d'affirmer quelque chose sur la complexité. On
 introduit donc une nouvelle réduction, la réduction polynomiale.
 
 \begin{mydef}[Réduction polynomiale]
-	Un ensemble $A$ est polynomialement réductible à un ensemble $B$, $A \leq
-	_p B$ s’il existe une fonction \textbf{totale calculable} $f$ de
+	Un ensemble $A$ est polynomialement réductible à un ensemble $B$  ($A \leq
+	_p B$) s’il existe une fonction \textbf{totale calculable} $f$ de
 	\textbf{complexité temporelle polynomiale} telle que
 	\[a\in A \ \Leftrightarrow \ f(a)\in B \]
 \end{mydef}
@@ -333,7 +349,7 @@ introduit donc une nouvelle réduction, la réduction polynomiale.
 	$NP$.
 \end{myprop}
 
-En supposant $P \ne NP$, on peut représenter les différents classes de problèmes comme sur la figure \ref{fig:classe_prob}
+En supposant $P \ne NP$, on peut représenter les différents classes de problèmes comme sur la figure \ref{fig:classe_prob}.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Images/classes_prob.png}
@@ -387,7 +403,7 @@ formule $x$ est-elle satisfaisable?
 \section{Théorème de Cook : $SAT$ est $NP$-complet}
 Pour pouvoir trouver des problèmes $NP$-complet en les réduisant par rapport à
 un problème $NP$-complet, il faut trouver un premier problème $NP$-complet.
-\paragraph{} On va montrer que $SAT$ est $NP$-complet en 2 parties :
+\paragraph{} On va montrer que $SAT$ (= Satisfaction des formules propositionnelles) est $NP$-complet en 2 parties :
 \begin{enumerate}
 	\item $SAT \in NP$
 	\item $\forall B \in NP \ : \  B\leq_p SAT $
@@ -410,12 +426,12 @@ d'Huffman, le code pour une variable prendra $\log n$ (c'est important pour
 définir la complexité du problème).
 \begin{myexem} Soit les trois variables $A$, $B$ et $C$
 	\[ x(A,B,C) = (\neg A \lor B) \wedge (B \lor C) \wedge (A \lor \neg C)\]
-	$(\neg A \lor B)$, $(B \lor C)$ et $(A \lor \neg C)$ sont les trois clauses de notre formules. Elles ont chacune deux litéraux.
+	$(\neg A \lor B)$, $(B \lor C)$ et $(A \lor \neg C)$ sont les trois clauses de notre formule. Elles ont chacune deux litéraux.
 	La formule est ici satisfaite si $A=false$, $B=true$ et $C=false$. D'autres solutions sont possibles.
 \end{myexem}
 
 \subsection{$SAT \in NP$}
-Il existe un programme ND polynomiale capable de décider si $x\in SAT$. On pose
+Il existe un programme ND polynomial capable de décider si $x\in SAT$. On pose
 que $m$ est le nombre de variables de $x$ et $n$ est le nombre d'occurrences de
 variables ($m\leq x$). Étapes de l'algorithme avec leur complexité :
 \begin{itemize}
@@ -442,12 +458,16 @@ même chose pour les états, le curseur, l'alphabet,...
 
 \section{Quelques problèmes $NP$-complets}
 \begin{itemize}
-	\item Problème du circuit hamiltonien HC (trouver un chemin qui passe
+	\item Problème du circuit hamiltonien HC (trouver un circuit qui passe
 		une seule fois par tous les sommets)
-	\item Problème du voyageur de commerce TS (trouver un chemin qui relie
+	\item Problème du voyageur de commerce TS (trouver un circuit qui relie
 		tous les sommets et de longueur $\leq B$)
 	\item Chemin le plus long entre 2 sommets dans un graphe
 	\item $3SAT$ (forme conjonctive avec 3 variables par clause)
 	\item Programmation entière (simplexe)
 	\item ...
 \end{itemize}
+
+\section{$P = NP$ ?}
+On peut faire une similitude avec la thèse de Church-Turing. Beaucoup d'efforts ont été réalisés pour trouver des algorithmes polynomiaux pour des problèmes NP-complets mais sans jamais de succès. Tous furent des échecs.
+Le débat fait toujours rage aujourd'hui dans le monde scientifique et il y a de fortes présomptions que de tels algorithmes n'existent pas. Donc forte présomption que $P \neq NP$. Aucune preuve n'existe à ce jour et la question fait partie des questions les plus importantes à résoudre dans le monde scientifique avec une somme de 1 million d'euro à la clé.
