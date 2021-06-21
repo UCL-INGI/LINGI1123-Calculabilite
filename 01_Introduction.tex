@@ -4,16 +4,18 @@
 \chapter{Introduction}
 \label{ch:introduction}
 
-\section{Qu'est-ce que la calculabilité}
+\section{Qu'est-ce que la calculabilité ?}
 \label{sec:qu_est-ce_la_calculabilite}
 
-La calculabilité est l'étude des limites de l'informatique. Il faut savoir différencier les limites théoriques des limites
-pratiques. Pour la calculabilité, on s'occupe des limites théoriques alors que pour
-la complexité on s'occupe des limites pratiques. La complexité
+La calculabilité est l'étude des limites de l'informatique. C'est un domaine important de l'informatique qui permet de comprendre, d'analyser et d'appliquer ces limites.
+Il faut savoir différencier les limites théoriques des limites
+pratiques. La calculabilité est un domaine d'étude qui s'intéresse aux limites théoriques alors que
+la complexité s'occupe des limites pratiques. Cette dernière
 détermine la frontière entre ce qui est faisable et infaisable en pratique.
 La question principale de la calculabilité est: \og quels sont les \textit{problèmes} qui (ne) peuvent (pas)
 être résolus par un \textit{programme} ?\fg.  De manière informelle, un problème est dit \emph{calculable} s'il existe un programme qui résout ce problème.  La caractéristique d'un problème calculable ne donne donc aucune
-autre information que la preuve de l'existence d'un programme capable de résoudre ce problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas!
+autre information que la preuve de l'existence d'un programme capable de résoudre ce problème. On peut reformuler la notion de calculabilité comme : Si un algo existe, alors il y a peut-être une chance afin de pouvoir l'écrire pour résoudre le problème.  Mais lorsqu'un problème est non calculable, cela nous informe qu'il est inutile d'essayer d'écrire un programme pour résoudre ce problème; un tel programme n'existe pas!
+La notion de calculabilité est donc importante à maitriser et peut-être très utile en entreprise par exemple. Si votre employeur vous demande de résoudre un problème non-calculable, il faut être capable de lui dire que c'est tout simplement impossible à faire pour ne pas perdre son temps.
 
 \paragraph{} Le but est donc de tracer des frontières entre les programmes calculables,
 non calculables et non calculables en pratique.
@@ -36,31 +38,39 @@ En mathématique, il est impossible de trouver deux nombres entiers $m$ et $n$ t
 
 Premièrement, on doit parler de la notion de problème.
 Attention, il ne faut pas confondre un problème avec un programme.
-Les caractéristiques d'un problème sont:
+Les caractéristiques d'un problème sont :
 
 \begin{itemize}
-	\item un problème est \emph{générique}: il s'applique à un ensemble de données.
+	\item un problème est \emph{générique}: il s'applique à un ensemble de données ;
 	\item pour chaque donnée particulière, il existe une réponse.
 \end{itemize}
 
 On représente un problème dans le cours par une fonction (noté $\phi$ ou $\varphi$).
-Donc la description d'un problème est équivalente à la description d'une fonction.
+Un problème est une spécification où j'ai un input et je veux un output.
+La description d'un problème est donc équivalente à la description d'une fonction.
 
 \paragraph{Exemples de problèmes}
 \begin{itemize}
-	\item Additionner deux entiers
-	\item Étant donné une liste d'étudiants et de leurs points d'examen, trouver les étudiants dont la moyenne des examens est supérieure ou égale à $12/20$.
-	\item Déterminer si un polynôme à coefficients entiers a des racines entières.
+	\item additionner deux entiers ;
+	\item étant donné une liste d'étudiants et de leurs points d'examen, trouver les étudiants dont la moyenne des examens est supérieure ou égale à $12/20$ ;
+	\item déterminer si un polynôme à coefficients entiers a des racines entières.
 \end{itemize}
 
 \section{Notion de programme}
 \label{sec:notion_de_programme}
 
-Un programme (ou algorithme) est une \og procédure effective\fg, c'est-à-dire exécutable par une machine. Par exemple un programme \java.
+Un programme (ou algorithme) est une \og procédure effective\fg, c'est-à-dire exécutable par une machine. Par exemple un programme java.\\
 
-La compréhension du concept de programme est basée sur la compréhension du concept de \og programme écrit dans un langage de programmation\fg.
+La compréhension du concept de programme est basée sur la compréhension du concept de \og programme écrit dans un langage de programmation\fg.\\
 
 Il existe plein de formalismes permettant la description d'une \og procédure effective\fg.
+
+\section{Qu'est-ce que la complexité ?}
+On a vu à quoi servait la calculabilité et que ce concept est assez abstrait. D'un autre côté, nous avons la complexité qui aborde des concepts plus concrets. Elle se demande quelles sont les ressources : le temps, l'espace mémoire, etc. mis en oeuvre pour résoudre le problème.
+Elle étudie l'efficacité d'un programme. La définition d'efficacité est la suivante : mesure des ressources nécessaires à mettre en oeuvre pour que le programme produise les résultats attendus.
+Il est important de noter qu'on veut développer des concepts de complexité qui soient totalement indépendants des nouvelles technologies, de la machine utilisée et encore du formalisme utilisé.
+En très grande lignes, la complexité est la limite entre l'infaisable en pratique et le faisable en pratique. 
+
 
 \section{Résultats principaux}
 \label{sec:r_sultat_principaux}
@@ -83,8 +93,8 @@ D'un point de vue pratique on peut voir des différences (le programme est plus 
 	Il existe des problèmes qui ne peuvent être résolus par un programme et qui sont alors dit \emph{non calculables}.
 	Quelques exemples:
 	\begin{itemize}
-		\item détection de virus;
-		\item équivalence de programme;
+		\item détection de virus ;
+		\item équivalence de programme ;
 		\item déterminer si un polynôme à coefficients entiers a des racines entières, \ldots
 	\end{itemize}
 % section r_sultat_principaux (end)
@@ -97,14 +107,14 @@ On veut déterminer si un programme \lstinline|P| avec une entrée \lstinline|D|
 	Un programme est dit \emph{nuisible} si son exécution a pour effet de contaminer d'autres programmes (par exemple en se recopiant autre part). Dans certains cas, il peut également être considéré comme dangereux lorsqu'il rend la machine partiellement ou totalement inutilisable (par exemple un cheval de Troie contenant une bombe logique ou une fork bomb).
 \end{mydef}
 
-Un bon antivirus serait alors un programme qui testerait des programmes en regardant s'ils se multiplient, tout en les empêchant de modifier (voir d'endommager) d'autres fichiers. Un tel programme, s'il existe, serait du même type que \lstinline|detecteur(P, D)| avec \lstinline|P| le programme à détecter et \lstinline|D| un état du système de données dans lequel le programme s'exécuterait.
+Un bon antivirus serait alors un programme qui testerait des programmes en regardant s'ils se multiplient, tout en les empêchant de modifier (voir d'endommager) d'autres fichiers. Un tel programme, s'il existe, serait du même type que \lstinline|détecteur(P, D)| avec \lstinline|P| le programme à détecter et \lstinline|D| un état du système de données dans lequel le programme s'exécuterait.
 
-\noindent Spécification du programme \lstinline|detecteur(P, D)|:\\
+\noindent Spécification du programme \lstinline|détecteur(P, D)|:\\
 \textbf{Préconditions:} un programme \lstinline|P| et une donnée \lstinline|D|\\
 \textbf{Postconditions:} \lstinline|"Mauvais"| si \lstinline|P(D)| est nuisible, \lstinline|"Bon"| sinon.
 
 \begin{center}
-\includegraphics[scale=0.45]{Images/effet_detecteur}
+\includegraphics[scale=0.45]{Images/effet_detecteur.png}
 \end{center}
 
 Cependant il faut aussi que le détecteur ne soit pas nuisible pour que cette spécification soit valide. Or comme nous allons le démontrer, le détecteur ne peut être non nuisible.
@@ -115,22 +125,22 @@ Cependant il faut aussi que le détecteur ne soit pas nuisible pour que cette sp
 	si un programme \lstinline|P| est nuisible avec une entrée \lstinline|D|.
 \end{mytheo}
 \begin{proof}
-Pour le prouver nous allons émettre l'hypothèse qu'un programme \lstinline|detecteur(P, D)| existe et qu'il n'est pas nuisible. Dans ce cas, nous pouvons construire le programme \lstinline|drole(P)| suivant :
+Pour le prouver nous allons émettre l'hypothèse qu'un programme \lstinline|détecteur(P, D)| existe et qu'il n'est pas nuisible. Dans ce cas, nous pouvons construire le programme \lstinline|drôle(P)| suivant :
 
 \label{lst:detecteur_de_virus}
 \begin{lstlisting}
-drole(P)
-    if detecteur(P,P) = "Mauvais"
+drôle(P)
+    if détecteur(P,P) = "Mauvais"
         then stop
-    else infecter un autre programme en y inserant P
+    else infecter un autre programme en y insérant P
 \end{lstlisting}
 
-Regardons maintenant si l'exécution de \lstinline|drole(drole)|, c'est-à-dire si l'on donne le code source de \lstinline|drole| à lui-même, est nuisible ou non.
+Regardons maintenant si l'exécution de \lstinline|drôle(drôle)|, c'est-à-dire si l'on donne le code source de \lstinline|drôle| à lui-même, est nuisible ou non.
 \begin{lstlisting}
-drole(drole)
-    if detecteur(drole, drole) = "Mauvais"
+drôle(drôle)
+    if détecteur(drôle, drôle) = "Mauvais"
 	    then stop
-    else infecter un autre programme en y inserant drole
+    else infecter un autre programme en y insérant drôle
 \end{lstlisting}
 
 \begin{center}
@@ -138,21 +148,21 @@ drole(drole)
 \end{center}
 
 \begin{itemize}
-	\item Supposons que \lstinline|drole(drole)| soit nuisible.
-      Lorsqu'on exécute, \lstinline|drole(drole)|,
-      \lstinline|detecteur(drole,drole)| n'infecte rien car \lstinline|detecteur| n'est pas nuisible.
+	\item Supposons que \lstinline|drôle(drôle)| soit nuisible.
+      Lorsqu'on exécute, \lstinline|drôle(drôle)|,
+      \lstinline|détecteur(drôle,drôle)| n'infecte rien car \lstinline|détecteur| n'est pas nuisible.
 
-      Comme \lstinline|detecteur| retourne \lstinline|"Mauvais"|,
+      Comme \lstinline|détecteur| retourne \lstinline|"Mauvais"|,
       le programme s'arrête.
-      Rien n'a donc été infecté, ce qui est contradictoire avec le fait que \lstinline|drole(drole)| soit nuisible.
-	\item Si par contre il n'est pas nuisible, alors \lstinline|detecteur(drole,drole)|
+      Rien n'a donc été infecté, ce qui est contradictoire avec le fait que \lstinline|drôle(drôle)| soit nuisible.
+	\item Si par contre il n'est pas nuisible, alors \lstinline|détecteur(drôle,drôle)|
       ne va pas retourner \lstinline|"Mauvais"| et le code de la clause \lstinline|else| s'exécutera.
-      Un autre programme est alors infecté ce qui contredit le fait que \lstinline|drole(drole)| ne soit pas nuisible.
+      Un autre programme est alors infecté ce qui contredit le fait que \lstinline|drôle(drôle)| ne soit pas nuisible.
 \end{itemize}
 
-On a donc une contradiction dans tous les cas, ce qui implique que le programme \lstinline|drole| ne peut pas
-exister. Vu que la seule hypothèse que nous avons formulée pour écrire le programme \lstinline|drole| soit que le programme \lstinline|detecteur| (non nuisible) existe,
-le programme \lstinline|detecteur| (non nuisible) ne peut pas exister non plus.
+On a donc une contradiction dans tous les cas, ce qui implique que le programme \lstinline|drôle| ne peut pas
+exister. Vu que la seule hypothèse que nous avons formulée pour écrire le programme \lstinline|drôle| soit que le programme \lstinline|détecteur| (non nuisible) existe,
+le programme \lstinline|détecteur| (non nuisible) ne peut pas exister non plus.
 \end{proof}
 % subsubsection d_tection_de_virus (end)
 
@@ -185,10 +195,11 @@ Ce tableau montre dès lors que, peu importe les évolutions technologiques, un 
 
 Cependant, dans la pratique, certains algorithmes résolvent efficacement les problèmes pratiques, et d'autres, également efficaces, permettent d'obtenir des \textbf{approximations} des solutions exactes.
 
+De manière générale, un problème intrinsèquement complexe est un problème possible à résoudre de manière théorique mais qui en pratique demande trop de ressources et sa résolution devient donc impossible.
 \section{Objectifs calculabilité et complexité}
 \label{sec:objectifs_calculabilite_et_complexite}
 
-La Figure~\ref{cal_non_cal} illustre la frontière entre les problèmes non calculables (il n'existe pas un programme) et calculables (il existe un programme) dans l'univers des problèmes. Parmi les problèmes calculables il a ceux qui le sont en pratique (pas exponentiels) et ceux qui ne sont pas calculables en pratique.
+La Figure~\ref{cal_non_cal} illustre la frontière entre les problèmes non calculables (il n'existe pas un programme capable de répondre à la question) et calculables (il existe un programme capable de répondre à la question) dans l'univers des problèmes. Parmi les problèmes calculables, il y a ceux qui le sont en pratique (pas exponentiels) et ceux qui ne sont pas calculables en pratique.
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}[scale=0.8]
@@ -205,6 +216,7 @@ La Figure~\ref{cal_non_cal} illustre la frontière entre les problèmes non calc
 	\label{cal_non_cal}
 \end{figure}
 
-L'intérêt de la calculabilité est de savoir quels problèmes sont calculables ou lesquels ne le sont pas. Si un problème est non calculable, il est alors inutile  d'essayer de résoudre ce problème.  Si le problème est calculable mais intrinsèquement complexe, il est inutile d'envisager un algorithme permettant de résoudre des problème de grande taille.
+L'intérêt de la calculabilité est de savoir quels problèmes sont calculables ou lesquels ne le sont pas. Si un problème est non calculable, il est alors inutile  d'essayer de résoudre ce problème.  Si le problème est calculable mais intrinsèquement complexe, il est inutile d'envisager un algorithme permettant de résoudre des problèmes de grande taille.
 Face à un problème non calculable ou intrinsèquement complexe, on peut essayer de relâcher le problème pour le rendre calculable ou de complexité polynomiale. Une solution à ce problème relâché peut par exemple être une approximation du problème initial.
 % section introduction (end)Introduction
+

@@ -1,21 +1,124 @@
 % Complexité
 % ============
 
-\chapter{Complexité}
+\chapter{Introduction à la complexité algorithmique}
 \label{sec:complexit_}
+\section{Notions de complexité}
+On peut exiger qu'un programme correct soit efficace. Mais que signifie ce mot ?
+L'efficacité d'un programme est la mesure des ressources nécessaires à mettre en oeuvre pour que celui-ci produise les résultats attendus.
+La complexité est donc le prix à payer pour résoudre le problème. On peut différencier le théoriquement calculable, aussi nommé calculabilité, et le pratiquement calculable, la complexité, qui est étudiée dans ce chapitre.
+Cette notion de complexité à toute son importance car un problème calculable peut être pratiquement infaisable...
+
+\subsubsection{Exemples de ressources}
+\begin{itemize}
+\item le CPU ;
+\item la mémoire ;
+\item l'entrée/sortie ;
+\item la maintenance,...
+\end{itemize}
+
+
+\subsubsection{Définition}
+On différenciera deux types distincts de complexité :
+\begin{itemize}
+\item la complexité temporelle qui correspond au temps d'exécution du programme ;
+\item la complexité spatiale qui correspond à l'espace mémoire utilisé par le programme.
+\end{itemize}
+La complexité temporelle est en pratique plus importante car on verra que celle-ci permet d'obtenir une borne sur la complexité spatiale. \\
+
+Il est important d'être capable de différencier la complexité liée à un algorithme et la complexité liée à un problème car ce n'est pas la même chose. Cette dernière est en fait la complexité de l'algorithme le plus efficace résolvant ce problème !\\
+
+La complexité est un concept qui dépend de : 
+\begin{itemize}
+\item la taille des données ;
+\item la représentation des données ;
+\item le modèle de calcul utilisé.
+\end{itemize}
+
+Il existe trois types de mesures possible pour la complexité : 
+\begin{itemize}
+\item le pire des cas (worst case), qui sera celle utilisée dans ce cours. Elle permet d'avoir une borne sur le temps d'exécution (par exemple) et aucune surprise ne peut survenir. De plus, elle est plus simple à calculer ;
+\item le meilleur des cas (best case) ;
+\item la moyenne (average case), qui en pratique est une très bonne mesure mais est beaucoup plus difficile à obtenir.
+\end{itemize}
+
+
 Lors de l'étude de la complexité, on ne va considérer que la borne supérieure
-(notation big O). De plus, on ne va considérer que les fonctions totales et
+(notation big O). L'objectif de celle-ci est une mesure indépendante des caractéristiques techniques de l'environnement technologique :
+\begin{itemize}
+\item nombre d'instructions machine générées par le compilateur ;
+\item vitesse du CPU ;
+\item nature des instructions.
+\end{itemize}
+
+
+De plus, on ne va considérer que les fonctions totales et
 donc la décision d'ensembles récursifs.
 En effet, si la fonction n'est pas totale, l'algorithme peut boucler.
 Donc on ne sait pas étudier l'efficacité.
 
-\begin{mydef}[Complexité d'un problème] Complexité de l'algorithme le
-	\textbf{plus efficace} résolvant ce problème.
-\end{mydef}
+\begin{myrem}
+	Un problème lié à la notation grand O est qu'elle ne s'applique que pour des problèmes dont les données sont suffisamment grandes.
+\end{myrem}
+
+\section{Hiérarchie de complexité}
+\begin{figure}[H]
+    \centering
+    \includegraphics{hierarchie.PNG}
+    \caption{Hiérarchie de complexité}
+    \label{Hierarchie}
+\end{figure}
+Les algorithmes de complexité exponentielle sont intrinsèquement complexes.
+
+\subsection{Exemples}
+\subsubsection{Algorithmes constants}
+\begin{itemize}
+\item imprimer un élément d'un tableau ;
+\item ajouter un élément à une queue ;
+\item rechercher un élément dans une table de hachage.
+\end{itemize}
+\subsubsection{Algorithmes logarithmiques}
+\begin{itemize}
+\item recherche dichotomique dans un tableau ;
+\item recherche dans un arbre bnaire de recherche.
+\end{itemize}
+\subsubsection{Algorithmes linéaires}
+\begin{itemize}
+\item recherche d'un élément dans un tableau non trié.
+\end{itemize}
+\subsubsection{Algorithmes n log n}
+\begin{itemize}
+\item tri par tas, quicksort.
+\end{itemize}
+\subsubsection{Algorithmes quadratiques}
+\begin{itemize}
+\item tri par échange;
+\item tri à bulle (bubble sort) ;
+\item tri par insertion.
+\end{itemize}
+\subsubsection{Algorithmes cubiques}
+\begin{itemize}
+\item multiplication de 2 matrices n*n ;
+\item perspective d'une image 3D.
+\end{itemize}
+\subsubsection{Algorithmes exponentiels}
+\begin{itemize}
+\item voyageur de commerce ;
+\item coloration de graphes ;
+\item problèmes d'ordonnancement ;
+\item problèmes de planification.
+\end{itemize}
+
+\section{Problèmes intrinsèquement complexes}
+Certains problèmes, quoique théoriquement solubles par programmes, sont en pratique infaisables, car nécessitant des ressources incompatibles avec les réalités physiques.
 
 \begin{mydef}[Problème pratiquement faisable]
-	S’il existe un algorithme de complexité polynomiale qui résout ce
-	problème, alors, celui-ci est pratiquement faisable.
+	S’il existe un algorithme de complexité polynomiale, alors, celui-ci est pratiquement faisable.
+\end{mydef}
+
+\begin{mydef}[Problème pratiquement infaisable]
+	 Si il n'existe pas d'algorithme de complexité polynomiale, alors le problème est pratiquement infaisable (ex : algos exponentiels).
+
 \end{mydef}
 
 \begin{mydef}[Problème intrinsèquement complexe]
@@ -25,25 +128,29 @@ Donc on ne sait pas étudier l'efficacité.
 
 \begin{myrem}
 	Quelle est la différence entre intrinsèquement complexe et pratiquement
-	infaisable?
+	infaisable? Un problème intrinsèquement complexe est pratiquement infaisable. Malheureusement, beaucoup de problèmes intéressants sont intrinsèquement complexes.
+\begin{myrem}
+	Peu importe les évolutions technologiques, un problème intrinsèquement complexe ne peut et ne pourra être résolu que pour de petits exemples.
 \end{myrem}
-
-\section{Influence du modèle de calcul}
+	
+\end{myrem}
+\subsection{Influence du modèle de calcul}
 \label{sub:influence_du_mod_le_de_calcul}
-Si un algorithme est de complexité polynomiale dans un modèle complet alors il sera
-polynomial dans un autre modèle de calcul. Il y aura juste un facteur
+Si un algorithme, exprimé dans un modèle de calcul particulier, est de complexité polynomiale alors il sera
+également de complexité polynomiale dans un autre modèle de calcul (complexité spatiale et temporelle). Il y aura juste un facteur
 polynomial entre les deux, car il existe un compilateur du premier modèle vers
-le second qui a une complexité polynomiale.
+le second qui a une complexité polynomiale.\\
+La classe de problèmes intrinsèquement complexes est donc indépendante du modèle de calcul !
 % subsection influence_du_mod_le_de_calcul (end)
 
-\section{Influence de la représentation des données}
+\subsection{Influence de la représentation des données}
 \label{sub:influence_de_la_repr_sentation_des_donn_es}
 Le choix de représentation de données induit une variation polynomiale du temps
-d'exécution et de l'espace.
+d'exécution et de l'espace. La classe de problèmes intrinsèquement complexes est donc indépendante de la représentation des données !
 
 \begin{myrem}
 	Certains problèmes sont intrinsèquement complexes juste pour certaines
-	données (simplexe). Celles-ci sont souvent des cas particuliers et peu
+	données. Celles-ci sont souvent des cas particuliers et peu
 	rencontrées en pratique.
 \end{myrem}
 % subsection influence_de_la_repr_sentation_des_donn_es (end)
